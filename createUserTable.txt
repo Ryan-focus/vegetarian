@@ -1,0 +1,10 @@
+drop table if exists customer
+create table customer(
+customer_id int identity primary key,
+email nvarchar(40) not null,
+password nvarchar(20) not null,
+customer_name nvarchar(40) not null
+)
+
+-----以下是測試,另外執行-----
+insert into customer (email, password, customer_name) values ('json1234@jmail.com', 'gson5678', 'jason')
