@@ -22,20 +22,16 @@ public class UserServlet extends HttpServlet {
 		UserDAO userDAO = new UserDAO();
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		String result ="";
-		
 		boolean isAccountExist = false;
 		
 		try {
 			isAccountExist = userDAO.login(email, password);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-			request.setAttribute("result", result = isAccountExist ? "成功~" : "失敗!");
+			request.setAttribute("result", isAccountExist ? "成功~" : "失敗!");
 			
 		request.getRequestDispatcher("/LoginResult.jsp").forward(request, response);
 	}
