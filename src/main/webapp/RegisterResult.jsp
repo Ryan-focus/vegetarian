@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" http-equiv="refresh" content="3; url=http://localhost:8080/TestWebDemo/Login.jsp">
+<meta charset="UTF-8" http-equiv="refresh" content="3; url=http://localhost:8080/vegetarian/Login.jsp">
 <title>Register Result</title>
 </head>
 <body BGCOLOR="#DFFFDF">

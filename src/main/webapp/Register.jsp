@@ -53,7 +53,7 @@
 			<INPUT TYPE="SUBMIT" VALUE="送出"> <INPUT TYPE="reset"
 				VALUE="清空" /> <BR> <BR> <INPUT TYPE="button"
 				VALUE="登入"
-				ONCLICK="location.href='http://localhost:8080/TestWebDemo/Login.jsp'">
+				ONCLICK="location.href='http://localhost:8080/vegetarian/Login.jsp'">
 		</CENTER>
             </div>
         </fieldset>
