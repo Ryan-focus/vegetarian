@@ -1,5 +1,7 @@
 package controller;
 import java.io.*;
+
+import javax.naming.NamingException;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -29,6 +31,9 @@ public class UserServlet extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 			request.setAttribute("result", isAccountExist ? "成功~" : "失敗!");
