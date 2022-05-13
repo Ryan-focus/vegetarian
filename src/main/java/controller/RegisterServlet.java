@@ -30,30 +30,24 @@ public class RegisterServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String username = request.getParameter("username");
-		String result ="";
-		
 		boolean isEmailExist = false;
 		
 		try {
 			isEmailExist = userDAO.checkEmail(email);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		try {
 			if (!isEmailExist) userDAO.register(email, password, username);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.setAttribute("result", result = isEmailExist ? "失敗!" : "成功~");
+		request.setAttribute("result", isEmailExist ? "失敗!" : "成功~");
 		
 		request.getRequestDispatcher("/RegisterResult.jsp").forward(request, response);
 	}
