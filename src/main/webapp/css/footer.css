@@ -14,7 +14,7 @@ footer {
   bottom: 0;
   left: 0;
   right: 0;
-  background: #4a433d;
+  background: #ecf2ef;
   height: auto;
   width: 100vw;
   font-family: "Open Sans";
@@ -65,8 +65,9 @@ li {
 }
 
 .footer-box a {
+  font-size: 12px;
   text-decoration: none;
-  color: #fff;
+  color: gray;
 }
 
 .socials {
@@ -81,7 +82,7 @@ li {
 }
 .socials a {
   text-decoration: none;
-  color: #fff;
+  color: lightcoral;
 }
 .socials a i {
   font-size: 1.1rem;
@@ -93,7 +94,7 @@ li {
 }
 
 .footer-bottom {
-  background: #4a433d;
+  background:#ecf2ef;
   width: 100vw;
   padding: 20px 0;
   text-align: center;
@@ -104,8 +105,3 @@ li {
   text-transform: capitalize;
 }
 
-.footer-bottom span {
-  text-transform: uppercase;
-  opacity: 0.4;
-  font-weight: 200;
-}

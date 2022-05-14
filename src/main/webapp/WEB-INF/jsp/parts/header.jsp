@@ -12,8 +12,9 @@
   <body>
     <header>
       <div class="header">
-        <img src="images/logo.png" alt="logo" />
-
+      <a href="index.jsp"> 
+        <img data-src="images/logo.png" src="images/logo.png" alt="logo" title="vegelife" data-was-processed="true"/>
+	  </a>
         <ul class="navigation">
           <a href="#"><li>登入</li></a>
           <a href="#"><li>食記</li></a>

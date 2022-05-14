@@ -24,6 +24,7 @@ header {
 }
 
 .header img {
+  max-width: 100%;
   height: 80px;
 }
 
@@ -48,10 +49,10 @@ header {
 }
 
 .navigation a li {
-  font-family: "Montserrat";
-  font-weight: 500;
+  font-family: Arial, "微軟正黑體", "Microsoft JhengHei", sans-serif;
   font-size: 18px;
-  color: gray;
+  color: #323334;
+  font-weight: bolder;
   text-decoration: none;
   vertical-align: middle;
   height: 100%;
@@ -59,5 +60,5 @@ header {
 }
 
 .navigation a li:hover {
-  background-color: lightgray;
+  color: #28a745;
 }

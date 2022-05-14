@@ -16,7 +16,6 @@ pageEncoding="UTF-8"%>
   <body>
     <footer>
       <div class="footer-content">
-        <!-- <h3>code opacity</h3> -->
         <div class="footer-box col">
           <div class="footer-title">店家專區</div>
           <ul class="footer-box">
@@ -50,7 +49,7 @@ pageEncoding="UTF-8"%>
       </div>
       <div class="footer-bottom">
         <p>
-          copyright &copy;EEIT45-Champion. 2022 Designed By<span>Raven</span>
+          copyright &copy;EEIT45-Champion. 2022
         </p>
       </div>
     </footer>
