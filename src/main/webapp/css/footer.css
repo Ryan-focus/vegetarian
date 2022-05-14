@@ -57,9 +57,6 @@ li {
   margin: 0.5rem 0 0 0;
 }
 
-.footer-box col {
-}
-
 .footer-box li {
   margin: 0 10px;
 }
@@ -103,5 +100,7 @@ li {
   font-size: 18px;
   word-spacing: 2px;
   text-transform: capitalize;
+  color: #323334;
 }
+
 

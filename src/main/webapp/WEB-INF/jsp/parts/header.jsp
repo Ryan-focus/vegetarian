@@ -7,13 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style><%@include file="/../css/header.css"%></style>
-    <title>header</title>
   </head>
   <body>
     <header>
       <div class="header">
       <a href="index.jsp"> 
-        <img data-src="images/logo.png" src="images/logo.png" alt="logo" title="vegelife" data-was-processed="true"/>
+        <img data-src="images/index/logo.png" src="images/index/logo.png" alt="logo" title="vegelife" data-was-processed="true"/>
 	  </a>
         <ul class="navigation">
           <a href="#"><li>登入</li></a>
