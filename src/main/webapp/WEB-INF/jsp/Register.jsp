@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Login</title>
+<title>Register</title>
 <style>
         fieldset {
             width: 500px;
@@ -35,23 +35,28 @@
     </style>
 </head>
 <body BGCOLOR="#DFFFDF">
-<H1 ALIGN="CENTER">Login Form</H1>
-<FORM ACTION="./UserServlet" method="POST">
+<H1 ALIGN="CENTER">Register Form</H1>
+<form action="./RegisterServlet" method="post">
 <fieldset>
             <div class="st1">
-                <label for="email1" class="t1">E-mail</label><input type="text" name="email" id="email1" autocomplete="off">
+                <label for="email1" class="t1">E-mail</label><input type="email" name="email" id="email1" autocomplete="off">
             </div>
             <div class="st1">
-                <label for="pwd1" class="t1">密碼:</label><input type="text" name="password" maxlength="20" id="pwd1" autocomplete="off">
+                <label for="pwd1" class="t1">密碼:</label><input type="password" name="password" maxlength="20" id="pwd1" autocomplete="off">
             </div>
-         <CENTER>
+            <div class="st1">
+                <label for="account1" class="t1">暱稱:</label>
+                <input type="text" name="username" size="10" id="account1" autocomplete="off">
+            </div>
+            <div>
+            <CENTER>
 			<INPUT TYPE="SUBMIT" VALUE="送出"> <INPUT TYPE="reset"
 				VALUE="清空" /> <BR> <BR> <INPUT TYPE="button"
-				VALUE="註冊"
-				ONCLICK="location.href='http://localhost:8080/TestWebDemo/Register.jsp'">
+				VALUE="登入"
+				ONCLICK="location.href='http://localhost:8080/vegetarian/Login.jsp'">
 		</CENTER>
             </div>
         </fieldset>
-</FORM>
+</form>
 </body>
 </html>

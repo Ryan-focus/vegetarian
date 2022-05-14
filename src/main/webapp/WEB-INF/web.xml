@@ -9,4 +9,51 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  <resource-ref>
+    <description>MS SQL Server DataSource Example</description>
+    <res-ref-name>jdbc/PostsDB</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
+  <servlet>
+    <description></description>
+    <display-name>PostCUServlet</display-name>
+    <servlet-name>PostCUServlet</servlet-name>
+    <servlet-class>PostCUServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PostCUServlet</servlet-name>
+    <url-pattern>/PostServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PostDeleteServlet</display-name>
+    <servlet-name>PostDeleteServlet</servlet-name>
+    <servlet-class>PostDeleteServlet</servlet-class>
+  </servlet>
+   <servlet-mapping>
+        <servlet-name>PostDeleteServlet</servlet-name>
+        <url-pattern>/deletePost</url-pattern>
+    </servlet-mapping>   
+    <servlet>
+    <description></description>
+    <display-name>PostEditServlet</display-name>
+    <servlet-name>PostEditServlet</servlet-name>
+    <servlet-class>PostEditServlet</servlet-class>
+  </servlet>
+   <servlet-mapping>
+        <servlet-name>PostEditServlet</servlet-name>
+        <url-pattern>/editPost</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+    <description></description>
+    <display-name>PostIndexServlet</display-name>
+    <servlet-name>PostIndexServlet</servlet-name>
+    <servlet-class>PostIndexServlet</servlet-class>
+  </servlet>
+   <servlet-mapping>
+        <servlet-name>PostIndexServlet</servlet-name>
+        <url-pattern>/showPost</url-pattern>
+    </servlet-mapping>
 </web-app>

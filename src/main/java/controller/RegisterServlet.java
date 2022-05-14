@@ -4,11 +4,14 @@ package controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dao.UserDAO;
 
 /**
  * Servlet implementation class RegisterServlet
@@ -28,16 +31,15 @@ public class RegisterServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String username = request.getParameter("username");
-		String result ="";
-		
 		boolean isEmailExist = false;
 		
 		try {
 			isEmailExist = userDAO.checkEmail(email);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -45,13 +47,14 @@ public class RegisterServlet extends HttpServlet {
 		try {
 			if (!isEmailExist) userDAO.register(email, password, username);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.setAttribute("result", result = isEmailExist ? "失敗!" : "成功~");
+		request.setAttribute("result", isEmailExist ? "失敗!" : "成功~");
 		
 		request.getRequestDispatcher("/RegisterResult.jsp").forward(request, response);
 	}
