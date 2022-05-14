@@ -6,13 +6,34 @@
 <meta charset="UTF-8">
 <title>Login</title>
 <style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		
+		h1 {
+			margin: 50px auto;
+			font-family: "Comic Sans MS";
+		}
+		
         fieldset {
+        	font-size: 18px;
+        	font-family:微軟正黑體;
+        	color: white;
+            width: 500px;
+            border: 0px none;
+            border-radius: 15px;
+            margin: auto;
+            margin-top: -2px;
+            background-color: #001366;
+        }
+        /*fieldset {
             width: 500px;
             border: 1px solid darkolivegreen;
             border-radius: 10px;
             margin: auto;
             background-color: #FFF3EE;
-        }
+        }*/
 
         .st1 {
             width: 450px;
@@ -28,10 +49,6 @@
             text-align: right;
         }
         
-        h1 {
-            font-family: "Comic Sans MS";
-        }
-        
     </style>
 </head>
 <body BGCOLOR="#DFFFDF">
@@ -39,16 +56,16 @@
 <FORM ACTION="./UserServlet" method="POST">
 <fieldset>
             <div class="st1">
-                <label for="email1" class="t1">E-mail</label><input type="text" name="email" id="email1" autocomplete="off">
+                <label for="email1" class="t1">E-mail：</label><input type="email" name="email" id="email1" autocomplete="off" required>
             </div>
             <div class="st1">
-                <label for="pwd1" class="t1">密碼:</label><input type="text" name="password" maxlength="20" id="pwd1" autocomplete="off">
+                <label for="pwd1" class="t1">密碼：</label><input type="password" name="password" maxlength="20" id="pwd1" autocomplete="off" required>
             </div>
          <CENTER>
 			<INPUT TYPE="SUBMIT" VALUE="送出"> <INPUT TYPE="reset"
 				VALUE="清空" /> <BR> <BR> <INPUT TYPE="button"
 				VALUE="註冊"
-				ONCLICK="location.href='http://localhost:8080/vegetarian/Register.jsp'">
+				ONCLICK="location.href='http://localhost:8080/vegetarian/Register.jsp'"> <br> <br>
 		</CENTER>
             </div>
         </fieldset>

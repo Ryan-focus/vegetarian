@@ -5,8 +5,10 @@ public class User {
     private String email;
     private String password;
     private String username;
+    private String status;
     
-    public User() {}
+
+	public User() {}
 
 	public String getEmail() {
 		return email;
@@ -32,6 +34,13 @@ public class User {
 		this.username = username;
 	}
     
+	public String getStatus() {
+		return status;
+	}
+	
+	public void setStatus(String status) {
+		this.status = status;
+	}
     
 	
 }

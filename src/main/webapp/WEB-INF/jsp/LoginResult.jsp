@@ -3,11 +3,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%!int urlStatus = 3;%>
+<% if (request.getAttribute("urlStatus") != null) urlStatus = (int) request.getAttribute("urlStatus");%>
+<% if (urlStatus == 0){%>
 <meta charset="UTF-8" http-equiv="refresh" content="3; url=http://localhost:8080/vegetarian/Login.jsp">
+<%} else if (urlStatus == 1) {%>
+<meta charset="UTF-8" http-equiv="refresh" content="3; url=http://localhost:8080/vegetarian/BusinessRegister.jsp">
+<%} else if (urlStatus == 2) {%>
+<meta charset="UTF-8" http-equiv="refresh" content="3; url=http://localhost:8080/vegetarian/Register.jsp">
+<%} else {%>
+<meta charset="UTF-8" http-equiv="refresh" content="3; url=http://localhost:8080/vegetarian/Login.jsp">
+<%}%>
 <title>Login Result</title>
 </head>
 <body BGCOLOR="#DFFFDF">
-<h2 style="text-align: center">登入<%= request.getAttribute("result") %></h2>
+<h2 style="text-align: center"><%= request.getAttribute("result")%></h2>
 <h3 style="text-align: center">3秒後跳轉頁面....</h3>
 </body>
 </html>

@@ -13,7 +13,6 @@
 		
 		h1 {
 			margin: 50px auto;
-			font-family: "Comic Sans MS";
 		}
 		
         fieldset {
@@ -40,7 +39,11 @@
             width: 100px;
             float: left;
             text-align: right;
-        }        
+        }
+        
+        h1 {
+            font-family: "Comic Sans MS";
+        }
         
         .b1 {
         	font-size: 18px;
@@ -50,9 +53,9 @@
         	height:40px;
         	border: 0px;
         	border-radius: 15px 15px 0px 0px;
+        	margin-left: -4px;
         	background-color: #001366;
         }
-        
         .b2 {
         	font-size: 18px;
         	font-family:微軟正黑體;
@@ -61,7 +64,6 @@
         	height:40px;
         	border: 0px;
         	border-radius: 15px 15px 0px 0px;
-        	margin-left: -4px;
         	background-color: #99ACFF;
         }
         
@@ -69,10 +71,10 @@
 </head>
 <body BGCOLOR="#DFFFDF">
 <H1 ALIGN="CENTER">Register Form</H1>
-<form action="./RegisterServlet" method="post">
+<form action="./BusinessRegisterServlet" method="post">
 <div style="width: 500px;margin: auto;">
-<input type="button" class="b1" value="會員" >
-<input type="button" class="b2" value="商家" ONCLICK="location.href='http://localhost:8080/vegetarian/BusinessRegister.jsp'">
+<input type="button" class="b2" value="會員" ONCLICK="location.href='http://localhost:8080/vegetarian/Register.jsp'">
+<input type="button" class="b1" value="商家" >
 </div>
 <fieldset>
             <div class="st1">

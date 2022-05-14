@@ -1,6 +1,5 @@
 package controller;
 
-
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -13,11 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.UserDAO;
 
+
+
 /**
- * Servlet implementation class RegisterServlet
+ * Servlet implementation class BusinessRegisterServlet
  */
-@WebServlet("/RegisterServlet")
-public class RegisterServlet extends HttpServlet {
+@WebServlet("/BusinessRegisterServlet")
+public class BusinessRegisterServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -43,7 +44,7 @@ public class RegisterServlet extends HttpServlet {
 		}
 		
 		try {
-			if (!isEmailExist) userDAO.register(email, password, username);
+			if (!isEmailExist) userDAO.businessRegister(email, password, username);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (NamingException e) {
