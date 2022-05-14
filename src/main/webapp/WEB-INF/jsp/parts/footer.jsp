@@ -7,7 +7,7 @@ pageEncoding="UTF-8"%>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>footer</title>
-    <style><%@include file="/WEB-INF/css/footer.css"%></style>
+    <style><%@include file="/../css/footer.css"%></style>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
