@@ -1,6 +1,8 @@
 package bean;
 
-public class Goods {
+import java.io.Serializable;
+
+public class Goods implements Serializable{
     private int goodsId;
     private String goodsName;
     private float price;
@@ -75,4 +77,17 @@ public class Goods {
     public void setGoodsId(int goodsId) {
         this.goodsId = goodsId;
     }
+	public Goods(int goodsId, String goodsName, float price, int amount, int leave_amount, int saleNum, String img,
+			GoodsClass goodsClass) {
+		super();
+		this.goodsId = goodsId;
+		this.goodsName = goodsName;
+		this.price = price;
+		this.amount = amount;
+		this.leave_amount = leave_amount;
+		this.saleNum = saleNum;
+		this.img = img;
+		this.goodsClass = goodsClass;
+	}
+    
 }

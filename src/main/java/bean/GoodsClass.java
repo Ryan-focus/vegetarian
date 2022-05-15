@@ -1,8 +1,8 @@
 package bean;
 
+import java.io.Serializable;
 
-
-public class   GoodsClass {
+public class   GoodsClass implements Serializable{
     private int goodClassId;
     private String  classname;
 
@@ -30,4 +30,5 @@ public class   GoodsClass {
     public void setGoodClassId(int goodClassId) {
         this.goodClassId = goodClassId;
     }
+    
 }

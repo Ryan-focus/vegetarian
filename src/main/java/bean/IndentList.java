@@ -1,8 +1,8 @@
 package bean;
 
+import java.io.Serializable;
 
-
-public class IndentList {
+public class IndentList implements Serializable{
     private int indentId;
     private int goodsId;
     private int amount;
@@ -48,4 +48,14 @@ public class IndentList {
     public void setIndent(Indent indent) {
         this.indent = indent;
     }
+
+	public IndentList(int indentId, int goodsId, int amount, Goods goods, Indent indent) {
+		super();
+		this.indentId = indentId;
+		this.goodsId = goodsId;
+		this.amount = amount;
+		this.goods = goods;
+		this.indent = indent;
+	}
+    
 }

@@ -1,6 +1,8 @@
 package bean;
 
-public class Indent {
+import java.io.Serializable;
+
+public class Indent implements Serializable{
 
     private int indentId;
     private User user;
@@ -32,4 +34,12 @@ public class Indent {
     public void setTotalPrice(float totalPrice) {
         this.totalPrice = totalPrice;
     }
+
+	public Indent(int indentId, User user, float totalPrice) {
+		super();
+		this.indentId = indentId;
+		this.user = user;
+		this.totalPrice = totalPrice;
+	}
+    
 }
