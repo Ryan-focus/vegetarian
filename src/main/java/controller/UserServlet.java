@@ -74,21 +74,8 @@ public class UserServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		request.getRequestDispatcher("/LoginResult.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/LoginResult.jsp").forward(request, response);
 		
-//		boolean isAccountExist = false;
-//		
-//		try {
-//			isAccountExist = userDAO.login(email, password);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} catch (NamingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//			request.setAttribute("result", isAccountExist ? "成功~" : "失敗!");
-//			
-//		request.getRequestDispatcher("/LoginResult.jsp").forward(request, response);
 	}
 
 }

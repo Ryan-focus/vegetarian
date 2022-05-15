@@ -56,4 +56,28 @@
         <servlet-name>PostIndexServlet</servlet-name>
         <url-pattern>/showPost</url-pattern>
     </servlet-mapping>
+    <servlet>
+   <servlet-name>Login</servlet-name>
+   <jsp-file>/WEB-INF/jsp/Login.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>Login</servlet-name>
+   <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+      <servlet>
+   <servlet-name>UserRegister</servlet-name>
+   <jsp-file>/WEB-INF/jsp/Register.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>UserRegister</servlet-name>
+   <url-pattern>/UserRegister</url-pattern>
+  </servlet-mapping>
+      <servlet>
+   <servlet-name>BusinessRegister</servlet-name>
+   <jsp-file>/WEB-INF/jsp/BusinessRegister.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>BusinessRegister</servlet-name>
+   <url-pattern>/BusinessRegister</url-pattern>
+  </servlet-mapping>
 </web-app>

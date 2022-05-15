@@ -52,7 +52,7 @@ public class RegisterServlet extends HttpServlet {
 		}
 		request.setAttribute("result", isEmailExist ? "失敗!" : "成功~");
 		
-		request.getRequestDispatcher("/RegisterResult.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/RegisterResult.jsp").forward(request, response);
 	}
 
 }

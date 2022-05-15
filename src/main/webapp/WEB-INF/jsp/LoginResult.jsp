@@ -6,13 +6,13 @@
 <%!int urlStatus = 3;%>
 <% if (request.getAttribute("urlStatus") != null) urlStatus = (int) request.getAttribute("urlStatus");%>
 <% if (urlStatus == 0){%>
-<meta charset="UTF-8" http-equiv="refresh" content="3; url=http://localhost:8080/vegetarian/Login.jsp">
+<meta charset="UTF-8" http-equiv="refresh" content="3; url=/vegetarian/index.jsp">
 <%} else if (urlStatus == 1) {%>
-<meta charset="UTF-8" http-equiv="refresh" content="3; url=http://localhost:8080/vegetarian/BusinessRegister.jsp">
+<meta charset="UTF-8" http-equiv="refresh" content="3; url=/vegetarian/index.jsp">
 <%} else if (urlStatus == 2) {%>
-<meta charset="UTF-8" http-equiv="refresh" content="3; url=http://localhost:8080/vegetarian/Register.jsp">
+<meta charset="UTF-8" http-equiv="refresh" content="3; url=/vegetarian/index.jsp">
 <%} else {%>
-<meta charset="UTF-8" http-equiv="refresh" content="3; url=http://localhost:8080/vegetarian/Login.jsp">
+<meta charset="UTF-8" http-equiv="refresh" content="3; url=/vegetarian/Login">
 <%}%>
 <title>Login Result</title>
 </head>

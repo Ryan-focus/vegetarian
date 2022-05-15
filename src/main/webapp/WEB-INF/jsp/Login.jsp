@@ -65,7 +65,7 @@
 			<INPUT TYPE="SUBMIT" VALUE="送出"> <INPUT TYPE="reset"
 				VALUE="清空" /> <BR> <BR> <INPUT TYPE="button"
 				VALUE="註冊"
-				ONCLICK="location.href='http://localhost:8080/vegetarian/Register.jsp'"> <br> <br>
+				ONCLICK="location.href='/vegetarian/UserRegister'"> <br> <br>
 		</CENTER>
             </div>
         </fieldset>

@@ -72,7 +72,7 @@
 <form action="./RegisterServlet" method="post">
 <div style="width: 500px;margin: auto;">
 <input type="button" class="b1" value="會員" >
-<input type="button" class="b2" value="商家" ONCLICK="location.href='http://localhost:8080/vegetarian/BusinessRegister.jsp'">
+<input type="button" class="b2" value="商家" ONCLICK="location.href='/vegetarian/BusinessRegister'">
 </div>
 <fieldset>
             <div class="st1">
@@ -90,7 +90,7 @@
 			<INPUT TYPE="SUBMIT" VALUE="送出"> <INPUT TYPE="reset"
 				VALUE="清空" /> <BR> <BR> <INPUT TYPE="button"
 				VALUE="登入"
-				ONCLICK="location.href='http://localhost:8080/vegetarian/Login.jsp'"> <br> <br>
+				ONCLICK="location.href='/vegetarian/Login'"> <br> <br>
 		</CENTER>
             </div>
         </fieldset>

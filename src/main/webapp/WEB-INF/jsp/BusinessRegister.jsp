@@ -73,7 +73,7 @@
 <H1 ALIGN="CENTER">Register Form</H1>
 <form action="./BusinessRegisterServlet" method="post">
 <div style="width: 500px;margin: auto;">
-<input type="button" class="b2" value="會員" ONCLICK="location.href='http://localhost:8080/vegetarian/Register.jsp'">
+<input type="button" class="b2" value="會員" ONCLICK="location.href='/vegetarian/UserRegister'">
 <input type="button" class="b1" value="商家" >
 </div>
 <fieldset>
@@ -92,7 +92,7 @@
 			<INPUT TYPE="SUBMIT" VALUE="送出"> <INPUT TYPE="reset"
 				VALUE="清空" /> <BR> <BR> <INPUT TYPE="button"
 				VALUE="登入"
-				ONCLICK="location.href='http://localhost:8080/vegetarian/Login.jsp'"> <br> <br>
+				ONCLICK="location.href='/vegetarian/Login'"> <br> <br>
 		</CENTER>
             </div>
         </fieldset>
