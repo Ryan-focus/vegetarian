@@ -52,18 +52,34 @@
     <servlet-name>PostIndexServlet</servlet-name>
     <servlet-class>PostIndexServlet</servlet-class>
   </servlet>
+  
    <servlet-mapping>
         <servlet-name>PostIndexServlet</servlet-name>
         <url-pattern>/showPost</url-pattern>
     </servlet-mapping>
+    
     <servlet>
    <servlet-name>Login</servlet-name>
    <jsp-file>/WEB-INF/jsp/Login.jsp</jsp-file>
   </servlet>
+  
+  
   <servlet-mapping>
    <servlet-name>Login</servlet-name>
    <url-pattern>/Login</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+   <servlet-name>Reservation</servlet-name>
+   <jsp-file>/WEB-INF/jsp/Reservation.jsp</jsp-file>
+  </servlet>
+  
+  
+  <servlet-mapping>
+   <servlet-name>Reservation</servlet-name>
+   <url-pattern>/order.asp</url-pattern>
+  </servlet-mapping>
+  
       <servlet>
    <servlet-name>UserRegister</servlet-name>
    <jsp-file>/WEB-INF/jsp/Register.jsp</jsp-file>
