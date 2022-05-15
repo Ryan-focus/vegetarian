@@ -15,12 +15,10 @@
         <img data-src="images/index/logo.png" src="images/index/logo.png" alt="logo" title="vegelife" data-was-processed="true"/>
 	  </a>
         <ul class="navigation">
-<<<<<<< Updated upstream
+
           <a href="/vegetarian/Login"><li>登入</li></a>
-=======
        	  <a href="#"><li>訂位</li></a>
           <a href="#"><li>登入</li></a>
->>>>>>> Stashed changes
           <a href="#"><li>食記</li></a>
           <a href="#"><li>網誌</li></a>
           <a href="#"><li>購物專區</li></a>
