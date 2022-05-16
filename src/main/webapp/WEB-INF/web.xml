@@ -80,7 +80,7 @@
    <url-pattern>/order.asp</url-pattern>
   </servlet-mapping>
   
-      <servlet>
+   <servlet>
    <servlet-name>UserRegister</servlet-name>
    <jsp-file>/WEB-INF/jsp/Register.jsp</jsp-file>
   </servlet>
