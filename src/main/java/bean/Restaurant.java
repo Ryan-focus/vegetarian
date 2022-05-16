@@ -1,6 +1,6 @@
 package bean;
 
-public class Restaurant {
+public class Restaurant implements Serializable{
 
 	private Integer restaurantNumber;
 	private String restaurantName;
