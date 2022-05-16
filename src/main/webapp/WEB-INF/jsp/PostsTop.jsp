@@ -32,6 +32,8 @@
 </style>
 </head>
 <body style="background-color: antiquewhite", width: 800px;>
+<jsp:include page="/WEB-INF/jsp/parts/header.jsp"/>
+<jsp:include page="/WEB-INF/jsp/parts/footer.jsp"/>
 	
 	<h2 style="text-align:center ;">文章列表</h2>
 	<input type="button" onclick="javascript:window.location.href='CreatePost.html';" value="發表文章" />
