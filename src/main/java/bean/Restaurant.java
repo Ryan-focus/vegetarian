@@ -1,4 +1,4 @@
-package com.search;
+package bean;
 
 public class Restaurant {
 

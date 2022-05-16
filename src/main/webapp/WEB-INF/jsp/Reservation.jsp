@@ -34,7 +34,7 @@
       </div>
     </div>
   </div> 
-   <script><%@include file="/../js/Reservation/Reservation.js"%></script>
+   <script type="text/javascript" charset="UTF-8" src="js/Reservation/Reservation.js"></script>
 	<jsp:include page="/WEB-INF/jsp/parts/footer.jsp" />
 </body>
 </html>

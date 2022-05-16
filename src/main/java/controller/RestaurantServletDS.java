@@ -1,4 +1,4 @@
-package com.search;
+package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+
+import bean.Restaurant;
+import dao.RestaurantDAO;
 
 //@WebServlet("/RestaurantServletDS")
 
@@ -341,6 +344,7 @@ public class RestaurantServletDS extends HttpServlet {
 			out.println("</table>\r\n");
 			out.println("</FORM>");
 			out.println("<p class=\"p1\"><input name='回到上一頁' type ='button' onclick='history.back()' value='回到上一頁'></input></p>");
+			out.println("<link rel=\"stylesheet\" href=\"/../../map.jsp\">");
 			out.println("</BODY>");
 			out.println("</HTML>");		
 		}

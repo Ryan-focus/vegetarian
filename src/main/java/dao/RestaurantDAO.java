@@ -1,4 +1,4 @@
-package com.search;
+package dao;
 // DAO: Database Access Object
 
 // 專責與Restaurant Table之新增,修改,刪除與查詢
@@ -6,6 +6,8 @@ package com.search;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import bean.Restaurant;
 
 public class RestaurantDAO {
 

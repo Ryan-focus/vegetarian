@@ -6,7 +6,7 @@
   font-family: "Poppins", sans-serif;
 }
 
-.container {
+.bodyContainer {
    height: 100%;
   width: 100%;
   min-height: 40vh;
@@ -50,3 +50,25 @@
   width: 60px;
   height: 60px;
 }
+
+ .container {
+        padding-top: 30px;
+        padding-bottom: 30px;
+      }
+      #map {
+        background: #ccc;
+      }
+      .fixed-bottom {
+        position: fixed;
+        left: 16px;
+        bottom: 0;
+        max-width: 320px;
+      }
+      .btn {
+        margin-top: 6px;
+        margin-bottom: 6px;
+        font-size: 14px;
+      }
+      .btn + .btn {
+        margin-left: 6px;
+      }

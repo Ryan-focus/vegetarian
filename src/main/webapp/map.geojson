@@ -1,0 +1,125 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [24.9468326, 121.2136661]
+      },
+      "properties": {
+        "id": 1,
+        "name": "中平素食之家",
+        "site": "320桃園市中壢區新興路210號"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [24.937283, 121.2253142]
+      },
+      "properties": {
+        "id": 2,
+        "name": "九蓮素食",
+        "site": "320桃園市中壢區中山東路二段513號"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [24.9500116, 121.2122861]
+      },
+      "properties": {
+        "id": 3,
+        "name": "可米素食餐館",
+        "site": "320桃園市中壢區中山東路一段311號"
+      }
+    },
+	{
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [24.9647977, 121.2123101]
+      },
+      "properties": {
+        "id": 4,
+        "name": "靜點咖啡",
+        "site": "320桃園市中壢區南園二路296巷50號"
+      }
+    },
+	{
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [24.9614537, 121.2408934]
+      },
+      "properties": {
+        "id": 5,
+        "name": "義式美味素食",
+        "site": "320桃園市中壢區中華路一段616號"
+      }
+    },
+	{
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [24.9600487, 121.2225428]
+      },
+      "properties": {
+        "id": 6,
+        "name": "得來素蔬食早午餐-中壢福州店",
+        "site": "320桃園市中壢區福州二街348號"
+      }
+    },
+	{
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [24.9484463, 121.227787]
+      },
+      "properties": {
+        "id": 7,
+        "name": "素怡園素食自助餐",
+        "site": "320桃園市中壢區大仁四街20號1樓"
+      }
+    },
+	{
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [24.9497635, 121.2172953]
+      },
+      "properties": {
+        "id": 8,
+        "name": "廣田素食店",
+        "site": "320桃園市中壢區中央西路二段20號"
+      }
+    },
+	{
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [24.9472376, 121.2290194]
+      },
+      "properties": {
+        "id": 9,
+        "name": "綠野鮮蹤",
+        "site": "320桃園市中壢區弘揚路85號"
+      }
+    },
+	{
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [24.9471193, 121.2135563]
+      },
+      "properties": {
+        "id": 10,
+        "name": "新德素食",
+        "site": "320桃園市中壢區義民路1號"
+      }
+    }
+  ]
+}
