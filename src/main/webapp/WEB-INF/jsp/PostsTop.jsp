@@ -36,7 +36,7 @@
 
 	
 	<h2 style="text-align:center ;">文章列表</h2>
-	<input type="button" onclick="javascript:window.location.href='CreatePost.html';" value="發表文章" />
+	<input type="button" onclick="javascript:window.location.href='CreatePost.jsp';" value="發表文章" />
 	<hr>
 	
 		

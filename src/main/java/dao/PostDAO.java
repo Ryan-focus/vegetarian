@@ -15,12 +15,12 @@ import bean.Post;
 
 
 
-public class PostDao2 implements Serializable{
+public class PostDAO implements Serializable{
 	
 	 private Connection conn;
 
 	  //建構子
-	  public PostDao2 (Connection conn) {
+	  public PostDAO (Connection conn) {
 			this.conn = conn;
 	  }
 
