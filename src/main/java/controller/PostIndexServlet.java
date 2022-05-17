@@ -102,6 +102,7 @@ public class PostIndexServlet extends HttpServlet {
 		out.println("h2 {text-align: center;}");
 		out.println(".text_title {padding: 2px;width: 500px;}");
 		out.println(".title{text-align: center;}");
+		out.println("pre{font-size:16px; white-space: pre-warp}");
 		out.println("textarea {height: 200px;width: 500px;resize: none;}");
 		out.println("</style>");
 		out.println("</HEAD>");
