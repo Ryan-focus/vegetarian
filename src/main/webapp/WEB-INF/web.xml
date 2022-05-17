@@ -9,6 +9,7 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  
   <resource-ref>
     <description>MS SQL Server DataSource Example</description>
     <res-ref-name>jdbc/veganDB</res-ref-name>
