@@ -89,10 +89,10 @@
         <p class="ellipsis"><%=rs.getString("posted_text") %></p> 
         </div>
         
-        <a href="showPost?id=<%=rs.getInt("post_id") %>"> 繼續閱讀</a>
+        <a href="PostServlet?action=showPost&id=<%=rs.getInt("post_id") %>"> 繼續閱讀</a>
         <hr>
-        <a href='deletePost?id=<%=rs.getInt("post_id") %>'>刪除文章</a>
-        <a href='editPost?id=<%=rs.getInt("post_id") %>'>編輯文章</a>
+        <a href='PostServlet?action=deletePost&id=<%=rs.getInt("post_id") %>'>刪除文章</a>
+        <a href='PostServlet?action=editPost&id=<%=rs.getInt("post_id") %>'>編輯文章</a>
         <hr>
         
         <br/>
