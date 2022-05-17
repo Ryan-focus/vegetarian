@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import bean.*;
-import dao.ForumDAO;;
+import bean.ForumBean;
+import dao.ForumDAO;
 
 @WebServlet("/ForumServlet")
 public class ForumServlet extends HttpServlet {
@@ -76,7 +76,7 @@ public class ForumServlet extends HttpServlet {
 		InitialContext ctxt = null;
 		Connection conn = null;	
 		try {
-			String vgeid = request.getParameter("vgeid");
+//			String vgeid = request.getParameter("vgeid");
 			// 建立Context Object,連到JNDI Server
 			ctxt = new InitialContext();
 
@@ -85,16 +85,17 @@ public class ForumServlet extends HttpServlet {
 			
 			// 向DataSource要Connection
 			conn = ds.getConnection();
-
 			// 建立Database Access Object,負責Table的Access
 			forumDAO = new ForumDAO(conn); // STUDENTDAO見一個建構子傳回
-			ForumBean forumBean = forumDAO.queryForum(vgeid);
-				String id = request.getParameter("id");
-				String vgename = request.getParameter("vgename");
-				String vgetheme = request.getParameter("vgetheme");
-				String vgecontent = request.getParameter("vgecontent");
-				ForumBean vge = new ForumBean(vgeid,vgename,vgetheme,vgecontent);
-				request.getSession(true).setAttribute("vge",vge); // 關閉SESSION
+				String id = request.getParameter("vgeid");
+				ForumBean forumBean = forumDAO.queryForum(id);
+//				String vgename = request.getParameter("vgename");
+//				String vgetheme = request.getParameter("vgetheme");
+//				String vgecontent = request.getParameter("vgecontent");
+				request.setAttribute( "vgeid",forumBean.getVgeid());
+				request.setAttribute("vgename",forumBean.getVgename());
+				request.setAttribute("vgetheme",forumBean.getVgetheme());
+				request.setAttribute("vgecontent", forumBean.getVgecontent());
 				request.getRequestDispatcher("/QueryResult.jsp").forward(request, response);
 
 		} catch (NamingException ne) {
@@ -131,9 +132,7 @@ public class ForumServlet extends HttpServlet {
 
 			// 建立Database Access Object,負責Table的Access
 			ForumDAO forumDAO = new ForumDAO(conn); // STUDENTDAO見一個建構子傳回
-		//	ForumBean fromData = (ForumBean) request.getSession(true).getAttribute("vga");
-		//	if (forumDAO.queryForum(vgeid) != null) {
-				//System.out.println("Get some SQL commands done!");
+		
 				String vgename = request.getParameter("vgename");
 				String vgetheme = request.getParameter("vgetheme");
 				String vgecontent = request.getParameter("vgecontent");
@@ -225,7 +224,6 @@ public class ForumServlet extends HttpServlet {
 	      ForumBean forumData = (ForumBean)request.getSession(true).getAttribute("vge");
 	      if (ForumDAO.insertForum(forumData))
 	        {
-	          System.out.println("Get some SQL commands done!");
 	          request.getSession(true).invalidate(); //關閉SESSION
 	          request.getRequestDispatcher("/Thank.jsp").forward(request,response);
 	        }
