@@ -79,5 +79,32 @@
    <servlet-name>BusinessRegister</servlet-name>
    <url-pattern>/BusinessRegister</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+   <servlet-name>QueryForum</servlet-name>
+   <jsp-file>/WEB-INF/jsp/forum/QueryForum.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>QueryForum</servlet-name>
+   <url-pattern>/QueryForum</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+   <servlet-name>QueryResult</servlet-name>
+   <jsp-file>/WEB-INF/jsp/forum/QueryResult.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>QueryResult</servlet-name>
+   <url-pattern>/QueryResult</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+   <servlet-name>Thank</servlet-name>
+   <jsp-file>/WEB-INF/jsp/forum/Thank.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>Thank</servlet-name>
+   <url-pattern>/Thank</url-pattern>
+  </servlet-mapping>
 
 </web-app>

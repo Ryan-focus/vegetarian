@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 import bean.ForumBean;
 import dao.ForumDAO;
 
-@WebServlet("/ForumServlet")
+@WebServlet(name="ForumServlet" , urlPatterns="/ForumServlet")
 public class ForumServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -76,22 +76,19 @@ public class ForumServlet extends HttpServlet {
 		InitialContext ctxt = null;
 		Connection conn = null;	
 		try {
-//			String vgeid = request.getParameter("vgeid");
-			// 建立Context Object,連到JNDI Server
+
 			ctxt = new InitialContext();
 
-			// 使用JNDI API找到DataSource
+
 			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/DBForum");
 			
-			// 向DataSource要Connection
+
 			conn = ds.getConnection();
-			// 建立Database Access Object,負責Table的Access
-			forumDAO = new ForumDAO(conn); // STUDENTDAO見一個建構子傳回
+			
+			forumDAO = new ForumDAO(conn); 
 				String id = request.getParameter("vgeid");
 				ForumBean forumBean = forumDAO.queryForum(id);
-//				String vgename = request.getParameter("vgename");
-//				String vgetheme = request.getParameter("vgetheme");
-//				String vgecontent = request.getParameter("vgecontent");
+
 				request.setAttribute( "vgeid",forumBean.getVgeid());
 				request.setAttribute("vgename",forumBean.getVgename());
 				request.setAttribute("vgetheme",forumBean.getVgetheme());
@@ -121,23 +118,22 @@ public class ForumServlet extends HttpServlet {
 		Connection conn = null;	
 		try {
 			String vgeid = request.getParameter("vgeid");
-			// 建立Context Object,連到JNDI Server
+			
 			ctxt = new InitialContext();
 
-			// 使用JNDI API找到DataSource
+			
 			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/DBForum");
 			
-			// 向DataSource要Connection
+			
 			conn = ds.getConnection();
 
-			// 建立Database Access Object,負責Table的Access
-			ForumDAO forumDAO = new ForumDAO(conn); // STUDENTDAO見一個建構子傳回
+			ForumDAO forumDAO = new ForumDAO(conn); 
 		
 				String vgename = request.getParameter("vgename");
 				String vgetheme = request.getParameter("vgetheme");
 				String vgecontent = request.getParameter("vgecontent");
 				ForumBean vge = new ForumBean(vgeid,vgename,vgetheme,vgecontent);
-				request.getSession(true).setAttribute("vge",vge);; // 關閉SESSION
+				request.getSession(true).setAttribute("vge",vge);; 
 				request.getRequestDispatcher("/DisplayForum.jsp").forward(request, response);
 			//}
 		} catch (NamingException ne) {
@@ -161,8 +157,8 @@ public class ForumServlet extends HttpServlet {
 //		String vgetheme = request.getParameter("vgetheme");
 //		String vgecontent = request.getParameter("vgecontent");
 //		//ForumBean vge = new ForumBean(vgeid, vgename, vgetheme, vgecontent);
-//		//request.getSession(true).setAttribute("vge", vge); // bean存到session 屬性名稱寫到DISPLAY (JSP.BEAN ID:NAME)
-//		request.getRequestDispatcher("/DisplayForum.jsp").forward(request, response); // 訊息交給display
+//		//request.getSession(true).setAttribute("vge", vge); 
+//		request.getRequestDispatcher("/DisplayForum.jsp").forward(request, response); // 嚙確嚙踝蕭嚙賣給display
 	}
 
 //	protected void processDelete(HttpServletRequest request, HttpServletResponse response)
@@ -171,17 +167,17 @@ public class ForumServlet extends HttpServlet {
 //		    InitialContext ctxt = null;
 //		    Connection conn = null;
 //		    try {    
-//			      //建立Context Object,連到JNDI Server	
+//			     	
 //			      ctxt = new InitialContext();
 //
-//			      //使用JNDI API找到DataSource
+//			     
 //			      ds = ( DataSource ) ctxt.lookup("java:comp/env/jdbc/DBForum");
 //			      //ds = ( DataSource ) ctxt.lookup("jdbc/OracleXE");
-//			      //向DataSource要Connection
+//			      
 //			      conn = ds.getConnection();
 //
-//			      //建立Database Access Object,負責Table的Access
-//			      ForumDAO forumDAO = new ForumDAO(conn); //STUDENTDAO見一個建構子傳回
+//			   
+//			      ForumDAO forumDAO = new ForumDAO(conn); 
 //			      ForumBean forumData = (ForumBean)request.getSession(true).getAttribute("vge");
 //			      int vgeid = Integer.parseInt(request.getParameter("vgeid"));
 //			          forumDAO.deleteForum(vgeid);
@@ -210,21 +206,16 @@ public class ForumServlet extends HttpServlet {
 	    InitialContext ctxt = null;
 	    Connection conn = null;
 	    try {    
-	      //建立Context Object,連到JNDI Server	
 	      ctxt = new InitialContext();
 
-	      //使用JNDI API找到DataSource
 	      ds = ( DataSource ) ctxt.lookup("java:comp/env/jdbc/DBForum");
-	      //ds = ( DataSource ) ctxt.lookup("jdbc/OracleXE");
-	      //向DataSource要Connection
 	      conn = ds.getConnection();
 
-	      //建立Database Access Object,負責Table的Access
-	      ForumDAO forumDAO = new ForumDAO(conn); //STUDENTDAO見一個建構子傳回
+	      ForumDAO forumDAO = new ForumDAO(conn); 
 	      ForumBean forumData = (ForumBean)request.getSession(true).getAttribute("vge");
 	      if (ForumDAO.insertForum(forumData))
 	        {
-	          request.getSession(true).invalidate(); //關閉SESSION
+	          request.getSession(true).invalidate(); 
 	          request.getRequestDispatcher("/Thank.jsp").forward(request,response);
 	        }
 	    } catch (NamingException ne) {
