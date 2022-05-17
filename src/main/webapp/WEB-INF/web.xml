@@ -46,21 +46,9 @@
   
   
   <servlet-mapping>
-   <servlet-name>PostsTop</servlet-name>
-   <url-pattern>/post</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-  <servlet-name>PostsTop</servlet-name>
-  <jsp-file>/WEB-INF/jsp/PostsTop.jsp</jsp-file>
-  </servlet>
-  
-  
-  <servlet-mapping>
    <servlet-name>Reservation</servlet-name>
    <url-pattern>/order.asp</url-pattern>
   </servlet-mapping>
-  
   
   <servlet>
    <servlet-name>RestaurantServletDS</servlet-name>
