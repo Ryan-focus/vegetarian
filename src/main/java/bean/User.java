@@ -1,11 +1,15 @@
 package bean;
 
 public class User {
-
+	
     private String email;
     private String password;
     private String username;
     private String status;
+    private int id;
+    public int getId() {
+    	return id;
+    }
     
 
 	public User() {}
