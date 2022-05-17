@@ -1,5 +1,7 @@
 package bean;
 
+import java.io.Serializable;
+
 public class Restaurant implements Serializable{
 
 	private Integer restaurantNumber;
