@@ -9,7 +9,7 @@ import javax.naming.*;
 import javax.sql.*;
 
 import bean.Post;
-import dao.PostDao2;
+import dao.PostDAO;
 
 public class PostServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,7 +30,7 @@ public class PostServlet extends HttpServlet {
 			conn = ds.getConnection();
 
 			// 建立Database Access Object,負責Table的Access
-			PostDao2 postDao2 = new PostDao2(conn);
+			PostDAO postDao2 = new PostDAO(conn);
 
 			// 如果要編碼值為UTF-8
 			request.setCharacterEncoding("UTF-8");
@@ -69,7 +69,7 @@ public class PostServlet extends HttpServlet {
 		}
 	}
 
-	private void Update(HttpServletRequest request, HttpServletResponse response, PostDao2 postDao2)
+	private void Update(HttpServletRequest request, HttpServletResponse response, PostDAO postDao2)
 			throws SQLException, IOException {
 
 		Post post = new Post();
@@ -84,7 +84,7 @@ public class PostServlet extends HttpServlet {
 		}
 	}
 
-	private void Create(HttpServletRequest request, HttpServletResponse response, PostDao2 postDao2)
+	private void Create(HttpServletRequest request, HttpServletResponse response, PostDAO postDao2)
 			throws SQLException, IOException {
 
 		Post post = new Post();
@@ -102,7 +102,7 @@ public class PostServlet extends HttpServlet {
 
 	}
 
-	private void showPost(HttpServletRequest request, HttpServletResponse response, PostDao2 postDao2)
+	private void showPost(HttpServletRequest request, HttpServletResponse response, PostDAO postDao2)
 			throws SQLException, IOException {
 
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -146,7 +146,7 @@ public class PostServlet extends HttpServlet {
 
 	}
 
-	private void deletePost(HttpServletRequest request, HttpServletResponse response, PostDao2 postDao2)
+	private void deletePost(HttpServletRequest request, HttpServletResponse response, PostDAO postDao2)
 			throws SQLException, IOException {
 
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -179,7 +179,7 @@ public class PostServlet extends HttpServlet {
 
 	}
 
-	private void editPost(HttpServletRequest request, HttpServletResponse response, PostDao2 postDao2)
+	private void editPost(HttpServletRequest request, HttpServletResponse response, PostDAO postDao2)
 			throws SQLException, IOException {
 
 		int id = Integer.parseInt(request.getParameter("id"));
