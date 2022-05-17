@@ -1,11 +1,11 @@
-drop table if exists customer
-create table customer(
-customer_id int identity primary key,
+drop table if exists users
+create table users(
+uid int identity primary key,
 email nvarchar(40) not null,
 password nvarchar(20) not null,
-customer_name nvarchar(40) not null,
+username nvarchar(40) not null,
 status nvarchar (20) not null
 )
 
 -----以下是測試,另外執行,新增管理員資料-----
-insert into customer (email, password, customer_name, status) values ('aaa1234@mail.com', 'bbb5678', 'ccc9', 'administrator')
+insert into users (email, password, username, status) values ('aaa123@mail.com', 'Bbb456', 'ccc789', 'administrator')

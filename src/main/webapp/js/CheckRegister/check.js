@@ -88,7 +88,7 @@ function CheckPost() {
     	
     	} else {    
     		
-    alert("請確認資料是否有誤!");
+    alert("請確認輸入符合規則!");
     return false;
     
     }

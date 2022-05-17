@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<%@ include file="/WEB-INF/jsp/parts/meta.jsp" %>
 <title>Register</title>
 <style>
 		* {
@@ -12,7 +13,8 @@
 		}
 		
 		h1 {
-			margin: 50px auto;
+			margin-top: 0px;
+            margin-bottom: 20px;
 			font-family: "Comic Sans MS";
 		}
 		
@@ -67,7 +69,8 @@
         
     </style>
 </head>
-<body BGCOLOR="#DFFFDF">
+<body BGCOLOR="#fcfcfc">
+<jsp:include page="/WEB-INF/jsp/parts/header.jsp" />
 <H1 ALIGN="CENTER">Register Form</H1>
 <form action="./RegisterServlet" method="post" onsubmit="return CheckPost();">
 <div style="width: 500px;margin: auto;">
@@ -90,7 +93,7 @@
             </div>
             <div class="st1">
                 <label for="name1" class="t1">暱稱：</label>
-                <input type="text" name="username" maxlength="30" size="10" id="name1" autocomplete="off"
+                <input type="text" name="username" maxlength="30" id="name1" autocomplete="off"
                 onblur="blurName(this)">
                 &nbsp;&nbsp;&nbsp;<span id="alertname"></span>
             </div>

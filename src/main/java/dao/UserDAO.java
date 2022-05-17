@@ -24,7 +24,7 @@ public class UserDAO {
 	
 	public User login(String email, String password) throws SQLException {
 		
-		String sql = "SELECT * FROM users WHERE EMAIL ='" + email + "'AND PASSWORD ='" + password +"';";
+		String sql = "select * from users where email ='" + email + "'and password ='" + password +"';";
 		Connection conn = ds.getConnection();
 		
 		try {
@@ -55,7 +55,7 @@ public class UserDAO {
 	
 	public boolean checkEmail(String email) throws SQLException, NamingException {
 
-		String sql = "SELECT * FROM users WHERE EMAIL = ?";
+		String sql = "select * from users where email = ?";
 	    Connection conn = ds.getConnection();
 
 		try {
@@ -78,7 +78,7 @@ public class UserDAO {
 	public void register(String email, String password, String username)
 			throws SQLException, NamingException {
 
-		String sql = "INSERT INTO users(EMAIL, PASSWORD, username, status) " + "VALUES('" + email + "','"
+		String sql = "insert into users(email, password, username, status) " + "values('" + email + "','"
 				+ password + "','" + username + "','user')";
 		Connection conn = ds.getConnection();
 
@@ -96,11 +96,7 @@ public class UserDAO {
 	public void businessRegister(String email, String password, String username)
 			throws SQLException, NamingException {
 
-<<<<<<< Updated upstream
-		String sql = "INSERT INTO users(EMAIL, PASSWORD, CUSTOMER_NAME, status) " + "VALUES('" + email + "','"
-=======
-		String sql = "INSERT INTO users(EMAIL, PASSWORD, username, status) " + "VALUES('" + email + "','"
->>>>>>> Stashed changes
+		String sql = "insert into users(email, password, username, status) " + "values('" + email + "','"
 				+ password + "','" + username + "','business')";
 		Connection conn = ds.getConnection();
 

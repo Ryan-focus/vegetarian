@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="/WEB-INF/jsp/parts/meta.jsp" %>
 <%!int urlStatus = 3;%>
 <% if (request.getAttribute("urlStatus") != null) urlStatus = (int) request.getAttribute("urlStatus");%>
 <% if (urlStatus == 0){%>
@@ -15,8 +16,17 @@
 <meta charset="UTF-8" http-equiv="refresh" content="3; url=/vegetarian/Login">
 <%}%>
 <title>Login Result</title>
+<style>
+h2 {
+	margin-top: 85px;
+}
+h3 {
+	margin-top: 85px;
+}
+</style>
 </head>
-<body BGCOLOR="#DFFFDF">
+<body BGCOLOR="#fcfcfc">
+<jsp:include page="/WEB-INF/jsp/parts/footer.jsp" />
 <h2 style="text-align: center"><%= request.getAttribute("result")%></h2>
 <h3 style="text-align: center">3秒後跳轉頁面....</h3>
 </body>
