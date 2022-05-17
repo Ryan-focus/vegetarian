@@ -34,12 +34,13 @@ public class UserDAO {
 			
 			if (rs.next()) {
 				
-				User u = new User();
-				u.setEmail(email);
-				u.setPassword(password);
-				u.setUsername(rs.getString("customer_name"));
-				u.setStatus(rs.getString("status"));
-				return u;
+				User user = new User();
+				user.setUid(rs.getInt("uid"));
+				user.setEmail(email);
+				user.setPassword(password);
+				user.setUsername(rs.getString("username"));
+				user.setStatus(rs.getString("status"));
+				return user;
 				
 			}
 			rs.close();
@@ -77,7 +78,7 @@ public class UserDAO {
 	public void register(String email, String password, String username)
 			throws SQLException, NamingException {
 
-		String sql = "INSERT INTO CUSTOMER(EMAIL, PASSWORD, CUSTOMER_NAME, status) " + "VALUES('" + email + "','"
+		String sql = "INSERT INTO users(EMAIL, PASSWORD, username, status) " + "VALUES('" + email + "','"
 				+ password + "','" + username + "','user')";
 		Connection conn = ds.getConnection();
 
@@ -95,7 +96,11 @@ public class UserDAO {
 	public void businessRegister(String email, String password, String username)
 			throws SQLException, NamingException {
 
+<<<<<<< Updated upstream
 		String sql = "INSERT INTO users(EMAIL, PASSWORD, CUSTOMER_NAME, status) " + "VALUES('" + email + "','"
+=======
+		String sql = "INSERT INTO users(EMAIL, PASSWORD, username, status) " + "VALUES('" + email + "','"
+>>>>>>> Stashed changes
 				+ password + "','" + username + "','business')";
 		Connection conn = ds.getConnection();
 

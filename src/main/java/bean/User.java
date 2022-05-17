@@ -2,17 +2,21 @@ package bean;
 
 public class User {
 	
+	private int uid;
     private String email;
     private String password;
     private String username;
     private String status;
-    private int id;
-    public int getId() {
-    	return id;
-    }
     
+    public User() {}
 
-	public User() {}
+	public int getUid() {
+		return uid;
+	}
+
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
 
 	public String getEmail() {
 		return email;

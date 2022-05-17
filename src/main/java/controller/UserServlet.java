@@ -1,7 +1,6 @@
 package controller;
 import java.io.*;
 
-import javax.naming.NamingException;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;

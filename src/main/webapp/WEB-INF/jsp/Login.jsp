@@ -56,7 +56,7 @@
 <FORM ACTION="./UserServlet" method="POST">
 <fieldset>
             <div class="st1">
-                <label for="email1" class="t1">E-mail：</label><input type="email" name="email" id="email1" autocomplete="off" required>
+                <label for="email1" class="t1">E-mail：</label><input type="email" name="email" maxlength="50" id="email1" autocomplete="off" required>
             </div>
             <div class="st1">
                 <label for="pwd1" class="t1">密碼：</label><input type="password" name="password" maxlength="20" id="pwd1" autocomplete="off" required>

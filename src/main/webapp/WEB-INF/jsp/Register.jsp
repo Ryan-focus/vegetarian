@@ -69,21 +69,30 @@
 </head>
 <body BGCOLOR="#DFFFDF">
 <H1 ALIGN="CENTER">Register Form</H1>
-<form action="./RegisterServlet" method="post">
+<form action="./RegisterServlet" method="post" onsubmit="return CheckPost();">
 <div style="width: 500px;margin: auto;">
 <input type="button" class="b1" value="會員" >
 <input type="button" class="b2" value="商家" ONCLICK="location.href='/vegetarian/BusinessRegister'">
 </div>
 <fieldset>
             <div class="st1">
-                <label for="email1" class="t1">E-mail：</label><input type="email" name="email" id="email1" autocomplete="off">
+                <label for="email1" class="t1">E-mail：</label><input type="email" name="email" maxlength="50" id="email1" autocomplete="off" required>
             </div>
             <div class="st1">
-                <label for="pwd1" class="t1">密碼：</label><input type="password" name="password" maxlength="20" id="pwd1" autocomplete="off">
+                <label for="pwd1" class="t1">密碼：</label><input type="password" name="password" maxlength="20" id="pwd1" autocomplete="off"
+                onblur="blurPass(this)">
+                &nbsp;&nbsp;&nbsp;<span id="alertpw1"></span>
             </div>
             <div class="st1">
-                <label for="account1" class="t1">暱稱：</label>
-                <input type="text" name="username" size="10" id="account1" autocomplete="off">
+                <label for="pwd2" class="t1">確認密碼：</label><input type="password" maxlength="20" id="pwd2" autocomplete="off" 
+                onblur="blurRepass(this)">
+                &nbsp;&nbsp;&nbsp;<span id="alertpw2"></span>
+            </div>
+            <div class="st1">
+                <label for="name1" class="t1">暱稱：</label>
+                <input type="text" name="username" maxlength="30" size="10" id="name1" autocomplete="off"
+                onblur="blurName(this)">
+                &nbsp;&nbsp;&nbsp;<span id="alertname"></span>
             </div>
             <div>
             <CENTER>
@@ -95,5 +104,6 @@
             </div>
         </fieldset>
 </form>
+<script src="js/CheckRegister/check.js"></script>
 </body>
 </html>
