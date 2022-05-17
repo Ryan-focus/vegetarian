@@ -39,7 +39,7 @@ public class ForumServlet extends HttpServlet {
 
 			ctxt = new InitialContext();
 
-			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/DBForum");
+			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/veganDB");
 
 			conn = ds.getConnection();
 
