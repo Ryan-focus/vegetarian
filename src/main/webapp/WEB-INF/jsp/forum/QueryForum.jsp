@@ -18,30 +18,17 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server 
 查詢文章
 </h2>
 <form action="./ForumServlet" method="post">
-<table  cellspacing="2" cellpadding="1" border="1" width="100%">
-<tr>
-    <td>編號:</td>
-    <td><input type="text" name="vgeid" size="10" maxlength="10"></td>
-</tr>
 
-<tr>
-    <td>名稱:</td>
-    <td><input type="text" name="vgename" size="10" maxlength="10"></td>
-</tr>
-<tr>
-    <td>標題:</td>
-    <td><input type="text" name="vgetheme" size="10" maxlength="10"></td>
-</tr>
-<tr>
-    <td>發表:</td>
-    <td><input type="text" name="vgecontent" size="10" maxlength="10"></td>
-</tr>
-
-
-</table>
+<p>使用編號查詢文章或填寫以下表格新增文章</p>
+<p>編號:<input type="text" name="vgeid" size="10" maxlength="10"></p>
+<p>名稱:<input type="text" name="vgename" size="10" maxlength="10"></p>
+<p>標題:<input type="text" name="vgetheme" size="50" maxlength="30"></p>
+<p>文章:<textarea name="vgecontent" rows="6" cols="40"></textarea></p>
+ 
 <center>
 
 <input type="submit" name="Query" value="查詢" >
+<input type="submit" name="Create" value="新增文章" >
 </center>
 </form>
 </body>

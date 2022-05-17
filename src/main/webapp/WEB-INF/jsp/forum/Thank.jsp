@@ -11,9 +11,10 @@ response.setContentType("text/html;charset=UTF-8");
 <title>新增成功</title>
 </head>
 <body>
-新增成功
+文章新增成功...3秒後跳轉
 <center>
-<input type="submit" name="Query" value="查詢" >
+<meta http-equiv="refresh" content="3;url=QueryForum.jsp"/>  
+
 </center>
 </body>
 </html>

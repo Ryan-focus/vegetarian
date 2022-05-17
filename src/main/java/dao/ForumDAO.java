@@ -19,7 +19,6 @@ public class ForumDAO {
 					+ "','" + forumData.getVgetheme() + "','" + forumData.getVgecontent() + "')";
 
 			Statement stmt = conn.createStatement();
-			System.out.println(sqlString);
 			int updatecount = stmt.executeUpdate(sqlString);
 			stmt.close();
 			if (updatecount >= 1)
@@ -73,15 +72,11 @@ public class ForumDAO {
 			String vgetheme;
 			String vgecontent;
 
-//			Statement stmt = conn.createStatement();
 			String sqlString = "SELECT * " + "FROM vge_FORUM WHERE vgeid = ?";
 			PreparedStatement ps =conn.prepareStatement(sqlString);
 			ps.setString(1, vgeid);
-//			ResultSet rs = stmt.executeQuery(sqlString);
 			ResultSet rs=ps.executeQuery();
 			if (rs.next()) {
-//				ForumBean fb = new ForumBean();
-//				fb.setVgeid(rs.getString("vgeid"));
 				vgeid=rs.getString("vgeid");
 				vgename=rs.getString("vgename");
 				vgetheme=rs.getString("vgetheme"); 

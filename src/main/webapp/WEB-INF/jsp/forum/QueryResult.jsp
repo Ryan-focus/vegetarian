@@ -38,12 +38,10 @@ hr.style-five {
 		<header>
 		<h2>留言板</h2>
 		</header>
-		<div>ID:<INPUT TYPE='TEXT' NAME='vgeid' VALUE=<%=request.getAttribute("vgeid")%>></div>
-		<div>名稱:<INPUT TYPE='TEXT' NAME='vgename' VALUE=<%=request.getAttribute("vgename")%>></div>
-		
+		<p>ID:<%=request.getAttribute("vgeid")%></p]>
 		<p>名稱:<%=request.getAttribute("vgename")%> </p>
-		<p>標題:<%=request.getParameter("vgetheme") %> </p>
-		<p>提問:<%=request.getParameter("vgecontent") %></p>
+		<p>標題:<%=request.getAttribute("vgetheme") %> </p>
+		<p>提問:<%=request.getAttribute("vgecontent") %></p>
 
 		<hr class="style-five">
 		<center>
