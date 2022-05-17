@@ -18,7 +18,7 @@
 
           <a href="/vegetarian/Login"><li>登入</li></a>
        	  <a href="/vegetarian/order.asp"><li>訂位</li></a>
-          <a href="#"><li>食記</li></a>
+          <a href="/vegetarian/post"><li>食記</li></a>
           <a href="#"><li>網誌</li></a>
           <a href="#"><li>購物專區</li></a>
           <a href="#"><li>店家專區</li></a>

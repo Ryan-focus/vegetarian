@@ -68,16 +68,8 @@
    <servlet-name>UserRegister</servlet-name>
    <url-pattern>/UserRegister</url-pattern>
   </servlet-mapping>
-   <servlet>
-    <description></description>
-    <display-name>ForumServlet</display-name>
-    <servlet-name>ForumServlet</servlet-name>
-    <servlet-class>ForumServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ForumServlet</servlet-name>
-    <url-pattern>/ForumServlet</url-pattern>
-  </servlet-mapping>
+
+
       <servlet>
    <servlet-name>BusinessRegister</servlet-name>
    <jsp-file>/WEB-INF/jsp/BusinessRegister.jsp</jsp-file>

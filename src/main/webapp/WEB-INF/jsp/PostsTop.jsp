@@ -109,6 +109,6 @@
 		stmt.close();
 		conn3.close();
 		%>
-	
+	<jsp:include page="/WEB-INF/jsp/parts/footer.jsp"/>
 </body>
 </html>
