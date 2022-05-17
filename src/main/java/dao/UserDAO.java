@@ -15,7 +15,7 @@ public class UserDAO {
 	{
 		try {
 			InitialContext ctxt = new InitialContext();
-			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/UserDB");
+			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/veganDB");
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -24,7 +24,7 @@ public class UserDAO {
 	
 	public User login(String email, String password) throws SQLException {
 		
-		String sql = "SELECT * FROM Customer WHERE EMAIL ='" + email + "'AND PASSWORD ='" + password +"';";
+		String sql = "SELECT * FROM users WHERE EMAIL ='" + email + "'AND PASSWORD ='" + password +"';";
 		Connection conn = ds.getConnection();
 		
 		try {
@@ -54,7 +54,7 @@ public class UserDAO {
 	
 	public boolean checkEmail(String email) throws SQLException, NamingException {
 
-		String sql = "SELECT * FROM Customer WHERE EMAIL = ?";
+		String sql = "SELECT * FROM users WHERE EMAIL = ?";
 	    Connection conn = ds.getConnection();
 
 		try {
@@ -95,7 +95,7 @@ public class UserDAO {
 	public void businessRegister(String email, String password, String username)
 			throws SQLException, NamingException {
 
-		String sql = "INSERT INTO CUSTOMER(EMAIL, PASSWORD, CUSTOMER_NAME, status) " + "VALUES('" + email + "','"
+		String sql = "INSERT INTO users(EMAIL, PASSWORD, CUSTOMER_NAME, status) " + "VALUES('" + email + "','"
 				+ password + "','" + username + "','business')";
 		Connection conn = ds.getConnection();
 
