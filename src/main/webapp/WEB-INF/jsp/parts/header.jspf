@@ -14,7 +14,8 @@
     />
   </head>
   <body>
-  <jsp:useBean id="Auth" scope="session" class="bean.User"/> <!-- test session 可刪 -->
+  <jsp:useBean id="user" scope="session" class="bean.User"/> <!-- test session -->
+  <jsp:setProperty name="user" property="*"/>				<!-- test session -->
   	<input type="checkbox" name="" id="menu_control">
     <header>
       <div class="header">
@@ -28,13 +29,18 @@
 		  		<span>選單</span>
 		  </label>
 	        <ul class="navigation">
-	          <a href="/vegetarian/Login"><li>登入</li></a>
+     	      <% if (user.getUid() == 0){%>		<!-- test session -->
+	          <a href="/vegetarian/Login"><li>登入</li></a>	        
+	          <%}%>								<!-- test session -->
 	       	  <a href="/vegetarian/order.asp"><li>訂位</li></a>
 	          <a href="/vegetarian/postsIndex"><li>食記</li></a>
 	          <a href="/vegetarian/queryforumIndex"><li>網誌</li></a>
 	          <a href="/vegetarian/shoppingcartIndex"><li>購物專區</li></a>
 	          <a href="#"><li>店家專區</li></a>
-	          <li>${Auth.status}&nbsp;${Auth.username}</li> <!-- test session 可刪 -->
+	          <li>${user.status}&nbsp;${user.username}&nbsp;</li> <!-- test session -->
+	          <% if (user.getUid() != 0){%>							<!-- test session -->
+	          <li><input type="button" value="登出" onclick="window.location.href='/vegetarian/Logout';"></li><!-- test session -->
+	          <%}%>													<!-- test session -->
 	        </ul>
      </div>
     </header>

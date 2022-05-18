@@ -96,6 +96,15 @@
    <url-pattern>/BusinessRegister</url-pattern>
   </servlet-mapping>
   
+     <servlet>
+   <servlet-name>Logout</servlet-name>
+   <jsp-file>/WEB-INF/jsp/Logout.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>Logout</servlet-name>
+   <url-pattern>/Logout</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
    <servlet-name>queryforumIndex</servlet-name>
    <jsp-file>/queryforumIndex.jsp</jsp-file>
