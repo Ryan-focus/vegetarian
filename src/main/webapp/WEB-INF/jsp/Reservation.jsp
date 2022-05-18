@@ -8,7 +8,6 @@
 <style><%@include file="/../css/Reservation/Reservation.css"%></style>
 </head>
 <body> 
-	<jsp:include page="/WEB-INF/jsp/parts/header.jsp" />
 	 <div class="app">
     <h1>預訂系統</h1>
     
@@ -35,6 +34,5 @@
     </div>
   </div> 
    <script type="text/javascript" charset="UTF-8" src="js/Reservation/Reservation.js"></script>
-	<jsp:include page="/WEB-INF/jsp/parts/footer.jsp" />
 </body>
 </html>
