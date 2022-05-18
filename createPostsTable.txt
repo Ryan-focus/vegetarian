@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS posts;
+
+CREATE TABLE posts(
+    post_id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    title NVARCHAR(100) NOT NULL,
+    posted_date DATETIME NOT NULL,
+    posted_text NVARCHAR(MAX) NOT NULL,
+   
+);
