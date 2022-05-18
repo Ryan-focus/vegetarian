@@ -42,8 +42,7 @@ if (cart_list != null) {
 <%@include file="WEB-INF/jsp/parts/bootstrap.jsp"%>
 </head>
 <body>
-
-	<%@include file="WEB-INF/jsp/parts/ShoppingCartBar.jsp"%>
+	<%@include file="/WEB-INF/jsp/parts/ShoppingCartBar.jsp"%>
 
 	<div class="container">
 		<div class="card-header my-3">全部商品</div>
@@ -72,12 +71,9 @@ if (cart_list != null) {
 			}
 			}
 			%>
-
-
-
 		</div>
 	</div>
-	<%@include file="WEB-INF/jsp/parts/Script.jsp"%>
+	<%@include file="/WEB-INF/jsp/parts/Script.jsp"%>
 
 </body>
 </html>

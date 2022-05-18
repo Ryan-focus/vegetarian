@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="zh-TW">
   <head>
@@ -16,7 +15,7 @@
 	  </a>
         <ul class="navigation">
 
-          <a href="ShoppingCartindex.jsp"><li>商品頁</li></a>
+          <a href="/vegetarin/shoppingcartIndex"><li>商品頁</li></a>
        	  <a href="cart.jsp"><li>購物車</li></a>
        	    <%
         if(auth !=null){%>

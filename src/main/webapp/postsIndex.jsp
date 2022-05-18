@@ -3,8 +3,7 @@
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.*" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +30,7 @@
 	}
 </style>
 </head>
-<body style="background-color: antiquewhite", width: 800px;>
+<body style="background-color: antiquewhite",width: 800px;>
 	
 	<h2 style="text-align:center ;">文章列表</h2>
 	<input type="button" onclick="javascript:window.location.href='CreatePost.jsp';" value="發表文章" />
@@ -40,8 +39,8 @@
 		
 		<%
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			String url3="jdbc:sqlserver://localhost:1433;databaseName=Task";
-			Connection conn3 = DriverManager.getConnection(url3, "sa","passw0rd");
+			String url="jdbc:sqlserver://localhost:1433;databaseName=veganDB";
+			Connection conn = DriverManager.getConnection(url, "sa","passw0rd");
 			int intPageSize;//一頁顯示的記錄數
 			int intRowCount;//記錄總數
 			int intPageCount;//總頁數
@@ -60,7 +59,7 @@
 					intPage=1;
 			}
 			
-			Statement stmt=conn3.createStatement(
+			Statement stmt=conn.createStatement(
 					ResultSet.TYPE_SCROLL_SENSITIVE,
 					ResultSet.CONCUR_READ_ONLY
 					);
@@ -105,7 +104,7 @@
 	<% 
 		rs.close();
 		stmt.close();
-		conn3.close();
+		conn.close();
 		%>
 </body>
 </html>

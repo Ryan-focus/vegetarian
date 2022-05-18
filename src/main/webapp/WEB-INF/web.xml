@@ -13,9 +13,9 @@
    <jsp-config>
 	   <jsp-property-group>
 		   <url-pattern>*.jsp</url-pattern> <!-- 受影響的jsp頁面。這邊是所有的jsp -->   
-		   <el-ignored>true</el-ignored>       <!-- 是否忽略el -->  
+		   <el-ignored>false</el-ignored>       <!-- 是否忽略el -->  
 		   <page-encoding>UTF-8</page-encoding> <!-- 預設頁面encoding -->
-		   <scripting-invalid>true</scripting-invalid> <!-- 是否忽略scriptlet -->       
+		   <scripting-invalid>false</scripting-invalid> <!-- 是否忽略scriptlet -->       
 		   <include-prelude>/WEB-INF/jsp/parts/header.jspf</include-prelude> <!-- 在jsp前加入此頁 - 同等 include -->        
            <include-coda>/WEB-INF/jsp/parts/footer.jspf</include-coda> <!-- 在jsp後加入此頁 - 同等 include --> 
 		   <default-content-type>text/html</default-content-type> <!-- 設定頁面語法 -->
@@ -23,10 +23,8 @@
 	   </jsp-property-group>
    </jsp-config>
   
-  
 
   <servlet>
-    <display-name>PostServlet</display-name>
     <servlet-name>PostServlet</servlet-name>
     <servlet-class>PostServlet</servlet-class>
   </servlet>
@@ -36,35 +34,55 @@
   </servlet-mapping>
 
     
-    <servlet>
-   <servlet-name>Login</servlet-name>
-   <jsp-file>/WEB-INF/jsp/Login.jsp</jsp-file>
+   <servlet>
+   <servlet-name>loginIndex</servlet-name>
+   <jsp-file>/loginIndex.jsp</jsp-file>
   </servlet>
   
-  
   <servlet-mapping>
-   <servlet-name>Login</servlet-name>
+   <servlet-name>loginIndex</servlet-name>
    <url-pattern>/Login</url-pattern>
   </servlet-mapping>
   
    <servlet>
-   <servlet-name>Reservation</servlet-name>
-   <jsp-file>/WEB-INF/jsp/Reservation.jsp</jsp-file>
+   <servlet-name>reservationIndex</servlet-name>
+   <jsp-file>/reservationIndex.jsp</jsp-file>
   </servlet>
   
-  
   <servlet-mapping>
-   <servlet-name>Reservation</servlet-name>
+   <servlet-name>reservationIndex</servlet-name>
    <url-pattern>/order.asp</url-pattern>
   </servlet-mapping>
   
-  <servlet>
-   <servlet-name>RestaurantServletDS</servlet-name>
-   <servlet-class>RestaurantServletDS</servlet-class>
+   <servlet>
+   <servlet-name>postsIndex</servlet-name>
+   <jsp-file>/postsIndex.jsp</jsp-file>
   </servlet>
   
   <servlet-mapping>
-   <servlet-name>RestaurantServletDS</servlet-name>
+   <servlet-name>postsIndex</servlet-name>
+   <url-pattern>/postsIndex</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+   <servlet-name>shoppingcartIndex</servlet-name>
+   <jsp-file>/shoppingcartIndex.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+   <servlet-name>shoppingcartIndex</servlet-name>
+   <url-pattern>/shoppingcartIndex</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  <servlet>
+   <servlet-name>map</servlet-name>
+   <jsp-file>/map.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+   <servlet-name>map</servlet-name>
    <url-pattern>/map</url-pattern>
   </servlet-mapping>
   
@@ -88,12 +106,12 @@
   </servlet-mapping>
   
   <servlet>
-   <servlet-name>QueryForum</servlet-name>
-   <jsp-file>/WEB-INF/jsp/forum/QueryForum.jsp</jsp-file>
+   <servlet-name>queryforumIndex</servlet-name>
+   <jsp-file>/queryforumIndex.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
-   <servlet-name>QueryForum</servlet-name>
-   <url-pattern>/QueryForum</url-pattern>
+   <servlet-name>queryforumIndex</servlet-name>
+   <url-pattern>/queryforumIndex</url-pattern>
   </servlet-mapping>
   
   <servlet>
