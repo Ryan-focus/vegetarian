@@ -11,7 +11,8 @@
 		}
 		
 		h1 {
-			margin: 50px auto;
+			margin-top: 0px;
+            margin-bottom: 20px;
 			font-family: "Comic Sans MS";
 		}
 		

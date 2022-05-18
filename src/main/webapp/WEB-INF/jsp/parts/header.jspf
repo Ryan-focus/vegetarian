@@ -12,6 +12,7 @@
     />
   </head>
   <body>
+  <jsp:useBean id="Auth" scope="session" class="bean.User"/> <!-- test session 可刪 -->
   	<input type="checkbox" name="" id="menu_control">
     <header>
       <div class="header">
@@ -31,6 +32,7 @@
 	          <a href="/vegetarian/queryforumIndex"><li>網誌</li></a>
 	          <a href="/vegetarian/shoppingcartIndex"><li>購物專區</li></a>
 	          <a href="#"><li>店家專區</li></a>
+	          <li>${Auth.status}&nbsp;${Auth.username}</li> <!-- test session 可刪 -->
 	        </ul>
      </div>
     </header>
