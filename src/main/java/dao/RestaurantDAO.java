@@ -73,7 +73,8 @@ public class RestaurantDAO {
 			return null;
 		}
 	}
-
+	
+	
 	// 查詢餐廳 by number
 	public Restaurant findRestaurantByNumber(int restaurantNumber) {
 		Restaurant restaurant = null;
