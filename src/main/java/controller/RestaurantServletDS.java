@@ -1,13 +1,13 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,10 +29,12 @@ public class RestaurantServletDS extends HttpServlet {
 		Connection con = null;
 		
 		res.setContentType("text/html; charset=UTF-8");
-
+		
+		System.out.println(req.getContextPath());
+		
 		try {
 			ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/RESTAURANTDB");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/veganDB");
 			con = ds.getConnection();
 			RestaurantDAO restaurantDAO = new RestaurantDAO(con);
 
@@ -42,7 +44,7 @@ public class RestaurantServletDS extends HttpServlet {
 			if (req.getParameter("查詢餐廳") != null) {
 				restaurantQueryByNmuber(req, res, restaurantDAO);
 			}
-			if (req.getParameter("查詢餐廳by") != null) {
+			if (req.getParameter("查詢餐廳GO") != null) {
 				restaurantQuery(req, res, restaurantDAO);
 			}
 			if (req.getParameter("新增餐廳") != null) {
@@ -76,10 +78,21 @@ public class RestaurantServletDS extends HttpServlet {
 		// 透過DAO元件Access Dept Table
 		List<Restaurant> restaurantList = restaurantDAO.findAllRestaurant();
 		if (restaurantList == null)
-			showError(res, "");
+			try {
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/showError.jsp");
+				dispatcher.forward(req, res);
+			} catch (ServletException | IOException e) {
+				e.printStackTrace();
+			}
 		else
-			showForm2(res, restaurantList);
-		
+			req.setAttribute("restaurantList", restaurantList);
+			try {
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/restaurantForm.jsp");
+				dispatcher.forward(req, res);
+			} catch (ServletException | IOException e) {
+				e.printStackTrace();
+			}
+			
 	}
 	
 	// 查詢餐廳 by Address&Category&Type
@@ -95,15 +108,25 @@ public class RestaurantServletDS extends HttpServlet {
 			System.out.println(test[i]);
 		}
 		System.out.println("-------");
-//		String restaurantCategory = req.getParameter("restaurantCategory");
 		String restaurantType = req.getParameter("restaurantType");
 		
 		// 透過DAO元件Access Dept Table
 		List<Restaurant> restaurantList = restaurantDAO.findRestaurant(restaurantName,restaurantAddress,test,restaurantType);
 		if (restaurantList == null)
-			showError(res, "找不到餐廳資料");
+			try {
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/showError.jsp");
+				dispatcher.forward(req, res);
+			} catch (ServletException | IOException e) {
+				e.printStackTrace();
+			}
 		else
-			showForm2(res, restaurantList);
+			req.setAttribute("restaurantList", restaurantList);
+		try {
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/restaurantForm.jsp");
+			dispatcher.forward(req, res);
+		} catch (ServletException | IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
@@ -116,9 +139,19 @@ public class RestaurantServletDS extends HttpServlet {
 		// 透過DAO元件Access Dept Table
 		Restaurant restaurant = restaurantDAO.findRestaurantByNumber(Integer.parseInt(restaurantNumber));
 		if (restaurant == null)
-			showError(res, "找不到餐廳編號" + restaurantNumber);
+			try {
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/showError.jsp");
+				dispatcher.forward(req, res);
+			} catch (ServletException | IOException e) {
+				e.printStackTrace();
+			}
 		else
-			showForm(res, restaurant);
+			try {
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/restaurantForm.jsp");
+				dispatcher.forward(req, res);
+			} catch (ServletException | IOException e) {
+				e.printStackTrace();
+			}
 		
 	}
 		
@@ -139,7 +172,12 @@ public class RestaurantServletDS extends HttpServlet {
 
 		Boolean insertBoolean = restaurantDAO.createRestaurant(restaurant);
 		if (insertBoolean) {
-			showForm(res, restaurant);
+			try {
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/restaurantForm.jsp");
+				dispatcher.forward(req, res);
+			} catch (ServletException | IOException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		
@@ -154,7 +192,12 @@ public class RestaurantServletDS extends HttpServlet {
 		// 透過DAO元件Access Dept Table
 		Boolean booleanDelete = restaurantDAO.deleteRestaurantByNumber(Integer.parseInt(restaurantNumber));
 		if (booleanDelete)
-			showDelete(res,"");
+			try {
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/restaurantForm.jsp");
+				dispatcher.forward(req, res);
+			} catch (ServletException | IOException e) {
+				e.printStackTrace();
+			}
 		
 		
 	}
@@ -173,7 +216,12 @@ public class RestaurantServletDS extends HttpServlet {
 
 		Restaurant restaurant = restaurantDAO.findRestaurantByNumber(Integer.parseInt(restaurantNumber));
 		if (restaurant == null)
-			showError(res, "修改失敗");
+			try {
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/showError.jsp");
+				dispatcher.forward(req, res);
+			} catch (ServletException | IOException e) {
+				e.printStackTrace();
+			}
 		else {
 			restaurant.setRestaurantName(restaurantName);
 			restaurant.setRestaurantTel(restaurantTel);
@@ -183,20 +231,23 @@ public class RestaurantServletDS extends HttpServlet {
 			restaurant.setRestaurantBusinessHours(restaurantBusinessHours);
 			restaurant.setRestaurantScore(restaurantScore);
 			if (restaurantDAO.updateRestaurant(restaurant))
-				showForm(res, restaurant);
-			else
-				showError(res, "修改失敗");
+				try {
+					RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/restaurantForm.jsp");
+					dispatcher.forward(req, res);
+				} catch (ServletException | IOException e) {
+					e.printStackTrace();
+				}
 		}
 	}
 
 
-	// 刪除成功
+	/* 刪除成功
 		private void showDelete(HttpServletResponse res, String message) throws IOException {
 			PrintWriter out = res.getWriter();
 			out.println("刪除成功");
 		}
 	
-	// 錯誤訊息
+	  showError
 	private void showError(HttpServletResponse res, String message) throws IOException {
 		PrintWriter out = res.getWriter();
 		out.println("<HTML>");
@@ -209,6 +260,7 @@ public class RestaurantServletDS extends HttpServlet {
 		out.println("</HTML>");
 		out.close();
 	}
+	
 
 	// 顯示表單
 	private void showForm(HttpServletResponse res, Restaurant restaurant) throws IOException {
@@ -223,7 +275,6 @@ public class RestaurantServletDS extends HttpServlet {
 				+ "    <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">\r\n"
 				+ "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n"
 				+ "    <title>restaurant</title>\r\n"
-				+ "</head>\r\n"
 				+ "<style>\r\n"
 				+ "    h1{\r\n"
 				+ "        text-align: center;\r\n"
@@ -232,9 +283,10 @@ public class RestaurantServletDS extends HttpServlet {
 				+ "        background-color:rgb(250, 243, 250);\r\n"
 				+ "    }\r\n"
 				+ "</style>\r\n"
+				+ "</head>\r\n"
 				+ "<body>\r\n"
 				+ "    <h1>餐廳資料表</h1>"
-				+ "    <FORM ACTION=\'./RestaurantServletDS\'>");
+				+ "   <FORM ACTION='./RestaurantServletDS' method=\"get\">");
 		out.println("  <div>\r\n"
 				+ "        <label> 餐廳編號：</label><input type=\"text\" name=\"restaurantNumber\" size=\"15\" VALUE='" + restaurant.getRestaurantNumber() + "'><BR>");
 		out.println("  <div>\r\n"
@@ -260,9 +312,10 @@ public class RestaurantServletDS extends HttpServlet {
 		out.println("</HTML>");
 		
 	}
+	*/
 
-	// 顯示所有餐廳的表單
-		private void showForm2(HttpServletResponse res, List<Restaurant> restaurantlist) throws IOException {
+	/* 顯示所有餐廳的表單 restaurantForm2
+		private void restaurantForm2(HttpServletResponse res, List<Restaurant> restaurantlist) throws IOException {
 			
 			res.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = res.getWriter();
@@ -311,7 +364,9 @@ public class RestaurantServletDS extends HttpServlet {
 					+ "</style>\r\n"
 					+ "</head>\r\n"
 					+ "<body>\r\n"
+					
 					+ "<FORM ACTION='./RestaurantServletDS'>\r\n"
+					
 					+ "<table class=\"tb1\">\r\n"
 					+ "<caption><h1>餐廳資料</h1></caption>\r\n"
 					+ "<thead>\r\n"
@@ -348,4 +403,5 @@ public class RestaurantServletDS extends HttpServlet {
 			out.println("</BODY>");
 			out.println("</HTML>");		
 		}
+	 */
 }
