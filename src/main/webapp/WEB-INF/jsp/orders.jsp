@@ -74,7 +74,7 @@ if (cart_list != null) {
 					<td><%=o.getQuantity()%></td>
 					<td><%=dcf.format(o.getPrice())%></td>
 					<td><a class="btn btn-sm btn-danger"
-						href="cancel-order?id=<%=o.getOrderId()%>">取消訂單</a></td>
+						href="ShoppingCartServlet?action=cancel-order&id=<%=o.getOrderId()%>">取消訂單</a></td>
 				</tr>
 				<%
 				}
