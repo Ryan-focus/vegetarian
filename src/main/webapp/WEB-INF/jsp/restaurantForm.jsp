@@ -1,8 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page import="bean.Restaurant" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
+<%@ page pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,15 +11,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>restaurantForm</title>
 </head>
-<style><%@include file="/../css/index/table.css"%></style>
+<style><%@include file="/../css/table.css"%></style>
 <body>
-<jsp:include page="/WEB-INF/jsp/parts/header.jsp" />
-<jsp:include page="/WEB-INF/jsp/parts/map.jsp" />
-<jsp:include page="/WEB-INF/jsp/parts/footer.jsp" />
-    <FORM ACTION='./RestaurantServletDS' method="get">
+
+    <FORM ACTION="./RestaurantServletDS" method="get">
     <table class="tb1">
     <caption>
-        <h1>搜尋餐廳結果</h1>
+        <h2>搜尋餐廳結果</h2>
     </caption>
     <thead>
         <tr>
@@ -52,8 +49,4 @@
     </tbody>
     </table>
     </FORM>
-   
-    <p><a href="index.jsp"><button>回到首頁</button></a></p>
-<!--     <link rel="stylesheet" href="/../../map.jsp"> -->
-</body>
-</html>
+   <%@include file="/WEB-INF/jsp/parts/map.jspf" %>

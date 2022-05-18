@@ -1,13 +1,4 @@
 <%@ page pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style><%@include file="/../css/index/body.css"%></style>
-</head>
-<body>
-     <!-- Google Tag Manager (noscript)-->
     <noscript>
       <iframe
         src="https://www.googletagmanager.com/ns.html?id=GTM-PGQ9WQT"
@@ -24,18 +15,6 @@
         </div>
       </div>
 
-      <!-- <div class="row">
-        <div class="col">
-          <button
-            type="button"
-            class="btn btn-outline-secondary"
-            v-for="f in features"
-            @click="openInfoWindows(f.properties.id)"
-          >
-            {{ f.properties.name }}
-          </button>
-        </div> 
-      </div> -->
     </div>
     <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9blRIb054WQz_K5FRcAojJhDG45QQDXc"
@@ -44,5 +23,6 @@
   ></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
    <script type="text/javascript" charset="UTF-8" src="js/map/map.js"></script>
-  </body>
+    <p><a href="/index.jsp"><button>回到首頁</button></a></p>
+</body>
 </html>

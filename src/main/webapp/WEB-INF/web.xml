@@ -74,18 +74,6 @@
    <url-pattern>/shoppingcartIndex</url-pattern>
   </servlet-mapping>
   
-  
-  
-  <servlet>
-   <servlet-name>map</servlet-name>
-   <jsp-file>/map.jsp</jsp-file>
-  </servlet>
-  
-  <servlet-mapping>
-   <servlet-name>map</servlet-name>
-   <url-pattern>/map</url-pattern>
-  </servlet-mapping>
-  
    <servlet>
    <servlet-name>UserRegister</servlet-name>
    <jsp-file>/WEB-INF/jsp/Register.jsp</jsp-file>

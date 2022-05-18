@@ -7,7 +7,7 @@
     <style><%@include file="/css/index/search.css"%></style>
   <body>
     <div class="bodyContainer">
-	    <FORM ACTION="/map" method="get">
+	    <FORM ACTION="./RestaurantServletDS" method="get">
 	    <fieldset>
 		    <select id="city" name="restaurantAddress"></select>
 		    <select id="area" name="restaurantAddress"></select>
@@ -53,11 +53,9 @@
 	    <br>
 	    
 	    <p class="p1">
-	      <input name ="查詢餐廳by" type="submit" value="查詢餐廳by">
+	      <input name ="查詢餐廳GO" type="submit" value="查詢餐廳GO">
 	    </p>
 	    </FORM>
 	</div>
 	 <script type="text/javascript" charset="UTF-8" src="js/index/search.js"></script>
-  </body>
-</html>
 
