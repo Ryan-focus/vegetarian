@@ -14,7 +14,7 @@ footer {
   bottom: 0;
   left: 0;
   right: 0;
-  background: #ecf2ef;
+  background: #fcfcfc;
   height: auto;
   width: 100vw;
   font-family: "Open Sans";
@@ -91,7 +91,7 @@ li {
 }
 
 .footer-bottom {
-  background:#ecf2ef;
+  background:#fcfcfc;
   width: 100vw;
   padding: 20px 0;
   text-align: center;

@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<%@ include file="/WEB-INF/jsp/parts/meta.jsp" %>  
 <title>Login</title>
 <style>
 		* {
@@ -53,7 +52,6 @@
     </style>
 </head>
 <body BGCOLOR="#fcfcfc">
-<jsp:include page="/WEB-INF/jsp/parts/header.jsp" />
 <H1 ALIGN="CENTER">Login Form</H1>
 <FORM ACTION="./UserServlet" method="POST">
 <fieldset>
@@ -69,7 +67,6 @@
 				VALUE="註冊"
 				ONCLICK="location.href='/vegetarian/UserRegister'"> <br> <br>
 		</CENTER>
-            </div>
         </fieldset>
 </FORM>
 </body>

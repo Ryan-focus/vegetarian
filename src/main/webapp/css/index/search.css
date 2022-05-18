@@ -3,8 +3,9 @@
 h1 {
   text-align: center;
 }
+
 body {
-  background-color: lightblue;
+  background: #fcfcfc;
 }
 fieldset {
   width: 400px;

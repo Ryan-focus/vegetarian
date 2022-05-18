@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<%@ include file="/WEB-INF/jsp/parts/meta.jsp" %>
 <title>Register</title>
 <style>
 		* {
@@ -69,7 +68,6 @@
     </style>
 </head>
 <body BGCOLOR="#fcfcfc">
-<jsp:include page="/WEB-INF/jsp/parts/header.jsp" />
 <H1 ALIGN="CENTER">Register Form</H1>
 <form action="./BusinessRegisterServlet" method="post">
 <div style="width: 500px;margin: auto;">
