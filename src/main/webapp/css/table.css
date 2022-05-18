@@ -1,0 +1,35 @@
+@charset "UTF-8"; 
+		*{
+            padding:1px;margin:1px auto
+        }
+        .tb1{
+            width:1200px;
+            border:3px solid rgb(88, 48, 2);
+            border-collapse: collapse;
+        }
+        td,th{
+            border:1px solid rgb(121, 120, 120);
+        }
+        thead{
+            background-color: aquamarine;
+            color: rgb(30, 17, 215);
+            text-transform: capitalize;
+        }
+        tbody{
+            background-color: rgb(255, 127, 197);
+            text-align: center;
+        }
+        tbody tr:nth-child(2n){
+            background-color:yellow;
+        }
+        tbody tr:nth-child(2n-1){
+            background-color:rgb(255, 157, 0);
+        }
+        tbody tr:hover{
+            background-color:rgb(208, 219, 219);
+            color: antiquewhite;
+        }
+        p{
+            text-align: center;
+            margin-top:20px;
+        }
