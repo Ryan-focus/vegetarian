@@ -30,7 +30,7 @@ User auth = (User) request.getSession().getAttribute("auth");
 List<Order> orders = null;
 if (auth != null) {
 	request.setAttribute("auth", auth);
-	orders = new OrderDao(ds.getConnection()).userOrders(auth.getId());
+	orders = new OrderDao(ds.getConnection()).userOrders(auth.getUid());
 
 } else {
 	response.sendRedirect("login.jsp");

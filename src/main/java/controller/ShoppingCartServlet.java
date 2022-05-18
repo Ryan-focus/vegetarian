@@ -101,7 +101,7 @@ public class ShoppingCartServlet extends HttpServlet {
 					// prepare the order object
 					Order order = new Order();
 					order.setId(c.getId());
-					order.setUid(auth.getId());
+					order.setUid(auth.getUid());
 					order.setQuantity(c.getQuantity());
 					order.setDate(formatter.format(date));
 
@@ -146,7 +146,7 @@ public class ShoppingCartServlet extends HttpServlet {
 
 				Order orderModel = new Order();
 				orderModel.setId(Integer.parseInt(productId));
-				orderModel.setUid(auth.getId());
+				orderModel.setUid(auth.getUid());
 				orderModel.setQuantity(productQuantity);
 				orderModel.setDate(formatter.format(date));
 
