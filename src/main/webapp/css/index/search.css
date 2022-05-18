@@ -1,12 +1,6 @@
 @charset "UTF-8";
 
-h1 {
-  text-align: center;
-}
 
-body {
-  background: #fcfcfc;
-}
 fieldset {
   width: 400px;
   height: auto;
@@ -20,3 +14,4 @@ fieldset {
 .p1 {
   text-align: center;
 }
+

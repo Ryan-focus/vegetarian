@@ -1,12 +1,5 @@
-<%@ page pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="zh-TW">
- <head>
-    <meta charset="UTF-8" />
-    <style><%@include file="/css/index/body.css"%></style>
-    <style><%@include file="/css/index/search.css"%></style>
-  <body>
-    <div class="bodyContainer">
+		<%@ page pageEncoding="UTF-8"%>
+		<div class="bodyContainer">
 	    <FORM ACTION="./RestaurantServletDS" method="get">
 	    <fieldset>
 		    <select id="city" name="restaurantAddress"></select>

@@ -54,12 +54,12 @@ if (cart_list != null) {
 	box-shadow: none;
 	font-size: 20px;
 }
-<%@include file="parts/bootstrap.jsp"%>
+<%@include file="/WEB-INF/jsp/shoppingcart/bootstrap.jsp"%>
 
 </style>
 </head>
 <body>
-<%@include file="parts/ShoppingCartBar.jsp"%>
+<%@include file="/WEB-INF/jsp/shoppingcart/ShoppingCartBar.jspf"%>
 	<div class="container my-3">
 		<div class="d-flex py-3">
 			<h3>總金額為： ${ (total>0)? dcf.format(total):0} 元</h3>
@@ -105,6 +105,6 @@ if (cart_list != null) {
 		</table>
 
 	</div>
-	<%@include file="parts/Script.jsp"%>
+	<%@include file="/WEB-INF/jsp/shoppingcart/Script.jsp"%>
 </body>
 </html>

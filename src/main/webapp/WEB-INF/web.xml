@@ -10,14 +10,17 @@
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
 
+
+	
    <jsp-config>
 	   <jsp-property-group>
-		   <url-pattern>*.jsp</url-pattern> <!-- 受影響的jsp頁面。這邊是所有的jsp -->   
+		   <url-pattern>*.jsp</url-pattern> <!-- 受影響的jsp頁面。這邊是所有的jsp -->
 		   <el-ignored>false</el-ignored>       <!-- 是否忽略el -->  
 		   <page-encoding>UTF-8</page-encoding> <!-- 預設頁面encoding -->
 		   <scripting-invalid>false</scripting-invalid> <!-- 是否忽略scriptlet -->       
 		   <include-prelude>/WEB-INF/jsp/parts/header.jspf</include-prelude> <!-- 在jsp前加入此頁 - 同等 include -->        
            <include-coda>/WEB-INF/jsp/parts/footer.jspf</include-coda> <!-- 在jsp後加入此頁 - 同等 include --> 
+		   <trim-directive-whitespaces>true</trim-directive-whitespaces> <!-- 刪除空格內部元素以提高服務器頁面之間的速度響應 -->
 		   <default-content-type>text/html</default-content-type> <!-- 設定頁面語法 -->
 		   <buffer>16kb</buffer> <!-- 緩衝 加載 -->
 	   </jsp-property-group>

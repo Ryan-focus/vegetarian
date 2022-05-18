@@ -39,10 +39,10 @@ if (cart_list != null) {
 <html>
 <head>
 <title>歡迎來到素構易</title>
-<%@include file="WEB-INF/jsp/parts/bootstrap.jsp"%>
+<%@include file="/WEB-INF/jsp/shoppingcart/bootstrap.jsp"%>
 </head>
 <body>
-	<%@include file="/WEB-INF/jsp/parts/ShoppingCartBar.jsp"%>
+	<%@include file="/WEB-INF/jsp/shoppingcart/ShoppingCartBar.jspf"%>
 
 	<div class="container">
 		<div class="card-header my-3">全部商品</div>
@@ -73,7 +73,7 @@ if (cart_list != null) {
 			%>
 		</div>
 	</div>
-	<%@include file="/WEB-INF/jsp/parts/Script.jsp"%>
+	<%@include file="/WEB-INF/jsp/shoppingcart/Script.jsp"%>
 
 </body>
 </html>

@@ -44,10 +44,10 @@ if (cart_list != null) {
 <html>
 <head>
 <title>Orders</title>
-<%@include file="parts/bootstrap.jsp"%>
+<%@include file="/WEB-INF/jsp/shoppingcart/bootstrap.jsp"%>
 </head>
 <body>
-	<%@include file="parts/ShoppingCartBar.jsp"%>
+	<%@include file="/WEB-INF/jsp/shoppingcart/ShoppingCartBar.jspf"%>
 
 	<div class="container">
 		<div class="card-header my-3">全部訂單</div>
@@ -84,6 +84,6 @@ if (cart_list != null) {
 		</table>
 
 	</div>
-	<%@include file="parts/Script.jsp"%>
+	<%@include file="/WEB-INF/jsp/shoppingcart/Script.jsp"%>
 </body>
 </html>
