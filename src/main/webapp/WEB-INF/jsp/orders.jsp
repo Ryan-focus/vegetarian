@@ -84,9 +84,6 @@ if (cart_list != null) {
 		</table>
 
 	</div>
-
 	<%@include file="parts/Script.jsp"%>
-	<%@include file="parts/footer.jsp"%>
-
 </body>
 </html>
