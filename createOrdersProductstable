@@ -1,24 +1,14 @@
+DROP TABLE IF EXISTS orders;
+
+CREATE TABLE orders (
+  o_id int identity primary key,
+  p_id int NOT NULL,
+  u_id int NOT NULL,
+  o_quantity int NOT NULL,
+  o_date varchar(MAX) NOT NULL
+)
 
 
-DROP TABLE IF EXISTS `orders`;
-
-CREATE TABLE `orders` (
-  `o_id` int NOT NULL AUTO_INCREMENT,
-  `p_id` int NOT NULL,
-  `u_id` int NOT NULL,
-  `o_quantity` int NOT NULL,
-  `o_date` varchar(450) NOT NULL,
-  PRIMARY KEY (`o_id`)
-) 
-
-
-INSERT INTO `orders` (`o_id`, `p_id`, `u_id`, `o_quantity`, `o_date`) VALUES (60,1,2,1,'2022-05-16');
-INSERT INTO `orders` (`o_id`, `p_id`, `u_id`, `o_quantity`, `o_date`) VALUES (61,4,2,4,'2022-05-16');
-INSERT INTO `orders` (`o_id`, `p_id`, `u_id`, `o_quantity`, `o_date`) VALUES (62,1,2,4,'2022-05-16');
-INSERT INTO `orders` (`o_id`, `p_id`, `u_id`, `o_quantity`, `o_date`) VALUES (63,3,2,3,'2022-05-16');
-INSERT INTO `orders` (`o_id`, `p_id`, `u_id`, `o_quantity`, `o_date`) VALUES (64,2,2,1,'2022-05-16');
-INSERT INTO `orders` (`o_id`, `p_id`, `u_id`, `o_quantity`, `o_date`) VALUES (65,4,2,3,'2022-05-16');
-INSERT INTO `orders` (`o_id`, `p_id`, `u_id`, `o_quantity`, `o_date`) VALUES (66,6,2,1,'2022-05-16');
 
 
 
