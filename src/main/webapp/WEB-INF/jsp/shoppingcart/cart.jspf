@@ -40,7 +40,7 @@ if (cart_list != null) {
 <!DOCTYPE html>
 <html>
 <head>
-<%-- <%@include file="includes/head.jsp"%> --%>
+<%@include file="/WEB-INF/jsp/shoppingcart/bootstrap.jsp"%>
 <title>愛素購物車</title>
 <style type="text/css">
 .table tbody td {

@@ -30,7 +30,7 @@
         <ul class="navigation">
           <a href="/vegetarian/shoppingcartIndex"><li>商品頁</li></a>
        	  <a href="/vegetarian/cart"><li>購物車<span class="badge badge-danger px-1">${ cart_list.size() }</span></li></a>
-       
+       		
           <a href="/vegetarian/order"><li>歷史訂單</li></a>
           <a href="/vegetarian/Logout"><li>登出</li></a>
               
