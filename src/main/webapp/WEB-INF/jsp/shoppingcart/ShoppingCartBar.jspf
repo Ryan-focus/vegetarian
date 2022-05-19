@@ -9,12 +9,15 @@
    <style><%@include file="/../css/index/footer.css"%></style>
    <style><%@include file="/css/index/body.css"%></style>
    <style><%@include file="/css/index/search.css"%></style>
+   
    <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
   </head>
   <body>
+    <jsp:useBean id="user" scope="session" class="bean.User"/> <!-- test session -->
+    <jsp:setProperty name="user" property="*"/>				<!-- test session -->
     <input type="checkbox" name="" id="menu_control">
     <header>
       <div class="header">
@@ -31,9 +34,9 @@
           <a href="/vegetarin/shoppingcartIndex"><li>商品頁</li></a>
        	  <a href="cart.jsp"><li>購物車</li></a>
        	    <%
-        if(auth !=null){%>
+        if(user.getUid() != 0 ){%>
           <a href="/WEB-INF/jsp/shoppingcart/orders.jsp"><li>歷史訂單</li></a>
-          <a href="#"><li>登出</li></a>
+          <a href="/vegetarian/Logout"><li>登出</li></a>
             <%}else{%>
           <a href="/vegetarian/Login"><li>登入</li></a>
              <%}

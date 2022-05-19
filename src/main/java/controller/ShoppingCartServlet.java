@@ -92,16 +92,16 @@ public class ShoppingCartServlet extends HttpServlet {
 			// retrive all cart products
 			ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cart-list");
 			// user authentication
-			User auth = (User) request.getSession().getAttribute("auth");
+			User user = (User) request.getSession().getAttribute("user");
 
 			// check auth and cart list
-			if (cart_list != null && auth != null) {
+			if (cart_list != null && user.getUid() !=0 ) {
 
 				for (Cart c : cart_list) {
 					// prepare the order object
 					Order order = new Order();
 					order.setId(c.getId());
-					order.setUid(auth.getUid());
+					order.setUid(user.getUid());
 					order.setQuantity(c.getQuantity());
 					order.setDate(formatter.format(date));
 
@@ -114,12 +114,12 @@ public class ShoppingCartServlet extends HttpServlet {
 				}
 
 				cart_list.clear();
-				response.sendRedirect("orders.jsp");
+				response.sendRedirect("/vegetarian/order");
 
 			} else {
-				if (auth == null)
-					response.sendRedirect("login.jsp");
-				response.sendRedirect("cart.jsp");
+				if (user.getUid() == 0 )
+					response.sendRedirect("/vegetarian/Login");
+				response.sendRedirect("/vegetarian/cart");
 			}
 
 		} catch (Exception e) {
@@ -135,9 +135,9 @@ public class ShoppingCartServlet extends HttpServlet {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			Date date = new Date();
 
-			User auth = (User) request.getSession().getAttribute("auth");
+			User user = (User) request.getSession().getAttribute("user");
 
-			if (auth != null) {
+			if (user.getUid() != 0) {
 				String productId = request.getParameter("id");
 				int productQuantity = Integer.parseInt(request.getParameter("quantity"));
 				if (productQuantity <= 0) {
@@ -146,7 +146,7 @@ public class ShoppingCartServlet extends HttpServlet {
 
 				Order orderModel = new Order();
 				orderModel.setId(Integer.parseInt(productId));
-				orderModel.setUid(auth.getUid());
+				orderModel.setUid(user.getUid());
 				orderModel.setQuantity(productQuantity);
 				orderModel.setDate(formatter.format(date));
 
@@ -164,13 +164,13 @@ public class ShoppingCartServlet extends HttpServlet {
 						}
 					}
 
-					response.sendRedirect("orders.jsp");
+					response.sendRedirect("/vegetarian/order");
 				} else {
 					out.print("訂購失敗");
 				}
 
 			} else {
-				response.sendRedirect("login.jsp");
+				response.sendRedirect("/vegetarian/Login");
 			}
 
 		} catch (SQLException e) {
@@ -188,7 +188,7 @@ public class ShoppingCartServlet extends HttpServlet {
 				orderDao.cancelOrder(Integer.parseInt(id));
 
 			}
-			response.sendRedirect("orders.jsp");
+			response.sendRedirect("/vegetarian/order");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -212,7 +212,7 @@ public class ShoppingCartServlet extends HttpServlet {
 			if (cart_list == null) {
 				cartList.add(cart);
 				session.setAttribute("cart-list", cartList);
-				response.sendRedirect("ShoppingCartIndex.jsp");
+				response.sendRedirect("/vegetarian/shoppingcartIndex");
 			} else {
 				cartList = cart_list;
 				boolean exist = false;
@@ -221,12 +221,12 @@ public class ShoppingCartServlet extends HttpServlet {
 					if (c.getId() == id) {
 						exist = true;
 						out.println(
-								"<h3 style='color:crimson; text-align:center'>商品已加入購物車<a href='cart.jsp'>前往購物車</a></h3>");
+								"<h3 style='color:crimson; text-align:center'>商品已加入購物車<a href='/cart'>前往購物車</a></h3>");
 					}
 				}
 				if (!exist) {
 					cartList.add(cart);
-					response.sendRedirect("ShoppingCartIndex.jsp");
+					response.sendRedirect("/vegetarian/shoppingcartIndex");
 				}
 			}
 
@@ -248,9 +248,9 @@ public class ShoppingCartServlet extends HttpServlet {
 						}
 					}
 				}
-				response.sendRedirect("cart.jsp");
+				response.sendRedirect("/vegetarian/cart");
 			} else {
-				response.sendRedirect("cart.jsp");
+				response.sendRedirect("/vegetarian/cart");
 			}
 		}
 
@@ -271,13 +271,13 @@ public class ShoppingCartServlet extends HttpServlet {
 						int quantity = c.getQuantity();
 						quantity++;
 						c.setQuantity(quantity);
-						response.sendRedirect("cart.jsp");
+						response.sendRedirect("/vegetarian/cart");
 
 					}
 
 				}
 			} else {
-				response.sendRedirect("cart.jsp");
+				response.sendRedirect("/vegetarian/cart");
 
 			}
 
@@ -299,12 +299,12 @@ public class ShoppingCartServlet extends HttpServlet {
 						int quantity = c.getQuantity();
 						quantity--;
 						c.setQuantity(quantity);
-						response.sendRedirect("cart.jsp");
+						response.sendRedirect("/vegetarian/cart");
 					}
 				}
 
 			} else {
-				response.sendRedirect("cart.jsp");
+				response.sendRedirect("/vegetarian/cart");
 
 			}
 

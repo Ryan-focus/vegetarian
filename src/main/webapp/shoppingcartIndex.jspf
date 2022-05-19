@@ -8,9 +8,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-User auth = (User) request.getSession().getAttribute("auth");
-if (auth != null) {
-	request.setAttribute("auth", auth);
+User user1 = (User) request.getSession().getAttribute("user");
+if (user1.getUid() != 0) {
+	request.setAttribute("user", user1);
 }
 
 DataSource ds = null;
