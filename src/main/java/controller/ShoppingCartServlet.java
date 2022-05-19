@@ -67,7 +67,7 @@ public class ShoppingCartServlet extends HttpServlet {
 		}
 			break;
 		case "add-to-cart": {
-			cancelOrder(request, response);
+			addToCart(request, response);
 		}
 			break;
 		case "remove-from-cart": {
