@@ -6,7 +6,7 @@ CREATE TABLE orders (
   p_id int NOT NULL,
   u_id int NOT NULL,
   o_quantity int NOT NULL,
-  o_date varchar(MAX) NOT NULL
+  o_date nvarchar(MAX) NOT NULL
 )
 
 
@@ -15,12 +15,12 @@ CREATE TABLE orders (
 
 drop table if exists products
 
-CREATE TABLE `products` (
+CREATE TABLE products (
   id int NOT NULL identity primary key,
- `name` varchar(450) NOT NULL,
-  `category` varchar(450) NOT NULL,
-  `price` double NOT NULL,
-  `image` varchar(450) NOT NULL,
+  name nvarchar(450) NOT NULL,
+  category nvarchar(450) NOT NULL,
+  price double NOT NULL,
+  image nvarchar(450) NOT NULL,
   PRIMARY KEY (`id`)
 ) 
 
