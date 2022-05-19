@@ -24,17 +24,21 @@ hr.style-five {
 	/* Firefox... */
 	box-shadow: 0 0 10px 1px black;
 }
-p{
-  text-align:center;
-}
 
+p {
+	text-align: center;
+}
 </style>
 </head>
 <body>
-文章新增成功
-<center>
-<p><input type="submit" name="回首頁" value="回首頁" ></p> 
-</center>
-
+<form action=".\ForumServlet" method="post">
+	<jsp:useBean id="vge" class="bean.ForumBean" scope="session" />
+	<p>網誌新增成功</p>
+	<center>
+		<p>
+			<input type="submit" name="ForumHome" value="回首頁">
+		</p>
+	</center>
+</form>
 </body>
 </html>

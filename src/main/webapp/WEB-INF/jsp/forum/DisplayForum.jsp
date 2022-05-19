@@ -15,7 +15,7 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 <body>
 <jsp:useBean id="vge" class="bean.ForumBean" scope="session" />
 <h2>
-新增文章如下請確認
+新增資料如下請確認
 </h2>
 <form action=".\ForumServlet" method="post">
 <table  cellspacing="2" cellpadding="1" border="1" width="80%">
@@ -42,7 +42,7 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 <center>
 
 <p><input type="submit" name="confirm" value="確認" ></p>
-<p><input type="submit" name="回首頁" value="回首頁" ><p>
+<p><input type="submit" name="ForumHome" value="回首頁" ></p>
 </center>
 </form>
 </body>
