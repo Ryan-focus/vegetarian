@@ -14,6 +14,6 @@ p{
 <body>
 <p>您輸入的編號不存在請重新查詢</p>
 
-<p><a href="QueryForum.jsp">回查詢頁</a></p>
+<p><input type="submit" name="回首頁" value="回首頁" ><p>
 </body>
 </html>

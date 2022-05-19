@@ -42,7 +42,7 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 <center>
 
 <p><input type="submit" name="confirm" value="確認" ></p>
-<p><a href="/webapp/queryforumIndex.jsp">回查詢頁</a></p>
+<p><input type="submit" name="回首頁" value="回首頁" ><p>
 </center>
 </form>
 </body>
