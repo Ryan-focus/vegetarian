@@ -31,13 +31,13 @@ public class PostIndexServlet extends HttpServlet {
 			conn = ds.getConnection();
 
 			// 建立Database Access Object,負責Table的Access
-			PostDAO postDao2 = new PostDAO(conn);
+			PostDAO postDAO= new PostDAO(conn);
 
 			// 如果要編碼值為UTF-8
 			request.setCharacterEncoding("UTF-8");
 			
 			
-			showAllPost(request, response, postDao2);
+			showAllPost(request, response, postDAO);
 			
 
 		} catch (NamingException ne) {
@@ -54,13 +54,13 @@ public class PostIndexServlet extends HttpServlet {
 		}
 	}
 
-	private void showAllPost(HttpServletRequest request, HttpServletResponse response, PostDAO postDao2)
+	private void showAllPost(HttpServletRequest request, HttpServletResponse response, PostDAO postDAO)
 			throws SQLException, IOException, ServletException {
 
 
-		List<Post> findallPost = postDao2.findallPost();
+		List<Post> findallPost = postDAO.findallPost();
 
-		if (postDao2.findallPost() != null) {
+		if (postDAO.findallPost() != null) {
 			request.setAttribute("postlist",findallPost);
 			request.getRequestDispatcher("postsIndex.jsp").forward(request, response);
 
