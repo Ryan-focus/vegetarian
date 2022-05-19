@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=BIG5"
-    pageEncoding="BIG5"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,8 +12,8 @@ p{
 </style>
 </head>
 <body>
-<p>±z¿é¤Jªº½s¸¹¤£¦s¦b½Ð­«·s¬d¸ß</p>
+<p>æ‚¨è¼¸å…¥çš„ç·¨è™Ÿä¸å­˜åœ¨è«‹é‡æ–°æŸ¥è©¢</p>
 
-<p><a href="QueryForum.jsp">¦^¬d¸ß­¶</a></p>
+<p><a href="QueryForum.jsp">å›žæŸ¥è©¢é </a></p>
 </body>
 </html>

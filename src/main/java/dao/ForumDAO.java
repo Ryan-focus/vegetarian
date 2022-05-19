@@ -14,7 +14,7 @@ public class ForumDAO {
 
 	public static boolean insertForum(ForumBean forumData) {
 		try {
-			String sqlString = "insert into VGE_FORUM values('" + forumData.getVgeid() + "','" + forumData.getVgename()
+			String sqlString = "insert into forum values('" + forumData.getVgeid() + "','" + forumData.getVgename()
 					+ "','" + forumData.getVgetheme() + "','" + forumData.getVgecontent() + "')";
 
 			Statement stmt = conn.createStatement();
@@ -32,7 +32,7 @@ public class ForumDAO {
 
 	public static boolean updateForum(ForumBean foruData) {
 		try {
-			String sqlString = "UPDATE vge_FORUM " + "SET vgename = '" + foruData.getVgename() + "' "
+			String sqlString = "UPDATE forum " + "SET vgename = '" + foruData.getVgename() + "' "
 					+ ",vgetheme = '" + foruData.getVgetheme() + "',vgecontent = '" + foruData.getVgecontent()
 					+ "' " + "WHERE vgeid = '" + foruData.getVgeid()+"'";
 			Statement stmt = conn.createStatement();
@@ -53,7 +53,7 @@ public class ForumDAO {
 		
 		try {
 			
-			String sqlString = "DELETE FROM vge_FORUM " + "WHERE vgeid = '" + vgeid+"'";
+			String sqlString = "DELETE FROM forum " + "WHERE vgeid = '" + vgeid+"'";
 			Statement stmt = conn.createStatement();
 			int deletecount = stmt.executeUpdate(sqlString);
 			stmt.close();
@@ -73,7 +73,7 @@ public class ForumDAO {
 			String vgetheme;
 			String vgecontent;
 
-			String sqlString = "SELECT * " + "FROM vge_FORUM WHERE vgeid = ?";
+			String sqlString = "SELECT * " + "FROM forum WHERE vgeid = ?";
 			PreparedStatement ps =conn.prepareStatement(sqlString);
 			ps.setString(1, vgeid);
 			ResultSet rs=ps.executeQuery();

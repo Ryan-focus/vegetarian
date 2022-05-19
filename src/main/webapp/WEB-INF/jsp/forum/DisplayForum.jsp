@@ -1,4 +1,5 @@
-<%@ page pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%
 response.setContentType("text/html;charset=UTF-8");
 response.setHeader("Cache-Control","no-cache"); // HTTP 1.1
@@ -9,28 +10,28 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>新增資料</title>
+<title>新增文章</title>
 </head>
 <body>
 <jsp:useBean id="vge" class="bean.ForumBean" scope="session" />
 <h2>
-新增資料如下請確認
+新增文章如下請確認
 </h2>
 <form action=".\ForumServlet" method="post">
-<table  cellspacing="2" cellpadding="1" border="1" width="100%">
- <tr bgcolor="#FFFFE1">
+<table  cellspacing="2" cellpadding="1" border="1" width="80%">
+ <tr bgcolor="#7AFEC6">
     <td>編號:</td>
     <td><jsp:getProperty name="vge" property="vgeid" /></td>
 </tr> <!-- -->
-<tr bgcolor="#FFFFE1">
+<tr bgcolor="#7AFEC6">
     <td>名稱:</td>
     <td><jsp:getProperty name="vge" property="vgename" /></td>
 </tr>
-<tr bgcolor="#FFFFE1">
+<tr bgcolor="#7AFEC6">
     <td>標題:</td>
     <td><jsp:getProperty name="vge" property="vgetheme" /></td>
 </tr>
-<tr bgcolor="#FFFFE1">
+<tr bgcolor="#7AFEC6">
     <td>發表:</td>
     <td><jsp:getProperty name="vge" property="vgecontent" /></td>
 </tr>
@@ -39,11 +40,9 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 
 </table>
 <center>
-<input type="submit" name="Query" value="查詢" >
-<input type="submit" name="Create" value="新增" >
-<input type="submit" name="Update" value="更新" >
-<input type="submit" name="Delete" value="刪除" >
-<input type="submit" name="confirm" value="確認" >
+
+<p><input type="submit" name="confirm" value="確認" ></p>
+<p><a href="/webapp/queryforumIndex.jsp">回查詢頁</a></p>
 </center>
 </form>
 </body>
