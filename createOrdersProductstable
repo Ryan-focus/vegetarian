@@ -19,16 +19,15 @@ CREATE TABLE products (
   id int NOT NULL identity primary key,
   name nvarchar(450) NOT NULL,
   category nvarchar(450) NOT NULL,
-  price double NOT NULL,
+  price float NOT NULL,
   image nvarchar(450) NOT NULL,
-  PRIMARY KEY (`id`)
 ) 
 
-INSERT INTO products (id, name, category, price, image) VALUES (1,'素雞','全素',100,'chicken.jpeg');
-INSERT INTO products (id, name, category, price, image) VALUES (2,'素鴨','全素',90,'duck.jpeg');
-INSERT INTO products (id, name, category, price, image) VALUES (3,'素肚','全素',50,'belly.jpeg');
-INSERT INTO products (id, name, category, price, image) VALUES (4,'滷蛋','蛋奶素',20,'egg.jpeg');
-INSERT INTO products (id, name, category, price, image) VALUES (5,'素食貓飼料','全素',310,'cat.jpeg');
-INSERT INTO products (id, name, category, price, image) VALUES (6,'素人','完全不素',9999,'people.jpeg');
+INSERT INTO products ( name, category, price, image) VALUES ('素雞','全素',100,'chicken.jpeg');
+INSERT INTO products ( name, category, price, image) VALUES ('素鴨','全素',90,'duck.jpeg');
+INSERT INTO products ( name, category, price, image) VALUES ('素肚','全素',50,'belly.jpeg');
+INSERT INTO products ( name, category, price, image) VALUES ('滷蛋','蛋奶素',20,'egg.jpeg');
+INSERT INTO products ( name, category, price, image) VALUES ('素食貓飼料','全素',310,'cat.jpeg');
+INSERT INTO products ( name, category, price, image) VALUES ('素人','完全不素',9999,'people.jpeg');
 
 

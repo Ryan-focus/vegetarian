@@ -85,5 +85,6 @@ if (cart_list != null) {
 
 	</div>
 	<%@include file="/WEB-INF/jsp/shoppingcart/Script.jsp"%>
+    <%@include file="/WEB-INF/jsp/parts/footer.jspf"%>
 </body>
 </html>

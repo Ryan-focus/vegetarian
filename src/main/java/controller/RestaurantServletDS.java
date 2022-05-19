@@ -79,7 +79,7 @@ public class RestaurantServletDS extends HttpServlet {
 		List<Restaurant> restaurantList = restaurantDAO.findAllRestaurant();
 		if (restaurantList == null)
 			try {
-				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/showError.jsp");
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/errorPage/showError.jsp");
 				dispatcher.forward(req, res);
 			} catch (ServletException | IOException e) {
 				e.printStackTrace();
@@ -114,7 +114,7 @@ public class RestaurantServletDS extends HttpServlet {
 		List<Restaurant> restaurantList = restaurantDAO.findRestaurant(restaurantName,restaurantAddress,test,restaurantType);
 		if (restaurantList == null)
 			try {
-				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/showError.jsp");
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/errorPage/showError.jsp");
 				dispatcher.forward(req, res);
 			} catch (ServletException | IOException e) {
 				e.printStackTrace();
@@ -140,7 +140,7 @@ public class RestaurantServletDS extends HttpServlet {
 		Restaurant restaurant = restaurantDAO.findRestaurantByNumber(Integer.parseInt(restaurantNumber));
 		if (restaurant == null)
 			try {
-				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/showError.jsp");
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/errorPage/showError.jsp");
 				dispatcher.forward(req, res);
 			} catch (ServletException | IOException e) {
 				e.printStackTrace();
