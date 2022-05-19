@@ -54,7 +54,7 @@ p{
 		<center>
 <input type="submit" name="Update" value="更新網誌" >
 <input type="submit" name="Delete" value="刪除網誌" ><br>
-<p><input type="submit" name="回首頁" value="回首頁" ><p>
+<p><input type="submit" name="ForumHome" value="回首頁" ></p>
 
 		</center>
 	</form>

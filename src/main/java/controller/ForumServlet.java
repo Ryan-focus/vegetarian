@@ -62,7 +62,7 @@ public class ForumServlet extends HttpServlet {
 			if (request.getParameter("Update") != null)
 				processUpdate(request, response,forumDAO);
 			
-			if(request.getParameter("回首頁")!=null)
+			if(request.getParameter("ForumHome")!=null)
 				prcoessHome(request,response);
 		}
 

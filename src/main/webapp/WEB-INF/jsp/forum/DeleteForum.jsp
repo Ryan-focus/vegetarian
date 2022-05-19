@@ -33,8 +33,10 @@ p{
 </style>
 </head>
 <body>
+<form action=".\ForumServlet" method="post">
 	<jsp:useBean id="vge" class="bean.ForumBean" scope="session" />
 <p>刪除成功</p>
-<p><input type="submit" name="回首頁" value="回首頁" ><p>
+<p><input type="submit" name="ForumHome" value="回首頁" ></p>
+</form>
 </body>
 </html>

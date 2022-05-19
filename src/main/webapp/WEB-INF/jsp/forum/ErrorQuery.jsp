@@ -12,8 +12,10 @@ p{
 </style>
 </head>
 <body>
+<form action=".\ForumServlet" method="post">
 <p>您輸入的編號不存在請重新查詢</p>
 
-<p><input type="submit" name="回首頁" value="回首頁" ><p>
+<p><input type="submit" name="ForumHome" value="回首頁" ></p>
+</form>
 </body>
 </html>
