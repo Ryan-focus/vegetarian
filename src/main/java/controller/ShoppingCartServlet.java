@@ -226,7 +226,7 @@ public class ShoppingCartServlet extends HttpServlet {
 				}
 				if (!exist) {
 					cartList.add(cart);
-					response.sendRedirect("ShoppingCartIndex.jsp.jsp");
+					response.sendRedirect("ShoppingCartIndex.jsp");
 				}
 			}
 

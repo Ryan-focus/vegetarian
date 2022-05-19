@@ -5,8 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import com.mysql.cj.protocol.Resultset;
-
 import java.util.*;
 import bean.*;
 
@@ -27,7 +25,7 @@ public class ProductDao {
 		List<Product> products = new ArrayList<Product>();
 
 		try {
-			query = "select * from product";
+			query = "select * from products";
 			pst = this.con.prepareStatement(query);
 			rs = pst.executeQuery();
 			while (rs.next()) {
@@ -56,7 +54,7 @@ public class ProductDao {
 		try {
 			if(cartList.size()>0) {
 				for(Cart item:cartList) {
-					query = "select * from product where id =?";
+					query = "select * from products where id =?";
 					pst = this.con.prepareStatement(query);
 					pst.setInt(1, item.getId());
 					rs = pst.executeQuery();
@@ -88,7 +86,7 @@ public class ProductDao {
 		try {
 			if(cartList.size()>0) {
 				for(Cart item:cartList) {
-					query = "select price from product where id=?";	
+					query = "select price from products where id=?";	
 					pst = this.con.prepareStatement(query);
 					pst.setInt(1, item.getId());
 					rs=pst.executeQuery();
@@ -109,7 +107,7 @@ public class ProductDao {
 	 public Product getSingleProduct(int id) {
 		 Product row = null;
 	        try {
-	            query = "select * from product where id=? ";
+	            query = "select * from products where id=? ";
 
 	            pst = this.con.prepareStatement(query);
 	            pst.setInt(1, id);
