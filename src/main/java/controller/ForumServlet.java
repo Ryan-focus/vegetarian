@@ -109,7 +109,7 @@ public class ForumServlet extends HttpServlet {
 				request.setAttribute("vgecontent", forumBean.getVgecontent());
 				
 				request.getSession(true);
-				request.getRequestDispatcher("/QueryResult.jsp").forward(request, response);			
+				request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryResult.jsp").forward(request, response);			
 			}
 		} catch (NamingException ne) {
 			System.out.println("Naming Service Lookup Exception");

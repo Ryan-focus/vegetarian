@@ -1,4 +1,8 @@
-<%@ page pageEncoding="UTF-8"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 response.setContentType("text/html;charset=UTF-8");
@@ -23,7 +27,9 @@ hr.style-five {
 	/* Firefox... */
 	box-shadow: 0 0 10px 1px black;
 }
-
+p{
+  text-align:center;
+}
 
 </style>
 </head>
@@ -32,16 +38,23 @@ hr.style-five {
 	<h2>文章查詢</h2>
 	<form action=".\ForumServlet" method="post">
 		<header>
-		<h2>留言板</h2>
+		<h2>網誌</h2>
 		</header>
-		<p>ID:<%=request.getAttribute("vgeid")%></p]>
+	<!-- 	 <p>ID:<%=request.getAttribute("vgeid")%></p]>
 		<p>名稱:<%=request.getAttribute("vgename")%> </p>
 		<p>標題:<%=request.getAttribute("vgetheme") %> </p>
 		<p>提問:<%=request.getAttribute("vgecontent") %></p>
+	 -->	
+		<p class="p">ID: <input type="text" name="vgeid" value="<%=request.getAttribute("vgeid")%>" size="30" maxlength="30"></p>
+		<p class="p">名稱:<input type="text" name="vgename"  value="<%=request.getAttribute("vgename")%>" size="30" maxlength="30"></p>
+		<p class="p">標題:<input type="text" name="vgetheme" value="<%=request.getAttribute("vgetheme") %>" size="30" maxlength="30"></p>
+		<p class="p">文章:<textarea name="vgecontent" rows="10"  cols="30"><%=request.getAttribute("vgecontent") %></textarea></p>
 
 		<hr class="style-five">
 		<center>
-
+<input type="submit" name="Update" value="更新網誌" >
+<input type="submit" name="Delete" value="刪除網誌" ><br>
+<a href="/webapp/queryforumIndex.jsp">重新查詢</a>
 
 		</center>
 	</form>
