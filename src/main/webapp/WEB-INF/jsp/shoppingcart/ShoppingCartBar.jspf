@@ -15,7 +15,7 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-     <%User user2 = (User) request.getSession().getAttribute("user");%>	
+    
   </head>
   <body>
     <input type="checkbox" name="" id="menu_control">
@@ -32,9 +32,10 @@
 		  </label>
         <ul class="navigation">
           <a href="/vegetarin/shoppingcartIndex"><li>商品頁</li></a>
-       	  <a href="/vegetarin/cart"><li>購物車</li></a>
+       	  <a href="/vegetarin/cart"><li>購物車<span class="badge badge-danger px-1">${ cart_list
+        .size() }</span></li></a>
        	    <%
-        if(user2.getUid() != 0 ){%>
+        if(user.getUid() !=0 ){%>
           <a href="/vegetarian/orders"><li>歷史訂單</li></a>
           <a href="/vegetarian/Logout"><li>登出</li></a>
             <%}else{%>
