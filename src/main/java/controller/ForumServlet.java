@@ -220,7 +220,7 @@ public class ForumServlet extends HttpServlet {
 			 String id =request.getParameter("vgeid") ;		 
 			 forumDAO.deleteForum(id);
 			 request.getSession(true);
-			request.getRequestDispatcher("/WEB-INF/jsp/forum/DeleteForum.jsp").forward(request, response);
+			 request.getRequestDispatcher("/WEB-INF/jsp/forum/DeleteForum.jsp").forward(request, response);
 			
 
 

@@ -54,7 +54,7 @@ p{
 		<center>
 <input type="submit" name="Update" value="更新網誌" >
 <input type="submit" name="Delete" value="刪除網誌" ><br>
-<a href="/webapp/queryforumIndex.jsp">重新查詢</a>
+<p><input type="submit" name="回首頁" value="回首頁" ><p>
 
 		</center>
 	</form>
