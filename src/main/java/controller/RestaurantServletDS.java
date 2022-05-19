@@ -30,8 +30,6 @@ public class RestaurantServletDS extends HttpServlet {
 		
 		res.setContentType("text/html; charset=UTF-8");
 		
-		System.out.println(req.getContextPath());
-		
 		try {
 			ctx = new InitialContext();
 			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/veganDB");
@@ -96,6 +94,39 @@ public class RestaurantServletDS extends HttpServlet {
 	}
 	
 	// 查詢餐廳 by Address&Category&Type
+		private void restaurantQuery(HttpServletRequest req, HttpServletResponse res, RestaurantDAO restaurantDAO)
+				throws SQLException, IOException {
+			// 讀取餐廳資料
+			String restaurantName = req.getParameter("restaurantName");
+			String restaurantAddress = req.getParameter("restaurantAddress");
+			String restaurantCategory = req.getParameter("restaurantCategory");
+			if (restaurantCategory==null) {
+				restaurantCategory="";}
+			String restaurantType = req.getParameter("restaurantType");
+			if (restaurantType==null) {
+				restaurantType="";}
+			
+			// 透過DAO元件Access Dept Table
+			List<Restaurant> restaurantList = restaurantDAO.findRestaurant(restaurantName,restaurantAddress,restaurantCategory,restaurantType);
+			if (restaurantList == null)
+				try {
+					RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/errorPage/showError.jsp");
+					dispatcher.forward(req, res);
+				} catch (ServletException | IOException e) {
+					e.printStackTrace();
+				}
+			else
+				req.setAttribute("restaurantList", restaurantList);
+			try {
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/restaurantForm.jsp");
+				dispatcher.forward(req, res);
+			} catch (ServletException | IOException e) {
+				e.printStackTrace();
+			}
+			
+		} 
+	
+	/* 查詢餐廳 by Address&Category&Type
 	private void restaurantQuery(HttpServletRequest req, HttpServletResponse res, RestaurantDAO restaurantDAO)
 			throws SQLException, IOException {
 		// 讀取餐廳資料
@@ -103,12 +134,14 @@ public class RestaurantServletDS extends HttpServlet {
 		String restaurantAddress = req.getParameter("restaurantAddress");
 		String[] restaurantCategory =req.getParameterValues("restaurantCategory");
 		String[] test = {"","","",""};
+		
 		for (int i = 0; i < restaurantCategory.length; i++) {
 			test[i]=restaurantCategory[i];
 			System.out.println(test[i]);
 		}
-		System.out.println("-------");
 		String restaurantType = req.getParameter("restaurantType");
+		if (restaurantType==null) {
+			restaurantType="";}
 		
 		// 透過DAO元件Access Dept Table
 		List<Restaurant> restaurantList = restaurantDAO.findRestaurant(restaurantName,restaurantAddress,test,restaurantType);
@@ -128,7 +161,8 @@ public class RestaurantServletDS extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-	}
+	} */
+	
 	
 	// 查詢餐廳 by number
 	private void restaurantQueryByNmuber(HttpServletRequest req, HttpServletResponse res, RestaurantDAO restaurantDAO)

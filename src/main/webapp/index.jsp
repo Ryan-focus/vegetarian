@@ -12,16 +12,16 @@
 	    <div>
 	        <label>餐廳類型：</label>
 	        <label>
-	            <input type="checkbox" name="restaurantCategory" value="中式" id="">中式
+	            <input type="radio" name="restaurantCategory" value="中式" >中式
 	        </label>
 	        <label>
-	            <input type="checkbox" name="restaurantCategory" value="義式" id="">義式
+	            <input type="radio" name="restaurantCategory" value="義式" >義式
 	        </label>
 	        <label>
-	            <input type="checkbox" name="restaurantCategory" value="自助餐" id="">自助餐
+	            <input type="radio" name="restaurantCategory" value="自助餐">自助餐
 	        </label>
 	        <label>
-	            <input type="checkbox" name="restaurantCategory" value="麵食" id="">麵食
+	            <input type="radio" name="restaurantCategory" value="麵食" >麵食
 	        </label>
 	    </div>
 	
@@ -29,16 +29,16 @@
 	        <label>素食種類：</label>
 	     
 	        <label>
-	            <input type="checkbox" name="restaurantType" value="全素"  >全素
+	            <input type="radio" name="restaurantType" value="全素"  >全素
 	        </label>
 	        <label>
-	            <input type="checkbox" name="restaurantType" value="奶素" >奶素
+	            <input type="radio" name="restaurantType" value="奶素" >奶素
 	        </label>
 	        <label>
-	            <input type="checkbox" name="restaurantType" value="蛋素" >蛋素
+	            <input type="radio" name="restaurantType" value="蛋素" >蛋素
 	        </label>
 	        <label>
-	            <input type="checkbox" name="restaurantType" value="五辛素" >五辛素
+	            <input type="radio" name="restaurantType" value="五辛" >五辛素
 	        </label>
 	    </div>
 		</fieldset>

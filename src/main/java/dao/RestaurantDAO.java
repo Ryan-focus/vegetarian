@@ -33,12 +33,46 @@ public class RestaurantDAO {
 		}
 		return list;
 	}
-
+	
 	// 查詢餐廳 by restaurantName&Address&Category&Type
+		public List<Restaurant> findRestaurant(String restaurantName, String restaurantAddress, String restaurantCategory,
+				String restaurantType) {
+			List<Restaurant> list = new ArrayList<Restaurant>();
+			String sqlString = "SELECT * FROM restaurant WHERE restaurantName like ? and restaurantAddress like ? "
+					+ "and restaurantCategory like ?  and restaurantType like ?";
+				System.out.printf("%s,%s,%s,%s%n",restaurantName,restaurantAddress,restaurantCategory,restaurantType);
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(sqlString);
+				pstmt.setString(1, "%" + restaurantName + "%");
+				pstmt.setString(2, "%" + restaurantAddress + "%");
+				pstmt.setString(3, "%" + restaurantCategory + "%");
+				pstmt.setString(4, "%" + restaurantType + "%");
+				
+				ResultSet rs = pstmt.executeQuery();
+				while (rs.next()) {
+					Restaurant restaurant = new Restaurant(rs.getInt("restaurantNumber"), rs.getString("restaurantName"),
+							rs.getString("restaurantTel"), rs.getString("restaurantAddress"),
+							rs.getString("restaurantCategory"), rs.getString("restaurantType"),
+							rs.getString("restaurantBusinessHours"), rs.getString("restaurantScore"));
+					list.add(restaurant);
+				}
+				rs.close();
+				pstmt.close();
+				return list;
+
+			} catch (Exception e) {
+				System.err.println("查詢餐廳資料時發生錯誤:" + e);
+				e.printStackTrace();
+				return null;
+			}
+		} 
+
+	 /* 查詢餐廳 by restaurantName&Address&Category&Type
 	public List<Restaurant> findRestaurant(String restaurantName, String restaurantAddress, String[] restaurantCategory,
 			String restaurantType) {
 		List<Restaurant> list = new ArrayList<Restaurant>();
-		String sqlString = "SELECT * FROM restaurant WHERE restaurantName like ? and restaurantAddress like ? and restaurantCategory in(?,?,?,?) and restaurantType like ?";
+		String sqlString = "SELECT * FROM restaurant WHERE restaurantName like ? and restaurantAddress like ? "
+				+ "and restaurantCategory in(?,?,?,?) and restaurantType like ?";
 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sqlString);
@@ -51,7 +85,6 @@ public class RestaurantDAO {
 
 				System.out.println(restaurantCategory[i]);
 			}
-			System.out.println("===========");
 
 			pstmt.setString(7, "%" + restaurantType + "%");
 
@@ -72,7 +105,7 @@ public class RestaurantDAO {
 			e.printStackTrace();
 			return null;
 		}
-	}
+	} */
 	
 	
 	// 查詢餐廳 by number
