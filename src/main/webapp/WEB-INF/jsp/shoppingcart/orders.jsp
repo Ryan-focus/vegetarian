@@ -26,14 +26,14 @@ Connection conn = null;
 
 DecimalFormat dcf = new DecimalFormat("#.##");
 request.setAttribute("dcf", dcf);
-User auth = (User) request.getSession().getAttribute("auth");
+User user2 = (User) request.getSession().getAttribute("user");
 List<Order> orders = null;
-if (auth != null) {
-	request.setAttribute("auth", auth);
-	orders = new OrderDao(ds.getConnection()).userOrders(auth.getUid());
+if (user2.getUid() != 0) {
+	request.setAttribute("user", user2);
+	orders = new OrderDao(ds.getConnection()).userOrders(user2.getUid());
 
 } else {
-	response.sendRedirect("login.jsp");
+	response.sendRedirect("/vegetarian/Login");
 }
 ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
 if (cart_list != null) {
