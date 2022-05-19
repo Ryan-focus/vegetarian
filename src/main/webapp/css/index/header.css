@@ -71,7 +71,7 @@ header {
 }
 
 .navigation {
-  height:100px;
+  height:auto;
   display : block;
   text-decoration: none;
 }
@@ -118,7 +118,6 @@ header {
 		position:none;
 		display : flex;
 		width:auto;
-		height:auto;
 		top:2.5%;
 		right:2.5%;
 		background-color:transparent;
@@ -127,14 +126,6 @@ header {
  	 	border-bottom :none;
 	}
 }
-
-
-
-
-
-
-
-
 .navigation a:last-child {
   padding-right: 0;
   border-right: none;

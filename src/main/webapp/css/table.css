@@ -1,6 +1,6 @@
 @charset "UTF-8"; 
         .tb1{
-            width:1200px;
+            width:100%;
             border:3px solid rgb(88, 48, 2);
             border-collapse: collapse;
         }
