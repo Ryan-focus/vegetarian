@@ -32,16 +32,13 @@
 		  </label>
         <ul class="navigation">
           <a href="/vegetarin/shoppingcartIndex"><li>商品頁</li></a>
-       	  <a href="/vegetarin/cart"><li>購物車<span class="badge badge-danger px-1">${ cart_list
-        .size() }</span></li></a>
-       	    <%
-        if(user.getUid() !=0 ){%>
+       	  <a href="/vegetarin/cart"><li>購物車<span class="badge badge-danger px-1">${ cart_list.size() }</span></li></a>
+       
           <a href="/vegetarian/orders"><li>歷史訂單</li></a>
           <a href="/vegetarian/Logout"><li>登出</li></a>
-            <%}else{%>
+            
           <a href="/vegetarian/Login"><li>登入</li></a>
-             <%}
-        %>
+         
         </ul>
       </div>
     </header>
