@@ -5,14 +5,24 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style><%@include file="/../css/index/header.css"%></style>
+   <style><%@include file="/../css/index/header.css"%></style>
+   <style><%@include file="/../css/index/footer.css"%></style>
+   <style><%@include file="/css/index/body.css"%></style>
+   <style><%@include file="/css/index/search.css"%></style>
   </head>
   <body>
+    <input type="checkbox" name="" id="menu_control">
     <header>
       <div class="header">
-      <a href="index.jsp"> 
-        <img data-src="images/index/logo.png" src="images/index/logo.png" alt="logo" title="vegelife" data-was-processed="true"/>
-	  </a>
+	      <a href="index.jsp">
+	      <img data-src="images/index/logo.png" 
+	      src="images/index/logo.png" 
+	      alt="logo" title="vegelife" 
+	      data-was-processed="true"> 
+		  </a>
+		  <label for= "menu_control" class="menu_btn">
+		  		<span>選單</span>
+		  </label>
         <ul class="navigation">
           <a href="/vegetarin/shoppingcartIndex"><li>商品頁</li></a>
        	  <a href="cart.jsp"><li>購物車</li></a>

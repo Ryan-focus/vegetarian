@@ -40,6 +40,7 @@ if (cart_list != null) {
 <head>
 <title>歡迎來到素構易</title>
 <%@include file="/WEB-INF/jsp/shoppingcart/bootstrap.jsp"%>
+
 </head>
 <body>
 	<%@include file="/WEB-INF/jsp/shoppingcart/ShoppingCartBar.jspf"%>
@@ -74,6 +75,6 @@ if (cart_list != null) {
 		</div>
 	</div>
 	<%@include file="/WEB-INF/jsp/shoppingcart/Script.jsp"%>
-
+	<%@include file="/WEB-INF/jsp/parts/footer.jspf"%>
 </body>
 </html>

@@ -9,10 +9,8 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
-
-
-	
-   <jsp-config>
+   
+      <jsp-config>
 	   <jsp-property-group>
 		   <url-pattern>*.jsp</url-pattern> <!-- 受影響的jsp頁面。這邊是所有的jsp -->
 		   <el-ignored>false</el-ignored>       <!-- 是否忽略el -->  
@@ -25,6 +23,15 @@
 		   <buffer>16kb</buffer> <!-- 緩衝 加載 -->
 	   </jsp-property-group>
    </jsp-config>
+
+<!-- 讓.jspf檔案可以跟 .jsp檔案一樣 正常被Comiler成 servlet -->
+   <servlet-mapping>
+    	<servlet-name>jsp</servlet-name>
+    	<url-pattern>*.jspf</url-pattern>
+   </servlet-mapping>
+   
+
+   
   
 
   <servlet>
@@ -78,7 +85,7 @@
   
    <servlet>
    <servlet-name>shoppingcartIndex</servlet-name>
-   <jsp-file>/shoppingcartIndex.jsp</jsp-file>
+   <jsp-file>/shoppingcartIndex.jspf</jsp-file>
   </servlet>
   
   <servlet-mapping>
