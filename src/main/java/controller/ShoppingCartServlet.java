@@ -1,6 +1,5 @@
 package controller;
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -74,11 +73,12 @@ public class ShoppingCartServlet extends HttpServlet {
 			removeFromCart(request, response);
 		}
 			break;
-		case "quantity-inc": {
-			QuanityInc(request, response);
-		}break;
-		case "quantity-dec":{
-			QuanityDec(request, response);
+		case "quantity-inc-dec": {
+			QuanityIncDec(request, response);
+		}
+			break;
+		default:{
+			response.sendRedirect("/vegetarian/shoppingcartIndex");
 		}
 		}
 	}
@@ -95,7 +95,7 @@ public class ShoppingCartServlet extends HttpServlet {
 			User user = (User) request.getSession().getAttribute("user");
 
 			// check auth and cart list
-			if (cart_list != null && user.getUid() !=0 ) {
+			if (cart_list != null && user.getUid() != 0) {
 
 				for (Cart c : cart_list) {
 					// prepare the order object
@@ -117,7 +117,7 @@ public class ShoppingCartServlet extends HttpServlet {
 				response.sendRedirect("/vegetarian/order");
 
 			} else {
-				if (user.getUid() == 0 )
+				if (user.getUid() == 0)
 					response.sendRedirect("/vegetarian/Login");
 				response.sendRedirect("/vegetarian/cart");
 			}
@@ -256,58 +256,44 @@ public class ShoppingCartServlet extends HttpServlet {
 
 	}
 
-	private void QuanityInc(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	private void QuanityIncDec(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		response.setContentType("text/html;charset=UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		try (PrintWriter out = response.getWriter();) {
-			String action = request.getParameter("action");
+			String action = request.getParameter("action1");
 			int id = Integer.parseInt(request.getParameter("id"));
 
 			ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cart-list");
 
 			if (action != null && id >= 1) {
-
-				for (Cart c : cart_list) {
-					if (c.getId() == id) {
-						int quantity = c.getQuantity();
-						quantity++;
-						c.setQuantity(quantity);
-						response.sendRedirect("/vegetarian/cart");
-
+				if (action.equals("inc")) {
+					for (Cart c : cart_list) {
+						if (c.getId() == id) {
+							int quantity = c.getQuantity();
+							quantity++;
+							c.setQuantity(quantity);
+							response.sendRedirect("/vegetarian/cart");
+						}
 					}
+				}
 
+				if (action.equals("dec")) {
+					for (Cart c : cart_list) {
+						if (c.getId() == id && c.getQuantity() > 1) {
+							int quantity = c.getQuantity();
+							quantity--;
+							c.setQuantity(quantity);
+							break;
+						}
+					}
+					response.sendRedirect("/vegetarian/cart");
 				}
 			} else {
-				response.sendRedirect("/vegetarian/cart");
+				response.sendRedirect("c/vegetarian/cart");
 
 			}
 
 		}
 
-	}
-
-	private void QuanityDec(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		response.setContentType("text/html;charset=UTF-8");
-		try (PrintWriter out = response.getWriter();) {
-			String action = request.getParameter("action");
-			int id = Integer.parseInt(request.getParameter("id"));
-
-			ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cart-list");
-
-			if (action != null && id >= 1) {
-				for (Cart c : cart_list) {
-					if (c.getId() == id && c.getQuantity() > 1) {
-						int quantity = c.getQuantity();
-						quantity--;
-						c.setQuantity(quantity);
-						response.sendRedirect("/vegetarian/cart");
-					}
-				}
-
-			} else {
-				response.sendRedirect("/vegetarian/cart");
-
-			}
-
-		}
 	}
 }

@@ -83,12 +83,12 @@ if (cart_list != null) {
 					<td><%=c.getCategory()%></td>
 					<td><%=dcf.format(c.getPrice())%>$</td>
 					<td>
-						<form action="ShoppingCartServlet?action=order-now" method="post" class="form-inline">
+						<form action="ShoppingCartServlet?action=order-now" method="get" class="form-inline">
 						<input type="hidden" name="id" value="<%=c.getId()%>" class="form-input">
 							<div class="form-group d-flex justify-content-between w-50">
-								<a class="btn btn-sm btn-incre" href="/ShoppingCartServlet?action=quantity-inc&id=<%=c.getId()%>"><i class="fas fa-plus-square"></i></a>
+								<a class="btn btn-sm btn-incre" href="/ShoppingCartServlet?action=quantity-inc-dec&action1=inc&id=<%=c.getId()%>"><i class="fas fa-plus-square"></i></a>
 								<input type="text" name="quantity" class="form-control w-50" value="<%=c.getQuantity()%>" readonly>
-								<a class="btn btn-sm btn-decre" href="/ShoppingCartServlet?action=quantity-dec&id=<%=c.getId()%>"><i class="fas fa-minus-square"></i></a>
+								<a class="btn btn-sm btn-decre" href="/ShoppingCartServlet?action=quantity-inc-dec&action1=inc&id=<%=c.getId()%>"><i class="fas fa-minus-square"></i></a>
 							</div>
 							<button type="submit" class="btn btn-primary btn-sm" >立即購買</button>
 						</form>
