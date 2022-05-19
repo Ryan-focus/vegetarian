@@ -32,7 +32,7 @@
 		  </label>
         <ul class="navigation">
           <a href="/vegetarin/shoppingcartIndex"><li>商品頁</li></a>
-       	  <a href="cart.jsp"><li>購物車</li></a>
+       	  <a href="/vegetarin/cart"><li>購物車</li></a>
        	    <%
         if(user2.getUid() != 0 ){%>
           <a href="/WEB-INF/jsp/shoppingcart/orders.jsp"><li>歷史訂單</li></a>

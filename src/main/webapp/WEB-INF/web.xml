@@ -95,7 +95,7 @@
   
    <servlet>
    <servlet-name>cart</servlet-name>
-   <jsp-file>/WEB-INF/jsp/shoppingcart/cart.jsp</jsp-file>
+   <jsp-file>/WEB-INF/jsp/shoppingcart/cart.jspf</jsp-file>
   </servlet>
   <servlet-mapping>
    <servlet-name>cart</servlet-name>
@@ -104,7 +104,7 @@
   
    <servlet>
    <servlet-name>order</servlet-name>
-   <jsp-file>/WEB-INF/jsp/shoppingcart/order.jsp</jsp-file>
+   <jsp-file>/WEB-INF/jsp/shoppingcart/orders.jspf</jsp-file>
   </servlet>
   <servlet-mapping>
    <servlet-name>order</servlet-name>
