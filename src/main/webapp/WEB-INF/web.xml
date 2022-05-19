@@ -35,6 +35,15 @@
     <servlet-name>PostServlet</servlet-name>
     <url-pattern>/PostServlet</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>PostIndexServlet</servlet-name>
+    <servlet-class>PostIndexServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PostIndexServlet</servlet-name>
+    <url-pattern>/postIndex</url-pattern>
+  </servlet-mapping>
 
     
    <servlet>
