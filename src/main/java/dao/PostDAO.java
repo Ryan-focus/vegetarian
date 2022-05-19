@@ -121,7 +121,8 @@ public class PostDAO implements Serializable{
     }
     
  
-    //搜尋全部
+//搜尋全部
+    
     public List<Post> findallPost() {
         String sql = "select * from posts order by post_id desc;" ;
               
@@ -132,24 +133,23 @@ public class PostDAO implements Serializable{
             pst = conn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-            	 postsList.add(new Post(
-                         rs.getInt("post_id"),
-                         rs.getString("title"),
-                         rs.getDate("posted_date"),
-                         rs.getString("posted_text")
-                         ));
+            	 Post post =new Post();
+                 post.setPostId(rs.getInt("post_id"));
+                 post.setTitle(rs.getString("title"));
+                 post.setPostedDate(rs.getDate("posted_date"));
+                 post.setPostedText(rs.getString("posted_text"));
+                 postsList.add(post);
+                         
             }
+            	rs.close();
             	pst.close();
-            
-				
 				
  
         } catch (SQLException e) {
             e.printStackTrace();
         }
 		return postsList;
-       
-    
+		
  
     }
     
