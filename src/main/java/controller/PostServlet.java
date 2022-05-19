@@ -30,28 +30,28 @@ public class PostServlet extends HttpServlet {
 			conn = ds.getConnection();
 
 			// 建立Database Access Object,負責Table的Access
-			PostDAO postDao2 = new PostDAO(conn);
+			PostDAO postDAO = new PostDAO(conn);
 
 			// 如果要編碼值為UTF-8
 			request.setCharacterEncoding("UTF-8");
 
 			if (request.getParameter("add") != null) {
-				Create(request, response, postDao2);
+				Create(request, response, postDAO);
 			}
 			if (request.getParameter("update") != null) {
-				Update(request, response, postDao2);
+				Update(request, response, postDAO);
 			}
 
 			String action = request.getParameter("action");
 			switch (action) {
 			case "showPost":
-				showPost(request, response, postDao2);
+				showPost(request, response, postDAO);
 				break;
 			case "deletePost":
-				deletePost(request, response, postDao2);
+				deletePost(request, response, postDAO);
 				break;
 			case "editPost":
-				editPost(request, response, postDao2);
+				editPost(request, response, postDAO);
 				break;
 			}
 
@@ -69,7 +69,7 @@ public class PostServlet extends HttpServlet {
 		}
 	}
 
-	private void Update(HttpServletRequest request, HttpServletResponse response, PostDAO postDao2)
+	private void Update(HttpServletRequest request, HttpServletResponse response, PostDAO postDAO)
 			throws SQLException, IOException, ServletException {
 
 		Post post = new Post();
@@ -77,7 +77,7 @@ public class PostServlet extends HttpServlet {
 		String posted_text = request.getParameter("postedText");
 		int id = (Integer.parseInt(request.getParameter("update")));
 
-		if (postDao2.updatePost(post, title, posted_text, id)) {
+		if (postDAO.updatePost(post, title, posted_text, id)) {
 			request.setAttribute("message", "更新成功");
 			request.getRequestDispatcher("showResultForm.jsp").forward(request, response);
 		} else {
@@ -86,7 +86,7 @@ public class PostServlet extends HttpServlet {
 		}
 	}
 
-	private void Create(HttpServletRequest request, HttpServletResponse response, PostDAO postDao2)
+	private void Create(HttpServletRequest request, HttpServletResponse response, PostDAO postDAO)
 			throws SQLException, IOException, ServletException {
 
 		Post post = new Post();
@@ -94,7 +94,7 @@ public class PostServlet extends HttpServlet {
 		String posted_text = request.getParameter("postedText");
 		Date time = post.getPostedDate();
 
-		if (postDao2.addPost(title, posted_text)) {
+		if (postDAO.addPost(title, posted_text)) {
 			request.setAttribute("message", "發表成功");
 			request.getRequestDispatcher("showResultForm.jsp").forward(request, response);
 		} else {
@@ -104,14 +104,14 @@ public class PostServlet extends HttpServlet {
 
 	}
 
-	private void showPost(HttpServletRequest request, HttpServletResponse response, PostDAO postDao2)
+	private void showPost(HttpServletRequest request, HttpServletResponse response, PostDAO postDAO)
 			throws SQLException, IOException, ServletException {
 
 		int id = Integer.parseInt(request.getParameter("id"));
 
-		Post post = postDao2.findPost(id);
+		Post post = postDAO.findPost(id);
 
-		if (postDao2.findPost(id) != null) {
+		if (postDAO.findPost(id) != null) {
 			request.setAttribute("title", post.getTitle());
 			request.setAttribute("posted_date", post.getPostedDate());
 			request.setAttribute("posted_text", post.getPostedText());
@@ -123,13 +123,13 @@ public class PostServlet extends HttpServlet {
 		}
 	}
 
-	private void deletePost(HttpServletRequest request, HttpServletResponse response, PostDAO postDao2)
+	private void deletePost(HttpServletRequest request, HttpServletResponse response, PostDAO postDAO)
 			throws SQLException, IOException, ServletException {
 
 		int id = Integer.parseInt(request.getParameter("id"));
 
-		postDao2.deletePost(id);
-		if (postDao2.deletePost(id)) {
+		postDAO.deletePost(id);
+		if (postDAO.deletePost(id)) {
 			request.setAttribute("message", "刪除成功");
 			request.getRequestDispatcher("showResultForm.jsp").forward(request, response);
 		} else {
@@ -138,14 +138,14 @@ public class PostServlet extends HttpServlet {
 		}
 	}
 
-	private void editPost(HttpServletRequest request, HttpServletResponse response, PostDAO postDao2)
+	private void editPost(HttpServletRequest request, HttpServletResponse response, PostDAO postDAO)
 			throws SQLException, IOException, ServletException {
 
 		int id = Integer.parseInt(request.getParameter("id"));
 
-		Post post = postDao2.findPost(id);
+		Post post = postDAO.findPost(id);
 
-		if (postDao2.findPost(id) != null) {
+		if (postDAO.findPost(id) != null) {
 			request.setAttribute("title", post.getTitle());
 			request.setAttribute("post_id", post.getPostId());
 			request.setAttribute("posted_date", post.getPostedDate());
