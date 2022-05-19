@@ -23,6 +23,6 @@
   ></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
    <script type="text/javascript" charset="UTF-8" src="js/map/map.js"></script>
-    <p><a href="/vegetarian/index.jsp"><button>回到首頁</button></a></p>
+    <p><a href="index.jsp"><button>回到首頁</button></a></p>
 </body>
 </html>
