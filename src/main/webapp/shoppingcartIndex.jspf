@@ -8,10 +8,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-User user1 = (User) request.getSession().getAttribute("user");
-if (user1.getUid() != 0) {
-	request.setAttribute("user", user1);
-}
+User user = (User) request.getSession().getAttribute("user");
+
 
 DataSource ds = null;
 Connection conn = null;

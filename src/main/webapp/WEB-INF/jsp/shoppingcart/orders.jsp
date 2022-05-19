@@ -26,10 +26,10 @@ Connection conn = null;
 
 DecimalFormat dcf = new DecimalFormat("#.##");
 request.setAttribute("dcf", dcf);
-User user2 = (User) request.getSession().getAttribute("user");
+User user3 = (User) request.getSession().getAttribute("user");
 List<Order> orders = null;
-if (user2.getUid() != 0) {
-	orders = new OrderDao(ds.getConnection()).userOrders(user2.getUid());
+if (user3.getUid() != 0) {
+	orders = new OrderDao(ds.getConnection()).userOrders(user3.getUid());
 
 } else {
 	response.sendRedirect("/vegetarian/Login");

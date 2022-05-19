@@ -17,7 +17,7 @@
     />
   </head>
   <body>
-     <%User user1 = (User) request.getSession().getAttribute("user");%>	
+     <%User user2 = (User) request.getSession().getAttribute("user");%>	
     <input type="checkbox" name="" id="menu_control">
     <header>
       <div class="header">
@@ -34,7 +34,7 @@
           <a href="/vegetarin/shoppingcartIndex"><li>商品頁</li></a>
        	  <a href="cart.jsp"><li>購物車</li></a>
        	    <%
-        if(user1.getUid() != 0 ){%>
+        if(user2.getUid() != 0 ){%>
           <a href="/WEB-INF/jsp/shoppingcart/orders.jsp"><li>歷史訂單</li></a>
           <a href="/vegetarian/Logout"><li>登出</li></a>
             <%}else{%>
