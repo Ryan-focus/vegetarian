@@ -25,10 +25,7 @@ Connection conn = null;
 }
 DecimalFormat dcf = new DecimalFormat("#.##");
 request.setAttribute("dcf", dcf);
-User auth = (User) request.getSession().getAttribute("auth");
-if (auth != null) {
-	request.setAttribute("auth", auth);
-}
+User user2 = (User) request.getSession().getAttribute("user");
 
 ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
 List<Cart> cartProduct = null;

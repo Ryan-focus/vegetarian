@@ -29,7 +29,6 @@ request.setAttribute("dcf", dcf);
 User user2 = (User) request.getSession().getAttribute("user");
 List<Order> orders = null;
 if (user2.getUid() != 0) {
-	request.setAttribute("user", user2);
 	orders = new OrderDao(ds.getConnection()).userOrders(user2.getUid());
 
 } else {
