@@ -10,14 +10,14 @@ import bean.*;
 
 public class ProductDao {
 
-	private Connection con;
+	private Connection conn;
 	private String query;
 	private PreparedStatement pst;
 	private ResultSet rs;
 
-	public ProductDao(Connection con) {
+	public ProductDao(Connection conn) {
 		super();
-		this.con = con;
+		this.conn = conn;
 	}
 
 	public List<Product> getAllProducts() {
@@ -26,7 +26,7 @@ public class ProductDao {
 
 		try {
 			query = "select * from products";
-			pst = this.con.prepareStatement(query);
+			pst = this.conn.prepareStatement(query);
 			rs = pst.executeQuery();
 			while (rs.next()) {
 				Product row = new Product();
@@ -55,7 +55,7 @@ public class ProductDao {
 			if(cartList.size()>0) {
 				for(Cart item:cartList) {
 					query = "select * from products where id =?";
-					pst = this.con.prepareStatement(query);
+					pst = this.conn.prepareStatement(query);
 					pst.setInt(1, item.getId());
 					rs = pst.executeQuery();
 					while (rs.next()) {
@@ -87,7 +87,7 @@ public class ProductDao {
 			if(cartList.size()>0) {
 				for(Cart item:cartList) {
 					query = "select price from products where id=?";	
-					pst = this.con.prepareStatement(query);
+					pst = this.conn.prepareStatement(query);
 					pst.setInt(1, item.getId());
 					rs=pst.executeQuery();
 					
@@ -109,7 +109,7 @@ public class ProductDao {
 	        try {
 	            query = "select * from products where id=? ";
 
-	            pst = this.con.prepareStatement(query);
+	            pst = this.conn.prepareStatement(query);
 	            pst.setInt(1, id);
 	            ResultSet rs = pst.executeQuery();
 
