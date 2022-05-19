@@ -1,5 +1,4 @@
 package dao;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,18 +25,18 @@ public class ForumDAO {
 			else
 				return false;
 		} catch (Exception e) {
-			System.err.println("·s¼W¸ê®Æ®Éµo¥Í¿ù»~:" + e);
+			System.err.println("æ–°å¢žè³‡æ–™æ™‚ç™¼ç”ŸéŒ¯èª¤:" + e);
 			return false;
 		}
 	}
 
-	public boolean updateForum(ForumBean fromData) {
+	public static boolean updateForum(ForumBean foruData) {
 		try {
-			String sqlString = "UPDATE vge_FORUM " + "SET vgename = '" + fromData.getVgename() + "' "
-					+ "set vgetheme = '" + fromData.getVgetheme() + "set vgecontent = '" + fromData.getVgecontent()
-					+ "' " + "WHERE vgeid = " + fromData.getVgeid();
+			String sqlString = "UPDATE vge_FORUM " + "SET vgename = '" + foruData.getVgename() + "' "
+					+ ",vgetheme = '" + foruData.getVgetheme() + "',vgecontent = '" + foruData.getVgecontent()
+					+ "' " + "WHERE vgeid = '" + foruData.getVgeid()+"'";
 			Statement stmt = conn.createStatement();
-			System.out.println(sqlString);//ÀË¬d
+			System.out.println(sqlString);//æª¢æŸ¥
 			int updatecount = stmt.executeUpdate(sqlString);
 			stmt.close();
 			if (updatecount >= 1)
@@ -45,14 +44,16 @@ public class ForumDAO {
 			else
 				return false;
 		} catch (Exception e) {
-			System.err.println("§ó·s®Éµo¥Í¿ù»~:" + e);
+			System.err.println("æ›´æ–°æ™‚ç™¼ç”ŸéŒ¯èª¤:" + e);
 			return false;
 		}
 	}
 	
-	public boolean deleteForum(int vgeid) {
+	public boolean deleteForum(String vgeid) {
+		
 		try {
-			String sqlString = "DELETE FROM vge_FORUM " + "WHERE vgeid = " + vgeid;
+			
+			String sqlString = "DELETE FROM vge_FORUM " + "WHERE vgeid = '" + vgeid+"'";
 			Statement stmt = conn.createStatement();
 			int deletecount = stmt.executeUpdate(sqlString);
 			stmt.close();
@@ -61,7 +62,7 @@ public class ForumDAO {
 			else
 				return false;
 		} catch (Exception e) {
-			System.err.println("§R°£®Éµo¥Í¿ù»~: " + e);
+			System.err.println("åˆªé™¤æ™‚ç™¼ç”ŸéŒ¯èª¤: " + e);
 			return false;
 		}
 	}
@@ -89,8 +90,10 @@ public class ForumDAO {
 			ps.close();
 			return foru;
 		} catch (Exception e) {
-			System.err.println("´M§ä¸ê®Æ®Éµo¥Í¿ù»~:" + e);
+			System.err.println("å°‹æ‰¾è³‡æ–™æ™‚ç™¼ç”ŸéŒ¯èª¤:" + e);
 			return null;
 		}
 	}
+	
+	
 }

@@ -168,4 +168,30 @@
    <url-pattern>/Thank</url-pattern>
   </servlet-mapping>
 
+ <servlet>
+   <servlet-name>DeleteForum</servlet-name>
+   <jsp-file>/WEB-INF/jsp/forum/DeleteForum.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>DeleteForum</servlet-name>
+   <url-pattern>/DeleteForum</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+   <servlet-name>ErrorQuery</servlet-name>
+   <jsp-file>/WEB-INF/jsp/forum/ErrorQuery.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>ErrorQuery</servlet-name>
+   <url-pattern>/ErrorQuery</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+   <servlet-name>UpdateResult</servlet-name>
+   <jsp-file>/WEB-INF/jsp/forum/UpdateResult.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>UpdateResult</servlet-name>
+   <url-pattern>/UpdateResult</url-pattern>
+  </servlet-mapping>
 </web-app>
