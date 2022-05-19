@@ -41,8 +41,8 @@ if (cart_list != null) {
 
 </head>
 <body>
-	<%@include file="/WEB-INF/jsp/shoppingcart/ShoppingCartBar.jspf"%>
 
+	<%@include file="/WEB-INF/jsp/shoppingcart/ShoppingCartBar.jspf"%>
 	<div class="container">
 		<div class="card-header my-3">全部商品</div>
 		<div class="row">
