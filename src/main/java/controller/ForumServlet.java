@@ -51,7 +51,7 @@ public class ForumServlet extends HttpServlet {
 				processQuery(request, response, forumDAO);
 
 			if (request.getParameter("Create") != null)
-				processCreate(request, response);
+				processCreate(request, response,forumDAO);
 		
 			if (request.getParameter("Delete") != null)
 				processDelete(request, response, forumDAO);
@@ -62,7 +62,7 @@ public class ForumServlet extends HttpServlet {
 			if (request.getParameter("Update") != null)
 				processUpdate(request, response,forumDAO);
 			
-			if(request.getParameter("回首頁")!=null)
+			if(request.getParameter("ForumHome")!=null)
 				prcoessHome(request,response);
 		}
 
@@ -126,7 +126,7 @@ public class ForumServlet extends HttpServlet {
 
 	}
 
-	protected void processCreate(HttpServletRequest request, HttpServletResponse response)
+	protected void processCreate(HttpServletRequest request, HttpServletResponse response, ForumDAO forumDAO)
 			throws ServletException, IOException {
 		DataSource ds = null;
 		InitialContext ctxt = null;
@@ -143,15 +143,19 @@ public class ForumServlet extends HttpServlet {
 			conn = ds.getConnection();
 
 			// 建立Database Access Object,負責Table的Access
-			ForumDAO forumDAO = new ForumDAO(conn); // STUDENTDAO見一個建構子傳回
-
-			String vgename = request.getParameter("vgename");
-			String vgetheme = request.getParameter("vgetheme");
-			String vgecontent = request.getParameter("vgecontent");
-			ForumBean vge = new ForumBean(vgeid, vgename, vgetheme, vgecontent);
-			request.getSession(true).setAttribute("vge", vge);
-			
-			request.getRequestDispatcher("/WEB-INF/jsp/forum/DisplayForum.jsp").forward(request, response);
+			ForumBean forumBean = forumDAO.queryForum(vgeid);
+			if(forumBean != null) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/forum/ErrorCreate.jsp");
+				dispatcher .forward(request, response);
+			}else {
+				 forumDAO = new ForumDAO(conn); // STUDENTDAO見一個建構子傳回
+				 String vgename = request.getParameter("vgename");
+				 String vgetheme = request.getParameter("vgetheme");
+				 String vgecontent = request.getParameter("vgecontent");
+				 ForumBean vge = new ForumBean(vgeid, vgename, vgetheme, vgecontent);
+				 request.getSession(true).setAttribute("vge", vge);
+				 request.getRequestDispatcher("/WEB-INF/jsp/forum/DisplayForum.jsp").forward(request, response);
+			}
 			
 		} catch (NamingException ne) {
 			System.out.println("Naming Service Lookup Exception");

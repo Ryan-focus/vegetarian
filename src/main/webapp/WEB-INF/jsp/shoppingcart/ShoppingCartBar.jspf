@@ -11,13 +11,11 @@
    <style><%@include file="/css/index/search.css"%></style>
    <%@page import="bean.*"%>
    
-   <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    
   </head>
   <body>
-     <%User user2 = (User) request.getSession().getAttribute("user");%>	
+  <%User user2 = (User) request.getSession().getAttribute("user"); %>
     <input type="checkbox" name="" id="menu_control">
     <header>
       <div class="header">
@@ -31,15 +29,15 @@
 		  		<span>選單</span>
 		  </label>
         <ul class="navigation">
-          <a href="/vegetarin/shoppingcartIndex"><li>商品頁</li></a>
-       	  <a href="cart.jsp"><li>購物車</li></a>
-       	    <%
-        if(user2.getUid() != 0 ){%>
-          <a href="/WEB-INF/jsp/shoppingcart/orders.jsp"><li>歷史訂單</li></a>
+          <a href="/vegetarian/shoppingcartIndex"><li>商品頁</li></a>
+       	  <a href="/vegetarian/cart"><li>購物車<span class="badge badge-danger px-1">${ cart_list.size() }</span></li></a>
+       		 <%
+        if(user2.getUid() !=0){%>
+          <a href="/vegetarian/order"><li>歷史訂單</li></a>
           <a href="/vegetarian/Logout"><li>登出</li></a>
-            <%}else{%>
+               <%}else{%>
           <a href="/vegetarian/Login"><li>登入</li></a>
-             <%}
+        <%}
         %>
         </ul>
       </div>
