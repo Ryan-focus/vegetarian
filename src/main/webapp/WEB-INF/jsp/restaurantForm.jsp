@@ -13,7 +13,7 @@
 </head>
 <style><%@include file="/../css/table.css"%></style>
 <body>
-
+	<div class="wrapper">
     <FORM ACTION="./RestaurantServletDS" method="get">
     <table class="tb1">
     <caption>
@@ -50,3 +50,5 @@
     </table>
     </FORM>
    <%@include file="/WEB-INF/jsp/parts/map.jspf" %>
+   
+   </div>

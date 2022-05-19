@@ -5,6 +5,12 @@
   list-style: none;
 }
 
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+
 #menu_control{
 	position: absolute;
 	z-index : -2;
