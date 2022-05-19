@@ -24,6 +24,7 @@
         <h2>搜尋餐廳結果</h2>
    	<div class="wrapper">
     <FORM ACTION="./RestaurantServletDS" method="get">
+        
     <table class="tb1">
 
     <thead>
@@ -41,6 +42,7 @@
 
     <tbody>
     	<% List<Restaurant> restaurantList = (List<Restaurant>) request.getAttribute("restaurantList"); %>
+
         <% for (Restaurant restaurant : restaurantList) {%>
         <tr>
             <td><%= restaurant.getRestaurantNumber() %></td>

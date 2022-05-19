@@ -108,6 +108,10 @@ public class RestaurantServletDS extends HttpServlet {
 			
 			// 透過DAO元件Access Dept Table
 			List<Restaurant> restaurantList = restaurantDAO.findRestaurant(restaurantName,restaurantAddress,restaurantCategory,restaurantType);
+			
+			// session
+			req.getSession().setAttribute("restaurantList", restaurantList);
+			
 			if (restaurantList == null)
 				try {
 					RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/errorPage/showError.jsp");
