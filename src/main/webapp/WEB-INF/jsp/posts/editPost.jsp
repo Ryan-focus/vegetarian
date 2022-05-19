@@ -16,9 +16,9 @@
 
         h2 {text-align: center;}
 
-        .text_title {padding: 2px;width: 500px;}
+        .text_title {padding: 2px;width: 800px;}
         
-        textarea {height: 200px;width: 500px;resize: none;}
+        textarea {width: 8000px;resize: none;}
             
     </style>
 </head>
@@ -29,7 +29,7 @@
         <h4>文章標題:</h4>
         <input class="text_title" type="text" name="title"  onkeyup="this.value=this.value.replace(/\s+/g,'')" value="${title}" required/>
         <h4>文章內容:</h4>
-        <textarea class="text_title" name="postedText"  rows="10"  required>${posted_text}
+        <textarea class="text_title" name="postedText"  rows="20"  required>${posted_text}
     </textarea>
         <br />
         <br />
