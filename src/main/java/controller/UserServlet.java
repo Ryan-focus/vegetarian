@@ -37,19 +37,19 @@ public class UserServlet extends HttpServlet {
 		case "administrator":
 			identity = "管理員";
 			request.setAttribute("urlStatus", 0 );
-			request.getSession().setAttribute("user", user);
+			request.getSession().setAttribute("Auth", user);
 			break;
 			
 		case "business":
 			identity = "商家";
 			request.setAttribute("urlStatus", 1 );
-			request.getSession().setAttribute("user", user);
+			request.getSession().setAttribute("Auth", user);
 			break;
 			
 		case "user":
 			identity = "會員";
 			request.setAttribute("urlStatus", 2 );
-			request.getSession().setAttribute("user", user);
+			request.getSession().setAttribute("Auth", user);
 			break;
 			
 		default:

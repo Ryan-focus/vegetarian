@@ -29,7 +29,7 @@ public class OrderDao {
 		
 		try {
 			
-			query="insert into order(p_id,u_id,o_quantity,o_date) values(?,?,?,?)";
+			query="insert into orders(p_id,u_id,o_quantity,o_date) values(?,?,?,?)";
 			
 			pst = this.con.prepareStatement(query);
 			pst.setInt(1, model.getId());
@@ -52,7 +52,7 @@ public class OrderDao {
 		List<Order> list = new ArrayList<>();
 		
 		try {
-			query="select * from order where u_id=? order by orders.o_id desc";
+			query="select * from orders where u_id=? order by orders.o_id desc";
 			pst = this.con.prepareStatement(query);
 			pst.setInt(1, id);
 			rs = pst.executeQuery();
@@ -86,7 +86,7 @@ public class OrderDao {
 	   public void cancelOrder(int id) {
 	        //boolean result = false;
 	        try {
-	            query = "delete from order where o_id=?";
+	            query = "delete from orders where o_id=?";
 	            pst = this.con.prepareStatement(query);
 	            pst.setInt(1, id);
 	            pst.execute();
