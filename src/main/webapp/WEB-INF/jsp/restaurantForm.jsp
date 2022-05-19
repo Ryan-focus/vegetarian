@@ -13,12 +13,19 @@
 </head>
 <style><%@include file="/../css/table.css"%></style>
 <body>
-	<div class="wrapper">
+<noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-PGQ9WQT"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe>
+    </noscript>
+        <h2>搜尋餐廳結果</h2>
+   	<div class="wrapper">
     <FORM ACTION="./RestaurantServletDS" method="get">
     <table class="tb1">
-    <caption>
-        <h2>搜尋餐廳結果</h2>
-    </caption>
+
     <thead>
         <tr>
             <th>餐廳編號</th>

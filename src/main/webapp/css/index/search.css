@@ -1,6 +1,17 @@
 @charset "UTF-8";
 
-
+ .mapcontainer {
+        display : block;
+        text-align: center;
+        justify-self: center;
+        
+        padding-top: 5px;
+        padding-bottom: 10px;
+      }
+      #map {
+        background: #CCC;
+      }
+      
 fieldset {
   width: 400px;
   height: auto;
