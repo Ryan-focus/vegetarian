@@ -221,7 +221,7 @@ public class ShoppingCartServlet extends HttpServlet {
 					if (c.getId() == id) {
 						exist = true;
 						out.println(
-								"<h3 style='color:crimson; text-align:center'>商品已加入購物車<a href='/cart'>前往購物車</a></h3>");
+								"<h3 style='color:crimson; text-align:center'>商品已加入購物車<a href='/vegetarian/cart'>前往購物車</a></h3>");
 					}
 				}
 				if (!exist) {
