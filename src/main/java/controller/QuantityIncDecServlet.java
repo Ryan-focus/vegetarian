@@ -61,10 +61,10 @@ public class QuantityIncDecServlet extends HttpServlet {
 							break;
 						}
 					}
-					response.sendRedirect("/vegetarian/cart.jsp");
+					response.sendRedirect("/vegetarian/cart");
 				}
 			} else {
-				response.sendRedirect("/vegetarian/cart.jsp");
+				response.sendRedirect("/vegetarian/cart");
 
 			}
 		}
