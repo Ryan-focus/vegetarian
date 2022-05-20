@@ -51,7 +51,9 @@ public class BusinessRegisterServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.setAttribute("result", isEmailExist ? "失敗!" : "成功~");
+		
+		request.setAttribute("isEmailExist", isEmailExist);
+		request.setAttribute("result", isEmailExist ? "失敗" : "成功~");
 		
 		request.getRequestDispatcher("/WEB-INF/jsp/RegisterResult.jsp").forward(request, response);
 	}
