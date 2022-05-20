@@ -60,7 +60,7 @@ if (cart_list != null) {
 	<div class="container my-3">
 		<div class="d-flex py-3">
 			<h3>總金額為： ${ (total>0)? dcf.format(total):0} 元</h3>
-			<a class="mx-3 btn btn-primary" href="/ShoppingCartServlet?action1=cart-check-out">結帳</a>
+			<a class="mx-3 btn btn-primary" href="check-out">結帳</a>
 		</div>
 
 		<table class="table table-light">
