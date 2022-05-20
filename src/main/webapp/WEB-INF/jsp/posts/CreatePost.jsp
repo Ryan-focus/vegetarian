@@ -25,7 +25,7 @@
 
 <body>
     <h2>新增文章</h2>
-    <form action="PostServlet" method="get">
+    <form action="./PostServlet" method="get">
         <h4>文章標題:</h4>
         <input class="text_title" type="text" name="title"  onkeyup="this.value=this.value.replace(/\s+/g,'')" required/>
         <h4>文章內容:</h4>

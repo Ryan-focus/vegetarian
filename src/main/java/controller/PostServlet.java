@@ -41,19 +41,19 @@ public class PostServlet extends HttpServlet {
 			if (request.getParameter("update") != null) {
 				Update(request, response, postDAO);
 			}
-
-			String action = request.getParameter("action");
-			switch (action) {
-			case "showPost":
-				showPost(request, response, postDAO);
-				break;
-			case "deletePost":
-				deletePost(request, response, postDAO);
-				break;
-			case "editPost":
-				editPost(request, response, postDAO);
-				break;
-			}
+//
+//			String action = request.getParameter("action");
+//			switch (action) {
+//			case "showPost":
+//				showPost(request, response, postDAO);
+//				break;
+//			case "deletePost":
+//				deletePost(request, response, postDAO);
+//				break;
+//			case "editPost":
+//				editPost(request, response, postDAO);
+//				break;
+//			}
 
 		} catch (NamingException ne) {
 			System.out.println("Naming Service Lookup Exception");

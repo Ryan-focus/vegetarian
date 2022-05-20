@@ -30,13 +30,11 @@
     	<url-pattern>*.jspf</url-pattern>
    </servlet-mapping>
    
-
-   
   
 
   <servlet>
     <servlet-name>PostServlet</servlet-name>
-    <servlet-class>PostServlet</servlet-class>
+    <servlet-class>controller.PostServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>PostServlet</servlet-name>
@@ -45,13 +43,22 @@
   
   <servlet>
     <servlet-name>PostIndexServlet</servlet-name>
-    <servlet-class>PostIndexServlet</servlet-class>
+    <servlet-class>controller.PostIndexServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>PostIndexServlet</servlet-name>
     <url-pattern>/postIndex</url-pattern>
   </servlet-mapping>
 
+<servlet>
+   <servlet-name>test</servlet-name>
+   <jsp-file>/WEB-INF/jsp/posts/CreatePost.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+   <servlet-name>test</servlet-name>
+   <url-pattern>/createpost</url-pattern>
+  </servlet-mapping>
     
    <servlet>
    <servlet-name>loginIndex</servlet-name>

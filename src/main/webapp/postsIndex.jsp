@@ -35,7 +35,7 @@
 <body style="background-color: antiquewhite",width: 800px;>
 	
 	<h2 style="text-align:center ;">文章列表</h2>
-	<input type="button" onclick="javascript:window.location.href='CreatePost.jsp';" value="發表文章" />
+	<input type="button" onclick="javascript:window.location.href='/vegetarian/createpost';" value="發表文章" />
 	<hr>
 	
 		<%
@@ -53,10 +53,10 @@
         <p class="ellipsis"><%=post.getPostedText() %></p> 
         </div>
         
-        <a href="PostServlet?action=showPost&id=<%=post.getPostId() %>"> 繼續閱讀</a>
+        <a href="./PostServlet?action=showPost&id=<%=post.getPostId() %>"> 繼續閱讀</a>
         <hr>
-        <a href='PostServlet?action=deletePost&id=<%=post.getPostId() %>'>刪除文章</a>
-        <a href='PostServlet?action=editPost&id=<%=post.getPostId() %>'>編輯文章</a>
+        <a href='./PostServlet?action=deletePost&id=<%=post.getPostId() %>'>刪除文章</a>
+        <a href='./PostServlet?action=editPost&id=<%=post.getPostId() %>'>編輯文章</a>
         <hr>
         <br/>
 		</div>
