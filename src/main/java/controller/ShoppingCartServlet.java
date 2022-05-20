@@ -49,7 +49,7 @@ public class ShoppingCartServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String action = request.getParameter("action");
+		String action = request.getParameter("action1");
 
 		switch (action) {
 
@@ -57,10 +57,7 @@ public class ShoppingCartServlet extends HttpServlet {
 			checkOut(request, response);
 		}
 			break;
-		case "order-now": {
-			orderNow(request, response);
-		}
-			break;
+	
 		case "cancel-order": {
 			cancelOrder(request, response);
 		}
@@ -127,55 +124,6 @@ public class ShoppingCartServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-	}
-
-	private void orderNow(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		try (PrintWriter out = response.getWriter()) {
-
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-			Date date = new Date();
-
-			User user = (User) request.getSession().getAttribute("user");
-
-			if (user.getUid() != 0) {
-				String productId = request.getParameter("id");
-				int productQuantity = Integer.parseInt(request.getParameter("quantity"));
-				if (productQuantity <= 0) {
-					productQuantity = 1;
-				}
-
-				Order orderModel = new Order();
-				orderModel.setId(Integer.parseInt(productId));
-				orderModel.setUid(user.getUid());
-				orderModel.setQuantity(productQuantity);
-				orderModel.setDate(formatter.format(date));
-
-				OrderDao orderDao = new OrderDao(ds.getConnection());
-				boolean result = orderDao.insertOrder(orderModel);
-
-				if (result) {
-					ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cart-list");
-					if (cart_list != null) {
-						for (Cart c : cart_list) {
-							if (c.getId() == Integer.parseInt(productId)) {
-								cart_list.remove(cart_list.indexOf(c));
-								break;
-							}
-						}
-					}
-
-					response.sendRedirect("/vegetarian/order");
-				} else {
-					out.print("訂購失敗");
-				}
-
-			} else {
-				response.sendRedirect("/vegetarian/Login");
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 
 	private void cancelOrder(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -260,13 +208,13 @@ public class ShoppingCartServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		try (PrintWriter out = response.getWriter();) {
-			String action1 = request.getParameter("action1");
+			String action2 = request.getParameter("action2");
 			int id = Integer.parseInt(request.getParameter("id"));
 
 			ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cart-list");
 
-			if (action1 != null && id >= 1) {
-				if (action1.equals("inc")) {
+			if (action2 != null && id >= 1) {
+				if (action2.equals("inc")) {
 					for (Cart c : cart_list) {
 						if (c.getId() == id) {
 							int quantity = c.getQuantity();
@@ -277,7 +225,7 @@ public class ShoppingCartServlet extends HttpServlet {
 					}
 				}
 
-				if (action1.equals("dec")) {
+				if (action2.equals("dec")) {
 					for (Cart c : cart_list) {
 						if (c.getId() == id && c.getQuantity() > 1) {
 							int quantity = c.getQuantity();

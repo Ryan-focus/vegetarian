@@ -59,8 +59,8 @@ if (cart_list != null) {
 						<h6 class="price"><%=p.getPrice()%></h6>
 						<h6 class="category"><%=p.getCategory()%></h6>
 						<div class="mt-3 d-flex justify-content-between">
-							<a href="ShoppingCartServlet?action=add-to-cart&id=<%=p.getId()%>" class="btn btn-success">加到購物車</a>
-							<a href="ShoppingCartServlet?action=order-now&quantity=1&id=<%=p.getId()%>"
+							<a href="ShoppingCartServlet?action1=add-to-cart&id=<%=p.getId()%>" class="btn btn-success">加到購物車</a>
+							<a href="order-now&id=<%=p.getId()%>"
 								class="btn btn-danger">立即購買</a>
 						</div>
 					</div>
