@@ -260,13 +260,13 @@ public class ShoppingCartServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		try (PrintWriter out = response.getWriter();) {
-			String action = request.getParameter("action1");
+			String action1 = request.getParameter("action1");
 			int id = Integer.parseInt(request.getParameter("id"));
 
 			ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cart-list");
 
-			if (action != null && id >= 1) {
-				if (action.equals("inc")) {
+			if (action1 != null && id >= 1) {
+				if (action1.equals("inc")) {
 					for (Cart c : cart_list) {
 						if (c.getId() == id) {
 							int quantity = c.getQuantity();
@@ -277,7 +277,7 @@ public class ShoppingCartServlet extends HttpServlet {
 					}
 				}
 
-				if (action.equals("dec")) {
+				if (action1.equals("dec")) {
 					for (Cart c : cart_list) {
 						if (c.getId() == id && c.getQuantity() > 1) {
 							int quantity = c.getQuantity();

@@ -42,7 +42,7 @@ if (cart_list != null) {
 <!DOCTYPE html>
 <html>
 <head>
-<title>Orders</title>
+<title>訂單</title>
 <%@include file="/WEB-INF/jsp/shoppingcart/bootstrap.jsp"%>
 </head>
 <body>

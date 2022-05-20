@@ -41,7 +41,7 @@ if (cart_list != null) {
 <html>
 <head>
 <%@include file="/WEB-INF/jsp/shoppingcart/bootstrap.jsp"%>
-<title>愛素購物車</title>
+<title>愛素發車</title>
 <style type="text/css">
 .table tbody td {
 	vartical-align: middle;
@@ -88,7 +88,7 @@ if (cart_list != null) {
 							<div class="form-group d-flex justify-content-between w-50">
 								<a class="btn btn-sm btn-incre" href="/ShoppingCartServlet?action=quantity-inc-dec&action1=inc&id=<%=c.getId()%>"><i class="fas fa-plus-square"></i></a>
 								<input type="text" name="quantity" class="form-control w-50" value="<%=c.getQuantity()%>" readonly>
-								<a class="btn btn-sm btn-decre" href="/ShoppingCartServlet?action=quantity-inc-dec&action1=inc&id=<%=c.getId()%>"><i class="fas fa-minus-square"></i></a>
+								<a class="btn btn-sm btn-decre" href="/ShoppingCartServlet?action=quantity-inc-dec&action1=dec&id=<%=c.getId()%>"><i class="fas fa-minus-square"></i></a>
 							</div>
 							<button type="submit" class="btn btn-primary btn-sm" >立即購買</button>
 						</form>
