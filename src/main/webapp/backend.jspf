@@ -1,0 +1,172 @@
+<%@ page pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+<meta charset="utf-8">
+
+<title>愛蔬網後台管理系統</title>
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" type="text/css"
+	href="css/backend/bootstrap.css">
+<!--external css-->
+<link rel="stylesheet" type="text/css"
+	href="css/backend/font-awesome/css/font-awesome.css">
+<!-- Custom styles for this template -->
+<link rel="stylesheet" type="text/css"
+	href="css/backend/style.css">
+<link rel="stylesheet" type="text/css"
+	href="css/backend/style-responsive.css">
+<link rel="stylesheet" type="text/css"
+	href="css/backend/veganBackend.css">
+
+
+</head>
+
+<body>
+	<section id="container">
+		<!-- **********************************************************************************************************************************************************
+      TOP BAR CONTENT & NOTIFICATIONS
+      *********************************************************************************************************************************************************** -->
+		<!--header start-->
+		<header class="header black-bg">
+			<!-- <div class="sidebar-toggle-box">
+				<div class="fa fa-bars tooltips" data-placement="right"
+					data-original-title="Toggle Navigation"></div>
+			</div> -->
+			<!--logo start-->
+			<a href="index.jsp" class="logo">
+	      <img data-src="images/backendlogo.png" 
+	      src="images/backendLogo.png" 
+	      alt="logo" title="vegelife" 
+	      data-was-processed="true"> <b>愛蔬網管理後台</b>
+			</a>
+			<!--logo end-->
+			<div class="top-menu">
+				<ul class="nav pull-right top-menu">
+					<li><a class="logout" href="member.do?action=logout">退出</a></li>
+				</ul>
+			</div>
+		</header>
+		<!--header end-->
+		<!-- **********************************************************************************************************************************************************
+      MAIN SIDEBAR MENU
+      *********************************************************************************************************************************************************** -->
+		<!--sidebar start-->
+		<aside>
+			<div id="sidebar" class="nav-collapse ">
+				<!-- sidebar menu start-->
+				<ul class="sidebar-menu" id="nav-accordion">
+					<h5 class="centered">功能選單</h5>
+					<li class="sub-menu"><a href="javascript:;" class="menu_arrow">
+							<i class="fa fa-users"></i> <span>會員管理</span>
+					</a>
+						
+					<li class="sub-menu"><a href="javascript:;" class="menu_arrow">
+							<i class="fa fa-home"></i> <span>商家管理</span>
+					</a>
+					
+					<li class="sub-menu"><a href="javascript:;" class="menu_arrow">
+							<i class="fa fa-university"></i> <span>餐廳管理</span>
+					</a>
+
+					<li class="sub-menu"><a href="javascript:;" class="menu_arrow">
+							<i class="fa fa-comment-o"></i> <span>網誌管理</span>
+					</a>
+					
+					<li class="sub-menu"><a href="javascript:;" class="menu_arrow">
+							<i class="fa fa-align-left"></i> <span>食記管理</span>
+					</a>
+						<ul class="sub">
+							
+
+						</ul></li>
+				
+					<li class="sub-menu"><a href="javascript:;" class="menu_arrow">
+							<i class=" fa fa-desktop"></i> <span>購物車管理</span>
+					</a>
+						<ul class="sub">
+							
+						</ul></li>
+					<li><a href="#" id="userRight"> <i class="fa fa-file-text-o"></i>
+							餐廳歷史訂單管理
+					</a></li>
+				</ul>
+				<!-- sidebar menu end-->
+			</div>
+		</aside>
+		<!--sidebar end-->
+		<!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+		<!--main content start-->
+		<div class="main35" id="main-content">
+			<div class="wrapper">
+				<div class="row mt">
+					<div class="whitearea col-lg-12 table">
+						<!-- 配備管理開始 -->
+						<ul class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" href="#home"
+								class="home"> <i class="fa fa-users"></i> 會員管理
+							</a></li>
+						</ul>
+						
+						<div class="tab-content">
+							<div id="home" class="tab-pane fade in active">
+								<div class="model content-panel ">
+									<h4>
+										<i class="fa fa-angle-right"></i> 後台
+									</h4>
+									<table>
+										<tbody>
+											<tr>
+												<td valign="top" colspan="2">
+													<fieldset
+														style="width: 460px; border: solid 1px #aaa; margin-top: 8px; margin-left: 15px; position: relative;">
+														<legend>基本訊息</legend>
+														<table id="myTable" style="width: 100%;">
+															<tbody>
+																<tr>
+																	<td style="width: 90px;">帳號：</td>
+																	<td><span
+																		class="mini-textbox mini-textbox-disabled mini-textbox-readOnly"
+																		id="loginname" style="border-width: 0px;"> <span
+																			class="mini-textbox-border"> <input
+																				type="text" class="mini-textbox-input"
+																				autocomplete="off" placeholder="123"
+																				id="loginname$text" name="loginname" readonly=""
+																				disabled="" value='${memberVO.account }'>
+
+																		</span> <input type="hidden">
+																	</span></td>
+																</tr>
+																<tr>
+																	<td style="width: 90px;">暱稱：</td>
+																	<td><span
+																		class="mini-textbox mini-textbox-disabled mini-textbox-readOnly"
+																		id="nickname" style="border-width: 0px;"> <span
+																			class="mini-textbox-border"> <input
+																				value='${memberVO.name }' type="text"
+																				class="mini-textbox-input" autocomplete="off"
+																				placeholder="" id="nickname$text" name="nickname"
+																				readonly="" disabled="">
+																		</span> <input type="hidden">
+																	</span></td>
+																</tr>
+															</tbody>
+														</table>
+													</fieldset>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
