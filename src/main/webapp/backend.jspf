@@ -44,7 +44,7 @@
 			<!--logo end-->
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="member.do?action=logout">退出</a></li>
+					<li><a class="logout" href="index.jsp">退出</a></li>
 				</ul>
 			</div>
 		</header>
@@ -58,38 +58,32 @@
 				<!-- sidebar menu start-->
 				<ul class="sidebar-menu" id="nav-accordion">
 					<h5 class="centered">功能選單</h5>
-					<li class="sub-menu"><a href="javascript:;" class="menu_arrow">
+					<li class="sub-menu" value="ma_user"><a href="javascript:;" class="menu_arrow">
 							<i class="fa fa-users"></i> <span>會員管理</span>
-					</a>
+					</a></li>
 						
-					<li class="sub-menu"><a href="javascript:;" class="menu_arrow">
+					<li class="sub-menu" value="ma_shop"><a href="javascript:;" class="menu_arrow">
 							<i class="fa fa-home"></i> <span>商家管理</span>
-					</a>
+					</a></li>
 					
-					<li class="sub-menu"><a href="javascript:;" class="menu_arrow">
+					<li class="sub-menu" value="ma_food"><a href="javascript:;" class="menu_arrow">
 							<i class="fa fa-university"></i> <span>餐廳管理</span>
-					</a>
+					</a></li>
 
-					<li class="sub-menu"><a href="javascript:;" class="menu_arrow">
+					<li class="sub-menu" value="ma_chat"><a href="javascript:;" class="menu_arrow">
 							<i class="fa fa-comment-o"></i> <span>網誌管理</span>
-					</a>
+					</a> </li>
 					
-					<li class="sub-menu"><a href="javascript:;" class="menu_arrow">
+					<li class="sub-menu" value="ma_note"><a href="javascript:;" class="menu_arrow">
 							<i class="fa fa-align-left"></i> <span>食記管理</span>
-					</a>
-						<ul class="sub">
-							
-
-						</ul></li>
+					</a></li>
 				
-					<li class="sub-menu"><a href="javascript:;" class="menu_arrow">
+					<li class="sub-menu" value="ma_cart"><a href="javascript:;" class="menu_arrow">
 							<i class=" fa fa-desktop"></i> <span>購物車管理</span>
-					</a>
-						<ul class="sub">
-							
-						</ul></li>
-					<li><a href="#" id="userRight"> <i class="fa fa-file-text-o"></i>
-							餐廳歷史訂單管理
+					</a></li>
+					
+					<li class="sub-menu" value="ma_order"><a href="javascript:;" class="menu_arrow">
+							<i class=" fa fa-clock-o"></i> <span>訂單管理</span>
 					</a></li>
 				</ul>
 				<!-- sidebar menu end-->
@@ -168,5 +162,18 @@
 			</div>
 		</div>
 	</section>
+	<!-- JavaScript Bundle with Popper -->
+<script>
+var fn = function() {
+    console.dir(this.value);
+    this.style.backgroundColor = 'lightblue';
+}
+
+var els = document.getElementsByClassName("sub-menu");
+
+for (var i = 0; i < els.length; i++) {
+    els[i].addEventListener('click', fn);
+}
+</script>
 </body>
 </html>
