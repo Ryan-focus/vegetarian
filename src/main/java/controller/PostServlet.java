@@ -41,19 +41,19 @@ public class PostServlet extends HttpServlet {
 			if (request.getParameter("update") != null) {
 				Update(request, response, postDAO);
 			}
-//
-//			String action = request.getParameter("action");
-//			switch (action) {
-//			case "showPost":
-//				showPost(request, response, postDAO);
-//				break;
-//			case "deletePost":
-//				deletePost(request, response, postDAO);
-//				break;
-//			case "editPost":
-//				editPost(request, response, postDAO);
-//				break;
-//			}
+
+			String action = request.getParameter("action");
+			switch (action) {
+			case "showPost":
+				showPost(request, response, postDAO);
+				break;
+			case "deletePost":
+				deletePost(request, response, postDAO);
+				break;
+			case "editPost":
+				editPost(request, response, postDAO);
+				break;
+			}
 
 		} catch (NamingException ne) {
 			System.out.println("Naming Service Lookup Exception");
@@ -79,10 +79,10 @@ public class PostServlet extends HttpServlet {
 
 		if (postDAO.updatePost(post, title, posted_text, id)) {
 			request.setAttribute("message", "更新成功");
-			request.getRequestDispatcher("showResultForm.jsp").forward(request, response);
+			request.getRequestDispatcher("/showResultForm").forward(request, response);
 		} else {
 			request.setAttribute("message", "更新失敗");
-			request.getRequestDispatcher("showResultForm.jsp").forward(request, response);
+			request.getRequestDispatcher("/showResultForm").forward(request, response);
 		}
 	}
 
@@ -96,10 +96,10 @@ public class PostServlet extends HttpServlet {
 
 		if (postDAO.addPost(title, posted_text)) {
 			request.setAttribute("message", "發表成功");
-			request.getRequestDispatcher("showResultForm.jsp").forward(request, response);
+			request.getRequestDispatcher("/showResultForm").forward(request, response);
 		} else {
 			request.setAttribute("message", "發表失敗");
-			request.getRequestDispatcher("showResultForm.jsp").forward(request, response);
+			request.getRequestDispatcher("/showResultForm").forward(request, response);
 		}
 
 	}
@@ -115,11 +115,11 @@ public class PostServlet extends HttpServlet {
 			request.setAttribute("title", post.getTitle());
 			request.setAttribute("posted_date", post.getPostedDate());
 			request.setAttribute("posted_text", post.getPostedText());
-			request.getRequestDispatcher("showPost.jsp").forward(request, response);
+			request.getRequestDispatcher("/showPost").forward(request, response);
 
 		} else {
 			request.setAttribute("message", "失敗");
-			request.getRequestDispatcher("showResultForm.jsp").forward(request, response);
+			request.getRequestDispatcher("/showResultForm").forward(request, response);
 		}
 	}
 
@@ -131,10 +131,10 @@ public class PostServlet extends HttpServlet {
 		postDAO.deletePost(id);
 		if (postDAO.deletePost(id)) {
 			request.setAttribute("message", "刪除成功");
-			request.getRequestDispatcher("showResultForm.jsp").forward(request, response);
+			request.getRequestDispatcher("/showResultForm").forward(request, response);
 		} else {
 			request.setAttribute("message", "刪除失敗");
-			request.getRequestDispatcher("showResultForm.jsp").forward(request, response);
+			request.getRequestDispatcher("/showResultForm").forward(request, response);
 		}
 	}
 
@@ -150,7 +150,7 @@ public class PostServlet extends HttpServlet {
 			request.setAttribute("post_id", post.getPostId());
 			request.setAttribute("posted_date", post.getPostedDate());
 			request.setAttribute("posted_text", post.getPostedText());
-			request.getRequestDispatcher("editPost.jsp").forward(request, response);
+			request.getRequestDispatcher("/editPost").forward(request, response);
 		} else {
 			request.setAttribute("message", "失敗");
 			request.getRequestDispatcher("showResultForm.jsp").forward(request, response);

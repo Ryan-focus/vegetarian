@@ -51,13 +51,43 @@
   </servlet-mapping>
 
 <servlet>
-   <servlet-name>test</servlet-name>
+   <servlet-name>createPost</servlet-name>
    <jsp-file>/WEB-INF/jsp/posts/CreatePost.jsp</jsp-file>
   </servlet>
   
   <servlet-mapping>
-   <servlet-name>test</servlet-name>
+   <servlet-name>createPost</servlet-name>
    <url-pattern>/createpost</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+   <servlet-name>showResultForm</servlet-name>
+   <jsp-file>/WEB-INF/jsp/posts/showResultForm.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+   <servlet-name>showResultForm</servlet-name>
+   <url-pattern>/showResultForm</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+   <servlet-name>editPost</servlet-name>
+   <jsp-file>/WEB-INF/jsp/posts/editPost.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+   <servlet-name>editPost</servlet-name>
+   <url-pattern>/editPost</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+   <servlet-name>showPost</servlet-name>
+   <jsp-file>/WEB-INF/jsp/posts/showPost.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+   <servlet-name>show</servlet-name>
+   <url-pattern>/showPost</url-pattern>
   </servlet-mapping>
     
    <servlet>
