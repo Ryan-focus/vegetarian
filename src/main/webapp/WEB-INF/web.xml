@@ -86,7 +86,7 @@
   </servlet>
   
   <servlet-mapping>
-   <servlet-name>show</servlet-name>
+   <servlet-name>showPost</servlet-name>
    <url-pattern>/showPost</url-pattern>
   </servlet-mapping>
     
