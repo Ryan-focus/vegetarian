@@ -17,24 +17,8 @@ public class RestaurantDAO {
 	public RestaurantDAO(Connection conn) {
 		this.conn = conn;
 	}
-
-	// 所有餐廳 select all
-	public List<Restaurant> findAllRestaurant() {
-		List<Restaurant> list = new ArrayList<Restaurant>();
-		String sqlString = "SELECT * FROM restaurant";
-		try (PreparedStatement pstmt = conn.prepareStatement(sqlString); ResultSet rs = pstmt.executeQuery();) {
-			while (rs.next()) {
-				Restaurant restaurant = new Restaurant(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
-				list.add(restaurant);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return list;
-	}
 	
-	// 查詢餐廳 by restaurantName&Address&Category&Type
+	// 查詢餐廳 by restaurantName&Address&Category&Type-前台搜尋
 		public List<Restaurant> findRestaurant(String restaurantName, String restaurantAddress, String restaurantCategory,
 				String restaurantType) {
 			List<Restaurant> list = new ArrayList<Restaurant>();
@@ -106,10 +90,26 @@ public class RestaurantDAO {
 			return null;
 		}
 	} */
+		
 	
-	
-	// 查詢餐廳 by number
-	public Restaurant findRestaurantByNumber(int restaurantNumber) {
+		// 所有餐廳 select all-後台
+		public List<Restaurant> findAllRestaurant() {
+			List<Restaurant> list = new ArrayList<Restaurant>();
+			String sqlString = "SELECT * FROM restaurant";
+			try (PreparedStatement pstmt = conn.prepareStatement(sqlString); ResultSet rs = pstmt.executeQuery();) {
+				while (rs.next()) {
+					Restaurant restaurant = new Restaurant(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+							rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
+					list.add(restaurant);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return list;
+		}
+		
+	// 查詢餐廳 by number%name&Category&Type-後台 需改寫
+	public Restaurant findRestaurantBackground(int restaurantNumber) {
 		Restaurant restaurant = null;
 		String sqlString = "SELECT * FROM restaurant WHERE restaurantNumber = " + restaurantNumber;
 
@@ -133,7 +133,7 @@ public class RestaurantDAO {
 		}
 	}
 
-	// 新增餐廳
+	// 新增餐廳-後台
 	public boolean createRestaurant(Restaurant restaurant) {
 		String sqlString = "Insert into restaurant values(?,?,?,?,?,?,?,?)";
 		try (PreparedStatement pstmt = conn.prepareStatement(sqlString);) {
@@ -158,7 +158,7 @@ public class RestaurantDAO {
 		}
 	}
 
-	// 刪除餐廳 by number
+	// 刪除餐廳 by number-後台
 	public boolean deleteRestaurantByNumber(int restaurantNumber) throws SQLException {
 
 		try {
@@ -177,7 +177,7 @@ public class RestaurantDAO {
 		}
 	}
 
-	// 修改餐廳資料
+	// 修改餐廳資料-後台
 	public boolean updateRestaurant(Restaurant restaurant) {
 		String sqlString = "Update restaurant set restaurantName=? , restaurantTel=? , "
 				+ "restaurantAddress=? , restaurantCategory=? , restaurantType=? , restaurantBusinessHours=? , restaurantScore=?"
