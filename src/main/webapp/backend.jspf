@@ -1,4 +1,5 @@
 <%@ page pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="zh-TW">
 
@@ -97,63 +98,47 @@
 		<div class="main35" id="main-content">
 			<div class="wrapper">
 				<div class="row mt">
-					<div class="whitearea col-lg-12 table">
+					<div id="displaytable" class="whitearea col-lg-12 table">
 						<!-- 配備管理開始 -->
-						<ul class="nav nav-tabs">
+						<ul  class="nav nav-tabs">
 							<li class="active"><a data-toggle="tab" href="#home"
 								class="home"> <i class="fa fa-users"></i> 會員管理
 							</a></li>
 						</ul>
-						
 						<div class="tab-content">
-							<div id="home" class="tab-pane fade in active">
+							<div  class="tab-pane fade in active">
 								<div class="model content-panel ">
 									<h4>
-										<i class="fa fa-angle-right"></i> 後台
+										<i class="fa fa-angle-right"></i> 會員後台
 									</h4>
-									<table>
-										<tbody>
-											<tr>
-												<td valign="top" colspan="2">
-													<fieldset
-														style="width: 460px; border: solid 1px #aaa; margin-top: 8px; margin-left: 15px; position: relative;">
-														<legend>基本訊息</legend>
-														<table id="myTable" style="width: 100%;">
-															<tbody>
-																<tr>
-																	<td style="width: 90px;">帳號：</td>
-																	<td><span
-																		class="mini-textbox mini-textbox-disabled mini-textbox-readOnly"
-																		id="loginname" style="border-width: 0px;"> <span
-																			class="mini-textbox-border"> <input
-																				type="text" class="mini-textbox-input"
-																				autocomplete="off" placeholder="123"
-																				id="loginname$text" name="loginname" readonly=""
-																				disabled="" value='${memberVO.account }'>
-
-																		</span> <input type="hidden">
-																	</span></td>
-																</tr>
-																<tr>
-																	<td style="width: 90px;">暱稱：</td>
-																	<td><span
-																		class="mini-textbox mini-textbox-disabled mini-textbox-readOnly"
-																		id="nickname" style="border-width: 0px;"> <span
-																			class="mini-textbox-border"> <input
-																				value='${memberVO.name }' type="text"
-																				class="mini-textbox-input" autocomplete="off"
-																				placeholder="" id="nickname$text" name="nickname"
-																				readonly="" disabled="">
-																		</span> <input type="hidden">
-																	</span></td>
-																</tr>
-															</tbody>
-														</table>
-													</fieldset>
-												</td>
-											</tr>
-										</tbody>
+									<div class="row">
+									<form>
+										<fieldset class="col-md-8">
+										<br>
+										<div class="col-md-4">
+											<legend>Item Names</legend>
+											<input type = "text" id="item" class="form-control" name=""  placeholder="項目名稱">
+										</div>
+										<div class="col-md-4">
+											<legend>Quantity</legend>
+											<input type="number" id="quantity" class="form-control" placeholder = "請輸入密碼...">
+											<br>
+										</div>
+										</fieldset>
+									</form>
+									<div class="col-md-8">
+									<hr>
+									<h4>資料庫表單</h4>
+									<table class="table table-bordered table-hover" id="itemlist">
+									
 									</table>
+									</div>
+									</div>
+									<button type="button" id="insert" class="btn btn-success">新增資料</button>
+									<button type="button" id="create" class="btn btn-success">創建表格</button>
+									<button type="button" id="remove" class="btn btn-danger">刪除表格</button>
+									<button type="button" id="list" class="btn btn-success">全部資料</button>
+
 								</div>
 							</div>
 						</div>
@@ -162,18 +147,95 @@
 			</div>
 		</div>
 	</section>
-	<!-- JavaScript Bundle with Popper -->
+<!-- js placed at the end of the document so the pages load faster -->
+<script src="js/backend/jquery.js"></script>
+<!-- JavaScript Bundle with Popper -->
 <script>
-var fn = function() {
-    console.dir(this.value);
-    this.style.backgroundColor = 'lightblue';
-}
-
+$(document).ready(function(){
 var els = document.getElementsByClassName("sub-menu");
 
 for (var i = 0; i < els.length; i++) {
-    els[i].addEventListener('click', fn);
-}
+	els[i].addEventListener('click', function() {
+	    console.dir(this.value);
+	    if (document.getElementById("displaytable").style.display === "none") 		     
+	    	document.getElementById("displaytable").style.display = "block";
+	    else document.getElementById("displaytable").style.display = "none";
+	 })}});
 </script>
+
+<script type="text/javascript">
+var db= openDatabase("itemDB","1.0","itemDB",65535);
+
+$(function(){
+	loadData();
+	$("#create").click(function(){
+	db.transaction(function(transaction){
+		var sql = "CREATE TABLE items " +
+		"(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
+	    "item VARCHAR(100) NOT NULL," + 
+	    "quantity INT(5) NOT NULL)" ;
+	transaction.executeSql(sql,undefined,
+	function(){
+		alert("Data is created successfully");
+	},function(transaction,err){
+		alert(err.message);
+	})
+	})
+	});
+	//to remove
+	$("#remove").click(function(){
+		if(!confirm("Are you sure to delete this table?",""))return;;
+	db.transaction(function(transaction){
+		var sql = "DROP TABLE items"; 
+		transaction.executeSql(sql,undefined,
+				function(){
+			alert("Table is deleted successfully");
+		},function(transaction,err){
+			alert(err.message);
+		})})
+	});
+	//to insert
+	$("#insert").click(function(){
+		var item=$("#item").val();
+		var qty=$("#quantity").val();
+		db.transaction(function(transaction){
+			var sql="INSERT INTO items(item,quantity) VALUES(?,?)";
+			transaction.executeSql(sql,[item,qty],function(){
+				alert("New item is added successfully");
+			},function(transaction,err){
+				alert(err.message);
+			})
+		})
+	});
+	
+	//to fetch
+	$("#list").click(function(){
+		loadData();
+	});
+	function loadData(){
+		$("#itemlist").children().remove();
+		db.transaction(function(transaction){
+			var sql = "SELECT * FROM items ORDER BY id DESC";
+			transaction.executeSql(sql,undefined,
+				function(transaction,result){
+				if(result.rows.length){
+					for(var i=0;i< result.rows.length;i++){
+						var row = result.rows.item(i);
+						var item = row.item;
+						var id = row.id;
+						var quantity = row.quantity;
+						$("#itemlist").append('<tr><td>'+id+'</td><td>'+item+'</td><td>'+quantity+'</td></tr>');	
+					}
+				}else{
+					$("#itemlist").append('<tr><td colspan="3" align="center">No Item Found</td></tr>');
+				}
+			},function(transaction,err){
+				alert(err.message);
+			})
+		});
+	}
+})
+</script>
+
 </body>
 </html>
