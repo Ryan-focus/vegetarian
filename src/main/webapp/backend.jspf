@@ -63,31 +63,31 @@ password="passw0rd" />
 				<!-- sidebar menu start-->
 				<ul class="sidebar-menu" id="nav-accordion">
 					<h5 class="centered">功能選單</h5>
-					<li class="sub-menu" value="ma_user"><a href="javascript:;" class="menu_arrow">
+					<li class="sub-menu" id="ma_user"><a href="javascript:;" class="menu_arrow">
 							<i class="fa fa-users"></i> <span>會員管理</span>
 					</a></li>
 						
-					<li class="sub-menu" value="ma_shop"><a href="javascript:;" class="menu_arrow">
+					<li class="sub-menu" id="ma_shop"><a href="javascript:;" class="menu_arrow">
 							<i class="fa fa-home"></i> <span>商家管理</span>
 					</a></li>
 					
-					<li class="sub-menu" value="ma_food"><a href="javascript:;" class="menu_arrow">
+					<li class="sub-menu" id="ma_food"><a href="javascript:;" class="menu_arrow">
 							<i class="fa fa-university"></i> <span>餐廳管理</span>
 					</a></li>
 
-					<li class="sub-menu" value="ma_chat"><a href="javascript:;" class="menu_arrow">
+					<li class="sub-menu" id="ma_chat"><a href="javascript:;" class="menu_arrow">
 							<i class="fa fa-comment-o"></i> <span>網誌管理</span>
 					</a> </li>
 					
-					<li class="sub-menu" value="ma_note"><a href="javascript:;" class="menu_arrow">
+					<li class="sub-menu" id="ma_note"><a href="javascript:;" class="menu_arrow">
 							<i class="fa fa-align-left"></i> <span>食記管理</span>
 					</a></li>
 				
-					<li class="sub-menu" value="ma_cart"><a href="javascript:;" class="menu_arrow">
+					<li class="sub-menu" id="ma_cart"><a href="javascript:;" class="menu_arrow">
 							<i class=" fa fa-desktop"></i> <span>購物車管理</span>
 					</a></li>
 					
-					<li class="sub-menu" value="ma_order"><a href="javascript:;" class="menu_arrow">
+					<li class="sub-menu" id="ma_order"><a href="javascript:;" class="menu_arrow">
 							<i class=" fa fa-clock-o"></i> <span>訂單管理</span>
 					</a></li>
 				</ul>
@@ -102,7 +102,8 @@ password="passw0rd" />
 		<div class="main35" id="main-content">
 			<div class="wrapper">
 				<div class="row mt">
-					<div id="displaytable" class="whitearea col-lg-12 table">
+				<!--  會員管理頁面   -->
+					<div  id="tab-user" class="whitearea col-lg-12 table" >
 						<!-- 配備管理開始 -->
 						<ul  class="nav nav-tabs">
 							<li class="active"><a data-toggle="tab" href="#home"
@@ -159,6 +160,70 @@ password="passw0rd" />
 							</div>
 						</div>
 					</div>
+				<!-- 餐廳管理頁面 -->
+				<div id="tab-restaurant" class="whitearea col-lg-12 table">
+						<!-- 配備管理開始 -->
+						<ul  class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" href="#home"
+								class="home"> <i class="fa fa-university"></i> 餐廳管理
+							</a></li>
+						</ul>
+
+						<div class="tab-content">
+							<div  class="tab-pane fade in active">
+								<div class="model content-panel ">
+									<h4>
+										<i class="fa fa-angle-right"></i> 餐廳後台
+									</h4>
+									<div class="row">
+										<div class="col-md-12">
+										
+										<sql:query var="listRestaurant" dataSource="${myDS}">
+							        	SELECT * FROM restaurant;
+							    		</sql:query>
+										<button type="button" class="btn btn-warning">
+										新增
+										</button>
+										<table class="table table-striped table-hover" id="">
+
+										<caption>
+											<h4>餐廳資料</h4>
+										</caption>
+										 <thead class="table-light">
+										<tr>
+											<th>編號</th>
+											<th>名稱</th>
+											<th>電話</th>
+											<th>地址</th>
+											<th>種類</th>
+											<th>素食分類</th>
+											<th>營業時間</th>
+											<th>分數</th>
+										</tr>
+										</thead>
+										<tbody>
+										<c:forEach var="restaurant" items="${listRestaurant.rows}">
+											<tr>
+											<td><c:out value="${restaurant.restaurantNumber}" /></td>
+											<td><c:out value="${restaurant.restaurantName}" /></td>
+											<td><c:out value="${restaurant.restaurantTel}" /></td>
+											<td><c:out value="${restaurant.restaurantAddress}" /></td>
+											<td><c:out value="${restaurant.restaurantCategory}" /></td>
+											<td><c:out value="${restaurant.restaurantType}" /></td>
+											<td><c:out value="${restaurant.restaurantBusinessHours}" /></td>
+											<td><c:out value="${restaurant.restaurantScore}" /></td>
+											<td><button type="button" id="update" class="btn btn-success">編輯</button></td>
+											<td><button type="button" id="remove" class="btn btn-danger">刪除</button></td>
+											</tr>
+										</c:forEach>
+										</tbody>
+										</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -166,20 +231,52 @@ password="passw0rd" />
 <!-- js placed at the end of the document so the pages load faster -->
 <script src="js/backend/jquery.js"></script>
 <!-- JavaScript Bundle with Popper -->
+<!-- JavaScript onload閉包語法 -->
+<script type="text/javascript">
+window.onload =function(){
+	function init(fn){
+		var result; 
+		
+		return function(){
+			if(fn){
+				result = fn.apply(this,arguments);
+				fn = null;
+			}
+		return result;
+		};
+	}
+var onload = init(function(){
+$("#tab-user").css("display","none");
+$("#tab-restaurant").css("display","none");
+});
+onload();
+}
+</script>
+<!-- Selector的語法 -->
 <script>
 $(document).ready(function(){
-var els = document.getElementsByClassName("sub-menu");
-
-for (var i = 0; i < els.length; i++) {
-	els[i].addEventListener('click', function() {
-	    console.dir(this.value);
-	    if (document.getElementById("displaytable").style.display === "none") 		     
-	    	document.getElementById("displaytable").style.display = "block";
-	    else document.getElementById("displaytable").style.display = "none";
-	 })}});
+//function包在 ready裡面 ，確保function執行時會是加載完畢後才執行
+	var els = document.getElementsByClassName("sub-menu");
+	for (var i = 0; i < els.length; i++) {
+		els[i].addEventListener('click', function(e) {
+			$("#tab-user").css("display","none");
+			$("#tab-restaurant").css("display","none");
+			switch (this.id) {
+			  case 'ma_user':
+				$("#tab-user").css("display","block");
+			    break;
+			  case 'ma_food':
+				$("#tab-restaurant").css("display","block");
+			    break;
+			}
+		 })
+		 }
+	
+		 });
 </script>
-
+<!-- 主要Function的語法 -->
 <script type="text/javascript">
+$(document).ready(function(){
 	//to remove
 	$("#remove").click(function(){
 		if(!confirm("Are you sure to delete this table?",""))return;;
@@ -205,7 +302,7 @@ for (var i = 0; i < els.length; i++) {
 			})
 		})
 	});
-})
+});
 </script>
 
 </body>
