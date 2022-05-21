@@ -9,8 +9,10 @@
 <title>Member Management</title>
 </head>
 <body>
-	<sql:setDataSource var="myDS" driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-		url="jdbc:sqlserver://localhost:1433;databaseName=veganDB" user="sa" password="passw0rd" />
+	<sql:setDataSource var="myDS" 
+	driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+		url="jdbc:sqlserver://localhost:1433;databaseName=veganDB"
+		 user="sa" password="passw0rd" />
 
 	<sql:query var="listUsers" dataSource="${myDS}">
         SELECT * FROM users;
