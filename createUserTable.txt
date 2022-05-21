@@ -7,5 +7,25 @@ username nvarchar(30) not null,
 status nvarchar (20) not null
 )
 
------以下是測試,另外執行,新增管理員資料-----
+-----以下是測試,另外執行,測試不同權限資料-----
 insert into users (email, password, username, status) values ('aaa123@mail.com', 'Bbb456', 'ccc789', 'administrator')
+insert into users (email, password, username, status) values ('aasdsd123@mail.com', 'Bbb4fsf56', '小名', 'user')
+insert into users (email, password, username, status) values ('aasdsadassd123@mail.com', 'sddss', '小A', 'administrator')
+insert into users (email, password, username, status) values ('aasdsdsdsd123@mail.com', 'asf', '小B', 'administrator')
+insert into users (email, password, username, status) values ('aa22sdsd123@mail.com', 'dsadsadasd', '小C', 'user')
+insert into users (email, password, username, status) values ('aasdasgsdsd123@mail.com', 'sfasd', '小D', 'user')
+insert into users (email, password, username, status) values ('a111asdsd123@mail.com', 'sda', '小H', 'user')
+insert into users (email, password, username, status) values ('a323asdsd123@mail.com', 'Bbb4fsddsadsf56', '小GG', 'business')
+insert into users (email, password, username, status) values ('a434asdsd123@mail.com', 'asdsad', 'MM', 'user')
+insert into users (email, password, username, status) values ('a34353asdsd123@mail.com', 'sdasd', '1ssd25sda1asf5af', 'user')
+insert into users (email, password, username, status) values ('aas355dsd123@mail.com', 'sadsad', '30678', 'user')
+insert into users (email, password, username, status) values ('a53535asdsd123@mail.com', 'sadasdas', 'pan J', 'user')
+insert into users (email, password, username, status) values ('aas5432431232112dsd123@mail.com', 'xzcxc', 'DSDSR', 'business')
+insert into users (email, password, username, status) values ('aa532532sdsd123@mail.com', 'Bbb4xczxczxfsf56', '星巴克', 'business')
+insert into users (email, password, username, status) values ('aa23213sdsd123@mail.com', 'vxzcv', '星報器劉展', 'user')
+insert into users (email, password, username, status) values ('321323aasdsd123@mail.com', 'dqwew	qe', '三八羅', 'business')
+insert into users (email, password, username, status) values ('aaswsedsd123@mail.com', 'dsad', '小G', 'business')
+insert into users (email, password, username, status) values ('aeweewasdsd123@mail.com', 'xcxv', '小M', 'user')
+insert into users (email, password, username, status) values ('aasewsdsd123@mail.com', 'dgfdsgds', '小X', 'business')
+insert into users (email, password, username, status) values ('2dsadad@mail.com', 'gewrq', '小LA', 'user')
+insert into users (email, password, username, status) values ('aa2sdsd123@mail.com', 'qwewqe', '小EEEEE', 'administrator')

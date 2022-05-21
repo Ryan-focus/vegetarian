@@ -121,7 +121,7 @@ password="passw0rd" />
 										<div class="col-md-12">
 										
 										<sql:query var="listUsers" dataSource="${myDS}">
-							        	SELECT * FROM users;
+							        	SELECT * FROM users WHERE status = 'user';
 							    		</sql:query>
 										<button type="button" class="btn btn-warning">
 										新增
@@ -137,7 +137,6 @@ password="passw0rd" />
 											<th>帳號</th>
 											<th>密碼</th>
 											<th>名稱</th>
-											<th>權限</th>
 										</tr>
 										</thead>
 										<tbody>
@@ -147,7 +146,62 @@ password="passw0rd" />
 											<td><c:out value="${user.email}" /></td>
 											<td><c:out value="${user.password}" /></td>
 											<td><c:out value="${user.username}" /></td>
-											<td><c:out value="${user.status}" /></td>
+											<td><button type="button" id="update" class="btn btn-success">編輯</button></td>
+											<td><button type="button" id="remove" class="btn btn-danger">刪除</button></td>
+											</tr>
+										</c:forEach>
+										</tbody>
+										</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				<!--  商家管理頁面   -->
+					<div  id="tab-business" class="whitearea col-lg-12 table" >
+						<!-- 配備管理開始 -->
+						<ul  class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" href="#home"
+								class="home"> <i class="fa fa-home"></i> 註冊商家管理
+							</a></li>
+						</ul>
+
+						<div class="tab-content">
+							<div  class="tab-pane fade in active">
+								<div class="model content-panel ">
+									<h4>
+										<i class="fa fa-angle-right"></i> 商家後台
+									</h4>
+									<div class="row">
+										<div class="col-md-12">
+										
+										<sql:query var="listBusiness" dataSource="${myDS}">
+							        	SELECT * FROM users WHERE status = 'business';
+							    		</sql:query>
+										<button type="button" class="btn btn-warning">
+										新增
+										</button>
+										<table class="table table-striped table-hover" id="">
+
+										<caption>
+											<h4>商家資料</h4>
+										</caption>
+										 <thead class="table-light">
+										<tr>
+											<th>編號</th>
+											<th>帳號</th>
+											<th>密碼</th>
+											<th>名稱</th>
+										</tr>
+										</thead>
+										<tbody>
+										<c:forEach var="business" items="${listBusiness.rows}">
+											<tr>
+											<td><c:out value="${business.uid}" /></td>
+											<td><c:out value="${business.email}" /></td>
+											<td><c:out value="${business.password}" /></td>
+											<td><c:out value="${business.username}" /></td>
 											<td><button type="button" id="update" class="btn btn-success">編輯</button></td>
 											<td><button type="button" id="remove" class="btn btn-danger">刪除</button></td>
 											</tr>
@@ -224,6 +278,228 @@ password="passw0rd" />
 							</div>
 						</div>
 					</div>
+				<!-- 網誌管理頁面 -->
+				<div id="tab-forum" class="whitearea col-lg-12 table">
+						<!-- 配備管理開始 -->
+						<ul  class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" href="#home"
+								class="home"> <i class="fa fa-comment-o"></i> 網誌管理
+							</a></li>
+						</ul>
+
+						<div class="tab-content">
+							<div  class="tab-pane fade in active">
+								<div class="model content-panel ">
+									<h4>
+										<i class="fa fa-angle-right"></i> 網誌後台
+									</h4>
+									<div class="row">
+										<div class="col-md-12">
+										
+										<sql:query var="listForum" dataSource="${myDS}">
+							        	SELECT * FROM forum;
+							    		</sql:query>
+										<button type="button" class="btn btn-warning">
+										新增
+										</button>
+										<table class="table table-striped table-hover" id="">
+
+										<caption>
+											<h4>網誌資料</h4>
+										</caption>
+										 <thead class="table-light">
+										<tr>
+											<th>編號</th>
+											<th>發表作者</th>
+											<th>文章標題</th>
+										</tr>
+										</thead>
+										<tbody>
+										<c:forEach var="forum" items="${listForum.rows}">
+											<tr>
+											<td><c:out value="${forum.vgeid}" /></td>
+											<td><c:out value="${forum.vgename}" /></td>
+											<td><c:out value="${forum.vgetheme}" /></td>
+											<td><button type="button" id="update" class="btn btn-success">編輯</button></td>
+											<td><button type="button" id="remove" class="btn btn-danger">刪除</button></td>
+											</tr>
+										</c:forEach>
+										</tbody>
+										</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				<!-- 食記管理頁面   -->
+					<div  id="tab-foodnote" class="whitearea col-lg-12 table" >
+						<!-- 配備管理開始 -->
+						<ul  class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" href="#home"
+								class="home"> <i class="fa fa-align-left"></i> 食記管理
+							</a></li>
+						</ul>
+
+						<div class="tab-content">
+							<div  class="tab-pane fade in active">
+								<div class="model content-panel ">
+									<h4>
+										<i class="fa fa-angle-right"></i> 食記後台
+									</h4>
+									<div class="row">
+										<div class="col-md-12">
+										
+										<sql:query var="listPosts" dataSource="${myDS}">
+							        	SELECT * FROM posts;
+							    		</sql:query>
+										<button type="button" class="btn btn-warning">
+										新增
+										</button>
+										<table class="table table-striped table-hover" id="">
+
+										<caption>
+											<h4>食記資料</h4>
+										</caption>
+										 <thead class="table-light">
+										<tr>
+											<th>編號</th>
+											<th>食記標題</th>
+											<th>食記發表日期</th>
+										</tr>
+										</thead>
+										<tbody>
+										<c:forEach var="posts" items="${listPosts.rows}">
+											<tr>
+											<td><c:out value="${posts.post_id}" /></td>
+											<td><c:out value="${posts.title}" /></td>
+											<td><c:out value="${posts.posted_date}" /></td>
+											<td><button type="button" id="update" class="btn btn-success">編輯</button></td>
+											<td><button type="button" id="remove" class="btn btn-danger">刪除</button></td>
+											</tr>
+										</c:forEach>
+										</tbody>
+										</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				<!--  購物車管理頁面   -->
+					<div  id="tab-shoppingcart" class="whitearea col-lg-12 table" >
+						<!-- 配備管理開始 -->
+						<ul  class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" href="#home"
+								class="home"> <i class="fa fa-desktop"></i> 購物車管理
+							</a></li>
+						</ul>
+
+						<div class="tab-content">
+							<div  class="tab-pane fade in active">
+								<div class="model content-panel ">
+									<h4>
+										<i class="fa fa-angle-right"></i> 產品後台
+									</h4>
+									<div class="row">
+										<div class="col-md-12">
+										
+										<sql:query var="listCart" dataSource="${myDS}">
+							        	SELECT * FROM products;
+							    		</sql:query>
+										<button type="button" class="btn btn-warning">
+										新增
+										</button>
+										<table class="table table-striped table-hover" id="">
+
+										<caption>
+											<h4>產品資料</h4>
+										</caption>
+										 <thead class="table-light">
+										<tr>
+											<th>編號</th>
+											<th>產品名稱</th>
+											<th>素食分類</th>
+											<th>價格</th>
+											<th>縮圖</th>
+										</tr>
+										</thead>
+										<tbody>
+										<c:forEach var="cart" items="${listCart.rows}">
+											<tr>
+											<td><c:out value="${cart.id}" /></td>
+											<td><c:out value="${cart.name}" /></td>
+											<td><c:out value="${cart.category}" /></td>
+											<td><c:out value="${cart.price}" /></td>
+											<td><img width="40px" height="40px" class="card-img-top" src="images/GoodsPhoto/<c:out value="${cart.image}"/>"alt="Card image cap"></td>
+											<td><button type="button" id="update" class="btn btn-success">編輯</button></td>
+											<td><button type="button" id="remove" class="btn btn-danger">刪除</button></td>
+											</tr>
+										</c:forEach>
+										</tbody>
+										</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				<!--  歷史訂單頁面   -->
+				<%-- 尚未完善功能 暫註解
+					<div  id="tab-order" class="whitearea col-lg-12 table" >
+						<!-- 配備管理開始 -->
+						<ul  class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" href="#home"
+								class="home"> <i class="fa fa-clock-o"></i> 歷史訂單管理
+							</a></li>
+						</ul>
+
+						<div class="tab-content">
+							<div  class="tab-pane fade in active">
+								<div class="model content-panel ">
+									<h4>
+										<i class="fa fa-angle-right"></i> 預訂資料後台
+									</h4>
+									<div class="row">
+										<div class="col-md-12">
+										
+										<sql:query var="listOrder" dataSource="${myDS}">
+							        	SELECT * FROM reservation;
+							    		</sql:query>
+										<button type="button" class="btn btn-warning">
+										新增
+										</button>
+										<table class="table table-striped table-hover" id="">
+
+										<caption>
+											<h4>訂單資料</h4>
+										</caption>
+										 <thead class="table-light">
+										<tr>
+											<th>訂單編號</th>
+											<th>訂單日期</th>
+											<th>預訂人數</th>
+										</tr>
+										</thead>
+										<tbody>
+										<c:forEach var="order" items="${listOrder.rows}">
+											<tr>
+											<td><c:out value="${order.reservationId}" /></td>
+											<td><c:out value="${order.reservationDate}" /></td>
+											<td><c:out value="${order.reservationCount}" /></td>
+											<td><button type="button" id="update" class="btn btn-success">編輯</button></td>
+											<td><button type="button" id="remove" class="btn btn-danger">刪除</button></td>
+											</tr>
+										</c:forEach>
+										</tbody>
+										</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div> 
+					--%>
 				</div>
 			</div>
 		</div>
@@ -247,7 +523,12 @@ window.onload =function(){
 	}
 var onload = init(function(){
 $("#tab-user").css("display","none");
+$("#tab-business").css("display","none");
 $("#tab-restaurant").css("display","none");
+$("#tab-forum").css("display","none");
+$("#tab-foodnote").css("display","none");
+$("#tab-shoppingcart").css("display","none");
+//$("#tab-order").css("display","none");
 });
 onload();
 }
@@ -260,14 +541,36 @@ $(document).ready(function(){
 	for (var i = 0; i < els.length; i++) {
 		els[i].addEventListener('click', function(e) {
 			$("#tab-user").css("display","none");
+			$("#tab-business").css("display","none");
 			$("#tab-restaurant").css("display","none");
+			$("#tab-forum").css("display","none");
+			$("#tab-foodnote").css("display","none");
+			$("#tab-shoppingcart").css("display","none");
+			$("#tab-order").css("display","none");
 			switch (this.id) {
 			  case 'ma_user':
 				$("#tab-user").css("display","block");
 			    break;
+			  case 'ma_shop':
+				$("#tab-business").css("display","block");
+			    break;
 			  case 'ma_food':
 				$("#tab-restaurant").css("display","block");
 			    break;
+			  case 'ma_chat':
+				$("#tab-forum").css("display","block");
+			    break;
+			  case 'ma_note':
+				$("#tab-foodnote").css("display","block");
+			    break;
+			  case 'ma_cart':
+				$("#tab-shoppingcart").css("display","block");
+			    break;
+			    /* 尚未完善功能 先註解
+			  case 'ma_order':
+				$("#tab-order").css("display","block");
+			    break;
+			    */
 			}
 		 })
 		 }
