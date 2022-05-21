@@ -62,7 +62,7 @@ public class PostIndexServlet extends HttpServlet {
 
 		if (postDAO.findallPost() != null) {
 			request.setAttribute("postlist",findallPost);
-			request.getRequestDispatcher("postsIndex.jsp").forward(request, response);
+			request.getRequestDispatcher("./postsIndex.jsp").forward(request, response);
 
 		} else {
 			request.setAttribute("message", "失敗");

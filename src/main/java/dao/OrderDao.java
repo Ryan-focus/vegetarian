@@ -12,14 +12,14 @@ import bean.Order;
 import bean.Product;
 
 public class OrderDao {
-	private Connection con;
+	private Connection conn;
 	private String query;
 	private PreparedStatement pst;
 	private ResultSet rs;
 	
-	public OrderDao(Connection con) {
+	public OrderDao(Connection conn) {
 		super();
-		this.con = con;
+		this.conn = conn;
 	}
 	
 	
@@ -31,7 +31,7 @@ public class OrderDao {
 			
 			query="insert into orders(p_id,u_id,o_quantity,o_date) values(?,?,?,?)";
 			
-			pst = this.con.prepareStatement(query);
+			pst = this.conn.prepareStatement(query);
 			pst.setInt(1, model.getId());
 			pst.setInt(2, model.getUid());
 			pst.setInt(3, model.getQuantity());
@@ -53,13 +53,13 @@ public class OrderDao {
 		
 		try {
 			query="select * from orders where u_id=? order by orders.o_id desc";
-			pst = this.con.prepareStatement(query);
+			pst = this.conn.prepareStatement(query);
 			pst.setInt(1, id);
 			rs = pst.executeQuery();
 			
 			while(rs.next()) {
 				Order order = new Order();
-				ProductDao productDao = new ProductDao(this.con);
+				ProductDao productDao = new ProductDao(this.conn);
 				int pId = rs.getInt("p_id");
 				
 				Product product = productDao.getSingleProduct(pId);
@@ -87,7 +87,7 @@ public class OrderDao {
 	        //boolean result = false;
 	        try {
 	            query = "delete from orders where o_id=?";
-	            pst = this.con.prepareStatement(query);
+	            pst = this.conn.prepareStatement(query);
 	            pst.setInt(1, id);
 	            pst.execute();
 	            //result = true;

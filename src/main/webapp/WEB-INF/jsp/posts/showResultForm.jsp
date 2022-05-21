@@ -18,7 +18,7 @@
   <div>
         <h2>${message}</h2>
         <br>
-        <input type="button" onclick="javascript:window.location.href='CreatePost.jsp' ;" value="繼續發表" />
+        <input type="button" onclick="javascript:window.location.href='/vegetarian/createpost' ;" value="繼續發表" />
         <input type="button" onclick="javascript:window.location.href='./postIndex' ;" value="返回首頁" />
     </div>
 </body>

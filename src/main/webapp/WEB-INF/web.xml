@@ -30,13 +30,11 @@
     	<url-pattern>*.jspf</url-pattern>
    </servlet-mapping>
    
-
-   
   
 
   <servlet>
     <servlet-name>PostServlet</servlet-name>
-    <servlet-class>PostServlet</servlet-class>
+    <servlet-class>controller.PostServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>PostServlet</servlet-name>
@@ -45,13 +43,52 @@
   
   <servlet>
     <servlet-name>PostIndexServlet</servlet-name>
-    <servlet-class>PostIndexServlet</servlet-class>
+    <servlet-class>controller.PostIndexServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>PostIndexServlet</servlet-name>
     <url-pattern>/postIndex</url-pattern>
   </servlet-mapping>
 
+<servlet>
+   <servlet-name>createPost</servlet-name>
+   <jsp-file>/WEB-INF/jsp/posts/CreatePost.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+   <servlet-name>createPost</servlet-name>
+   <url-pattern>/createpost</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+   <servlet-name>showResultForm</servlet-name>
+   <jsp-file>/WEB-INF/jsp/posts/showResultForm.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+   <servlet-name>showResultForm</servlet-name>
+   <url-pattern>/showResultForm</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+   <servlet-name>editPost</servlet-name>
+   <jsp-file>/WEB-INF/jsp/posts/editPost.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+   <servlet-name>editPost</servlet-name>
+   <url-pattern>/editPost</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+   <servlet-name>showPost</servlet-name>
+   <jsp-file>/WEB-INF/jsp/posts/showPost.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+   <servlet-name>showPost</servlet-name>
+   <url-pattern>/showPost</url-pattern>
+  </servlet-mapping>
     
    <servlet>
    <servlet-name>loginIndex</servlet-name>
@@ -82,6 +119,8 @@
    <servlet-name>postsIndex</servlet-name>
    <url-pattern>/postsIndex</url-pattern>
   </servlet-mapping>
+  
+
   
    <servlet>
    <servlet-name>shoppingcartIndex</servlet-name>
