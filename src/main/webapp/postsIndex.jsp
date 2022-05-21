@@ -35,6 +35,7 @@
 <body style="background-color: antiquewhite",width: 800px;>
 	
 	<h2 style="text-align:center ;">文章列表</h2>
+	<!-- Filter無法套用在使用javascript寫建立window.location的方法. -->
 	<input type="button" onclick="javascript:window.location.href='/vegetarian/createpost';" value="發表文章" />
 	<hr>
 	
