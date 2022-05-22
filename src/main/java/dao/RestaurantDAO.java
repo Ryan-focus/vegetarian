@@ -108,8 +108,8 @@ public class RestaurantDAO {
 			return list;
 		}
 		
-	// 查詢餐廳 by number%name&Category&Type-後台 需改寫
-	public Restaurant findRestaurantBackground(int restaurantNumber) {
+	// 查詢餐廳 by number
+	public Restaurant findRestaurantByNumber(int restaurantNumber) {
 		Restaurant restaurant = null;
 		String sqlString = "SELECT * FROM restaurant WHERE restaurantNumber = " + restaurantNumber;
 

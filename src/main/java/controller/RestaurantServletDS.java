@@ -98,8 +98,8 @@ public class RestaurantServletDS extends HttpServlet {
 			else
 				req.setAttribute("restaurantList", restaurantList);
 			try {
-				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/restaurantBackground/restaurantFormBackground.jsp");
-				//RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/restaurantForm.jsp");
+//				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/restaurantBackground/restaurantFormBackground.jsp");
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/restaurantForm.jsp");
 				dispatcher.forward(req, res);
 			} catch (ServletException | IOException e) {
 				e.printStackTrace();
@@ -170,14 +170,14 @@ public class RestaurantServletDS extends HttpServlet {
 		}
 	
 	
-	// 查詢餐廳 by number%name&Category&Type-後台 需改寫
+	// 查詢餐廳 by number
 	private void findRestaurantBackground(HttpServletRequest req, HttpServletResponse res, RestaurantDAO restaurantDAO)
 			throws SQLException, IOException {
 		// 讀取部門代號
 		String restaurantNumber = req.getParameter("restaurantNumber");
 		
 		// 透過DAO元件Access Dept Table
-		Restaurant restaurant = restaurantDAO.findRestaurantBackground(Integer.parseInt(restaurantNumber));
+		Restaurant restaurant = restaurantDAO.findRestaurantByNumber(Integer.parseInt(restaurantNumber));
 		if (restaurant == null)
 			try {
 				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/errorPage/showError.jsp");
