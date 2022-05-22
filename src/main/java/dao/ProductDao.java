@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 import bean.*;
 
@@ -128,7 +129,7 @@ public class ProductDao {
 
 	        return row;
 	    }
-	 	//新增商品
+	 	//新增商品,成功返回boolean
 	   public boolean addProducts(Product newProduct) {
 
 	        boolean check = false;
@@ -153,4 +154,43 @@ public class ProductDao {
 	        }
 	        return check;
 	    }
+	   
+	   // 删除商品,成功返回boolean
+	    public boolean delProducts(int productId) {
+	        boolean check = false;
+	        String sqlStr = "delete from goods where id = '" + productId + "'";
+	        try {
+	            Statement stmt = this.conn.createStatement();
+
+	            check = stmt.executeUpdate(sqlStr) > 0;
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        return check;
+	    }
+	    
+	    // 更新商品
+	    public boolean updateGoods(Product product) {
+	        boolean check = false;
+
+	        String sqlStr = "update goods set name='" + product.getName() + "'" +
+	                ",category='" + product.getCategory() + "'" +
+	                ",price='" + product.getPrice() + "'" +
+	                ",image='" + product.getImage() + "'" +
+	                 "where id = '" + product.getId() + "'" ;
+	        try {
+	          
+	        
+	            Statement stmt = this.conn.createStatement();
+
+	         
+	            check =   stmt.executeUpdate(sqlStr) > 0;
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        return check;
+	    }
+	    
+	    
+	   
 }
