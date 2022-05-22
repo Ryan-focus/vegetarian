@@ -9,12 +9,10 @@
 <title> ${title}</title>
 
     <style>
-        body {
-            background-color: antiquewhite;
-            margin-left: 200PX;
-            margin-right: 200PX;
-        }
-
+    	*{
+				margin: 0;
+				padding: 0;
+			}
         form {
             text-align: center;
         }
@@ -42,17 +40,20 @@
             width: 500px;
             resize: none;
         }
+       .textbody{background-color: #f6f8fc ;padding:20px;}
+       .posts{margin:0 auto; width: 80%; }
     </style>
 </head>
 <body>
-
+<div class="textbody">
+<div class="posts">
  <h2>${title}</h2>
     <p class="title"> ${posted_date}  </p>
     <br>
     <pre> ${posted_text}</pre>
     <br>
     <br>
-    
-
+</div>    
+</div>
 </body>
 </html>

@@ -12,12 +12,12 @@
 <meta charset="UTF-8">
 <title>食記分享</title>
 <style>
-    body{
-         margin-left: 200PX;
-        margin-right: 200PX;
-    }
+    *{
+	margin: 0;
+	padding: 0;
+			}
     .box {
-	width: 800px;
+	width: 100%;
 	padding: 10px;
 	
 	}
@@ -30,13 +30,17 @@
 	-webkit-box-orient: vertical;
 	white-space: normal;
 	}
+	.textbody{background-color: #f6f8fc ; margin:0 auto;max-width: 1600px; }
+	.posts{background-color: #f6f8fc ;margin:0 auto; width: 80%;}
+	h3{padding:20px}
 </style>
 </head>
-<body style="background-color: antiquewhite",width: 800px;>
-	
-	<h2 style="text-align:center ;">文章列表</h2>
+<body >
+	<div class="textbody">
+	<div class="posts">
+	<h3 style="text-align:center ;">文章列表</h3>
 	<!-- Filter無法套用在使用javascript寫建立window.location的方法. -->
-	<input type="button" onclick="javascript:window.location.href='/vegetarian/createpost';" value="發表文章" />
+	<input type="button" onclick="window.location.href='/vegetarian/createpost';" value="發表文章" />
 	<hr>
 	
 		<%
@@ -62,7 +66,8 @@
         <br/>
 		</div>
 		<% }%>
-		
+		</div>
+		</div>
 		
 </body>
 </html>

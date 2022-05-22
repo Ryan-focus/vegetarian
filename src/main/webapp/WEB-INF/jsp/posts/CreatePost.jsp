@@ -10,29 +10,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>新增文章</title>
     <style>
-        body {background-color: antiquewhite;}
-
         form {text-align: center;}
-
-        h2 {text-align: center;}
-
-        .text_title {padding: 2px;width: 800px;}
+        h3 {text-align: center; }
+        .text_title {margin:10px;width: 80%;resize: none;}
+        .title {padding: 20px}
+        .text{padding:5px}
+        .textbody{background-color: #f6f8fc ; }
         
-        textarea {width: 800px;resize: none;}
             
     </style>
 </head>
 
 <body>
-    <h2>新增文章</h2>
+<div class="textbody">
+	<div class="title">
+    <h3>新增文章</h3>
+    <hr>
+    </div>
     <form action="./PostServlet" method="get">
-        <h4>文章標題:</h4>
-        <input class="text_title" type="text" name="title"  onkeyup="this.value=this.value.replace(/\s+/g,'')" required/>
-        <h4>文章內容:</h4>
-        <textarea class="text_title" name="postedText" rows="20"  required>
-    </textarea>
+    <div class="text">
+        <h5 class="text">文章標題:</h5>
+        <input class="text_title" type="text" name="title" maxlength="100" onkeyup="this.value=this.value.replace(/\s+/g,'')" required/>
+        <h5 class="text">文章內容:</h5>
+        <textarea class="text_title" name="postedText" rows="20"  required></textarea>
         <br />
         <br />
         <input type="submit" name="add" value="發表文章" />
+        </div>
     </form>
+    </div>
+    </body>
 </html>
