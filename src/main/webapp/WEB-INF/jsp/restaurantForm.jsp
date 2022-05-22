@@ -23,8 +23,7 @@
     </noscript>
         <h2>搜尋餐廳結果</h2>
    	<div class="wrapper">
-    <FORM ACTION="./RestaurantServletDS" method="get">
-        
+    <FORM ACTION="/vegetarian/order.asp" method="post">
     <table class="tb1">
 
     <thead>
@@ -37,6 +36,7 @@
             <th>素食種類</th>
             <th>營業時間</th>
             <th>評分</th>
+            <th></th>
         </tr>
     </thead>
 
@@ -53,6 +53,7 @@
             <td><%= restaurant.getRestaurantType() %></td>
             <td><%= restaurant.getRestaurantBusinessHours() %></td>
             <td><%= restaurant.getRestaurantScore() %></td>
+            <td><input name="button" type="submit" class="btn-success" value="前往訂位"></td>
         <% } %>
         </tr>
     </tbody>
