@@ -33,6 +33,8 @@
 	.textbody{background-color: #f6f8fc ; margin:0 auto;max-width: 1600px; }
 	.posts{background-color: #f6f8fc ;margin:0 auto; width: 80%;}
 	h3{padding:20px}
+	
+	
 </style>
 </head>
 <body >
@@ -57,7 +59,6 @@
         <div class ="box">
         <p class="ellipsis"><%=post.getPostedText() %></p> 
         </div>
-        
         <a href="./PostServlet?action=showPost&id=<%=post.getPostId() %>"> 繼續閱讀</a>
         <hr>
         <a href='./PostServlet?action=deletePost&id=<%=post.getPostId() %>'>刪除文章</a>
