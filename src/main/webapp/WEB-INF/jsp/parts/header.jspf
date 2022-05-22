@@ -33,7 +33,7 @@
      	      <% if (user.getUid() == 0){%>		<!-- test session -->
 	          <a href="/vegetarian/Login"><li>登入</li></a>	        
 	          <%}%>								<!-- test session -->
-	       	  <a href="/vegetarian/order.asp"><li>訂位</li></a>
+	       	  <!-- <a href="/vegetarian/order.asp"><li>訂位</li></a> -->
 	          <a href="/vegetarian/postIndex"><li>食記</li></a>
 	          <a href="/vegetarian/queryforumIndex"><li>網誌</li></a>
 	          <a href="/vegetarian/shoppingcartIndex"><li>購物專區</li></a>
