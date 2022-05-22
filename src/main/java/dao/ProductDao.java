@@ -4,7 +4,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
+import java.sql.SQLException;
 import java.util.*;
 import bean.*;
 
@@ -127,5 +127,30 @@ public class ProductDao {
 	        }
 
 	        return row;
+	    }
+	 	//新增商品
+	   public boolean addProducts(Product newProduct) {
+
+	        boolean check = false;
+	        // 定義處理ＳＱＬ
+	        String sqlStr = "insert into products(name,category,price," +
+	                "images) values(?,?,?,?,?)";
+	        try {
+	        	
+	            PreparedStatement prepstmt;
+	            Product row =newProduct;
+	            prepstmt = this.conn.prepareStatement(sqlStr);
+	            prepstmt.setString(1, row.getName());
+	            prepstmt.setString(2, row.getCategory());
+	            prepstmt.setDouble(3, row.getPrice());
+	            prepstmt.setString(4, row.getImage());
+	           
+	           
+	         
+	            check = prepstmt.executeUpdate() > 0;
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        return check;
 	    }
 }
