@@ -30,6 +30,7 @@
     	<url-pattern>*.jspf</url-pattern>
    </servlet-mapping>
    
+   
    <filter>
         <filter-name>AutType</filter-name>
         <filter-class>filters.AutType</filter-class>
@@ -40,6 +41,7 @@
         <url-pattern>/editPost</url-pattern>
         <url-pattern>/BusinessRegister</url-pattern>
         <url-pattern>/ForumServlet</url-pattern>
+        <url-pattern>/createpost</url-pattern>
         <dispatcher>REQUEST</dispatcher>
     	<dispatcher>FORWARD</dispatcher>
     	<dispatcher>INCLUDE</dispatcher>

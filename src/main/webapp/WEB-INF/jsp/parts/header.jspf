@@ -37,7 +37,7 @@
 	          <a href="/vegetarian/postIndex"><li>食記</li></a>
 	          <a href="/vegetarian/queryforumIndex"><li>網誌</li></a>
 	          <a href="/vegetarian/shoppingcartIndex"><li>購物專區</li></a>
-	          <a href="#"><li>店家專區</li></a>
+	          <!--  <a href="#"><li>店家專區</li></a>-->
 	          <li>${user.status}&nbsp;${user.username}&nbsp;</li> <!-- test session -->
 	          <% if (user.getUid() != 0){%>							<!-- test session -->
 	          <li><input type="button" value="登出" onclick="window.location.href='/vegetarian/Logout';"></li><!-- test session -->

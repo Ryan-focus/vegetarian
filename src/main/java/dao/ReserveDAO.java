@@ -20,7 +20,6 @@ private final String INSERT = "INSERT INTO RESERVE(reservationDate, reservationC
 public void setDataSource(DataSource dataSource) {
 this.ds = dataSource;
 
-
 }
 	@Override
 	public boolean insert(Reserve reserve) {
