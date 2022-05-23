@@ -1,8 +1,7 @@
+<%@ page pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page import="bean.Restaurant" %>
-<%@ page pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +22,8 @@
     </noscript>
         <h2>搜尋餐廳結果</h2>
    	<div class="wrapper">
-    <FORM ACTION="/vegetarian/order.asp" method="post">
+   	
+    <FORM ACTION="./reserve" method="post">
     <table class="tb1">
 
     <thead>
@@ -46,14 +46,17 @@
         <% for (Restaurant restaurant : restaurantList) {%>
         <tr>
             <td><%= restaurant.getRestaurantNumber() %></td>
-            <td><%= restaurant.getRestaurantName() %></td>
+            <td><%= restaurant.getRestaurantName()%></td>
             <td><%= restaurant.getRestaurantTel() %></td>
             <td><%= restaurant.getRestaurantAddress() %></td>
             <td><%= restaurant.getRestaurantCategory() %></td>
             <td><%= restaurant.getRestaurantType() %></td>
             <td><%= restaurant.getRestaurantBusinessHours() %></td>
             <td><%= restaurant.getRestaurantScore() %></td>
-            <td><input name="button" type="submit" class="btn-success" value="前往訂位"></td>
+            <td><input name="oRestaurant" type="submit" class="btn-success" value="前往訂位"></td>
+            <input type="hidden" name="restaurantNumber" value="<%=restaurant.getRestaurantNumber()%>">
+           	<input type="hidden" name="restaurantName" value="<%=restaurant.getRestaurantName()%>">
+            
         <% } %>
         </tr>
     </tbody>

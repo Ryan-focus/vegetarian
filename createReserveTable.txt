@@ -6,5 +6,5 @@ reservationDate date not null,
 reservationCount int not null,
 orderDate date not null,
 restaurantNumber int not null,
-uid int not null
+uid int 
 )
