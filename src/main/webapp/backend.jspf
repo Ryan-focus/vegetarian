@@ -270,8 +270,8 @@ password="passw0rd" />
 											<td><c:out value="${restaurant.restaurantType}" /></td>
 											<td><c:out value="${restaurant.restaurantBusinessHours}" /></td>
 											<td><c:out value="${restaurant.restaurantScore}" /></td>
-											<td><button type="button" id="update" class="btn btn-success">編輯</button></td>
-											<td><button type="button" id="remove" class="btn btn-danger">刪除</button></td>
+											<td><button type="button" id="update" class="btn btn-success" onclick="location.href='./RestaurantServletDS?restaurantNumber=${restaurant.restaurantNumber}&查詢餐廳=查詢餐廳'">編輯</button></td>
+											<td><button type="button" id="remove" class="btn btn-danger" onclick="javascript:if(confirm('確定要刪除嗎?'))location.href='./RestaurantServletDS?restaurantNumber=${restaurant.restaurantNumber}&刪除餐廳=刪除餐廳'">刪除</button></td>
 											</tr>
 										</c:forEach>
 										</tbody>
