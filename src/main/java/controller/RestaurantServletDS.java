@@ -21,21 +21,22 @@ import dao.RestaurantDAO;
 @WebServlet("/RestaurantServletDS")
 public class RestaurantServletDS extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	DataSource ds =null;
+	InitialContext ctx = null;
+	Connection con = null;
+	
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html; charset=UTF-8");
-		
-		DataSource ds =null;
-		InitialContext ctx = null;
-		Connection con = null;
-		
+
 		try {
+		
 			ctx = new InitialContext();
 			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/veganDB");
-			con = ds.getConnection();
-			RestaurantDAO restaurantDAO = new RestaurantDAO(con);
 			System.out.println("3");
+			con = ds.getConnection();
+			
+			RestaurantDAO restaurantDAO = new RestaurantDAO(con);
 			if (req.getParameter("所有餐廳") != null) {
 				restaurantQueryAll(req, res, restaurantDAO);
 			}
