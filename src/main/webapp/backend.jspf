@@ -239,7 +239,7 @@ password="passw0rd" />
 										<sql:query var="listRestaurant" dataSource="${myDS}">
 							        	SELECT * FROM restaurant;
 							    		</sql:query>
-										<button type="button" class="btn btn-warning">
+										<button type="button" class="btn btn-warning" onclick="javascript:location.href='createRestaurant.jspf'">
 										新增
 										</button>
 										<table class="table table-striped table-hover" id="">

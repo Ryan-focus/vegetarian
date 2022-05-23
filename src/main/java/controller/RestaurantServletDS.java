@@ -35,7 +35,7 @@ public class RestaurantServletDS extends HttpServlet {
 			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/veganDB");
 			con = ds.getConnection();
 			RestaurantDAO restaurantDAO = new RestaurantDAO(con);
-
+			System.out.println("3");
 			if (req.getParameter("所有餐廳") != null) {
 				restaurantQueryAll(req, res, restaurantDAO);
 			}
@@ -214,8 +214,8 @@ public class RestaurantServletDS extends HttpServlet {
 		Boolean insertBoolean = restaurantDAO.createRestaurant(restaurant);
 		if (insertBoolean) {
 			try {
-				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/restaurantBackground/restaurantFormBackground.jsp");
-				//RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/restaurantForm.jsp");
+				req.setAttribute("restaurant", restaurant);
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/createRestaurant.jsp");
 				dispatcher.forward(req, res);
 			} catch (ServletException | IOException e) {
 				e.printStackTrace();
