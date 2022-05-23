@@ -1,54 +1,74 @@
+<%@ page import="bean.ForumBean"%>
+<%@ page import="java.sql.*"%>
+<%@ page import="java.lang.*"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 
-<title> ${title}</title>
+<title>${title}</title>
 
-    <style>
-    	*{
-				margin: 0;
-				padding: 0;
-			}
-        .text_title {
-            padding: 2px;
-            width: 500px;
-        }
-
-        .title {
-            text-align: center;
-        }
-
-        pre {
-            font-size: 16px;
-            white-space: pre-wrap
-        }
-
-        textarea {
-            height: 200px;
-            width: 500px;
-            resize: none;
-        }
-       .textbody{background-color: #f6f8fc ;padding:20px;}
-       .posts{margin:0 auto; width: 80%; }
-       .button{text-align: center;}
-    </style>
+<style>
+				p {
+					text-align: center
+				}
+				
+				.box {
+					width: 75%;
+					padding: 10px;
+					margin: auto;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+				
+				.button{
+					display: flex;
+    				justify-content: center; 
+   			    	align-items: center;
+				}
+				
+				.ellipsis {
+					text-align: center
+				}
+</style>
 </head>
 <body>
-<div class="textbody">
-<div class="posts">
- <h2 class="title">${forum.vgetheme}</h2>
- 
-    <br>
-    <pre> ${forum.vgecontent}</pre>
-    <br>
-    <div class="button">
-    <input class="button" type="button" onclick="javascript:window.location.href='./postIndex' ;" value="返回首頁" />
-    </div>
-</div>    
-</div>
+	<form action="./ForumServlet" method=Post>
+
+		<sql:setDataSource var="myDS"
+			driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+			url="jdbc:sqlserver://localhost:1433;databaseName=veganDB" user="sa"
+			password="passw0rd" />
+
+		<sql:query var="forum" dataSource="${myDS}">
+        SELECT * FROM forum where vgeid = ${param.id}
+    </sql:query>
+
+
+
+		<c:forEach var="forum" items="${forum.rows}">
+			<h2 style="text-align: center">
+				<c:out value="${forum.vgetheme}" />
+			</h2>
+			<div class="box">
+				<p>
+					<c:out value="${forum.vgecontent}" />
+				</p>
+			</div>
+		</c:forEach>
+		<div class="button">
+			<input class="button" type="button"
+				onclick="javascript:window.location.href='./forumIndex' ;"
+				value="返回首頁" />
+		</div>
+
+	</form>
 </body>
 </html>

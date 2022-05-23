@@ -1,5 +1,6 @@
 <%@ page import="bean.ForumBean" %>
 <%@ page import="java.sql.*" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -23,10 +24,16 @@
 	-webkit-box-orient: vertical;
 	white-space: normal;
 	}
+	.button{
+		display: flex;
+    	justify-content: left; 
+   		align-items: left;
+   		padding: 30px;
+	}
 </style>
 </head>
 <body>
-<form action="./ForumServlet" method="post">
+<form action="./ForumServlet" method=Post>
 
 	<sql:setDataSource var="myDS" driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
 		url="jdbc:sqlserver://localhost:1433;databaseName=veganDB" user="sa" password="passw0rd" />
@@ -38,18 +45,22 @@
 	<div align="center">
 
 <h1>網誌</h1>
-<div   align="left"><input type="submit" name="ForumHome" value="新增文章" ></div>
+   <p  class="button"><input type="submit" name="ForumHome" value="新增文章" ></p>
 <br>
 			<c:forEach var="forum" items="${forum.rows}">
 				<h2><c:out value="${forum.vgetheme}" /></h2>
 				<div class ="box">
 				<p class="ellipsis"><c:out value="${forum.vgecontent}" /></p> 
+				
+				<a href="./ForumPages?=ForumPages&id=${forum.vgeid}"> 詳細閱讀</a>
+				
+				<hr align="left" noshade="false" size="4" width="100%" color="#00EC00">
 				</div>
 
-		
- 				<a href="./ForumServlet?=ForumPages&id=${forum.vgeid}"> 繼續閱讀</a>
 
-				<hr>
+ 		<%--	<a href="./ForumServlet?=ForumPages&id=${forum.vgeid}"> 繼續閱讀</a>  --%>  
+			
+
 			</c:forEach>
 			
 
