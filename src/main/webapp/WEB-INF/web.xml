@@ -250,4 +250,13 @@
    <servlet-name>UpdateResult</servlet-name>
    <url-pattern>/UpdateResult</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+   <servlet-name>MemberManagementServlet</servlet-name>
+   <servlet-class>controller.MemberManagementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>MemberManagementServlet</servlet-name>
+   <url-pattern>/MemberManagementServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

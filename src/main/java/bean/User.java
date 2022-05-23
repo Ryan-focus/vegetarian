@@ -50,5 +50,10 @@ public class User {
 		this.status = status;
 	}
     
+	@Override
+	public String toString() {
+		return "User[uid=" + uid + ",email=" + email + ",password=" + password + 
+				",username=" + username + ",status=" + status + "]";  
+	}
 	
 }
