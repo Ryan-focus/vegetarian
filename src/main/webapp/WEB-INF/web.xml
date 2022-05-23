@@ -251,6 +251,24 @@
    <url-pattern>/UpdateResult</url-pattern>
   </servlet-mapping>
   
+   <servlet>
+   <servlet-name>forumIndex</servlet-name>
+   <jsp-file>/forumIndex.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>forumIndex</servlet-name>
+   <url-pattern>/forumIndex</url-pattern>
+  </servlet-mapping>
+  
+     <servlet>
+   <servlet-name>ForumPages</servlet-name>
+   <jsp-file>/WEB-INF/jsp/forum/ForumPages.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>ForumPages</servlet-name>
+   <url-pattern>/ForumPages</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
    <servlet-name>MemberManagementServlet</servlet-name>
    <servlet-class>controller.MemberManagementServlet</servlet-class>
