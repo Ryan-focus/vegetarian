@@ -23,12 +23,12 @@ public class RestaurantServletDS extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html; charset=UTF-8");
 		
 		DataSource ds =null;
 		InitialContext ctx = null;
 		Connection con = null;
-		
-		res.setContentType("text/html; charset=UTF-8");
 		
 		try {
 			ctx = new InitialContext();
@@ -86,7 +86,7 @@ public class RestaurantServletDS extends HttpServlet {
 			List<Restaurant> restaurantList = restaurantDAO.findRestaurant(restaurantName,restaurantAddress,restaurantCategory,restaurantType);
 			
 			// session
-			req.getSession().setAttribute("restaurantList", restaurantList);
+			req.getSession().setAttribute("restaurantList",restaurantList);
 			
 			if (restaurantList == null)
 				try {

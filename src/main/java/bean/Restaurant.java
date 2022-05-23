@@ -2,7 +2,9 @@ package bean;
 
 import java.io.Serializable;
 
-public class Restaurant implements Serializable{
+public class Restaurant implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 
 	private Integer restaurantNumber;
 	private String restaurantName;
