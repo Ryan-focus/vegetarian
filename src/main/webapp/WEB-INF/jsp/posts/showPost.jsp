@@ -13,14 +13,6 @@
 				margin: 0;
 				padding: 0;
 			}
-        form {
-            text-align: center;
-        }
-
-        h2 {
-            text-align: center;
-        }
-
         .text_title {
             padding: 2px;
             width: 500px;
@@ -42,17 +34,20 @@
         }
        .textbody{background-color: #f6f8fc ;padding:20px;}
        .posts{margin:0 auto; width: 80%; }
+       .button{text-align: center;}
     </style>
 </head>
 <body>
 <div class="textbody">
 <div class="posts">
- <h2>${title}</h2>
+ <h2 class="title">${title}</h2>
     <p class="title"> ${posted_date}  </p>
     <br>
     <pre> ${posted_text}</pre>
     <br>
-    <br>
+    <div class="button">
+    <input class="button" type="button" onclick="javascript:window.location.href='./postIndex' ;" value="返回首頁" />
+    </div>
 </div>    
 </div>
 </body>
