@@ -30,9 +30,9 @@ if (request.getAttribute("urlStatus") != null)
 %>
 
  <script type="text/javascript">
- alert("<%=result%>\r未設定，前往主頁");
+ alert("<%=result%>\r\r管理員身分\r\r導向後台系統");
  
- window.location='/vegetarian/index.jsp';
+ window.location='/vegetarian/backend.jspf';
  </script>
  
 <%} else if (urlStatus == 1) {%>
