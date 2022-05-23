@@ -1,6 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
-<%@ page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%-- <%@ page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%> --%>
 <%@ page import="bean.Restaurant" %>
 <!DOCTYPE html>
 <html lang="en">

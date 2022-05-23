@@ -216,7 +216,7 @@ public class RestaurantServletDS extends HttpServlet {
 		if (insertBoolean) {
 			try {
 				req.setAttribute("restaurant", restaurant);
-				RequestDispatcher dispatcher = req.getRequestDispatcher("/createRestaurant.jsp");
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/backend.jspf");
 				dispatcher.forward(req, res);
 			} catch (ServletException | IOException e) {
 				e.printStackTrace();
@@ -236,7 +236,7 @@ public class RestaurantServletDS extends HttpServlet {
 		Boolean booleanDelete = restaurantDAO.deleteRestaurantByNumber(Integer.parseInt(restaurantNumber));
 		if (booleanDelete)
 			try {
-				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/restaurantBackground/restaurantFormBackground.jsp");
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/backend.jspf");
 				//RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/restaurantForm.jsp");
 				dispatcher.forward(req, res);
 			} catch (ServletException | IOException e) {
