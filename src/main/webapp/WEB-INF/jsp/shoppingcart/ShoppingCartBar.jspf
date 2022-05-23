@@ -1,0 +1,46 @@
+<%@ page pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <style><%@include file="/../css/index/header.css"%></style>
+   <style><%@include file="/../css/index/footer.css"%></style>
+   <style><%@include file="/css/index/body.css"%></style>
+   <style><%@include file="/css/index/search.css"%></style>
+   <%@page import="bean.*"%>
+   
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    
+  </head>
+  <body>
+  <%User user2 = (User) request.getSession().getAttribute("user"); %>
+    <input type="checkbox" name="" id="menu_control">
+    <header>
+      <div class="header">
+	      <a href="index.jsp">
+	      <img data-src="images/index/logo.png" 
+	      src="images/index/logo.png" 
+	      alt="logo" title="vegelife" 
+	      data-was-processed="true"> 
+		  </a>
+		  <label for= "menu_control" class="menu_btn">
+		  		<span>選單</span>
+		  </label>
+        <ul class="navigation">
+          <a href="/vegetarian/shoppingcartIndex"><li>商品頁</li></a>
+       	  <a href="/vegetarian/cart"><li>購物車<span class="badge badge-danger px-1">${ cart_list.size() }</span></li></a>
+       		 <%
+        if(user2.getUid() !=0){%>
+          <a href="/vegetarian/order"><li>歷史訂單</li></a>
+          <a href="/vegetarian/Logout"><li>登出</li></a>
+               <%}else{%>
+          <a href="/vegetarian/Login"><li>登入</li></a>
+        <%}
+        %>
+        </ul>
+      </div>
+    </header>
+  </body>
+</html>

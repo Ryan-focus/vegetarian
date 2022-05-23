@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-  <display-name>TestWebDemo</display-name>
+  <display-name>vegetarian</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
@@ -9,51 +9,254 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
-  <resource-ref>
-    <description>MS SQL Server DataSource Example</description>
-    <res-ref-name>jdbc/PostsDB</res-ref-name>
-    <res-type>javax.sql.DataSource</res-type>
-    <res-auth>Container</res-auth>
-  </resource-ref>
+   
+      <jsp-config>
+	   <jsp-property-group>
+		   <url-pattern>*.jsp</url-pattern> <!-- 受影響的jsp頁面。這邊是所有的jsp -->
+		   <el-ignored>false</el-ignored>       <!-- 是否忽略el -->  
+		   <page-encoding>UTF-8</page-encoding> <!-- 預設頁面encoding -->
+		   <scripting-invalid>false</scripting-invalid> <!-- 是否忽略scriptlet -->       
+		   <include-prelude>/WEB-INF/jsp/parts/header.jspf</include-prelude> <!-- 在jsp前加入此頁 - 同等 include -->        
+           <include-coda>/WEB-INF/jsp/parts/footer.jspf</include-coda> <!-- 在jsp後加入此頁 - 同等 include --> 
+		   <trim-directive-whitespaces>true</trim-directive-whitespaces> <!-- 刪除空格內部元素以提高服務器頁面之間的速度響應 -->
+		   <default-content-type>text/html</default-content-type> <!-- 設定頁面語法 -->
+		   <buffer>16kb</buffer> <!-- 緩衝 加載 -->
+	   </jsp-property-group>
+   </jsp-config>
+
+<!-- 讓.jspf檔案可以跟 .jsp檔案一樣 正常被Comiler成 servlet -->
+   <servlet-mapping>
+    	<servlet-name>jsp</servlet-name>
+    	<url-pattern>*.jspf</url-pattern>
+   </servlet-mapping>
+   
+   
+   <filter>
+        <filter-name>AutType</filter-name>
+        <filter-class>filters.AutType</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AutType</filter-name>
+        <url-pattern>/order</url-pattern>
+        <url-pattern>/editPost</url-pattern>
+        <url-pattern>/BusinessRegister</url-pattern>
+        <url-pattern>/ForumServlet</url-pattern>
+        <url-pattern>/createpost</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    	<dispatcher>FORWARD</dispatcher>
+    	<dispatcher>INCLUDE</dispatcher>
+    	<dispatcher>ERROR</dispatcher>
+    	<dispatcher>ASYNC</dispatcher>
+    </filter-mapping>
+
   <servlet>
-    <description></description>
-    <display-name>PostCUServlet</display-name>
-    <servlet-name>PostCUServlet</servlet-name>
-    <servlet-class>PostCUServlet</servlet-class>
+    <servlet-name>PostServlet</servlet-name>
+    <servlet-class>controller.PostServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>PostCUServlet</servlet-name>
+    <servlet-name>PostServlet</servlet-name>
     <url-pattern>/PostServlet</url-pattern>
   </servlet-mapping>
+  
   <servlet>
-    <description></description>
-    <display-name>PostDeleteServlet</display-name>
-    <servlet-name>PostDeleteServlet</servlet-name>
-    <servlet-class>PostDeleteServlet</servlet-class>
-  </servlet>
-   <servlet-mapping>
-        <servlet-name>PostDeleteServlet</servlet-name>
-        <url-pattern>/deletePost</url-pattern>
-    </servlet-mapping>   
-    <servlet>
-    <description></description>
-    <display-name>PostEditServlet</display-name>
-    <servlet-name>PostEditServlet</servlet-name>
-    <servlet-class>PostEditServlet</servlet-class>
-  </servlet>
-   <servlet-mapping>
-        <servlet-name>PostEditServlet</servlet-name>
-        <url-pattern>/editPost</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
-    <description></description>
-    <display-name>PostIndexServlet</display-name>
     <servlet-name>PostIndexServlet</servlet-name>
-    <servlet-class>PostIndexServlet</servlet-class>
+    <servlet-class>controller.PostIndexServlet</servlet-class>
   </servlet>
-   <servlet-mapping>
-        <servlet-name>PostIndexServlet</servlet-name>
-        <url-pattern>/showPost</url-pattern>
-    </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PostIndexServlet</servlet-name>
+    <url-pattern>/postIndex</url-pattern>
+  </servlet-mapping>
+
+<servlet>
+   <servlet-name>createPost</servlet-name>
+   <jsp-file>/WEB-INF/jsp/posts/CreatePost.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+   <servlet-name>createPost</servlet-name>
+   <url-pattern>/createpost</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+   <servlet-name>showResultForm</servlet-name>
+   <jsp-file>/WEB-INF/jsp/posts/showResultForm.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+   <servlet-name>showResultForm</servlet-name>
+   <url-pattern>/showResultForm</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+   <servlet-name>editPost</servlet-name>
+   <jsp-file>/WEB-INF/jsp/posts/editPost.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+   <servlet-name>editPost</servlet-name>
+   <url-pattern>/editPost</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+   <servlet-name>showPost</servlet-name>
+   <jsp-file>/WEB-INF/jsp/posts/showPost.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+   <servlet-name>showPost</servlet-name>
+   <url-pattern>/showPost</url-pattern>
+  </servlet-mapping>
+    
+   <servlet>
+   <servlet-name>loginIndex</servlet-name>
+   <jsp-file>/loginIndex.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+   <servlet-name>loginIndex</servlet-name>
+   <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+   <servlet-name>reservationIndex</servlet-name>
+   <jsp-file>/reservationIndex.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+   <servlet-name>reservationIndex</servlet-name>
+   <url-pattern>/order.asp</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+   <servlet-name>postsIndex</servlet-name>
+   <jsp-file>/postsIndex.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+   <servlet-name>postsIndex</servlet-name>
+   <url-pattern>/postsIndex</url-pattern>
+  </servlet-mapping>
+  
+
+  
+   <servlet>
+   <servlet-name>shoppingcartIndex</servlet-name>
+   <jsp-file>/shoppingcartIndex.jspf</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+   <servlet-name>shoppingcartIndex</servlet-name>
+   <url-pattern>/shoppingcartIndex</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+   <servlet-name>cart</servlet-name>
+   <jsp-file>/WEB-INF/jsp/shoppingcart/cart.jspf</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>cart</servlet-name>
+   <url-pattern>/cart</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+   <servlet-name>order</servlet-name>
+   <jsp-file>/WEB-INF/jsp/shoppingcart/orders.jspf</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>order</servlet-name>
+   <url-pattern>/order</url-pattern>
+  </servlet-mapping>
+  
+  
+ 
+   <servlet>
+   <servlet-name>UserRegister</servlet-name>
+   <jsp-file>/WEB-INF/jsp/Register.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>UserRegister</servlet-name>
+   <url-pattern>/UserRegister</url-pattern>
+  </servlet-mapping>
+
+
+      <servlet>
+   <servlet-name>BusinessRegister</servlet-name>
+   <jsp-file>/WEB-INF/jsp/BusinessRegister.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>BusinessRegister</servlet-name>
+   <url-pattern>/BusinessRegister</url-pattern>
+  </servlet-mapping>
+  
+     <servlet>
+   <servlet-name>Logout</servlet-name>
+   <jsp-file>/WEB-INF/jsp/Logout.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>Logout</servlet-name>
+   <url-pattern>/Logout</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+   <servlet-name>queryforumIndex</servlet-name>
+   <jsp-file>/queryforumIndex.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>queryforumIndex</servlet-name>
+   <url-pattern>/queryforumIndex</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+   <servlet-name>QueryResult</servlet-name>
+   <jsp-file>/WEB-INF/jsp/forum/QueryResult.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>QueryResult</servlet-name>
+   <url-pattern>/QueryResult</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+   <servlet-name>Thank</servlet-name>
+   <jsp-file>/WEB-INF/jsp/forum/Thank.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>Thank</servlet-name>
+   <url-pattern>/Thank</url-pattern>
+  </servlet-mapping>
+
+ <servlet>
+   <servlet-name>DeleteForum</servlet-name>
+   <jsp-file>/WEB-INF/jsp/forum/DeleteForum.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>DeleteForum</servlet-name>
+   <url-pattern>/DeleteForum</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+   <servlet-name>ErrorQuery</servlet-name>
+   <jsp-file>/WEB-INF/jsp/forum/ErrorQuery.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>ErrorQuery</servlet-name>
+   <url-pattern>/ErrorQuery</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+   <servlet-name>UpdateResult</servlet-name>
+   <jsp-file>/WEB-INF/jsp/forum/UpdateResult.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>UpdateResult</servlet-name>
+   <url-pattern>/UpdateResult</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+   <servlet-name>MemberManagementServlet</servlet-name>
+   <servlet-class>controller.MemberManagementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>MemberManagementServlet</servlet-name>
+   <url-pattern>/MemberManagementServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

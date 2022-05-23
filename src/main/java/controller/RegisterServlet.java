@@ -37,8 +37,6 @@ public class RegisterServlet extends HttpServlet {
 			isEmailExist = userDAO.checkEmail(email);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -46,17 +44,17 @@ public class RegisterServlet extends HttpServlet {
 		
 		try {
 			if (!isEmailExist) userDAO.register(email, password, username);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.setAttribute("result", isEmailExist ? "失敗!" : "成功~");
 		
-		request.getRequestDispatcher("/RegisterResult.jsp").forward(request, response);
+		request.setAttribute("isEmailExist", isEmailExist);
+		request.setAttribute("result", isEmailExist ? "失敗" : "成功~");
+				
+		request.getRequestDispatcher("/WEB-INF/jsp/RegisterResult.jsp").forward(request, response);
 	}
 
 }

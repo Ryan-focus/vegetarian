@@ -1,17 +1,54 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<%@ include file="/WEB-INF/jsp/parts/meta.jsp" %>  
-<title>愛蔬網-簡單。生活</title>
-<%@ include file="/WEB-INF/jsp/parts/header.jsp" %>  
-</head>
-<body>
-    <div class="view">
-        <div class="pages">
-            <jsp:include page="/WEB-INF/jsp/parts/page-body.jsp"></jsp:include>
-        </div>
-    </div>
-    <jsp:include page="/WEB-INF/jsp/parts/footer.jsp" />
-</body>
-</html>
+		<%@ page pageEncoding="UTF-8"%>
+		<div class="bodyContainer">
+	    <FORM ACTION="./RestaurantServletDS" method="get">
+	    <fieldset>
+		    <select id="city" name="restaurantAddress"></select>
+		    <select id="area" name="restaurantAddress"></select>
+	    <div>
+	        <label> 餐廳名稱：</label><input type="text" name="restaurantName" autofocus placeholder="" autocomplete="off" size="15"
+	            id="account1">
+	    </div>
+	
+	    <div>
+	        <label>餐廳類型：</label>
+	        <label>
+	            <input type="radio" name="restaurantCategory" value="中式" >中式
+	        </label>
+	        <label>
+	            <input type="radio" name="restaurantCategory" value="義式" >義式
+	        </label>
+	        <label>
+	            <input type="radio" name="restaurantCategory" value="自助餐">自助餐
+	        </label>
+	        <label>
+	            <input type="radio" name="restaurantCategory" value="麵食" >麵食
+	        </label>
+	    </div>
+	
+	    <div>
+	        <label>素食種類：</label>
+	     
+	        <label>
+	            <input type="radio" name="restaurantType" value="全素"  >全素
+	        </label>
+	        <label>
+	            <input type="radio" name="restaurantType" value="奶素" >奶素
+	        </label>
+	        <label>
+	            <input type="radio" name="restaurantType" value="蛋素" >蛋素
+	        </label>
+	        <label>
+	            <input type="radio" name="restaurantType" value="五辛" >五辛素
+	        </label>
+	    </div>
+		</fieldset>
+		
+	    <br>
+	    
+	    <p class="p1">
+	      <input name ="查詢餐廳GO" type="submit" value="查詢餐廳GO">
+	    </p>
+	    </FORM>
+	</div>
+	 <script type="text/javascript" charset="UTF-8" src="js/index/search.js"></script>
+

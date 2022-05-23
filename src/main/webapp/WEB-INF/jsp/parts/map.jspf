@@ -1,0 +1,19 @@
+<%@ page pageEncoding="UTF-8"%>
+     <div id="app" class="mapcontainer">
+
+      <div class="row">
+        <div class="col">
+          <div id="map" class="embed-responsive embed-responsive-16by9"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 將 YOUR_API_KEY 替換成你的 API Key 即可 -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9blRIb054WQz_K5FRcAojJhDG45QQDXc" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+
+   	<script type="text/javascript" charset="UTF-8" src="js/map/map.js"></script>
+   	
+   	<p><a href="index.jsp"><button>回到首頁</button></a></p>
+</body>
+</html>

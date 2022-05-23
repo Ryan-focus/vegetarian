@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+ .mapcontainer {
+        display : block;
+        text-align: center;
+        justify-self: center;
+        
+        padding-top: 5px;
+        padding-bottom: 10px;
+      }
+      #map {
+        background: #CCC;
+      }
+      
+fieldset {
+  width: 400px;
+  height: auto;
+  border: 2px double rgb(32, 31, 32);
+  border-radius: 10px;
+  background-color: gainsboro;
+  text-align: justify;
+  margin-left: auto;
+  margin-right: auto;
+}
+.p1 {
+  text-align: center;
+}
+

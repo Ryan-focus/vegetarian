@@ -1,11 +1,11 @@
 package controller;
 import java.io.*;
 
-import javax.naming.NamingException;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
+import bean.User;
 import dao.UserDAO;
 
 import java.sql.*;
@@ -21,24 +21,63 @@ public class UserServlet extends HttpServlet {
 
 		response.setContentType("text/html;UTF-8");
 		
-		UserDAO userDAO = new UserDAO();
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		boolean isAccountExist = false;
+		String identity = "";
 		
+		UserDAO userDAO = new UserDAO();
+
 		try {
-			isAccountExist = userDAO.login(email, password);
+			
+			User user = userDAO.login(email, password);
+				
+		if (user != null) {
+		switch (user.getStatus()) {
+		
+		case "administrator":
+			identity = "管理員";
+			request.setAttribute("urlStatus", 0 );
+			request.getSession().setAttribute("user", user);
+			break;
+			
+		case "business":
+			identity = "商家";
+			request.setAttribute("urlStatus", 1 );
+			request.getSession().setAttribute("user", user);
+			break;
+			
+		case "user":
+			identity = "會員";
+			request.setAttribute("urlStatus", 2 );
+			request.getSession().setAttribute("user", user);
+			break;
+			
+		default:
+			request.setAttribute("urlStatus", 3 );
+			break;
+			
+		}
+	  } else {
+		    request.setAttribute("urlStatus", 3 );
+	  }
+		
+		if (user != null) {
+			
+			request.setAttribute("result", identity + user.getUsername() + "登入成功~" );
+			
+		} else {
+			
+			request.setAttribute("result", "登入失敗!");
+			
+		}
+		
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-			request.setAttribute("result", isAccountExist ? "成功~" : "失敗!");
-			
-		request.getRequestDispatcher("/LoginResult.jsp").forward(request, response);
+		
+		request.getRequestDispatcher("/WEB-INF/jsp/LoginResult.jsp").forward(request, response);
+		
 	}
 
 }
