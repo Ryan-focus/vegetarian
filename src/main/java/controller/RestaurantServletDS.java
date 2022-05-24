@@ -283,7 +283,7 @@ public class RestaurantServletDS extends HttpServlet {
 			restaurant.setRestaurantScore(restaurantScore);
 			if (restaurantDAO.updateRestaurant(restaurant))
 				try {
-					RequestDispatcher dispatcher = req.getRequestDispatcher("/updateRestaurant.jsp");
+					RequestDispatcher dispatcher = req.getRequestDispatcher("/backend.jspf");
 					//RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/restaurantForm.jsp");
 					dispatcher.forward(req, res);
 				} catch (ServletException | IOException e) {
