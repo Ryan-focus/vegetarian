@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import bean.ForumBean;
+import bean.User;
 import dao.ForumDAO;
 
 @WebServlet(name="ForumServlet" , urlPatterns="/ForumServlet")
