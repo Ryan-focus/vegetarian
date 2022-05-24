@@ -88,7 +88,7 @@
 
     <div> 
         <label> 營業時間：</label><br> 
-        <textarea cols="40" rows="8" name="restaurantBusinessHours" value="<%=restaurant.getRestaurantBusinessHours()%>"></textarea>
+        <textarea cols="40" rows="8" name="restaurantBusinessHours" ><%=restaurant.getRestaurantBusinessHours()%></textarea>
     </div> 
     
 	</fieldset>
