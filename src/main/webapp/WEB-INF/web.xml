@@ -50,12 +50,12 @@
     </filter-mapping>
 
   <servlet>
-    <servlet-name>PostServlet</servlet-name>
-    <servlet-class>controller.PostServlet</servlet-class>
+    <servlet-name>PostCUServlet</servlet-name>
+    <servlet-class>controller.PostCUServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>PostServlet</servlet-name>
-    <url-pattern>/PostServlet</url-pattern>
+    <servlet-name>PostCUServlet</servlet-name>
+    <url-pattern>/PostNew</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -65,6 +65,15 @@
   <servlet-mapping>
     <servlet-name>PostIndexServlet</servlet-name>
     <url-pattern>/postIndex</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>PostRDServlet</servlet-name>
+    <servlet-class>controller.PostRDServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PostRDServlet</servlet-name>
+    <url-pattern>/post</url-pattern>
   </servlet-mapping>
 
 <servlet>
@@ -249,6 +258,24 @@
   <servlet-mapping>
    <servlet-name>UpdateResult</servlet-name>
    <url-pattern>/UpdateResult</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+   <servlet-name>forumIndex</servlet-name>
+   <jsp-file>/forumIndex.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>forumIndex</servlet-name>
+   <url-pattern>/forumIndex</url-pattern>
+  </servlet-mapping>
+  
+     <servlet>
+   <servlet-name>ForumPages</servlet-name>
+   <jsp-file>/WEB-INF/jsp/forum/ForumPages.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>ForumPages</servlet-name>
+   <url-pattern>/ForumPages</url-pattern>
   </servlet-mapping>
   
   <servlet>

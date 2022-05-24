@@ -74,7 +74,7 @@
 </script>
 </head>
 <body>
-<div style="width:60%;margin-right:20%;margin-left:20%;text-align:center;">
+<div style="width:98%;margin-right:1%;margin-left:1%;text-align:center;">
 <h1>愛蔬網會員資料</h1>
 <div id="UserTable"></div>
 </div>

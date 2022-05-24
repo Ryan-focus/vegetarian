@@ -2,13 +2,12 @@ package dao;
 import Interface.IReserveDAO;
 import bean.Reserve;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -27,10 +26,9 @@ private final String INSERT = "INSERT INTO RESERVE(reservationDate, reservationC
 		java.sql.Date sdate = new java.sql.Date(uDate.getTime());
         int count = reserve.getCount();
         //--odate 紀錄伺服器現在時間 轉型存進資料庫
-        String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
-		@SuppressWarnings("deprecation")
-		Date tDate = new Date(timeStamp);
-        java.sql.Date odate = new java.sql.Date(tDate.getTime());
+        long ct = System.currentTimeMillis();
+        Timestamp timestamp = new Timestamp(ct);
+        java.sql.Date odate = new java.sql.Date(timestamp.getTime());
         //--------------------------------------
         int number = reserve.getRestaurantNumber();
         int uid  = reserve.getUid();

@@ -59,10 +59,10 @@
         <div class ="box">
         <p class="ellipsis"><%=post.getPostedText() %></p> 
         </div>
-        <a href="./PostServlet?action=showPost&id=<%=post.getPostId() %>"> 繼續閱讀</a>
+        <a href="./post?action=showPost&id=<%=post.getPostId() %>"> 繼續閱讀</a>
         <hr>
-        <a href='./PostServlet?action=deletePost&id=<%=post.getPostId() %>'>刪除文章</a>
-        <a href='./PostServlet?action=editPost&id=<%=post.getPostId() %>'>編輯文章</a>
+        <a href='./post?action=deletePost&id=<%=post.getPostId() %>'>刪除文章</a>
+        <a href='./post?action=editPost&id=<%=post.getPostId() %>'>編輯文章</a>
         <hr>
         <br/>
 		</div>
