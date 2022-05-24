@@ -22,7 +22,7 @@ import javax.sql.DataSource;
  * Servlet implementation class ProductImageServlet
  */
 @MultipartConfig
-@WebServlet("/")
+@WebServlet("/ProductImage")
 public class ProductImageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	DataSource ds =null;
@@ -50,7 +50,7 @@ public class ProductImageServlet extends HttpServlet {
 		String imageFileName=file.getSubmittedFileName();  // get selected image file name
 		System.out.println("Selected Image File Name : "+imageFileName);
 		
-		String uploadPath="/vegetarian/src/main/webapp/images/GoodsPhoto/"+imageFileName;  // upload path where we have to upload our actual image
+		String uploadPath="/Users/dean/Documents/GitHub/vegetarian/src/main/webapp/images/GoodsPhoto/"+imageFileName;  // upload path where we have to upload our actual image
 		System.out.println("Upload Path : "+uploadPath);
 		
 		// Uploading our selected image into the images folder
