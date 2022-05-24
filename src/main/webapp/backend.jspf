@@ -418,7 +418,7 @@
 																.open(
 																		"addToProduct.jspf",
 																		"Sample",
-																		"fullscreen=no,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no, copyhistory=no,width=600,height=700,left=200,top=300");
+																		"fullscreen=no,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no, copyhistory=no,width=600,height=650,left=200,top=300");
 
 													}
 												</script>
@@ -450,8 +450,7 @@
 																alt="Card image cap"></td>
 															<td><button type="button" id="update"
 																	class="btn btn-success">編輯</button></td>
-															<td><button type="button" id="remove"
-																	class="btn btn-danger">刪除</button></td>
+															<td><a class="btn btn btn-danger" href="ShoppingCartServlet?action1=delete-product&id=${cart.id}">移除</a></td>
 														</tr>
 													</c:forEach>
 												</tbody>

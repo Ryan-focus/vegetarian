@@ -158,7 +158,7 @@ public class ProductDao {
 	   // 删除商品
 	    public void delProducts(int id) {
 	    	try {
-	            query = "delete from product where id=?";
+	            query = "delete from products where id=?";
 	            pst = this.conn.prepareStatement(query);
 	            pst.setInt(1, id);
 	            pst.execute();

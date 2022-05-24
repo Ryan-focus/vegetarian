@@ -155,7 +155,7 @@ public class ShoppingCartServlet extends HttpServlet {
 				productDao.delProducts(Integer.parseInt(id));
 				
 			}
-			response.sendRedirect("/vegetarian/order");
+			response.sendRedirect("/vegetarian/backend.jspf");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
