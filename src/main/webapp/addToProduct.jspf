@@ -8,14 +8,18 @@
 </head>
 <body>
 	<form action="ProductImage" method="post" enctype="multipart/form-data">
+		商品名：<input type="text" name="name" autofocus placeholder="XXX小館" autocomplete="off" size="31"/> <br>
+		種類：<input type="text" name="category" autofocus placeholder="蛋奶素" autocomplete="off" size="31"/> <br>
+		種類：<input type="text" name="price" autofocus placeholder="100" autocomplete="off" size="31"/> <br>
 
 		<input type="file" name="image" onchange="readURL(this)" targetID="preview_progressbarTW_img" accept="image/gif, image/jpeg, image/png" /> 
 		<br>
 		<img id="preview_progressbarTW_img" src="#" width="200px" height="200px"/>
 		<br>
+		
 		 <input type="submit" value="Add Image">
-
 	</form>
+
 
 	<!-- JavaScript part -->
 
