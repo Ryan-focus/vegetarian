@@ -61,9 +61,11 @@
         </div>
         <a href="./post?action=showPost&id=<%=post.getPostId() %>"> 繼續閱讀</a>
         <hr>
+        <%if(user.getUid()>0) {%>
         <a href='./post?action=deletePost&id=<%=post.getPostId() %>'>刪除文章</a>
         <a href='./post?action=editPost&id=<%=post.getPostId() %>'>編輯文章</a>
         <hr>
+        <% }%>
         <br/>
 		</div>
 		<% }%>
