@@ -46,6 +46,8 @@
 			<attribute name="m2e-apt" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/ryant/Documents/GitHub/vegetarian/src/main/webapp/WEB-INF/lib/gson-2.8.5.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/gson-2.8.5.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/mssql-jdbc-9.4.0.jre16.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

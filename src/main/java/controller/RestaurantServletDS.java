@@ -41,13 +41,15 @@ public class RestaurantServletDS extends HttpServlet {
 				restaurantQueryAll(req, res, restaurantDAO);
 			}
 			if (req.getParameter("查詢餐廳") != null) {
-				findRestaurantBackground(req, res, restaurantDAO);
+				findRestaurantByNumber(req, res, restaurantDAO);
+				System.out.println("查詢餐廳");
 			}
 			if (req.getParameter("查詢餐廳GO") != null) {
 				restaurantQuery(req, res, restaurantDAO);
 			}
 			if (req.getParameter("新增餐廳") != null) {
 				processCreate(req, res, restaurantDAO);
+				System.out.println("新增餐廳");
 			}
 		
 			if (req.getParameter("刪除餐廳") != null) {
@@ -172,15 +174,19 @@ public class RestaurantServletDS extends HttpServlet {
 	
 	
 	// 查詢餐廳 by number
-	private void findRestaurantBackground(HttpServletRequest req, HttpServletResponse res, RestaurantDAO restaurantDAO)
+	private void findRestaurantByNumber(HttpServletRequest req, HttpServletResponse res, RestaurantDAO restaurantDAO)
 			throws SQLException, IOException {
-		// 讀取部門代號
+		// 讀取餐廳編號
 		String restaurantNumber = req.getParameter("restaurantNumber");
+		
+		System.out.println("到了findRestaurantByNumber");
+		System.out.println(restaurantNumber);
 		
 		// 透過DAO元件Access Dept Table
 		Restaurant restaurant = restaurantDAO.findRestaurantByNumber(Integer.parseInt(restaurantNumber));
 		if (restaurant == null)
 			try {
+				System.out.println("空");
 				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/errorPage/showError.jsp");
 				dispatcher.forward(req, res);
 			} catch (ServletException | IOException e) {
@@ -188,9 +194,10 @@ public class RestaurantServletDS extends HttpServlet {
 			}
 		else
 			try {
-				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/restaurantBackground/restaurantFormBackground.jsp");
-				//RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/restaurantForm.jsp");
+				req.setAttribute("restaurant", restaurant);
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/checkForm.jsp");
 				dispatcher.forward(req, res);
+				System.out.println("轉到checkForm");
 			} catch (ServletException | IOException e) {
 				e.printStackTrace();
 			}
@@ -216,7 +223,7 @@ public class RestaurantServletDS extends HttpServlet {
 		if (insertBoolean) {
 			try {
 				req.setAttribute("restaurant", restaurant);
-				RequestDispatcher dispatcher = req.getRequestDispatcher("/createRestaurant.jsp");
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/backend.jspf");
 				dispatcher.forward(req, res);
 			} catch (ServletException | IOException e) {
 				e.printStackTrace();
@@ -236,7 +243,7 @@ public class RestaurantServletDS extends HttpServlet {
 		Boolean booleanDelete = restaurantDAO.deleteRestaurantByNumber(Integer.parseInt(restaurantNumber));
 		if (booleanDelete)
 			try {
-				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/restaurantBackground/restaurantFormBackground.jsp");
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/backend.jspf");
 				//RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/restaurantForm.jsp");
 				dispatcher.forward(req, res);
 			} catch (ServletException | IOException e) {
@@ -276,7 +283,7 @@ public class RestaurantServletDS extends HttpServlet {
 			restaurant.setRestaurantScore(restaurantScore);
 			if (restaurantDAO.updateRestaurant(restaurant))
 				try {
-					RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/restaurantBackground/restaurantFormBackground.jsp");
+					RequestDispatcher dispatcher = req.getRequestDispatcher("/updateRestaurant.jsp");
 					//RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/restaurantForm.jsp");
 					dispatcher.forward(req, res);
 				} catch (ServletException | IOException e) {

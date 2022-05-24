@@ -3,7 +3,7 @@
 <html lang="zh-TW">
 <head>
 <meta charset="utf-8">
-<title>愛蔬網後台管理系統-新增餐廳</title>
+<title>愛蔬網後台管理系統-修改餐廳</title>
 <style>
     h1{
         text-align: center;
@@ -28,7 +28,7 @@
 </style>
 </head>
 <body>
- <h1>後台新增餐廳</h1>
+ <h1>確認修改資料</h1>
     <FORM ACTION="./RestaurantServletDS" method="get">
     <fieldset>
 	    <div>
@@ -78,7 +78,7 @@
             <input type="radio" name="restaurantType" value="蛋素" id="">蛋素
         </label>
         <label>
-            <input type="radio" name="restaurantType" value="五辛素" id="">五辛素
+            <input type="radio" name="restaurantType" value="五辛" id="">五辛素
         </label>
     </div>
 
@@ -90,8 +90,9 @@
 	</fieldset>
     <br> 
     <div class="button">
-	        <input name ="新增餐廳" type="submit" value="確認新增" onclick="location.reload()">
+	        <input name ="修改餐廳" type="submit" value="確認修改" onclick="location.reload()">
 	        <input name ="reset" type="reset" value="清除輸入">
+	        <input type ="button" onclick="history.back()" value="回到上一頁"></input>
    	 </div>
     </FORM>
 </body>
