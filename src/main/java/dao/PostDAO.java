@@ -1,4 +1,5 @@
 package dao;
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.Date;
@@ -28,7 +29,29 @@ public class PostDAO implements Serializable{
 	
 	LocalDateTime dt = LocalDateTime.now(); // 目前時間&日期
 	
-	 
+	
+	//新增文章圖片測試
+    public boolean addPostImage(String title,String posted_text, String Imgurl) throws IOException {
+        String sql = "insert into poststest(title,posted_date,posted_text,posted_Imgurl) values(?,?,?,?)";
+ 
+        try {
+        	
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, title);
+            pst.setObject(2, dt);
+            pst.setObject(3, posted_text);
+            pst.setString(4, Imgurl);
+          
+          System.out.println(title);
+ 
+            int count = pst.executeUpdate();
+            pst.close();
+            if (count >= 1) return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    } 
 
 	//新增文章
     public boolean addPost(String title,String posted_text) {
