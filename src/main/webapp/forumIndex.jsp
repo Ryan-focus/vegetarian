@@ -1,10 +1,18 @@
 <%@ page import="bean.ForumBean" %>
 <%@ page import="java.sql.*" %>
 
+<%@page import="java.util.*"%>
+<%@page import="dao.ProductDao"%>
+<%@page import="javax.naming.InitialContext"%>
+<%@page import="javax.naming.NamingException"%>
+<%@page import="javax.sql.DataSource"%>
+<%@page import="java.sql.*"%>
+<%@page import="bean.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+<%User userForum = (User)request.getSession().getAttribute("user");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,6 +41,7 @@
 </style>
 </head>
 <body>
+
 <form action="./ForumServlet" method=Post>
 
 	<sql:setDataSource var="myDS" driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
