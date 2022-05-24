@@ -97,7 +97,8 @@ public class ForumServlet extends HttpServlet {
 			// 建立Database Access Object,負責Table的Access
 			forumDAO = new ForumDAO(conn); // STUDENTDAO見一個建構子傳回
 			String id = request.getParameter("vgeid");//取得id
-			ForumBean forumBean = forumDAO.queryForum(id);
+			String name =request.getParameter("vgename");
+			ForumBean forumBean = forumDAO.queryForum(name);
 			if(forumBean ==null) {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/forum/ErrorQuery.jsp");
 				dispatcher .forward(request, response);
