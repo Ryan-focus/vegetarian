@@ -418,7 +418,7 @@
 																.open(
 																		"addToProduct.jspf",
 																		"Sample",
-																		"fullscreen=no,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no, copyhistory=no,width=600,height=600,left=200,top=300");
+																		"fullscreen=no,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no, copyhistory=no,width=600,height=700,left=200,top=300");
 
 													}
 												</script>
