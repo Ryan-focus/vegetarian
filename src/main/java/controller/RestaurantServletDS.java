@@ -195,7 +195,7 @@ public class RestaurantServletDS extends HttpServlet {
 		else
 			try {
 				req.setAttribute("restaurant", restaurant);
-				RequestDispatcher dispatcher = req.getRequestDispatcher("/checkForm.jsp");
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/checkForm.jspf");
 				dispatcher.forward(req, res);
 				System.out.println("轉到checkForm");
 			} catch (ServletException | IOException e) {
