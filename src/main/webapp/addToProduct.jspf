@@ -5,38 +5,44 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<title>新增商品</title>
+<%@include file="/WEB-INF/jsp/shoppingcart/bootstrap.jsp"%>
 </head>
-<body>
-	<form action="ProductImage" method="post" enctype="multipart/form-data" >
-		商品名：<input type="text" name="name" autofocus placeholder="XXX小館" autocomplete="off" /> <br>
-		種類：<input type="text" name="category" autofocus placeholder="蛋奶素" autocomplete="off" /> <br>
-		價格：<input type="text" name="price" autofocus placeholder="100" autocomplete="off" /> <br>
-
-		<input type="file" name="image" onchange="readURL(this)" targetID="preview_progressbarTW_img" accept="image/gif, image/jpeg, image/png" /> 
-		<br>
-		<img id="preview_progressbarTW_img" src="#" width="200px" height="200px"/>
-		<br>
+<body >
+<br>
+<div class="container">
+	<form action="ProductImage" method="post" enctype="multipart/form-data">
+		<div class="form-group">
+			<label for="exampleInputEmail1">商品名：</label> <input type="text"
+				class="form-control" id="formGroupExampleInput" name="name"
+				autofocus placeholder="素Ｘ" autocomplete="off" />
+		</div>
+		<div class="form-group">
+			<label for="exampleInputEmail1">種類：</label> <input type="text"
+				class="form-control" id="formGroupExampleInput" name="category"
+				autofocus placeholder="蛋奶素" autocomplete="off" />
+		</div>
+		<div class="form-group">
+			<label for="exampleInputEmail1">價格：</label> <input type="text"
+				class="form-control" id="formGroupExampleInput" name="price"
+				autofocus placeholder="100" autocomplete="off" />
+		</div>
+		<div class="form-group">
+		<label for="exampleFormControlFile1">請選擇想上傳的圖片</label>
 		
-		 <input type="submit" value="新增商品">
+			<input type="file" class="form-control-file"
+				id="exampleFormControlFile1" name="image" onchange="readURL(this)"
+				targetID="preview_progressbarTW_img"
+				accept="image/gif, image/jpeg, image/png" /> <img
+				id="preview_progressbarTW_img" src="#" width="200px" height="200px" />
+		</div>
+		<button type="submit" class="btn btn-success">新增商品</button>
 	</form>
-	
-	<a href="#"  onclick="opener.window.location.reload();self.close();return false;">返回後台</a>
- <!-- <button onclick="unLoad()">返回後台</button> 
-  
-    
-  
-        <script> 
-        function unLoad()
-        {
-            window.opener.location.href = window.opener.location.href;
-            wi
-        }
-        </script>  -->
+	<br>
+	<a href="#" class="btn btn-warning" role="button" aria-pressed="true"
+		onclick="opener.window.location.reload();self.close();return false;">返回後台</a>
 
-	<!-- JavaScript part -->
-
+</div>
 	<script>
 		function readURL(input) {
 
