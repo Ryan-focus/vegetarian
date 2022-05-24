@@ -42,7 +42,9 @@
 	<div class="posts">
 	<h3 style="text-align:center ;">文章列表</h3>
 	<!-- Filter無法套用在使用javascript寫建立window.location的方法. -->
+	<%if(user.getUid()>0) {%>
 	<input type="button" onclick="window.location.href='/vegetarian/createpost';" value="發表文章" />
+	<% }%>
 	<hr>
 	
 		<%
