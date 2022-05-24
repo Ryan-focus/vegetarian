@@ -283,7 +283,7 @@ public class ForumServlet extends HttpServlet {
 	}
 	public void prcoessHome(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/queryforumIndex.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryForum.jsp");
 		dispatcher .forward(request, response);
 	}		
 	

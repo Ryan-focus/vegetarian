@@ -207,12 +207,12 @@
   </servlet-mapping>
   
   <servlet>
-   <servlet-name>queryforumIndex</servlet-name>
-   <jsp-file>/queryforumIndex.jsp</jsp-file>
+   <servlet-name>QueryForum</servlet-name>
+   <jsp-file>/WEB-INF/jsp/forum/QueryForum.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
-   <servlet-name>queryforumIndex</servlet-name>
-   <url-pattern>/queryforumIndex</url-pattern>
+   <servlet-name>QueryForum</servlet-name>
+   <url-pattern>/QueryForum</url-pattern>
   </servlet-mapping>
   
   <servlet>
