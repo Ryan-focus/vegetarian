@@ -464,8 +464,12 @@
 							</div>
 						</div>
 					</div>
+<<<<<<< Updated upstream
 					<!--  歷史訂單頁面   -->
 					<%-- 尚未完善功能 暫註解
+=======
+				<!--  歷史訂單頁面   -->
+>>>>>>> Stashed changes
 					<div  id="tab-order" class="whitearea col-lg-12 table" >
 						<!-- 配備管理開始 -->
 						<ul  class="nav nav-tabs">
@@ -484,7 +488,7 @@
 										<div class="col-md-12">
 										
 										<sql:query var="listOrder" dataSource="${myDS}">
-							        	SELECT * FROM reservation;
+							        	SELECT * FROM reserve;
 							    		</sql:query>
 										<button type="button" class="btn btn-warning">
 										新增
@@ -497,8 +501,11 @@
 										 <thead class="table-light">
 										<tr>
 											<th>訂單編號</th>
-											<th>訂單日期</th>
+											<th>預訂時間</th>
 											<th>預訂人數</th>
+											<th>訂單時間</th>
+											<th>餐廳編號</th>
+											<th>使用者編號</th>
 										</tr>
 										</thead>
 										<tbody>
@@ -507,8 +514,9 @@
 											<td><c:out value="${order.reservationId}" /></td>
 											<td><c:out value="${order.reservationDate}" /></td>
 											<td><c:out value="${order.reservationCount}" /></td>
-											<td><button type="button" id="update" class="btn btn-success">編輯</button></td>
-											<td><button type="button" id="remove" class="btn btn-danger">刪除</button></td>
+											<td><c:out value="${order.orderDate}" /></td>
+											<td><c:out value="${order.restaurantNumber}" /></td>
+											<td><c:if test="${order.uid >0}"><c:out value="${order.uid}" /></c:if></td>
 											</tr>
 										</c:forEach>
 										</tbody>
@@ -519,7 +527,6 @@
 							</div>
 						</div>
 					</div> 
-					--%>
 				</div>
 			</div>
 		</div>
@@ -541,6 +548,7 @@
 					return result;
 				};
 			}
+<<<<<<< Updated upstream
 			var onload = init(function() {
 				$("#tab-user").css("display", "none");
 				$("#tab-business").css("display", "none");
@@ -593,6 +601,59 @@
 					 */
 					}
 				})
+=======
+		return result;
+		};
+	}
+var onload = init(function(){
+$("#tab-user").css("display","none");
+$("#tab-business").css("display","none");
+$("#tab-restaurant").css("display","none");
+$("#tab-forum").css("display","none");
+$("#tab-foodnote").css("display","none");
+$("#tab-shoppingcart").css("display","none");
+$("#tab-order").css("display","none");
+});
+onload();
+}
+</script>
+<!-- Selector的語法 -->
+<script>
+$(document).ready(function(){
+//function包在 ready裡面 ，確保function執行時會是加載完畢後才執行
+	var els = document.getElementsByClassName("sub-menu");
+	for (var i = 0; i < els.length; i++) {
+		els[i].addEventListener('click', function(e) {
+			$("#tab-user").css("display","none");
+			$("#tab-business").css("display","none");
+			$("#tab-restaurant").css("display","none");
+			$("#tab-forum").css("display","none");
+			$("#tab-foodnote").css("display","none");
+			$("#tab-shoppingcart").css("display","none");
+			$("#tab-order").css("display","none");
+			switch (this.id) {
+			  case 'ma_user':
+				$("#tab-user").css("display","block");
+			    break;
+			  case 'ma_shop':
+				$("#tab-business").css("display","block");
+			    break;
+			  case 'ma_food':
+				$("#tab-restaurant").css("display","block");
+			    break;
+			  case 'ma_chat':
+				$("#tab-forum").css("display","block");
+			    break;
+			  case 'ma_note':
+				$("#tab-foodnote").css("display","block");
+			    break;
+			  case 'ma_cart':
+				$("#tab-shoppingcart").css("display","block");
+			    break;
+			  case 'ma_order':
+				$("#tab-order").css("display","block");
+			    break;
+>>>>>>> Stashed changes
 			}
 
 		});

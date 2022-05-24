@@ -77,10 +77,10 @@ public class PostCUServlet extends HttpServlet {
 	private void Create(HttpServletRequest request, HttpServletResponse response, PostDAO postDAO)
 			throws SQLException, IOException, ServletException {
 
-		Post post = new Post();
+		//Post post = new Post();
 		String title = request.getParameter("title");
 		String posted_text = request.getParameter("postedText");
-		Date time = post.getPostedDate();
+
 
 		if (postDAO.addPost(title, posted_text)) {
 			request.setAttribute("message", "發表成功");
