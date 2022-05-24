@@ -8,6 +8,7 @@ public class ForumBean implements Serializable {
 	private String vgename;
 	private String vgetheme;
 	private String vgecontent;
+	private int uid;
 
 	public ForumBean(){
 	}
@@ -51,6 +52,13 @@ public class ForumBean implements Serializable {
 
 	public void setVgecontent(String vgecontent) {
 		this.vgecontent = vgecontent;
+	}
+	public int getUid() {
+		return uid;
+	}
+
+	public void setUid(int uid) {
+		this.uid = uid;
 	}
 	
 }

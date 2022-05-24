@@ -12,10 +12,10 @@
     <h1><%= request.getAttribute("restauranName")%></h1>
 	    <FORM ACTION="./reserve" method="post">
 		    <p>日期</p>
-		    <input type="date" id="date" name="orderdate"/>
+		    <input type="date" id="date" required="required" name="orderdate"/>
 		    <p>人數</p>
 		    <select id="memberCount" name="memberCount"
-		    	tabindex="1" data-placeholder="選擇人數">
+		    	tabindex="1" data-placeholder="選擇人數" required>
 			    <option value="" disabled>請選擇人數</option>
 			      <%for(int i=1 ; i <= 6 ; i++) {%>
 			    <option value="<%=i%>"><%= i%></option>

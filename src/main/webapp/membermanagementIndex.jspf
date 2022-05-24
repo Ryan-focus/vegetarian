@@ -6,12 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Member Management</title>
 
-<link href="membercss/metro/crimson/jtable.css" rel="stylesheet" type="text/css" />
-<link href="membercss/jquery-ui-1.10.3.custom.css" rel="stylesheet" type="text/css" />
+<link href="css/membercss/metro/crimson/jtable.css" rel="stylesheet" type="text/css" />
+<link href="css/membercss/jquery-ui-1.10.3.custom.css" rel="stylesheet" type="text/css" />
 
-<script src="memberjs/jquery-1.8.2.js" type="text/javascript"></script> 
-<script src="memberjs/jquery-ui-1.10.3.custom.js" type="text/javascript"></script>
-<script src="memberjs/jquery.jtable.js" type="text/javascript"></script>
+<script src="js/memberjs/jquery-1.8.2.js" type="text/javascript"></script> 
+<script src="js/memberjs/jquery-ui-1.10.3.custom.js" type="text/javascript"></script>
+<script src="js/memberjs/jquery.jtable.js" type="text/javascript"></script>
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -74,7 +74,7 @@
 </script>
 </head>
 <body>
-<div style="width:60%;margin-right:20%;margin-left:20%;text-align:center;">
+<div style="width:98%;margin-right:1%;margin-left:1%;text-align:center;">
 <h1>愛蔬網會員資料</h1>
 <div id="UserTable"></div>
 </div>

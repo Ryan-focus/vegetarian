@@ -1,39 +1,44 @@
-<%@ page pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@ page import="bean.Restaurant"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="zh-TW">
-<head>
-<meta charset="utf-8">
-<title>愛蔬網後台管理系統-新增餐廳</title>
-<style>
-    h1{
-        text-align: center;
-    }
-    body{
-        background-color: lightblue;
-    }
-    div{
-    	text-align: left;
-        margin-left: 10px;
-    }
-    fieldset{
-    width:30%;
-    border: 2px solid black;
-    border-radius: 10px;
-    margin: 20px auto;
-    }
-    .button{
-        text-align: center;
-    }
-   
-</style>
-</head>
+	<head>
+	<meta charset="utf-8">
+	<title>愛蔬網後台管理系統 - 新增餐廳資料</title>
+	
+	</head>
+	<style>
+	    h1{
+	        text-align: center;
+	    }
+	    body{
+	        background-color: lightblue;
+	    }
+	    div{
+	    	text-align: left;
+	        margin-left: 10px;
+	    }
+	    fieldset{
+	    width:30%;
+	    border: 2px solid black;
+	    border-radius: 10px;
+	    margin: 20px auto;
+	    }
+	    .button{
+	        text-align: center;
+	    }
+	   
+	</style>
 <body>
  <h1>後台新增餐廳</h1>
     <FORM ACTION="./RestaurantServletDS" method="get">
     <fieldset>
-	    <div>
-	        <label> 餐廳編號：</label><input type="text" name="restaurantNumber" autofocus placeholder="11後" size="31">  
-	    </div>
+<!-- 	    <div> -->
+<!-- 	        <input type="hidden" name="restaurantNumber" readonly="readonly" placeholder="11後" size="31">   -->
+<!-- 	    </div> -->
 	
 	    <div>
 	        <label> 餐廳名稱：</label><input type="text" name="restaurantName" autofocus placeholder="請輸入" size="31">
@@ -90,9 +95,7 @@
 	</fieldset>
     <br> 
     <div class="button">
-	    <% System.out.println("1"); %>
-	        <input name ="新增餐廳" type="submit" value="確認新增" onsubmit="javascript:location.href='index.jsp'">
-	    <% System.out.println("2"); %>
+	        <input name ="新增餐廳" type="submit" value="確認新增" onclick="location.reload()">
 	        <input name ="reset" type="reset" value="清除輸入">
    	 </div>
     </FORM>

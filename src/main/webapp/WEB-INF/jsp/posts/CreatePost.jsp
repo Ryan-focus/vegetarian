@@ -64,7 +64,7 @@ body, html {
 			<hr>
 		</div>
 
-		<form action="./PostServlet" method="get">
+		<form action="./PostNew" method="post">
 			<h5 class="text">文章標題:</h5>
 			<textarea class="text_title" name="title" rows="1" maxlength="100"
 				required></textarea>

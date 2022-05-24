@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import bean.ForumBean;
+import bean.User;
 import dao.ForumDAO;
 
 @WebServlet(name="ForumServlet" , urlPatterns="/ForumServlet")
@@ -282,9 +284,21 @@ public class ForumServlet extends HttpServlet {
 	}
 	public void prcoessHome(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/queryforumIndex.jsp");
-		dispatcher .forward(request, response);
-	}		
-	
 
+		User userForum = (User) request.getSession().getAttribute("user");
+		try (PrintWriter out = response.getWriter()){
+		if(userForum==null) {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryForum.jsp");
+			dispatcher .forward(request, response);
+
+		}else {
+			if(userForum.getUid()==0) 
+				response.sendRedirect("/vegetarian/Login");
+				request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryForum.jsp").forward(request,response);
+			
+		}		
+	}catch (Exception e) {
+	}
+	}
 }
