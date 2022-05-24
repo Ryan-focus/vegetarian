@@ -23,8 +23,11 @@
 </head>
 <body>
 	<!-- 開啟DataSource -->
-	<sql:setDataSource var="myDS" driver="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://localhost:3306/veganDB" user="test" password="test" />
+	<sql:setDataSource var="myDS"
+	driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+	url="jdbc:sqlserver://localhost:1433;databaseName=veganDB"
+	user="sa" 
+	password="passw0rd" />
 	<section id="container">
 		<!-- **********************************************************************************************************************************************************
       TOP BAR CONTENT & NOTIFICATIONS
