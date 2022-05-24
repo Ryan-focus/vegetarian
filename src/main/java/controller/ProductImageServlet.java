@@ -3,6 +3,7 @@ package controller;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -42,6 +43,7 @@ public class ProductImageServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter printWriter = response.getWriter();
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		System.out.println("In do post method of Add Image servlet.");
@@ -96,14 +98,22 @@ public class ProductImageServlet extends HttpServlet {
 			
 			if(row>0)
 			{
-				System.out.println("成功新增商品");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/backend.jspf");
-				dispatcher.forward(request, response);
+				 printWriter.flush();
+		           printWriter.println("<script>");
+		           printWriter.println("alert('success');");
+		           printWriter.println("window.location.href='backend.jspf';");
+		           printWriter.println("</script>");
+		           printWriter.close();
 			}
 			
 			else
 			{
-				System.out.println("新增失敗");
+				 printWriter.flush();
+		           printWriter.println("<script>");
+		           printWriter.println("alert('failed');");
+		           printWriter.println("window.location.href='backend.jspf';");
+		           printWriter.println("</script>");
+		           printWriter.close();
 			}
 			
 			
