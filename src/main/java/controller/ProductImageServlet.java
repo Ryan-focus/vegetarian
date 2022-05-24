@@ -19,7 +19,7 @@ import javax.servlet.http.Part;
  * Servlet implementation class ProductImageServlet
  */
 @MultipartConfig
-@WebServlet("/ProductImage")
+@WebServlet("/")
 public class ProductImageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -80,19 +80,25 @@ public class ProductImageServlet extends HttpServlet {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/veganDB","test","test");
 			PreparedStatement stmt;
-			String query="insert into products(image) values(?)";
+			String name = request.getParameter("name");
+			String category = request.getParameter("category");
+			double price = Double.parseDouble(request.getParameter("price"));
+			String query="insert into products(name,category,price,image) values(?,?,?,?)";
 			stmt=connection.prepareStatement(query);
-			stmt.setString(1,imageFileName);
+			stmt.setString(1,name);
+			stmt.setString(2,category);
+			stmt.setDouble(3,price);
+			stmt.setString(4,imageFileName);
 			int row=stmt.executeUpdate(); // it returns no of rows affected.
 			
 			if(row>0)
 			{
-				System.out.println("Image added into database successfully.");
+				System.out.println("成功新增商品");
 			}
 			
 			else
 			{
-				System.out.println("Failed to upload image.");
+				System.out.println("新增失敗");
 			}
 			
 			
