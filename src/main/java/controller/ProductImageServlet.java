@@ -94,6 +94,7 @@ public class ProductImageServlet extends HttpServlet {
 			if(row>0)
 			{
 				System.out.println("成功新增商品");
+				
 			}
 			
 			else
