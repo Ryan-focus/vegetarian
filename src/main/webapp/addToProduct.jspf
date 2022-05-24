@@ -1,25 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
-	<form action="ProductImage" method="post" enctype="multipart/form-data">
+	<form action="ProductImage" method="post" enctype="multipart/form-data" >
 		商品名：<input type="text" name="name" autofocus placeholder="XXX小館" autocomplete="off" /> <br>
 		種類：<input type="text" name="category" autofocus placeholder="蛋奶素" autocomplete="off" /> <br>
-		種類：<input type="text" name="price" autofocus placeholder="100" autocomplete="off" /> <br>
+		價格：<input type="text" name="price" autofocus placeholder="100" autocomplete="off" /> <br>
 
 		<input type="file" name="image" onchange="readURL(this)" targetID="preview_progressbarTW_img" accept="image/gif, image/jpeg, image/png" /> 
 		<br>
 		<img id="preview_progressbarTW_img" src="#" width="200px" height="200px"/>
 		<br>
 		
-		 <input type="submit" value="Add Image">
+		 <input type="submit" value="新增商品">
 	</form>
-
+	
+	<a href="#"  onclick="opener.window.location.reload();self.close();return false;">返回後台</a>
+ <!-- <button onclick="unLoad()">返回後台</button> 
+  
+    
+  
+        <script> 
+        function unLoad()
+        {
+            window.opener.location.href = window.opener.location.href;
+            wi
+        }
+        </script>  -->
 
 	<!-- JavaScript part -->
 
@@ -46,8 +60,6 @@
 
 		}
 	</script>
-
-
 
 </body>
 </html>

@@ -101,7 +101,7 @@ public class ProductImageServlet extends HttpServlet {
 				 printWriter.flush();
 		           printWriter.println("<script>");
 		           printWriter.println("alert('success');");
-		           printWriter.println("window.location.href='backend.jspf';");
+		           printWriter.println("window.location.href='addToProduct.jspf';");
 		           printWriter.println("</script>");
 		           printWriter.close();
 			}
@@ -111,7 +111,7 @@ public class ProductImageServlet extends HttpServlet {
 				 printWriter.flush();
 		           printWriter.println("<script>");
 		           printWriter.println("alert('failed');");
-		           printWriter.println("window.location.href='backend.jspf';");
+		           printWriter.println("window.location.href='addToProduct.jspf';");
 		           printWriter.println("</script>");
 		           printWriter.close();
 			}
