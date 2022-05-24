@@ -135,16 +135,15 @@ public class RestaurantDAO {
 
 	// 新增餐廳-後台
 	public boolean createRestaurant(Restaurant restaurant) {
-		String sqlString = "Insert into restaurant values(?,?,?,?,?,?,?,?)";
+		String sqlString = "Insert into restaurant values(?,?,?,?,?,?,?)";
 		try (PreparedStatement pstmt = conn.prepareStatement(sqlString);) {
-			pstmt.setInt(1, restaurant.getRestaurantNumber());
-			pstmt.setString(2, restaurant.getRestaurantName());
-			pstmt.setString(3, restaurant.getRestaurantTel());
-			pstmt.setString(4, restaurant.getRestaurantAddress());
-			pstmt.setString(5, restaurant.getRestaurantCategory());
-			pstmt.setString(6, restaurant.getRestaurantType());
-			pstmt.setString(7, restaurant.getRestaurantBusinessHours());
-			pstmt.setString(8, restaurant.getRestaurantScore());
+			pstmt.setString(1, restaurant.getRestaurantName());
+			pstmt.setString(2, restaurant.getRestaurantTel());
+			pstmt.setString(3, restaurant.getRestaurantAddress());
+			pstmt.setString(4, restaurant.getRestaurantCategory());
+			pstmt.setString(5, restaurant.getRestaurantType());
+			pstmt.setString(6, restaurant.getRestaurantBusinessHours());
+			pstmt.setString(7, restaurant.getRestaurantScore());
 
 			int updatecount = pstmt.executeUpdate();
 			if (updatecount > 0)

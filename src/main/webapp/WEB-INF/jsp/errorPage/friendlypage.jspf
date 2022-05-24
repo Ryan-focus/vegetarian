@@ -7,13 +7,15 @@
 <title>Error Page</title>
 <style>
  div{
-            text-align: center;
-        }
+ 	text-align: center;
+	}
+body{
+	text-align: center;
+}
 </style>
 </head>
 <body>
-<BODY BGCOLOR='#FDF5E6'>
-內容有誤，請重新操作
+	<img src="images/errorpages/error404.png" alt="Qu" width="80%" />
 <div><input name='回到上一頁' type ='button' onclick='history.back()' value='回到上一頁'></input></div>
 </body>
 </html>

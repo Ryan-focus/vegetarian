@@ -28,7 +28,9 @@
 
     <thead>
         <tr>
+        	<tr style="display: none;">
             <th>餐廳編號</th>
+            </tr>
             <th>餐廳名稱</th>
             <th>餐廳電話</th>
             <th>餐廳地址</th>
@@ -45,7 +47,9 @@
 
         <% for (Restaurant restaurant : restaurantList) {%>
         <tr>
+        	<tr style="display: none;">
             <td><%= restaurant.getRestaurantNumber() %></td>
+            </tr>
             <td><%= restaurant.getRestaurantName()%></td>
             <td><%= restaurant.getRestaurantTel() %></td>
             <td><%= restaurant.getRestaurantAddress() %></td>

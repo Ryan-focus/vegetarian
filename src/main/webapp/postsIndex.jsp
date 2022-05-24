@@ -42,7 +42,9 @@
 	<div class="posts">
 	<h3 style="text-align:center ;">文章列表</h3>
 	<!-- Filter無法套用在使用javascript寫建立window.location的方法. -->
+	<%if(user.getUid()>0) {%>
 	<input type="button" onclick="window.location.href='/vegetarian/createpost';" value="發表文章" />
+	<% }%>
 	<hr>
 	
 		<%
@@ -61,9 +63,11 @@
         </div>
         <a href="./post?action=showPost&id=<%=post.getPostId() %>"> 繼續閱讀</a>
         <hr>
+        <%if(user.getUid()>0) {%>
         <a href='./post?action=deletePost&id=<%=post.getPostId() %>'>刪除文章</a>
         <a href='./post?action=editPost&id=<%=post.getPostId() %>'>編輯文章</a>
         <hr>
+        <% }%>
         <br/>
 		</div>
 		<% }%>
