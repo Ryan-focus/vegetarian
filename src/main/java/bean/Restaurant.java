@@ -29,6 +29,19 @@ public class Restaurant implements Serializable {
 		this.restaurantScore = restaurantScore;
 	}
 	
+	//新增餐廳的建構子
+	public Restaurant(String restaurantName, String restaurantTel, String restaurantAddress, String restaurantCategory, String restaurantType,
+			String restaurantBusinessHours, String restaurantScore) {
+		super();
+		this.restaurantName = restaurantName;
+		this.restaurantTel = restaurantTel;
+		this.restaurantAddress = restaurantAddress;
+		this.restaurantCategory = restaurantCategory;
+		this.restaurantType = restaurantType;
+		this.restaurantBusinessHours = restaurantBusinessHours;
+		this.restaurantScore = restaurantScore;
+	}
+	
 	//各屬性的get&set
 	
 	public Integer getRestaurantNumber() {

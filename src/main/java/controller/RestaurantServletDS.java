@@ -207,7 +207,7 @@ public class RestaurantServletDS extends HttpServlet {
 	// 新增餐廳-後台
 	private void processCreate(HttpServletRequest req, HttpServletResponse res, RestaurantDAO restaurantDAO)
 			throws SQLException, IOException {
-		String restaurantNumber = req.getParameter("restaurantNumber");
+//		String restaurantNumber = req.getParameter("restaurantNumber");
 		String restaurantName = req.getParameter("restaurantName");
 		String restaurantTel = req.getParameter("restaurantTel");
 		String restaurantAddress = req.getParameter("restaurantAddress");
@@ -217,7 +217,7 @@ public class RestaurantServletDS extends HttpServlet {
 		String restaurantScore = req.getParameter("restaurantScore");
 		
 		
-		Restaurant restaurant =new Restaurant(Integer.valueOf(restaurantNumber), restaurantName, restaurantTel, restaurantAddress, restaurantCategory, restaurantType, restaurantBusinessHours, restaurantScore);
+		Restaurant restaurant =new Restaurant(restaurantName, restaurantTel, restaurantAddress, restaurantCategory, restaurantType, restaurantBusinessHours, restaurantScore);
 
 		Boolean insertBoolean = restaurantDAO.createRestaurant(restaurant);
 		if (insertBoolean) {
