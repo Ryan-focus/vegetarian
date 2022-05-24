@@ -41,7 +41,7 @@ password="passw0rd" />
 					data-original-title="Toggle Navigation"></div>
 			</div> -->
 			<!--logo start-->
-			<a href="index.jsp" class="logo">
+			<a href="backend.jspf" class="logo">
 	      <img data-src="images/backendlogo.png" 
 	      src="images/backendLogo.png" 
 	      alt="logo" title="vegelife" 
