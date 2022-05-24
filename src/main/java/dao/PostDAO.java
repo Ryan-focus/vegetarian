@@ -76,17 +76,17 @@ public class PostDAO implements Serializable{
     
     //刪除文章
     public boolean deletePost(int id) {
-        String sql = "delete from posts where post_id = ?";
+        String sql = "delete from poststest where post_id = ?";
  
         try {
             pst = conn.prepareStatement(sql);
             pst.setInt(1, id);
             int count = 0;
             count = pst.executeUpdate();
-            System.out.println(count);
+            
             pst.close();
            
-            if (count >= 0) return true;
+            if (count > 0) return true;
         } catch (SQLException e) {
             System.out.println(e.getErrorCode() + "刪除失敗");
         }
@@ -94,7 +94,7 @@ public class PostDAO implements Serializable{
     }
     //更新文章
     public boolean updatePost(Post post,String title ,String  posted_text, int id) {
-        String sql = "update posts set title = ?, posted_text = ? where post_id = ?" ;
+        String sql = "update poststest set title = ?, posted_text = ? where post_id = ?" ;
               
         try {
             pst = conn.prepareStatement(sql);
@@ -114,13 +114,14 @@ public class PostDAO implements Serializable{
     
   //搜尋一篇文章
     public Post findPost(int id) {
-        String sql = "select * from posts where post_id = ?" ;
+        String sql = "select * from poststest where post_id = ?" ;
               
         try {
         	 Post post = null;
              String title;
              Date posted_date;
              String posted_text;
+             String imgurl;
              
             pst = conn.prepareStatement(sql);
            
@@ -130,7 +131,8 @@ public class PostDAO implements Serializable{
                 title  =  rs.getString("title");
                 posted_date =rs.getDate("posted_date");
                 posted_text  =  rs.getString("posted_text");
-                post = new Post(id, title, posted_date, posted_text);
+                imgurl  =  rs.getString("posted_Imgurl");
+                post = new Post(id, title, posted_date, posted_text,imgurl);
         		
             }
         	  rs.close();
@@ -147,7 +149,7 @@ public class PostDAO implements Serializable{
 //搜尋全部
     
     public List<Post> findallPost() {
-        String sql = "select * from posts order by post_id desc;" ;
+        String sql = "select * from poststest order by post_id desc;" ;
               
         List<Post> postsList = new ArrayList<Post>();
     
@@ -161,6 +163,7 @@ public class PostDAO implements Serializable{
                  post.setTitle(rs.getString("title"));
                  post.setPostedDate(rs.getDate("posted_date"));
                  post.setPostedText(rs.getString("posted_text"));
+                 post.setImgurl(rs.getString("posted_Imgurl"));
                  postsList.add(post);
                          
             }

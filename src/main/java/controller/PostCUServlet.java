@@ -44,9 +44,10 @@ public class PostCUServlet extends HttpServlet {
 			// 如果要編碼值為UTF-8
 			request.setCharacterEncoding("UTF-8");
 
-			if (request.getParameter("add") != null) {
-				CreatePostImage(request, response, postDAO);
-			}
+//			CreatePostImage(request, response, postDAO);
+//			if (request.getParameter("add") != null) {
+//			}
+//			
 			if (request.getParameter("update") != null) {
 				Update(request, response, postDAO);
 			}
@@ -107,14 +108,12 @@ public class PostCUServlet extends HttpServlet {
 		String title = null;
 		String postedText = null;
 		String headUrl = ""; // 存放路徑
-		String headImgFileName = "images/postsPhoto"; // Web項目中存放圖片的文件夾名。可自定義
+		String headImgFileName = "images/PostsPhoto"; // Web項目中存放圖片的文件夾名。可自定義
 
 		FileItemFactory factory = new DiskFileItemFactory();
 
-		// 创建文件上传处理器
 		ServletFileUpload upload = new ServletFileUpload(factory);
 
-		// 开始解析请求信息
 		List items = null;
 		try {
 			items = upload.parseRequest(request);
@@ -122,12 +121,11 @@ public class PostCUServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		// 对所有请求信息进行判断
 		Iterator iter = items.iterator();
 		while (iter.hasNext()) {
 			FileItem item = (FileItem) iter.next();
-			// 信息为普通的格式
-
+			
+            //非檔案格式
 			if (item.isFormField()) {
 				String fieldName = item.getFieldName();
 				if (fieldName.equals("title")) {
@@ -138,25 +136,25 @@ public class PostCUServlet extends HttpServlet {
 					postedText = item.getString("UTF-8");
 				}
 
-//				System.out.println(fieldName + "=" + title + postedText);
+				System.out.println(fieldName + "=" + title + postedText);
 //                 String value = item.getString();
 //			request.setAttribute(title, title);
 			}
 			// 讀入資料為檔案
 			else {
 				String fileName = item.getName();
-				System.out.println("原文件名" + fileName);
+				System.out.println("原檔名" + fileName);
 				String suffix = fileName.substring(fileName.lastIndexOf('.'));//取得副檔名
-				System.out.println("擴展名：" + suffix);// .jpg
+				System.out.println("副檔名：" + suffix);// .jpg
 				//新文件名稱
 				String newFileName = new Date().getTime() + suffix;
-				System.out.println("新文件名：" + newFileName);// 1478509873038.jpg
+				System.out.println("新檔名：" + newFileName);// 1478509873038.jpg
 
 				
 				ServletContext context = this.getServletContext();
 				// 絕對路徑
 				String serverPath = context.getRealPath("") + headImgFileName;//
-				String savePath ="D:/204webws/Vegan/src/main/webapp/images/postsPhoto";
+				String savePath ="C:/Users/PC/Documents/GitHub/vegetarian/src/main/webapp/"+headImgFileName;
 				System.out.println(serverPath);
 				System.out.println(savePath);
 
@@ -178,11 +176,10 @@ public class PostCUServlet extends HttpServlet {
 		}
 		if (postDao.addPostImage(title, postedText, headUrl)) {
 			System.out.println("上傳成功");
-			// 存儲成功後，把路徑存到session裏面，重定向到提交圖片的界面，進行回顯
 			request.setAttribute("message", "發表成功");
-			request.getRequestDispatcher("showResultForm.jsp").forward(request, response);
+			request.getRequestDispatcher("/showResultForm").forward(request, response);
 		} else {
-			System.out.println("頭像路徑更改失敗");
+			System.out.println("失敗");
 		}
 	}
 
