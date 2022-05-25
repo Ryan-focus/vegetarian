@@ -72,9 +72,23 @@ public class ReserveController extends HttpServlet {
 		Restaurant restaurant = new Restaurant();
 		restaurant = restaurantDAO.findRestaurantByNumber(restaurantNumber);
 		String restaurantName = restaurant.getRestaurantName();
+		String restaurantTel = restaurant.getRestaurantTel();
+		String restaurantAddress = restaurant.getRestaurantAddress();
+		String restaurantCategory = restaurant.getRestaurantCategory();
+		String restaurantType = restaurant.getRestaurantType();
+		String restaurantBusinessHours = restaurant.getRestaurantBusinessHours();
+		String restaurantMap = restaurant.getRestaurantMap();
 		
 		request.setAttribute("restaurantNumber", restaurantNumber);
 		request.setAttribute("restaurantName", restaurantName);
+		request.setAttribute("restaurantTel", restaurantTel);
+		request.setAttribute("restaurantAddress", restaurantAddress);
+		request.setAttribute("restaurantCategory", restaurantCategory);
+		request.setAttribute("restaurantType", restaurantType);
+		request.setAttribute("restaurantBusinessHours", restaurantBusinessHours);
+		request.setAttribute("restaurantMap", restaurantMap);
+		
+		
 		request.getRequestDispatcher("reservationIndex.jsp").forward(request, response);
 	}
 	

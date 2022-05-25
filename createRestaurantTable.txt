@@ -8,15 +8,16 @@ create table restaurant(
 	restaurantCategory nvarchar(20),
 	restaurantType nvarchar(20),
 	restaurantBusinessHours nvarchar(200),
-	restaurantScore nvarchar(10)
+	restaurantScore nvarchar(10),
+	restaurantMap nvarchar(MAX)
 )
 
 
-insert into restaurant (restaurantName,restaurantTel,restaurantAddress,restaurantCategory,restaurantType,restaurantBusinessHours,restaurantScore)
+insert into restaurant (restaurantName,restaurantTel,restaurantAddress,restaurantCategory,restaurantType,restaurantBusinessHours,restaurantScore,restaurantMap)
 values ('中平素食之家','03-4284290','桃園市中壢區新興路210號','中式','全素、奶素、蛋素','週一到週日
 10:30–13:30
 17:00–20:00
-無休息','4.2'),
+無休息','4.2','<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1242.527501787522!2d121.2278604768563!3d24.953244015107508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34682248869c228f%3A0xbc1fab6398edfe3c!2z5Lit5bmz57Sg6aOf5LmL5a62!5e0!3m2!1szh-TW!2stw!4v1653481593368!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'),
 
 
  ('九蓮素食','03-4378230','桃園市中壢區中山東路二段513號','中式','全素','週一到週二
@@ -25,17 +26,20 @@ values ('中平素食之家','03-4284290','桃園市中壢區新興路210號','�
 週三休息
 週四到週日
 11:00–13:30
-16:30–19:30','4.5'),
+16:30–19:30','4.5','<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14469.510350308823!2d121.21983419944556!3d24.953264881470787!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3468226c01198075%3A0xdafb403142e69f4a!2z5Lmd6JOu57Sg6aOf!5e0!3m2!1szh-TW!2stw!4v1653481715662!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+'),
 
 
  ('可米素食餐館','03-4368509','桃園市中壢區中山東路一段311號','中式','全素','週一休息
 週二到週日
-11:00 - 20:00','4.2'),
+11:00 - 20:00','4.2','<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d226.0822417933601!2d121.23578093329161!3d24.95536567173556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3468223f6ecfd22f%3A0xe118ae16a1fb4366!2z5Y-v57Gz57Sg6aOf6aSQ6aSo!5e0!3m2!1szh-TW!2stw!4v1653481740303!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+'),
 
 
  ('靜點咖啡','03-4620060','桃園市中壢區南園二路296巷50號','義式','全素、奶素、蛋素、含五辛','週一、週二休息
 週三到週日
-11:00 - 18:00','4.8'),
+11:00 - 18:00','4.8','<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1075.2847427745273!2d121.2275769670469!3d24.972498547257487!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3468222150c55129%3A0x2a112d00530fc8e4!2z6Z2c6bue5ZKW5ZWhKOiUrOmjn-mkkOW7syk!5e0!3m2!1szh-TW!2stw!4v1653481782642!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+'),
 
 
  ('義式美味素食','03-4553019','桃園市中壢區中華路一段616號','義式','全素','週一
@@ -44,7 +48,8 @@ values ('中平素食之家','03-4284290','桃園市中壢區新興路210號','�
 週三到週五
 06:00 - 13:00
 週六到週日
-06:30 - 13:30','4.4'),
+06:30 - 13:30','4.4','<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3616.8974652177963!2d121.24843495088551!3d24.969602946944665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x140dd585e21a4edf%3A0xc6ea507454885a4!2z576p5byP576O5ZGz57Sg6aOf!5e0!3m2!1szh-TW!2stw!4v1653481802572!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+'),
 
 
  ('得來素蔬食早午餐-中壢福州店','03-4351449','桃園市中壢區福州二街348號','義式','全素','週一
@@ -53,7 +58,8 @@ values ('中平素食之家','03-4284290','桃園市中壢區新興路210號','�
 週三到週五
 06:00 - 13:00
 週六到週日
-06:30 - 13:30','4.4'),
+06:30 - 13:30','4.4','<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d465.36980316010914!2d121.23013203431773!3d24.96703405870808!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3468222530520793%3A0x6aebf3c5dde61ae2!2z5b6X5L6G57Sg6JSs6aOf5pep5Y2I6aSQLeS4reWjouemj-W3nuW6lw!5e0!3m2!1szh-TW!2stw!4v1653481825319!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+'),
 
 
  ('素怡園素食自助餐','03-4562163','桃園市中壢區大仁四街20號1樓','自助餐','全素','週一到週五
@@ -61,22 +67,25 @@ values ('中平素食之家','03-4284290','桃園市中壢區新興路210號','�
 16:30 - 19:30
 週六
 11:00 - 14:00
-週日休息','4.5'),
+週日休息','4.5','<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3617.2986907047452!2d121.2389867508854!3d24.955950347490624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3468221575586b19%3A0x1611f12fa1ec74c2!2z57Sg5oCh5ZyS57Sg6aOf6Ieq5Yqp6aSQ!5e0!3m2!1szh-TW!2stw!4v1653481841781!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+'),
 
 
  ('廣田素食店','03-4910680','桃園市中壢區中央西路二段20號','自助餐','全素','週一到週六
 10:30 - 14:00
 16:30 - 19:00
-週日休息','4.4'),
+週日休息','4.4','<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d537.705283426087!2d121.21759120108526!3d24.958103980573743!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3468224aa4716a9f%3A0xf0219f4f30cabf37!2z5buj55Sw57Sg6aOf5bqX!5e0!3m2!1szh-TW!2stw!4v1653481860298!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+'),
 
 
  ('綠野鮮蹤','03-4163090','桃園市中壢區弘揚路85號','自助餐','全素、奶素、蛋素','週一到週日
 10:30–13:50
 16:30–20:10
-無休息','4.5'),
+無休息','4.5','<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3617.354059594883!2d121.23918005088537!3d24.95406574756596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34682215391d4d2f%3A0x716b9214e61f2005!2z57ag6YeO6a6u6LmkIChWZWdldGFyaWFuKQ!5e0!3m2!1szh-TW!2stw!4v1653481872624!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+'),
 
 
  ('新德素食','03-4936572','桃園市中壢區義民路1號','麵食','全素','週一到週六
 10:30–13:30
 17:00–19:30
-週日休息','4.2');
+週日休息','4.2','<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3617.324965414506!2d121.21547155088533!3d24.955056047526334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3468224b3afdde3f%3A0x991d4729fcb8d301!2z5paw5b6357Sg6aOf!5e0!3m2!1szh-TW!2stw!4v1653481886213!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>');
