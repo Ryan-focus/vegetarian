@@ -28,7 +28,6 @@
 	url="jdbc:sqlserver://localhost:1433;databaseName=veganDB"
 	user="sa" 
 	password="passw0rd" />
-	<section id="container">
 		<!-- **********************************************************************************************************************************************************
       TOP BAR CONTENT & NOTIFICATIONS
       *********************************************************************************************************************************************************** -->
@@ -417,11 +416,10 @@
 												新增
 												<script type="text/javascript">
 													function openWindows() {
-														window
-																.open(
-																		"addToProduct.jspf",
-																		"Sample",
-																		"fullscreen=no,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no, copyhistory=no,width=600,height=650,left=200,top=300");
+														window.open(
+													"addToProduct.jspf",
+													"Sample",
+													"fullscreen=no,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no, copyhistory=no,width=600,height=650,left=200,top=300");
 
 													}
 												</script>
@@ -464,12 +462,8 @@
 							</div>
 						</div>
 					</div>
-<<<<<<< Updated upstream
 					<!--  歷史訂單頁面   -->
-					<%-- 尚未完善功能 暫註解
-=======
 				<!--  歷史訂單頁面   -->
->>>>>>> Stashed changes
 					<div  id="tab-order" class="whitearea col-lg-12 table" >
 						<!-- 配備管理開始 -->
 						<ul  class="nav nav-tabs">
@@ -556,7 +550,7 @@
 				$("#tab-forum").css("display", "none");
 				$("#tab-foodnote").css("display", "none");
 				$("#tab-shoppingcart").css("display", "none");
-				//$("#tab-order").css("display","none");
+				$("#tab-order").css("display","none");
 			});
 			onload();
 		}
@@ -594,14 +588,14 @@
 					case 'ma_cart':
 						$("#tab-shoppingcart").css("display", "block");
 						break;
-					/* 尚未完善功能 先註解
+					 尚未完善功能 先註解
 					case 'ma_order':
 					$("#tab-order").css("display","block");
 					break;
-					 */
+					 
 					}
 				})
-=======
+
 		return result;
 		};
 	}
@@ -653,7 +647,7 @@ $(document).ready(function(){
 			  case 'ma_order':
 				$("#tab-order").css("display","block");
 			    break;
->>>>>>> Stashed changes
+
 			}
 
 		});
