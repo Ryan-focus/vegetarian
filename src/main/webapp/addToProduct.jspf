@@ -32,7 +32,6 @@
 		
 			<input type="file" class="form-control-file"
 				id="exampleFormControlFile1" name="image" onchange="readURL(this)"
-				targetID="preview_progressbarTW_img"
 				accept="image/gif, image/jpeg, image/png" /> <img
 				id="preview_progressbarTW_img" src="#" width="200px" height="200px" />
 		</div>
