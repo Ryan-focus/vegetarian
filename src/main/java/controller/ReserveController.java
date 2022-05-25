@@ -79,24 +79,24 @@ public class ReserveController extends HttpServlet {
 	}
 	
 	private void order(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
-//		String oDate =request.getParameter("orderdate");
-//		int count = Integer.valueOf(request.getParameter("memberCount").toString());
-//		int restaurantNumber = Integer.valueOf(request.getParameter("restaurantNumber").toString());
-//		int uid = Integer.valueOf(request.getParameter("userID").toString());
-//		
-//		Date orderDate=new SimpleDateFormat("yyyy-MM-dd").parse(oDate);
-//		
-//        reserve.setDate(orderDate);
-//        reserve.setCount(count);
-//        reserve.setRestaurantNumber(restaurantNumber);
-//        reserve.setUid(uid);
-//
-//		boolean isSuccess = rDao.insert(reserve);
-//		//英傑借我跳轉一下 測試用
-//		request.setAttribute("isEmailExist", isSuccess);
-//		request.setAttribute("result", isSuccess ? "成功" : "失敗");
-//		
-//		request.getRequestDispatcher("/WEB-INF/jsp/RegisterResult.jsp").forward(request, response);
+		String oDate =request.getParameter("orderdate");
+		int count = Integer.valueOf(request.getParameter("memberCount").toString());
+		int restaurantNumber = Integer.valueOf(request.getParameter("restaurantNumber").toString());
+		int uid = Integer.valueOf(request.getParameter("userID").toString());
+		
+		Date orderDate=new SimpleDateFormat("yyyy-MM-dd").parse(oDate);
+		
+        reserve.setDate(orderDate);
+        reserve.setCount(count);
+        reserve.setRestaurantNumber(restaurantNumber);
+        reserve.setUid(uid);
+
+		boolean isSuccess = rDao.insert(reserve);
+		//英傑借我跳轉一下 測試用
+		request.setAttribute("isSuccess", isSuccess);
+		request.setAttribute("results", isSuccess ? "成功" : "失敗");
+		
+		request.getRequestDispatcher("/WEB-INF/jsp/OrderResult.jsp").forward(request, response);
 	}
 	
 }
