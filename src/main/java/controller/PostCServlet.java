@@ -173,9 +173,10 @@ public class PostCServlet extends HttpServlet {
 				System.out.println(headUrl);
 				
 			}
-			
+			else {
+				
+			}
 		}
-		
 		
 		if (postDao.addPostImage(title, postedText, headUrl)) {
 			System.out.println("上傳成功");
