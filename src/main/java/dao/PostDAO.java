@@ -32,7 +32,7 @@ public class PostDAO implements Serializable{
 	
 	//新增文章圖片測試
     public boolean addPostImage(String title,String posted_text, String Imgurl) throws IOException {
-        String sql = "insert into poststest(title,posted_date,posted_text,posted_Imgurl) values(?,?,?,?)";
+        String sql = "insert into posts(title,posted_date,posted_text,posted_Imgurl) values(?,?,?,?)";
  
         try {
         	
@@ -76,7 +76,7 @@ public class PostDAO implements Serializable{
     
     //刪除文章
     public boolean deletePost(int id) {
-        String sql = "delete from poststest where post_id = ?";
+        String sql = "delete from posts where post_id = ?";
  
         try {
             pst = conn.prepareStatement(sql);
@@ -94,7 +94,7 @@ public class PostDAO implements Serializable{
     }
     //更新文章
     public boolean updatePost(Post post,String title ,String  posted_text, int id) {
-        String sql = "update poststest set title = ?, posted_text = ?  where post_id = ?" ;
+        String sql = "update posts set title = ?, posted_text = ?  where post_id = ?" ;
               
         try {
             pst = conn.prepareStatement(sql);
@@ -114,7 +114,7 @@ public class PostDAO implements Serializable{
     
   //搜尋一篇文章
     public Post findPost(int id) {
-        String sql = "select * from poststest where post_id = ?" ;
+        String sql = "select * from posts where post_id = ?" ;
               
         try {
         	 Post post = null;
@@ -149,7 +149,7 @@ public class PostDAO implements Serializable{
 //搜尋全部
     
     public List<Post> findallPost() {
-        String sql = "select * from poststest order by post_id desc;" ;
+        String sql = "select * from posts order by post_id desc;" ;
               
         List<Post> postsList = new ArrayList<Post>();
     
