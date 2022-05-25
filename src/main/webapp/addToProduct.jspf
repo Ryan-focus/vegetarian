@@ -54,9 +54,9 @@
 		<label for="exampleFormControlFile1">請選擇想上傳的圖片</label>
 		
 			<input type="file" class="form-control-file"
-				id="exampleFormControlFile1" name="image" onchange="readURL(this)"
-				accept="image/gif, image/jpeg, image/png" /> <img
-				id="preview_progressbarTW_img" src="#" width="200px" height="200px" />
+				id="exampleFormControlFile1" name="image" onchange="readURL(this)" targetID="preview_progressbarTW_img"
+				accept="image/gif, image/jpeg, image/png" />
+				 <img id="preview_progressbarTW_img" src="#" width="200px" height="200px" />
 		</div>
 		<button type="submit" class="btn btn-success">新增商品</button>
 	</form>
