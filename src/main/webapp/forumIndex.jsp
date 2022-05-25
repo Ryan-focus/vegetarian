@@ -60,8 +60,8 @@
 				<h2><c:out value="${forum.vgetheme}" /></h2>
 				<div class ="box">
 				<p class="ellipsis"><c:out value="${forum.vgecontent}" /></p> 
-				
-				<a href="./ForumPages?=ForumPages&id=${forum.vgeid}"> 詳細閱讀</a>
+				<div align="right" ><c:out  value="${forum.vgename}"></c:out></div>
+				<a href="./ForumPages?=ForumPages&id=${forum.vgeid}"> 詳細閱讀</a>   
 				
 				<hr align="left" noshade="false" size="4" width="100%" color="#00EC00">
 				</div>
