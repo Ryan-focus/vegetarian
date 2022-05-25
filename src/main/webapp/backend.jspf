@@ -46,7 +46,7 @@ password="passw0rd" />
 			<!--logo end-->
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="index.jsp">退出</a></li>
+					<li><a class="logout" href="Logout">退出</a></li>
 				</ul>
 			</div>
 		</header>
