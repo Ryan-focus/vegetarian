@@ -103,7 +103,47 @@ if (cart_list != null) {
 
 	</div>
 	<%@include file="/WEB-INF/jsp/shoppingcart/Script.jsp"%>
-	
+	<footer>
+      <div class="footer-content">
+        <div class="footer-box col">
+          <div class="footer-title">店家專區</div>
+          
+            <a href="#">如何加入成為商家?</a>
+            <a href="#">聯繫部落客</a>
+          
+        </div>
+      </div>
+      <hr />
+      <div class="footer-content">
+        <div class="footer-box col">
+          <div class="footer-title">關注我們</div>
+          <ul class="socials">
+            <li>
+              <a href="#"><i class="fa fa-facebook"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-twitter"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-google-plus"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-youtube"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-instagram"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+      <br>
+      <br>
+        <p>
+          copyright &copy;EEIT45-Champion. 2022
+        </p>
+      </div>
+    </footer>
 	
 </body>
 </html>
