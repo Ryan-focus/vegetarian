@@ -113,15 +113,15 @@
 
 	
 	    <div>
-	        <label> 餐廳名稱：</label><input type="text" name="restaurantName" autofocus placeholder="請輸入" size="31">
+	        <label> 餐廳名稱：</label><input type="text" name="restaurantName" autofocus placeholder="請輸入" size="31" required>
 	    </div>
 	
 	    <div> 
-	        <label> 餐廳電話：</label><input type="text" name="restaurantTel" autofocus placeholder="例:03-" autocomplete="off" size="31"> 
+	        <label> 餐廳電話：</label><input type="text" name="restaurantTel" autofocus placeholder="例:03-" autocomplete="off" size="31" required> 
 	    </div>
 	
 	    <div>
-	        <label> 餐廳地址：</label><input type="text" name="restaurantAddress" autofocus placeholder="請輸入完整地址" size="31">   
+	        <label> 餐廳地址：</label><input type="text" name="restaurantAddress" autofocus placeholder="請輸入完整地址" size="31" required>   
 	    </div>
 	
 	    <div>
