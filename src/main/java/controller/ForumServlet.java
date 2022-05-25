@@ -97,8 +97,9 @@ public class ForumServlet extends HttpServlet {
 			conn = ds.getConnection();
 			// 建立Database Access Object,負責Table的Access
 			forumDAO = new ForumDAO(conn); // STUDENTDAO見一個建構子傳回
-			String id = request.getParameter("vgeid");//取得id
-			ForumBean forumBean = forumDAO.queryForum(id);
+			//String id = request.getParameter("vgeid");//取得id
+			String name = request.getParameter("vgename");
+			ForumBean forumBean = forumDAO.queryForum(name);
 			if(forumBean ==null) {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/forum/ErrorQuery.jsp");
 				dispatcher .forward(request, response);
@@ -150,13 +151,22 @@ public class ForumServlet extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/forum/ErrorCreate.jsp");
 				dispatcher .forward(request, response);
 			}else {
+				
 				 forumDAO = new ForumDAO(conn); // STUDENTDAO見一個建構子傳回
 				 String vgename = request.getParameter("vgename");
 				 String vgetheme = request.getParameter("vgetheme");
 				 String vgecontent = request.getParameter("vgecontent");
 				 ForumBean vge = new ForumBean(vgeid, vgename, vgetheme, vgecontent);
-				 request.getSession(true).setAttribute("vge", vge);
-				 request.getRequestDispatcher("/WEB-INF/jsp/forum/DisplayForum.jsp").forward(request, response);
+				
+				 if( vgename.equals("") || vgetheme.equals("") ||vgecontent.equals("")) {
+					 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/forum/ErrorCreate.jsp");
+					 dispatcher .forward(request, response);
+				 }else {
+				 
+					 System.out.println(vgecontent+" "+vgename+" "+vgetheme);
+					 request.getSession(true).setAttribute("vge", vge);
+					 request.getRequestDispatcher("/WEB-INF/jsp/forum/DisplayForum.jsp").forward(request, response);
+					 }
 			}
 			
 		} catch (NamingException ne) {
@@ -175,7 +185,7 @@ public class ForumServlet extends HttpServlet {
 
 	protected void processUpdate(HttpServletRequest request, HttpServletResponse response, ForumDAO forumDAO)
 			throws ServletException, IOException {
-
+		
 		DataSource ds = null;
 		InitialContext ctxt = null;
 		Connection conn = null;
@@ -184,16 +194,18 @@ public class ForumServlet extends HttpServlet {
 			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/veganDB");
 			conn = ds.getConnection();
 			forumDAO = new ForumDAO(conn);
+			
 			String vgeid =request.getParameter("vgeid");
 			String vgename = request.getParameter("vgename");
 			String vgetheme = request.getParameter("vgetheme");
 			String vgecontent = request.getParameter("vgecontent");
 			ForumBean foruData=new ForumBean (vgeid,vgename,vgetheme,vgecontent);
 			forumDAO.updateForum(foruData);
-			foruData.setVgeid(vgeid);
+			//foruData.setVgeid(vgeid);
 			foruData.setVgename(vgename);
 			foruData.setVgetheme(vgetheme);
 			foruData.setVgecontent(vgecontent);
+			
 			request.getSession(true).setAttribute("foruData", foruData);
 			request.getRequestDispatcher("/WEB-INF/jsp/forum/UpdateResult.jsp").forward(request, response);
 		} catch (NamingException ne) {
@@ -247,25 +259,24 @@ public class ForumServlet extends HttpServlet {
 	
 	public void processConfirm(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		User userForum = (User) request.getSession().getAttribute("user");
 		DataSource ds = null;
 		InitialContext ctxt = null;
 		Connection conn = null;
-		try {
+		try (PrintWriter out = response.getWriter()){
 			// 建立Context Object,連到JNDI Server
 			ctxt = new InitialContext();
 
-			// 使用JNDI API找到DataSource
 			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/veganDB");
-			// ds = ( DataSource ) ctxt.lookup("jdbc/OracleXE");
-			// 向DataSource要Connection
 			conn = ds.getConnection();
 
-			// 建立Database Access Object,負責Table的Access
 			ForumDAO forumDAO = new ForumDAO(conn); // STUDENTDAO見一個建構子傳回
 			ForumBean forumData = (ForumBean) request.getSession(true).getAttribute("vge");
+			
+			
 			if (ForumDAO.insertForum(forumData)) {
-				request.getSession(true).invalidate(); // 關閉SESSION
+				request.setAttribute("user", userForum);
+				request.getSession().getAttribute("user");
 				request.getRequestDispatcher("/WEB-INF/jsp/forum/Thank.jsp").forward(request, response);
 			}
 		} catch (NamingException ne) {
@@ -285,20 +296,21 @@ public class ForumServlet extends HttpServlet {
 	public void prcoessHome(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		User userForum = (User) request.getSession().getAttribute("user");
+				User userForum = (User) request.getSession().getAttribute("user");
 		try (PrintWriter out = response.getWriter()){
-		if(userForum==null) {
-			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryForum.jsp");
-			dispatcher .forward(request, response);
+			if(userForum==null) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryForum.jsp");
+					dispatcher.forward(request, response);
 
-		}else {
-			if(userForum.getUid()==0) 
-				response.sendRedirect("/vegetarian/Login");
-				request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryForum.jsp").forward(request,response);
-			
+			}else {
+					if(userForum.getUid()==0) 
+						response.sendRedirect("/vegetarian/Login");
+						request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryForum.jsp").forward(request,response);
+				
 		}		
 	}catch (Exception e) {
 	}
 	}
+	
+	
 }

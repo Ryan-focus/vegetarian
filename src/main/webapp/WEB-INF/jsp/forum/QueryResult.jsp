@@ -1,6 +1,11 @@
-
+<%@ page import="bean.ForumBean" %>
+<%@ page import="java.sql.*" %>
+<%@page import="java.util.*"%>
+<%@page import="java.sql.*"%>
+<%@page import="bean.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%User userForum = (User)request.getSession().getAttribute("user");%>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -45,7 +50,7 @@ p{
 		<p>標題:<%=request.getAttribute("vgetheme") %> </p>
 		<p>提問:<%=request.getAttribute("vgecontent") %></p>
 	 -->	
-		<p class="p">ID: <input type="text" name="vgeid" value="<%=request.getAttribute("vgeid")%>" size="30" maxlength="30"></p>
+	 	<p class="p">文章號碼: <input type="text" readonly="readonly" name="vgeid" value="<%=request.getAttribute("vgeid")%>" size="30" maxlength="30"></p>  
 		<p class="p">名稱:<input type="text" name="vgename"  value="<%=request.getAttribute("vgename")%>" size="30" maxlength="30"></p>
 		<p class="p">標題:<input type="text" name="vgetheme" value="<%=request.getAttribute("vgetheme") %>" size="30" maxlength="30"></p>
 		<p class="p">文章:<textarea name="vgecontent" rows="10"  cols="30"><%=request.getAttribute("vgecontent") %></textarea></p>

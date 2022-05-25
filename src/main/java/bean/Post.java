@@ -10,15 +10,17 @@ public class Post implements Serializable{
 	    private String title;
 	    private Date postedDate;
 	    private String postedText;
+	    private String imgurl;
 	    
 	    
 	    
-	    public Post(int postId,String title,Date postedDate,String postedText) {
+	    public Post(int postId,String title,Date postedDate,String postedText,String imgurl) {
 	    	
 	    	this.postId =postId;
 	    	this.title = title;
 	    	this.postedDate = postedDate;
 	    	this.postedText = postedText;
+	    	this.imgurl = imgurl;
 	    	
 	    }
 	    
@@ -50,7 +52,12 @@ public class Post implements Serializable{
 		public void setPostedText(String postedText) {
 			this.postedText = postedText;
 		}
-	    
+		public String getImgurl() {
+			return imgurl;
+		}
+		public void setImgurl(String imgurl) {
+			this.imgurl = imgurl;
+		}
 	    
 		
 	    

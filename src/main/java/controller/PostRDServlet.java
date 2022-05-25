@@ -76,6 +76,7 @@ public class PostRDServlet extends HttpServlet {
 			request.setAttribute("title", post.getTitle());
 			request.setAttribute("posted_date", post.getPostedDate());
 			request.setAttribute("posted_text", post.getPostedText());
+			request.setAttribute("posted_Imgurl", post.getImgurl());
 			request.getRequestDispatcher("/showPost").forward(request, response);
 
 		} else {
@@ -89,7 +90,7 @@ public class PostRDServlet extends HttpServlet {
 
 		int id = Integer.parseInt(request.getParameter("id"));
 
-		postDAO.deletePost(id);
+		
 		if (postDAO.deletePost(id)) {
 			request.setAttribute("message", "刪除成功");
 			request.getRequestDispatcher("/showResultForm").forward(request, response);

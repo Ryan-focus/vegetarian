@@ -1,5 +1,11 @@
+<%@ page import="bean.ForumBean" %>
+<%@ page import="java.sql.*" %>
+<%@page import="java.util.*"%>
+<%@page import="java.sql.*"%>
+<%@page import="bean.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+	<%User userForum = (User)request.getSession().getAttribute("user");%>
 <%
 response.setContentType("text/html;charset=UTF-8");
 response.setHeader("Cache-Control","no-cache"); // HTTP 1.1
@@ -19,10 +25,10 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 </h2>
 <form action=".\ForumServlet" method="post">
 <table  cellspacing="2" cellpadding="1" border="1" width="80%">
- <tr bgcolor="#7AFEC6">
-    <td>編號:</td>
+ <!--<tr bgcolor="#7AFEC6">
+   <td>編號:</td>
     <td><jsp:getProperty name="vge" property="vgeid" /></td>
-</tr> <!-- -->
+</tr>  -->
 <tr bgcolor="#7AFEC6">
     <td>名稱:</td>
     <td><jsp:getProperty name="vge" property="vgename" /></td>

@@ -21,7 +21,7 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server
 
 <h2>網誌修改成功</h2>
 <form action=".\ForumServlet" method="post">
-<p>編號:<input type="text" name="vgeid" size="30" value=" <jsp:getProperty name="foruData" property="vgeid"  />" maxlength="30"></p>
+<!-- <p>編號:<input type="text" name="vgeid" size="30" value=" <jsp:getProperty name="foruData" property="vgeid"  />" maxlength="30"></p> -->
 <p>名稱:<input type="text" name="vgeid" size="30" value=" <jsp:getProperty name="foruData" property="vgename"  />" maxlength="30"></p>
 <p>標題:<input type="text" name="vgeid" size="30" value=" <jsp:getProperty name="foruData" property="vgetheme"  />" maxlength="30"></p>
 <p>發表:<input type="text" name="vgeid" size="30" value=" <jsp:getProperty name="foruData" property="vgecontent"  />" maxlength="30"></p>

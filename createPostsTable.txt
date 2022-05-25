@@ -5,10 +5,11 @@ CREATE TABLE posts(
     title NVARCHAR(100) NOT NULL,
     posted_date DATETIME NOT NULL,
     posted_text NVARCHAR(MAX) NOT NULL,
+    posted_Imgurl NVARCHAR(200)
    
 );
 
-INSERT INTO posts (title, posted_date, posted_text) VALUES ('【新莊聚餐推薦】廣泰樓小館，港式小點、香酥芋頭鴨、蒜香脆皮雞必點','2022-05-13 09:14:36','【廣泰樓小館】是提供粵式+港式小點的中餐廳，位在新莊區幸福路
+INSERT INTO posts (title, posted_date, posted_text, posted_Imgurl) VALUES ('【新莊聚餐推薦】廣泰樓小館，港式小點、香酥芋頭鴨、蒜香脆皮雞必點','2022-05-13 09:14:36','【廣泰樓小館】是提供粵式+港式小點的中餐廳，位在新莊區幸福路
 
 特色餐點有 香酥芋頭鴨、蒜香脆皮雞、港式小點等人氣美食
 
@@ -16,9 +17,9 @@ INSERT INTO posts (title, posted_date, posted_text) VALUES ('【新莊聚餐推�
 
 有方桌和圓桌，適合2-14人的座位區，相當適合家庭、朋友聚餐
 
-不想在店內用餐、也能外帶餐點回家喔~');
+不想在店內用餐、也能外帶餐點回家喔~','images\PostsPhoto\1653462889191.jpg');
 
-INSERT INTO posts (title, posted_date, posted_text) VALUES ('【台北車站美食】Moni咖哩中山旗艦店名古屋咖哩名店強勢回歸！平價菜單甜點都好吃推薦','2022-05-18 09:14:36', '   台北東區、捷運忠孝復興站這家《熟・菜豚屋》，絕對是我目前在台北吃過，最喜歡的高級韓式燒肉餐廳
+INSERT INTO posts (title, posted_date, posted_text, posted_Imgurl) VALUES ('【台北東區美食】熟菜豚屋 復興本店 超好吃韓式烤肉餐廳推薦！生菜免費續加吃到飽','2022-05-18 09:14:36', '   台北東區、捷運忠孝復興站這家《熟・菜豚屋》，絕對是我目前在台北吃過，最喜歡的高級韓式燒肉餐廳
 
 將韓國烤肉結合創意料理，從前菜到溫菜、冷菜、海鮮、燒肉，甚至是甜點都非常夠水準，還有專人座上烤肉服務，不用自己動手烤
 
@@ -46,9 +47,9 @@ INSERT INTO posts (title, posted_date, posted_text) VALUES ('【台北車站美�
 
 沒有一道菜是不喜歡的，搭配專業又親切的服務、低調奢華的用餐空間，都加深了《熟・菜豚屋》的推薦指數
 
-喜歡吃韓式燒肉、日本料理的人，拜託你一定要收藏《熟・菜豚屋》，找一天犒賞自己一下來吃吧！');
+喜歡吃韓式燒肉、日本料理的人，拜託你一定要收藏《熟・菜豚屋》，找一天犒賞自己一下來吃吧！','images\PostsPhoto\1653462930810.jpg');
 
-INSERT INTO posts (title, posted_date, posted_text) VALUES ('【永春站松山路美食】家哩老師．海鮮咖哩專賣店cp值超高！菜單只要130元起免費續飯續醬','2022-05-19 09:14:36','台北賣咖哩飯的店已經不新奇，那海鮮咖哩飯專賣店你吃過了嗎？
+INSERT INTO posts (title, posted_date, posted_text, posted_Imgurl) VALUES ('【永春站松山路美食】家哩老師．海鮮咖哩專賣店cp值超高！菜單只要130元起免費續飯續醬','2022-05-19 09:14:36','台北賣咖哩飯的店已經不新奇，那海鮮咖哩飯專賣店你吃過了嗎？
 
 捷運永春站附近、信義區松山路上的《家哩老師》，便是一家超平價海鮮咖哩飯專賣店，cp值實在高的不可思議
 
@@ -68,8 +69,8 @@ INSERT INTO posts (title, posted_date, posted_text) VALUES ('【永春站松山�
 
 如果你又是熱愛咖哩飯的話，更沒有不吃《家哩老師》的道理啦，海鮮咖哩兩種喜好一次滿足
 
-《家哩老師》的海鮮無論size或是新鮮度全都很夠水準，對應價格更是便宜到很值得推薦！');
-INSERT INTO posts (title, posted_date, posted_text) VALUES ('【新莊日本料理推薦】終於·衷魚·好看新鮮又好吃的海鮮丼飯！季節限定螢光烏賊要吃要快','2022-05-19 10:14:36','每年春天都會掀起饕客排隊風潮的《終於·衷魚丼飯》螢光烏賊丼飯，終於又開賣了！
+《家哩老師》的海鮮無論size或是新鮮度全都很夠水準，對應價格更是便宜到很值得推薦！','images\PostsPhoto\1653462970203.jpg');
+INSERT INTO posts (title, posted_date, posted_text, posted_Imgurl) VALUES ('【新莊日本料理推薦】終於·衷魚·好看新鮮又好吃的海鮮丼飯！季節限定螢光烏賊要吃要快','2022-05-19 10:14:36','每年春天都會掀起饕客排隊風潮的《終於·衷魚丼飯》螢光烏賊丼飯，終於又開賣了！
 
 日本進口螢光烏賊，新鮮度真的沒話說，搭配干貝、甜蝦、鮭魚卵滿足指數瞬間達到巔峰
 
@@ -86,8 +87,8 @@ INSERT INTO posts (title, posted_date, posted_text) VALUES ('【新莊日本料�
 平日中午營業時間剛開始已有一組客人，不久後隨即客滿，因為只有沿著吧台的幾席座位，加上沒有提供訂位服務，想吃只能早一點來現場候位排隊囉
 
 好在《終於·衷魚丼飯》師傅製作餐點的動作很快，客人也多是吃完就走，若是遇到客滿的話，在椅子上稍作等待，很快就會輪到你了啦
-');
-INSERT INTO posts (title, posted_date, posted_text) VALUES ('【中和日本料理推薦】大唐壽司 平價美食cp值高！30年主廚手藝菜單丼飯生魚片熟食都好吃','2022-05-19 10:15:36','新北市中和中正路這家《大唐壽司》，開幕沒多久卻已在饕客間累積高評價好口碑
+','images\PostsPhoto\1653463006513.jpg');
+INSERT INTO posts (title, posted_date, posted_text, posted_Imgurl) VALUES ('【中和日本料理推薦】大唐壽司 平價美食cp值高！30年主廚手藝菜單丼飯生魚片熟食都好吃','2022-05-19 10:15:36','新北市中和中正路這家《大唐壽司》，開幕沒多久卻已在饕客間累積高評價好口碑
 
 《大唐壽司》老闆擁有超過30年日本料理餐飲經驗，還曾是餐飲集團料理長，捏出的每顆壽司都充滿職人精神
 
@@ -123,4 +124,4 @@ INSERT INTO posts (title, posted_date, posted_text) VALUES ('【中和日本料�
 
 我吃完以後完全可以明白為什麼，食材新鮮、份量足夠不說，菜單價格還賣的這麼便宜，在台北市中心絕對吃不到
 
-如果你喜歡吃日本料理、生魚片，尤其是海膽、干貝、生蠔的人，推薦一定要來中和《大唐壽司》，cp值高到讓人大喊超值！');
+如果你喜歡吃日本料理、生魚片，尤其是海膽、干貝、生蠔的人，推薦一定要來中和《大唐壽司》，cp值高到讓人大喊超值！','images\PostsPhoto\1653463048670.jpg');

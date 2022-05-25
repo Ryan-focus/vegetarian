@@ -173,16 +173,16 @@
 													    		<div>
 														        	<label>素食種類：</label>
 															        <label>
-															            <input type="checkbox" name="restaurantType" value="全素" <c:if test="${restaurant.restaurantType=='全素'}">checked="checked"</c:if>>全素
+															            <input type="radio" name="restaurantType" value="全素" <c:if test="${restaurant.restaurantType=='全素'}">checked="checked"</c:if>>全素
 															        </label>
 															        <label>
-															            <input type="checkbox" name="restaurantType" value="奶素" <c:if test="${restaurant.restaurantType=='奶素'}">checked="checked"</c:if>>奶素
+															            <input type="radio" name="restaurantType" value="奶素" <c:if test="${restaurant.restaurantType=='奶素'}">checked="checked"</c:if>>奶素
 															        </label>
 															        <label>
-															            <input type="checkbox" name="restaurantType" value="蛋素" <c:if test="${restaurant.restaurantType=='蛋素'}">checked="checked"</c:if>>蛋素
+															            <input type="radio" name="restaurantType" value="蛋素" <c:if test="${restaurant.restaurantType=='蛋素'}">checked="checked"</c:if>>蛋素
 															        </label>
 															        <label>
-														            <input type="checkbox" name="restaurantType" value="五辛" <c:if test="${restaurant.restaurantType=='五辛'}">checked="checked"</c:if>>五辛素
+														            <input type="radio" name="restaurantType" value="五辛" <c:if test="${restaurant.restaurantType=='五辛'}">checked="checked"</c:if>>五辛素
 														        </label>
 													    		</div>
 													

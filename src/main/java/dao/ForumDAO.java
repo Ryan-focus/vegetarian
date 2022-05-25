@@ -14,7 +14,7 @@ public class ForumDAO {
 
 	public static boolean insertForum(ForumBean forumData) {
 		try {
-			String sqlString = "insert into forum values('" + forumData.getVgeid() + "','" + forumData.getVgename()
+			String sqlString = "insert into forum values('" + forumData.getVgename()
 					+ "','" + forumData.getVgetheme() + "','" + forumData.getVgecontent() + "')";
 
 			Statement stmt = conn.createStatement();
@@ -66,16 +66,17 @@ public class ForumDAO {
 			return false;
 		}
 	}
-	public  ForumBean queryForum(String vgeid) {
+	public  ForumBean queryForum(String vgename) {
 		try {
 			ForumBean foru =null;
-			String vgename;
+			String vgeid;
 			String vgetheme;
 			String vgecontent;
 
-			String sqlString = "SELECT * " + "FROM forum WHERE vgeid = ?";
+			String sqlString = "SELECT * " + "FROM forum WHERE vgename = ?";
 			PreparedStatement ps =conn.prepareStatement(sqlString);
-			ps.setString(1, vgeid);
+		//	ps.setString(1, vgeid);
+			ps.setString(1, vgename);
 			ResultSet rs=ps.executeQuery();
 			if (rs.next()) {
 				vgeid=rs.getString("vgeid");

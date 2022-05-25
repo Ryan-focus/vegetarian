@@ -1,3 +1,8 @@
+<%@ page import="bean.ForumBean" %>
+<%@ page import="java.sql.*" %>
+<%@page import="java.util.*"%>
+<%@page import="java.sql.*"%>
+<%@page import="bean.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -7,6 +12,7 @@ response.setHeader("Cache-Control", "no-cache"); // HTTP 1.1 不允許瀏覽器�
 response.setHeader("Pragma", "no-cache"); // HTTP 1.0 不允許瀏覽器站存
 response.setDateHeader("Expires", -1); // Prevents caching at the proxy server  不允許瀏覽器站存
 %>
+	<%User userForum = (User)request.getSession().getAttribute("user");%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

@@ -4,9 +4,18 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.naming.*;
 import javax.sql.*;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import bean.Post;
 import dao.PostDAO;
@@ -35,12 +44,8 @@ public class PostCUServlet extends HttpServlet {
 			// 如果要編碼值為UTF-8
 			request.setCharacterEncoding("UTF-8");
 
-			if (request.getParameter("add") != null) {
-				Create(request, response, postDAO);
-			}
-			if (request.getParameter("update") != null) {
+			
 				Update(request, response, postDAO);
-			}
 
 
 		} catch (NamingException ne) {
@@ -77,10 +82,10 @@ public class PostCUServlet extends HttpServlet {
 	private void Create(HttpServletRequest request, HttpServletResponse response, PostDAO postDAO)
 			throws SQLException, IOException, ServletException {
 
-		Post post = new Post();
+		//Post post = new Post();
 		String title = request.getParameter("title");
 		String posted_text = request.getParameter("postedText");
-		Date time = post.getPostedDate();
+
 
 		if (postDAO.addPost(title, posted_text)) {
 			request.setAttribute("message", "發表成功");
@@ -90,6 +95,93 @@ public class PostCUServlet extends HttpServlet {
 			request.getRequestDispatcher("/showResultForm").forward(request, response);
 		}
 
+	}
+	
+	private void UpdatePostImage(HttpServletRequest request, HttpServletResponse response, PostDAO postDao)
+			throws SQLException, IOException, ServletException {
+
+		String title = null;
+		String postedText = null;
+		String add = null;
+		String headUrl = ""; // 存放路徑
+		String headImgFileName = "images/PostsPhoto"; // Web項目中存放圖片的文件夾名。可自定義
+		int id = (Integer.parseInt(request.getParameter("update")));
+		Post post = new Post();
+
+		FileItemFactory factory = new DiskFileItemFactory();
+
+		ServletFileUpload upload = new ServletFileUpload(factory);
+
+		List items = null;
+		try {
+			items = upload.parseRequest(request);
+		} catch (FileUploadException e) {
+			e.printStackTrace();
+		}
+
+		Iterator iter = items.iterator();
+		while (iter.hasNext()) {
+			FileItem item = (FileItem) iter.next();
+			
+            //非檔案格式
+			if (item.isFormField()) {
+				String fieldName = item.getFieldName();
+				if (fieldName.equals("title")) {
+					// 得到表單的值
+					title = item.getString("UTF-8");
+				}
+				if (fieldName.equals("postedText")) {
+					postedText = item.getString("UTF-8");
+				}
+				if (fieldName.equals("add")) {
+					add = item.getString("UTF-8");
+				}
+
+				System.out.println(fieldName + "=" + title + postedText);
+//                 String value = item.getString();
+//			request.setAttribute(title, title);
+			}
+			// 讀入資料為檔案
+			else {
+				String fileName = item.getName();
+				System.out.println("原檔名" + fileName);
+				String suffix = fileName.substring(fileName.lastIndexOf('.'));//取得副檔名
+				System.out.println("副檔名：" + suffix);// .jpg
+				//新文件名稱
+				String newFileName = new Date().getTime() + suffix;
+				System.out.println("新檔名：" + newFileName);// 1478509873038.jpg
+
+				
+				ServletContext context = this.getServletContext();
+				// 絕對路徑
+				String serverPath = context.getRealPath("") + headImgFileName;//
+				String savePath ="C:/Users/PC/Documents/GitHub/vegetarian/src/main/webapp/"+headImgFileName;
+				System.out.println(serverPath);
+				System.out.println(savePath);
+
+				// 將圖片存入指定位置
+				File headImage = new File(savePath, newFileName);
+				// 上傳圖片寫入
+				try {
+					item.write(headImage);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				//把圖片路徑（headUrl）儲存到table
+				headUrl = headImgFileName + "/" + newFileName; // 拼接相對路徑 headImage/1478509873038.jpg
+				System.out.println(headUrl);
+				
+			}
+			
+		}
+		if (postDao.updatePost(post,title, postedText,id)) {
+			System.out.println("上傳成功");
+			request.setAttribute("message", "發表成功");
+			request.getRequestDispatcher("/showResultForm").forward(request, response);
+		} else {
+			System.out.println("失敗");
+		}
 	}
 
 

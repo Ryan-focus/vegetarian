@@ -68,7 +68,7 @@ body, html {
 			<hr>
 		</div>
 
-		<form action="./PostNew" method="post">
+		<form action="PostUpadte" method="post">
 			<h5 class="text">文章標題:</h5>
 			<textarea class="text_title" name="title" rows="1" maxlength="100"
 				required>${title}</textarea>

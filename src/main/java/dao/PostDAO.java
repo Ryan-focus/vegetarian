@@ -1,4 +1,5 @@
 package dao;
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.Date;
@@ -28,7 +29,36 @@ public class PostDAO implements Serializable{
 	
 	LocalDateTime dt = LocalDateTime.now(); // 目前時間&日期
 	
-	 
+	
+	//新增文章圖片測試
+    public boolean addPostImage(String title,String posted_text, String Imgurl) throws IOException {
+
+        String sql = "insert into posts(title,posted_date,posted_text,posted_Imgurl) values(?,?,?,?)";
+         
+        String newImgurl ="images/PostsPhoto/defaultPostImage.jpg";
+        
+        try {
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, title);
+            pst.setObject(2, dt);
+            pst.setObject(3, posted_text);
+            
+            if(Imgurl!=null) {
+            pst.setString(4, Imgurl);
+            }else {
+            pst.setString(4, newImgurl);	
+            }
+          
+          System.out.println(title);
+ 
+            int count = pst.executeUpdate();
+            pst.close();
+            if (count >= 1) return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    } 
 
 	//新增文章
     public boolean addPost(String title,String posted_text) {
@@ -60,10 +90,10 @@ public class PostDAO implements Serializable{
             pst.setInt(1, id);
             int count = 0;
             count = pst.executeUpdate();
-            System.out.println(count);
+            
             pst.close();
            
-            if (count >= 0) return true;
+            if (count > 0) return true;
         } catch (SQLException e) {
             System.out.println(e.getErrorCode() + "刪除失敗");
         }
@@ -71,7 +101,7 @@ public class PostDAO implements Serializable{
     }
     //更新文章
     public boolean updatePost(Post post,String title ,String  posted_text, int id) {
-        String sql = "update posts set title = ?, posted_text = ? where post_id = ?" ;
+        String sql = "update posts set title = ?, posted_text = ?  where post_id = ?" ;
               
         try {
             pst = conn.prepareStatement(sql);
@@ -98,6 +128,7 @@ public class PostDAO implements Serializable{
              String title;
              Date posted_date;
              String posted_text;
+             String imgurl;
              
             pst = conn.prepareStatement(sql);
            
@@ -107,7 +138,8 @@ public class PostDAO implements Serializable{
                 title  =  rs.getString("title");
                 posted_date =rs.getDate("posted_date");
                 posted_text  =  rs.getString("posted_text");
-                post = new Post(id, title, posted_date, posted_text);
+                imgurl  =  rs.getString("posted_Imgurl");
+                post = new Post(id, title, posted_date, posted_text,imgurl);
         		
             }
         	  rs.close();
@@ -138,6 +170,7 @@ public class PostDAO implements Serializable{
                  post.setTitle(rs.getString("title"));
                  post.setPostedDate(rs.getDate("posted_date"));
                  post.setPostedText(rs.getString("posted_text"));
+                 post.setImgurl(rs.getString("posted_Imgurl"));
                  postsList.add(post);
                          
             }

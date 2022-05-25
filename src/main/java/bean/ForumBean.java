@@ -22,6 +22,8 @@ public class ForumBean implements Serializable {
 	}
 	public ForumBean(String vgeid) {
 	}
+
+
 	public String getVgeid() {
 		return vgeid;
 	}
@@ -60,6 +62,7 @@ public class ForumBean implements Serializable {
 	public void setUid(int uid) {
 		this.uid = uid;
 	}
+
 	
 }
 

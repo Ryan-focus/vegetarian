@@ -32,6 +32,8 @@ body, html {
 .text_title {
 	resize: none;
 	width: 60%;
+	white-space: nowrap; /* 禁止換行 */
+	overflow: hidden; /* 不顯示捲軸 */
 }
 
 .text_area {
@@ -60,19 +62,20 @@ body, html {
 <body>
 	<div class="textbody">
 		<div class="title">
-			<h3>新增文章</h3>
-			<hr>
-		</div>
 
-		<form action="./PostNew" method="post">
+			<h3>新增文章</h3>
+		</div>
+		<hr>
+		<form action="PostNew" enctype="multipart/form-data" method="post">
+			上傳圖片：<input type="file" name="image">
+			<hr>
 			<h5 class="text">文章標題:</h5>
-			<textarea class="text_title" name="title" rows="1" maxlength="100"
-				required></textarea>
+			<textarea class="text_title" name="title" rows="1" maxlength="100" required></textarea>
 			<p class="wordsNum1">0/100</p>
 			<h5 class="text">文章內容:</h5>
-			<textarea class="text_area" name="postedText" rows="20"
-				maxlength="5000" required></textarea>
+			<textarea class="text_area" name="postedText" rows="20" maxlength="5000" required></textarea>
 			<p class="wordsNum2">0/5000</p>
+			
 			<input type="submit" name="add" value="發表文章" />
 		</form>
 
