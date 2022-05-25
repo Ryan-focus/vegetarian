@@ -1,7 +1,8 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
-<%-- <%@ page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%> --%>
-<%@ page import="bean.Restaurant" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<jsp:useBean id="restaurant" class="bean.Restaurant" scope="request"/>
+<jsp:setProperty name="restaurant" property="*"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,12 +26,8 @@
    	
     <FORM ACTION="./reserve" method="post">
     <table class="tb1">
-
     <thead>
         <tr>
-        	<tr style="display: none;">
-            <th>餐廳編號</th>
-            </tr>
             <th>餐廳名稱</th>
             <th>餐廳電話</th>
             <th>餐廳地址</th>
@@ -41,15 +38,11 @@
             <th></th>
         </tr>
     </thead>
-
     <tbody>
+    <%--
     	<% List<Restaurant> restaurantList = (List<Restaurant>) request.getAttribute("restaurantList"); %>
-
         <% for (Restaurant restaurant : restaurantList) {%>
         <tr>
-        	<tr style="display: none;">
-            <td><%= restaurant.getRestaurantNumber() %></td>
-            </tr>
             <td><%= restaurant.getRestaurantName()%></td>
             <td><%= restaurant.getRestaurantTel() %></td>
             <td><%= restaurant.getRestaurantAddress() %></td>
@@ -60,9 +53,21 @@
             <td><input name="oRestaurant" type="submit" class="btn-success" value="前往訂位"></td>
             <input type="hidden" name="restaurantNumber" value="<%=restaurant.getRestaurantNumber()%>">
            	<input type="hidden" name="restaurantName" value="<%=restaurant.getRestaurantName()%>">
-            
-        <% } %>
         </tr>
+        <% } %>
+    --%>
+    <c:forEach var="restaurant" items="${ restaurantList }">
+    <tr>
+		<td> ${restaurant.restaurantName }</td>
+        <td> ${restaurant.restaurantTel }</td>
+        <td> ${restaurant.restaurantAddress }</td>
+        <td> ${restaurant.restaurantCategory }</td>
+        <td> ${restaurant.restaurantType }</td>
+        <td> ${restaurant.restaurantBusinessHours }</td>
+        <td> ${restaurant.restaurantScore }</td>
+        <td><div class="btn-warning"><a href="reserve?act&id=${restaurant.restaurantNumber}">前往訂位</a></div></td>
+    </tr>
+	</c:forEach>
     </tbody>
     </table>
     </FORM>

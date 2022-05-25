@@ -36,7 +36,7 @@ public class RestaurantServletDS extends HttpServlet {
 			System.out.println("3");
 			con = ds.getConnection();
 			
-			RestaurantDAO restaurantDAO = new RestaurantDAO(con);
+			RestaurantDAO restaurantDAO = new RestaurantDAO();
 			if (req.getParameter("所有餐廳") != null) {
 				restaurantQueryAll(req, res, restaurantDAO);
 			}
@@ -249,8 +249,6 @@ public class RestaurantServletDS extends HttpServlet {
 			} catch (ServletException | IOException e) {
 				e.printStackTrace();
 			}
-		
-		
 	}
 	
 	// 修改餐廳-後台

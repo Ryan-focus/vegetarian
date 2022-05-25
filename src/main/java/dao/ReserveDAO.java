@@ -7,7 +7,8 @@ import java.util.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -26,9 +27,9 @@ private final String INSERT = "INSERT INTO RESERVE(reservationDate, reservationC
 		java.sql.Date sdate = new java.sql.Date(uDate.getTime());
         int count = reserve.getCount();
         //--odate 紀錄伺服器現在時間 轉型存進資料庫
-        long ct = System.currentTimeMillis();
-        Timestamp timestamp = new Timestamp(ct);
-        java.sql.Date odate = new java.sql.Date(timestamp.getTime());
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formatDateTime = now.format(formatter);
         //--------------------------------------
         int number = reserve.getRestaurantNumber();
         int uid  = reserve.getUid();
@@ -43,7 +44,7 @@ private final String INSERT = "INSERT INTO RESERVE(reservationDate, reservationC
         	
         	pstmt.setDate(1, sdate);
         	pstmt.setInt(2, count);
-        	pstmt.setDate(3, odate);
+        	pstmt.setString(3, formatDateTime);
         	pstmt.setInt(4, number);
         	pstmt.setInt(5, uid);
         	isSuccess = (pstmt.executeUpdate() != 0);

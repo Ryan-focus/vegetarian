@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import dao.OrderDao;
+import dao.ProductDao;
 import bean.Cart;
 import bean.Order;
 import bean.User;
@@ -70,6 +71,10 @@ public class ShoppingCartServlet extends HttpServlet {
 			removeFromCart(request, response);
 		}
 			break;
+		case "delete-product": {
+			deleteProduct(request, response);
+		}
+		break;
 	
 		default:{
 			response.sendRedirect("/vegetarian/shoppingcartIndex");
@@ -139,6 +144,23 @@ public class ShoppingCartServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
+	}
+	private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		try (PrintWriter out = response.getWriter()) {
+			String id = request.getParameter("id");
+			if (id != null) {
+				
+				ProductDao productDao = new ProductDao(ds.getConnection());
+				productDao.delProducts(Integer.parseInt(id));
+				
+			}
+			response.sendRedirect("/vegetarian/backend.jspf");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	private void addToCart(HttpServletRequest request, HttpServletResponse response) throws IOException {

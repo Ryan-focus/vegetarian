@@ -4,7 +4,7 @@ create table reserve(
 reservationId int identity primary key,
 reservationDate date not null,
 reservationCount int not null,
-orderDate date not null,
+orderDate nvarchar(20) not null,
 restaurantNumber int not null,
 uid int 
 )

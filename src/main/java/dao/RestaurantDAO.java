@@ -7,15 +7,18 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import bean.Restaurant;
 
 public class RestaurantDAO {
-
-	private Connection conn;
-
-	// 建構子
-	public RestaurantDAO(Connection conn) {
-		this.conn = conn;
+	private DataSource ds = null;
+	private Connection conn = null;
+	
+	public RestaurantDAO() {
+		super();
 	}
 	
 	// 查詢餐廳 by restaurantName&Address&Category&Type-前台搜尋
@@ -25,7 +28,9 @@ public class RestaurantDAO {
 			String sqlString = "SELECT * FROM restaurant WHERE restaurantName like ? and restaurantAddress like ? "
 					+ "and restaurantCategory like ?  and restaurantType like ?";
 				System.out.printf("%s,%s,%s,%s%n",restaurantName,restaurantAddress,restaurantCategory,restaurantType);
+
 			try {
+	    		setDataSource();
 				PreparedStatement pstmt = conn.prepareStatement(sqlString);
 				pstmt.setString(1, "%" + restaurantName + "%");
 				pstmt.setString(2, "%" + restaurantAddress + "%");
@@ -96,7 +101,12 @@ public class RestaurantDAO {
 		public List<Restaurant> findAllRestaurant() {
 			List<Restaurant> list = new ArrayList<Restaurant>();
 			String sqlString = "SELECT * FROM restaurant";
-			try (PreparedStatement pstmt = conn.prepareStatement(sqlString); ResultSet rs = pstmt.executeQuery();) {
+
+			try (    		
+				PreparedStatement pstmt = conn.prepareStatement(sqlString); ResultSet rs = pstmt.executeQuery();
+				){					
+				setDataSource();
+	        	
 				while (rs.next()) {
 					Restaurant restaurant = new Restaurant(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
 							rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
@@ -114,6 +124,7 @@ public class RestaurantDAO {
 		String sqlString = "SELECT * FROM restaurant WHERE restaurantNumber = " + restaurantNumber;
 
 		try {
+			setDataSource();
 			PreparedStatement pstmt = conn.prepareStatement(sqlString);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -137,6 +148,7 @@ public class RestaurantDAO {
 	public boolean createRestaurant(Restaurant restaurant) {
 		String sqlString = "Insert into restaurant values(?,?,?,?,?,?,?)";
 		try (PreparedStatement pstmt = conn.prepareStatement(sqlString);) {
+			setDataSource();
 			pstmt.setString(1, restaurant.getRestaurantName());
 			pstmt.setString(2, restaurant.getRestaurantTel());
 			pstmt.setString(3, restaurant.getRestaurantAddress());
@@ -162,6 +174,7 @@ public class RestaurantDAO {
 
 		try {
 			String sqlString = "Delete from restaurant where restaurantNumber =" + restaurantNumber;
+			setDataSource();
 			PreparedStatement pstmt = conn.prepareStatement(sqlString);
 			int deletecount = pstmt.executeUpdate();
 			pstmt.close();
@@ -182,6 +195,7 @@ public class RestaurantDAO {
 				+ "restaurantAddress=? , restaurantCategory=? , restaurantType=? , restaurantBusinessHours=? , restaurantScore=?"
 				+ " where restaurantNumber =? ";
 		try (PreparedStatement pstmt = conn.prepareStatement(sqlString);) {
+			setDataSource();
 			pstmt.setString(1, restaurant.getRestaurantName());
 			pstmt.setString(2, restaurant.getRestaurantTel());
 			pstmt.setString(3, restaurant.getRestaurantAddress());
@@ -202,5 +216,17 @@ public class RestaurantDAO {
 			return false;
 		}
 	}
+	
+	public void setDataSource() throws SQLException {
+		InitialContext ctxt;
+			try {
+				ctxt = new InitialContext();
+				ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/veganDB");
+				conn = ds.getConnection();
+			} catch (NamingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 
 }

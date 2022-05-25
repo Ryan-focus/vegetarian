@@ -155,18 +155,18 @@ public class ProductDao {
 	        return check;
 	    }
 	   
-	   // 删除商品,成功返回boolean
-	    public boolean delProducts(int productId) {
-	        boolean check = false;
-	        String sqlStr = "delete from goods where id = '" + productId + "'";
-	        try {
-	            Statement stmt = this.conn.createStatement();
-
-	            check = stmt.executeUpdate(sqlStr) > 0;
+	   // 删除商品
+	    public void delProducts(int id) {
+	    	try {
+	            query = "delete from products where id=?";
+	            pst = this.conn.prepareStatement(query);
+	            pst.setInt(1, id);
+	            pst.execute();
+	            //result = true;
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }
-	        return check;
+	       
 	    }
 	    
 	    // 更新商品

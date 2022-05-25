@@ -12,7 +12,7 @@ private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Date date;
 	private int count;
-	private Date orderDate;
+	private String orderDate;
 	private int restaurantNumber;
 	private int uid;
 
@@ -22,7 +22,8 @@ private static final long serialVersionUID = 1L;
 		super();
 	}
 	
-	public Reserve(Integer id, Date date, int count, Date orderDate,int restaurantNumber ,int uid) {
+
+	public Reserve(Integer id, Date date, int count, String orderDate,int restaurantNumber ,int uid) {
 		super();
 		this.date = date;
 		this.count = count;
@@ -51,14 +52,14 @@ private static final long serialVersionUID = 1L;
 		this.count = count;
 	}
 	
-	public Date getOrderDate() {
+	public String getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(Date orderDate) {
+	public void setOrderDate(String orderDate) {
 		this.orderDate = orderDate;
 	}
-	
+
 	public int getRestaurantNumber() {
 		return restaurantNumber;
 	}
