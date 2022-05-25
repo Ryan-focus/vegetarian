@@ -34,7 +34,7 @@
             	
                 uid: {
                 	
-                	title:'會員編號',
+                	title:'UID',
                     key: true,
                     list: true,
                     create:true
@@ -48,21 +48,21 @@
                 },
                 
                 password: {
-                    title: '密碼',
+                    title: 'Password',
                     width: '20%',
                     edit:false
                 },
                 
                 username: {
                 	
-                    title: '用戶名稱',
+                    title: 'Username',
                     width: '20%',
                     edit: true
                 },    
                 
                 status: {
                 	
-                    title: '權限',
+                    title: 'Status',
                     width: '20%',
                     edit: true
                 }                
