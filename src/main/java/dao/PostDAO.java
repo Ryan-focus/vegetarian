@@ -32,15 +32,11 @@ public class PostDAO implements Serializable{
 	
 	//新增文章圖片測試
     public boolean addPostImage(String title,String posted_text, String Imgurl) throws IOException {
-<<<<<<< HEAD
+
         String sql = "insert into posts(title,posted_date,posted_text,posted_Imgurl) values(?,?,?,?)";
- 
-=======
-        String sql = "insert into poststest(title,posted_date,posted_text,posted_Imgurl) values(?,?,?,?)";
-        
+         
         String newImgurl ="images/PostsPhoto/defaultPostImage.jpg";
         
->>>>>>> pictureUpdateTest
         try {
             pst = conn.prepareStatement(sql);
             pst.setString(1, title);
