@@ -105,7 +105,7 @@ public class PostCServlet extends HttpServlet {
 		String title = null;
 		String postedText = null;
 		String add = null;
-		String headUrl = ""; // 存放路徑
+		String headUrl = null; // 存放路徑
 		String headImgFileName = "images/PostsPhoto"; // Web項目中存放圖片的文件夾名。可自定義
 
 		FileItemFactory factory = new DiskFileItemFactory();
@@ -142,7 +142,7 @@ public class PostCServlet extends HttpServlet {
 //			request.setAttribute(title, title);
 			}
 			// 讀入資料為檔案
-			else {
+			else if(item.getSize()!=0){
 				String fileName = item.getName();
 				System.out.println("原檔名" + fileName);
 				String suffix = fileName.substring(fileName.lastIndexOf('.'));//取得副檔名
@@ -175,6 +175,8 @@ public class PostCServlet extends HttpServlet {
 			}
 			
 		}
+		
+		
 		if (postDao.addPostImage(title, postedText, headUrl)) {
 			System.out.println("上傳成功");
 			request.setAttribute("message", "發表成功");
