@@ -155,7 +155,7 @@ public class PostCServlet extends HttpServlet {
 				ServletContext context = this.getServletContext();
 				// 絕對路徑
 				String serverPath = context.getRealPath("") + headImgFileName;//
-				String savePath ="C:/Users/PC/Documents/GitHub/vegetarian/src/main/webapp/"+headImgFileName;
+				String savePath ="C:\\Users\\iSpan\\Documents\\GitHub\\vegetarian\\src\\main\\webapp\\"+headImgFileName;
 				System.out.println(serverPath);
 				System.out.println(savePath);
 

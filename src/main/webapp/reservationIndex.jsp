@@ -13,6 +13,26 @@
 <body> 
 	<div class="app">
     <h1><%=request.getAttribute("restaurantName")%></h1>
+
+      
+      <div style="
+    width: 95%;
+    display: block;
+    text-align: left;
+"><img style="width:85%;" src="images/reserveImage/<%=request.getAttribute("restaurantNumber")%>.jpg" alt="" />
+
+</div>
+      <div class = "menu">
+      <ul>
+        <li>餐廳名稱 :<%=request.getAttribute("restaurantName")%></li>
+        <li>餐廳地址 :<%=request.getAttribute("restaurantAddress")%></li>
+        <li>餐廳電話 :<%=request.getAttribute("restaurantTel")%></li>
+        <li>美食分類 :<%=request.getAttribute("restaurantCategory")%></li>
+        <li><span>素食種類 : <%=request.getAttribute("restaurantType")%></span></li>
+        <li>營業時間 :<%=request.getAttribute("restaurantBusinessHours")%></li>
+      </ul>
+      </div>
+      <div class="map"><%=request.getAttribute("restaurantMap")%></div>
 	    <FORM ACTION="./reserve" method="post">
 		    <p>日期</p>
 		    <input type="date" id="theDate" min='2022-05-25' max='2050-05-25' required="required" name="orderdate"/>

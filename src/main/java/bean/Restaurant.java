@@ -14,10 +14,11 @@ public class Restaurant implements Serializable {
 	private String restaurantType;
 	private String restaurantBusinessHours;
 	private String restaurantScore;
+	private String restaurantMap;
 	
 	public Restaurant() {};
 	public Restaurant(Integer restaurantNumber, String restaurantName, String restaurantTel, String restaurantAddress, String restaurantCategory, String restaurantType,
-			String restaurantBusinessHours, String restaurantScore) {
+			String restaurantBusinessHours, String restaurantScore,String restaurantMap) {
 		super();
 		this.restaurantNumber = restaurantNumber;
 		this.restaurantName = restaurantName;
@@ -27,6 +28,7 @@ public class Restaurant implements Serializable {
 		this.restaurantType = restaurantType;
 		this.restaurantBusinessHours = restaurantBusinessHours;
 		this.restaurantScore = restaurantScore;
+		this.restaurantMap = restaurantMap;
 	}
 	
 	//新增餐廳的建構子
@@ -98,6 +100,12 @@ public class Restaurant implements Serializable {
 	}
 	public void setRestaurantScore(String restaurantScore) {
 		this.restaurantScore = restaurantScore;
+	}
+	public String getRestaurantMap() {
+		return restaurantMap;
+	}
+	public void setRestaurantMap(String restaurantMap) {
+		this.restaurantMap = restaurantMap;
 	}
 	
 }
