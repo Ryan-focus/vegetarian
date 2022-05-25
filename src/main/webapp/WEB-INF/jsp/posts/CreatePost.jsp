@@ -75,6 +75,7 @@ body, html {
 			<h5 class="text">文章內容:</h5>
 			<textarea class="text_area" name="postedText" rows="20" maxlength="5000" required></textarea>
 			<p class="wordsNum2">0/5000</p>
+			
 			<input type="submit" name="add" value="發表文章" />
 		</form>
 

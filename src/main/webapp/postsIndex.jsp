@@ -25,16 +25,13 @@
 	-webkit-line-clamp: 6;
 	-webkit-box-orient: vertical;
 	white-space: normal;
-	border-style: dashed;
-	border-color: black;
 	margin-right:10px
 	}
 	.textbody{background-color: #f6f8fc ; margin:0 auto;max-width: 1600px; }
 	.posts{background-color: #f6f8fc ;margin:0 auto; width: 80%;}
-	h3{padding:20px}
+	h3{padding:10px}
 	.pic {
 	float: left;
-	border-style: dotted;
 	margin:10px;
 }
 
@@ -45,13 +42,13 @@
 }
 
 .box {
-	border-style: dotted;
 	height: 250px;
 	display: flex;
 	align-items: center;
+	margin:10px;
+	border-style:double;
+	border-color:#E6E8E6;
 }
- 
-	
 	
 </style>
 </head>
@@ -60,9 +57,9 @@
 	<div class="posts">
 	<h3 style="text-align:center ;">文章列表</h3>
 	<!-- Filter無法套用在使用javascript寫建立window.location的方法. -->
-	
+	<% if (user.getUid() > 0){%>
 	<input type="button" onclick="window.location.href='/vegetarian/createpost';" value="發表文章" />
-	
+	<%}%>
 	<hr>
 	
 		<%
@@ -85,17 +82,18 @@
 				<img class="img1" src="<%=post.getImgurl()%>">
 			</div>
 			<div class="ellipsis">
-
-
 			<%=post.getPostedText()%>
-
 			</div>
 		</div>
+		<div class="con">
 		<a href="./post?action=showPost&id=<%=post.getPostId()%>"> 繼續閱讀</a>
+		</div>
 		<hr>
+		<% if (user.getUid() > 0){%>
 		<a href='./post?action=deletePost&id=<%=post.getPostId()%>'>刪除文章</a>
 		<a href='./post?action=editPost&id=<%=post.getPostId()%>'>編輯文章</a>
 		<hr>
+		<%}%>
 		<br />
 	</div>
 		

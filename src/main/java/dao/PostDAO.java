@@ -94,7 +94,7 @@ public class PostDAO implements Serializable{
     }
     //更新文章
     public boolean updatePost(Post post,String title ,String  posted_text, int id) {
-        String sql = "update poststest set title = ?, posted_text = ? where post_id = ?" ;
+        String sql = "update poststest set title = ?, posted_text = ?  where post_id = ?" ;
               
         try {
             pst = conn.prepareStatement(sql);

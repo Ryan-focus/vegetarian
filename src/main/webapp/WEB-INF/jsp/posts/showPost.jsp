@@ -54,8 +54,6 @@ textarea {
     
 }
 .pic{
-border-style: dashed;
-	border-color: black;
 	text-align: center;
 	padding: 20px;
 }

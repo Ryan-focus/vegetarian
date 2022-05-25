@@ -20,7 +20,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import bean.Post;
 import dao.PostDAO;
 
-public class PostCUServlet extends HttpServlet {
+public class PostCServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		DataSource ds = null;
@@ -45,7 +45,9 @@ public class PostCUServlet extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 
 			
-				Update(request, response, postDAO);
+				CreatePostImage(request, response, postDAO);
+			
+			
 
 
 		} catch (NamingException ne) {
@@ -97,7 +99,7 @@ public class PostCUServlet extends HttpServlet {
 
 	}
 	
-	private void UpdatePostImage(HttpServletRequest request, HttpServletResponse response, PostDAO postDao)
+	private void CreatePostImage(HttpServletRequest request, HttpServletResponse response, PostDAO postDao)
 			throws SQLException, IOException, ServletException {
 
 		String title = null;
@@ -105,8 +107,6 @@ public class PostCUServlet extends HttpServlet {
 		String add = null;
 		String headUrl = ""; // 存放路徑
 		String headImgFileName = "images/PostsPhoto"; // Web項目中存放圖片的文件夾名。可自定義
-		int id = (Integer.parseInt(request.getParameter("update")));
-		Post post = new Post();
 
 		FileItemFactory factory = new DiskFileItemFactory();
 
@@ -175,7 +175,7 @@ public class PostCUServlet extends HttpServlet {
 			}
 			
 		}
-		if (postDao.updatePost(post,title, postedText,id)) {
+		if (postDao.addPostImage(title, postedText, headUrl)) {
 			System.out.println("上傳成功");
 			request.setAttribute("message", "發表成功");
 			request.getRequestDispatcher("/showResultForm").forward(request, response);

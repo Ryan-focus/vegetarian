@@ -55,6 +55,15 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>PostCUServlet</servlet-name>
+    <url-pattern>/PostUpadte</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>PostCServlet</servlet-name>
+    <servlet-class>controller.PostCServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PostCServlet</servlet-name>
     <url-pattern>/PostNew</url-pattern>
   </servlet-mapping>
   
