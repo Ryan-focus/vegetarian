@@ -29,7 +29,7 @@ if (!isEmailExist) {
 <script type="text/javascript">
 alert("註冊<%=result%>\r前往登入頁面");
 	 
-window.location='/vegetarian/index.jsp';
+window.location='/vegetarian/Login';
 </script>
 
 <%} else {%>
@@ -37,7 +37,7 @@ window.location='/vegetarian/index.jsp';
 <script type="text/javascript">
 alert("註冊<%=result%>\r帳號(email)已存在\r請重新註冊!");
 	 
-window.location='/vegetarian/index.jsp';
+window.location='/vegetarian/UserRegister';
 </script>
 
 <%

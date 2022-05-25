@@ -38,7 +38,7 @@ if (request.getAttribute("urlStatus") != null)
 <%} else if (urlStatus == 1) {%>
 
  <script type="text/javascript">
- alert("<%=result%>\r未設定，前往主頁");
+ alert("<%=result%>\r將前往主頁");
  
  window.location='/vegetarian/index.jsp';
  </script>
