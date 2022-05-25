@@ -22,12 +22,13 @@
 	href="css/backend/veganBackend.css">
 </head>
 <body>
-	<!-- 開啟DataSource -->
-	<sql:setDataSource var="myDS"
-	driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-	url="jdbc:sqlserver://localhost:1433;databaseName=veganDB"
-	user="sa" 
-	password="passw0rd" />
+<!-- 開啟DataSource -->
+<sql:setDataSource var="myDS" 
+driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+url="jdbc:sqlserver://localhost:1433;databaseName=veganDB"
+user="sa" 
+password="passw0rd" />
+	<section id="container">
 		<!-- **********************************************************************************************************************************************************
       TOP BAR CONTENT & NOTIFICATIONS
       *********************************************************************************************************************************************************** -->
@@ -525,24 +526,26 @@
 			</div>
 		</div>
 	</section>
-	<!-- js placed at the end of the document so the pages load faster -->
-	<!--  <script src="js/backend/jquery.js"></script> -->
-	<!-- JavaScript Bundle with Popper -->
-	<!-- JavaScript onload閉包語法 -->
-	<script type="text/javascript">
-		window.onload = function() {
-			function init(fn) {
-				var result;
+<!-- js placed at the end of the document so the pages load faster -->
+<!--  <script src="js/backend/jquery.js"></script> -->
+<!-- JavaScript Bundle with Popper -->
+<!-- JavaScript onload閉包語法 -->
+<script type="text/javascript">
+window.onload = function() {
+	function init(fn) {
+		var result;
 
-				return function() {
-					if (fn) {
-						result = fn.apply(this, arguments);
-						fn = null;
-					}
-					return result;
-				};
-			}
-<<<<<<< Updated upstream
+		return function() {
+
+			if (fn) {
+
+				result = fn.apply(this, arguments);
+
+				fn = null;
+				}
+			return result;
+			};
+}
 			var onload = init(function() {
 				$("#tab-user").css("display", "none");
 				$("#tab-business").css("display", "none");
@@ -553,7 +556,7 @@
 				$("#tab-order").css("display","none");
 			});
 			onload();
-		}
+		};
 	</script>
 	<!-- Selector的語法 -->
 	<script>
@@ -588,72 +591,57 @@
 					case 'ma_cart':
 						$("#tab-shoppingcart").css("display", "block");
 						break;
-					 尚未完善功能 先註解
 					case 'ma_order':
-					$("#tab-order").css("display","block");
+						$("#tab-order").css("display","block");
 					break;
-					 
 					}
 				})
+		}});
 
-		return result;
-		};
-	}
-var onload = init(function(){
-$("#tab-user").css("display","none");
-$("#tab-business").css("display","none");
-$("#tab-restaurant").css("display","none");
-$("#tab-forum").css("display","none");
-$("#tab-foodnote").css("display","none");
-$("#tab-shoppingcart").css("display","none");
-$("#tab-order").css("display","none");
-});
-onload();
-}
+
 </script>
 <!-- Selector的語法 -->
 <script>
 $(document).ready(function(){
 //function包在 ready裡面 ，確保function執行時會是加載完畢後才執行
-	var els = document.getElementsByClassName("sub-menu");
-	for (var i = 0; i < els.length; i++) {
-		els[i].addEventListener('click', function(e) {
-			$("#tab-user").css("display","none");
-			$("#tab-business").css("display","none");
-			$("#tab-restaurant").css("display","none");
-			$("#tab-forum").css("display","none");
-			$("#tab-foodnote").css("display","none");
-			$("#tab-shoppingcart").css("display","none");
-			$("#tab-order").css("display","none");
-			switch (this.id) {
-			  case 'ma_user':
-				$("#tab-user").css("display","block");
-			    break;
-			  case 'ma_shop':
-				$("#tab-business").css("display","block");
-			    break;
-			  case 'ma_food':
-				$("#tab-restaurant").css("display","block");
-			    break;
-			  case 'ma_chat':
-				$("#tab-forum").css("display","block");
-			    break;
-			  case 'ma_note':
-				$("#tab-foodnote").css("display","block");
-			    break;
-			  case 'ma_cart':
-				$("#tab-shoppingcart").css("display","block");
-			    break;
-			  case 'ma_order':
-				$("#tab-order").css("display","block");
-			    break;
-
-			}
-
-		});
+var els = document.getElementsByClassName("sub-menu");
+for (var i = 0; i < els.length; i++) {
+	els[i].addEventListener('click', function(e) {
+		$("#tab-user").css("display","none");
+		$("#tab-business").css("display","none");
+		$("#tab-restaurant").css("display","none");
+		$("#tab-forum").css("display","none");
+		$("#tab-foodnote").css("display","none");
+		$("#tab-shoppingcart").css("display","none");
+		$("#tab-order").css("display","none");
+		switch (this.id) {
+		  case 'ma_user':
+			 console.log(1);
+			$("#tab-user").css("display","block");
+		    break;
+		  case 'ma_shop':
+			$("#tab-business").css("display","block");
+		    break;
+		  case 'ma_food':
+			$("#tab-restaurant").css("display","block");
+		    break;
+		  case 'ma_chat':
+			$("#tab-forum").css("display","block");
+		    break;
+		  case 'ma_note':
+			$("#tab-foodnote").css("display","block");
+		    break;
+		  case 'ma_cart':
+			$("#tab-shoppingcart").css("display","block");
+		    break;
+		  case 'ma_order':
+			$("#tab-order").css("display","block");
+		    break;
+		}
+		})}});
 	</script>
 	<!-- 主要Function的語法 -->
-	<script type="text/javascript">
+	<!--  <script type="text/javascript">
 		$(document).ready(function() {
 			//to remove
 			$("#remove").click(function() {
@@ -683,7 +671,7 @@ $(document).ready(function(){
 				})
 			});
 		});
-	</script>
+	</script>-->
 
 </body>
 </html>
