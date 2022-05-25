@@ -15,8 +15,8 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   </head>
   <body>
-  <jsp:useBean id="user" scope="session" class="bean.User"/> <!-- test session -->
-  <jsp:setProperty name="user" property="*"/>				<!-- test session -->
+  <jsp:useBean id="user" scope="session" class="bean.User"/> 
+  <jsp:setProperty name="user" property="*"/>				
   	<input type="checkbox" name="" id="menu_control">
     <header>
       <div class="header">
@@ -30,18 +30,18 @@
 		  		<span>選單</span>
 		  </label>
 	        <ul class="navigation">
-     	      <% if (user.getUid() == 0){%>		<!-- test session -->
+     	      <% if (user.getUid() == 0){%>		
 	          <a href="/vegetarian/Login"><li>登入</li></a>	        
-	          <%}%>								<!-- test session -->
+	          <%}%>								
 	       	  <!-- <a href="/vegetarian/order.asp"><li>訂位</li></a> -->
 	          <a href="/vegetarian/postIndex"><li>食記</li></a>
 	          <a href="/vegetarian/forumIndex"><li>網誌</li></a>
 	          <a href="/vegetarian/shoppingcartIndex"><li>購物專區</li></a>
 	          <!--  <a href="#"><li>店家專區</li></a>-->
-	          <li>${user.status}&nbsp;${user.username}&nbsp;</li> <!-- test session -->
-	          <% if (user.getUid() != 0){%>							<!-- test session -->
-	          <li><input type="button" value="登出" onclick="window.location.href='/vegetarian/Logout';"></li><!-- test session -->
-	          <%}%>													<!-- test session -->
+	          <li><div style="margin-top:9px;font-weight: bolder;">${user.status}&nbsp;&nbsp;${user.username}&nbsp;</div></li> 
+	          <% if (user.getUid() != 0){%>							
+	          <a href="/vegetarian/Logout"><li>登出</li></a>
+	          <%}%>													
 	        </ul>
      </div>
     </header>
