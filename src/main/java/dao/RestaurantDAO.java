@@ -42,7 +42,7 @@ public class RestaurantDAO {
 					Restaurant restaurant = new Restaurant(rs.getInt("restaurantNumber"), rs.getString("restaurantName"),
 							rs.getString("restaurantTel"), rs.getString("restaurantAddress"),
 							rs.getString("restaurantCategory"), rs.getString("restaurantType"),
-							rs.getString("restaurantBusinessHours"), rs.getString("restaurantScore"));
+							rs.getString("restaurantBusinessHours"), rs.getString("restaurantScore"),rs.getString("restaurantMap"));
 					list.add(restaurant);
 				}
 				rs.close();
@@ -109,7 +109,7 @@ public class RestaurantDAO {
 	        	
 				while (rs.next()) {
 					Restaurant restaurant = new Restaurant(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-							rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
+							rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),rs.getString(9));
 					list.add(restaurant);
 				}
 			} catch (SQLException e) {
@@ -131,7 +131,7 @@ public class RestaurantDAO {
 				restaurant = new Restaurant(rs.getInt("restaurantNumber"), rs.getString("restaurantName"),
 						rs.getString("restaurantTel"), rs.getString("restaurantAddress"),
 						rs.getString("restaurantCategory"), rs.getString("restaurantType"),
-						rs.getString("restaurantBusinessHours"), rs.getString("restaurantScore"));
+						rs.getString("restaurantBusinessHours"), rs.getString("restaurantScore"),rs.getString("restaurantMap"));
 			}
 			rs.close();
 			pstmt.close();

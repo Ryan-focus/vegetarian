@@ -202,7 +202,7 @@ body {
                 <input type="text" name="username" maxlength="30" id="name1" autocomplete="off" required
                 onblur="blurName(this)">
                 &nbsp;&nbsp;&nbsp;<span id="alertname"></span>
-          <label>暱稱</label>
+          <label>用戶名稱</label>
             </div>
         <a href="#" class="submit">
           <INPUT TYPE="SUBMIT" VALUE="送出" class="b1"> 

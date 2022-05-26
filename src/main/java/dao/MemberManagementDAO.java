@@ -72,14 +72,12 @@ public class MemberManagementDAO {
 			
 			Connection conn = ds.getConnection();
 			PreparedStatement preparedStatement = conn.prepareStatement(
-					"update users set email = ?, password = ?, username = ?, status = ? " +
+					"update users set username = ?, status = ? " +
 			"where uid = ?");
 			
-			preparedStatement.setString(1, user.getEmail());
-			preparedStatement.setString(2, user.getPassword());
-			preparedStatement.setString(3, user.getUsername());
-			preparedStatement.setString(4, user.getStatus());
-			preparedStatement.setInt(5, user.getUid());
+			preparedStatement.setString(1, user.getUsername());
+			preparedStatement.setString(2, user.getStatus());
+			preparedStatement.setInt(3, user.getUid());
 			preparedStatement.executeUpdate();
 			
 		} catch (SQLException e) {
