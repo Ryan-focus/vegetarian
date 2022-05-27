@@ -1,3 +1,13 @@
 eclipse.preferences.version=1
+encoding//src/main/java/controller/ForumServlet.java=UTF-8
+encoding//src/main/java/controller/OrderNowServlet.java=UTF-8
+encoding//src/main/java/controller/PostCServlet.java=UTF-8
+encoding//src/main/java/controller/PostCUServlet.java=UTF-8
+encoding//src/main/java/controller/PostIndexServlet.java=UTF-8
+encoding//src/main/java/controller/PostRDServlet.java=UTF-8
+encoding//src/main/java/controller/ShoppingCartServlet.java=UTF-8
+encoding//src/main/java/dao/ForumDAO.java=UTF-8
+encoding//src/main/java/dao/PostDAO.java=UTF-8
+encoding//src/main/java/filters/AutType.java=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/parts/header.jspf=UTF-8
 encoding//src/main/webapp/index.jsp=UTF-8

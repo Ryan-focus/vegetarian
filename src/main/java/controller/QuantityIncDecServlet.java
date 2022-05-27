@@ -38,6 +38,7 @@ public class QuantityIncDecServlet extends HttpServlet {
 			String action = request.getParameter("action");
 			int id = Integer.parseInt(request.getParameter("id"));
 
+			@SuppressWarnings("unchecked")
 			ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cart-list");
 
 			if (action != null && id >= 1) {

@@ -71,6 +71,7 @@ public class OrderNowServlet extends HttpServlet {
 				boolean result = orderDao.insertOrder(orderModel);
 
 				if (result) {
+					@SuppressWarnings("unchecked")
 					ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cart-list");
 					if (cart_list != null) {
 						for (Cart c : cart_list) {
@@ -83,7 +84,7 @@ public class OrderNowServlet extends HttpServlet {
 
 					response.sendRedirect("/vegetarian/order");
 				} else {
-					out.print("訂購失敗");
+					out.print("閮頃憭望��");
 				}
 
 			} else {

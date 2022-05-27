@@ -25,7 +25,7 @@ Connection conn = null;
 
 ProductDao pd = new ProductDao(ds.getConnection());
 List<Product> products = pd.getAllProducts();
-
+@SuppressWarnings("unchecked")
 ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
 if (cart_list != null) {
 

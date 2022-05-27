@@ -21,6 +21,11 @@ import bean.Post;
 import dao.PostDAO;
 
 public class PostCUServlet extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		DataSource ds = null;
@@ -29,19 +34,19 @@ public class PostCUServlet extends HttpServlet {
 
 		try {
 
-			// 建立Context Object,連到JNDI Server
+			// 撱箇�ontext Object,���JNDI Server
 			ctxt = new InitialContext();
 
-			// 使用JNDI API找到DataSource
+			// 雿輻JNDI API��DataSource
 			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/veganDB");
 
-			// 向DataSource要Connection
+			// ��ataSource閬onnection
 			conn = ds.getConnection();
 
-			// 建立Database Access Object,負責Table的Access
+			// 撱箇�atabase Access Object,鞎痊Table��ccess
 			PostDAO postDAO = new PostDAO(conn);
 
-			// 如果要編碼值為UTF-8
+			// 憒��楊蝣澆�潛UTF-8
 			request.setCharacterEncoding("UTF-8");
 
 			
@@ -71,14 +76,15 @@ public class PostCUServlet extends HttpServlet {
 		int id = (Integer.parseInt(request.getParameter("update")));
 
 		if (postDAO.updatePost(post, title, posted_text, id)) {
-			request.setAttribute("message", "更新成功");
+			request.setAttribute("message", "������");
 			request.getRequestDispatcher("/showResultForm").forward(request, response);
 		} else {
-			request.setAttribute("message", "更新失敗");
+			request.setAttribute("message", "��憭望��");
 			request.getRequestDispatcher("/showResultForm").forward(request, response);
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void Create(HttpServletRequest request, HttpServletResponse response, PostDAO postDAO)
 			throws SQLException, IOException, ServletException {
 
@@ -88,23 +94,24 @@ public class PostCUServlet extends HttpServlet {
 
 
 		if (postDAO.addPost(title, posted_text)) {
-			request.setAttribute("message", "發表成功");
+			request.setAttribute("message", "�銵冽���");
 			request.getRequestDispatcher("/showResultForm").forward(request, response);
 		} else {
-			request.setAttribute("message", "發表失敗");
+			request.setAttribute("message", "�銵典仃���");
 			request.getRequestDispatcher("/showResultForm").forward(request, response);
 		}
 
 	}
 	
+	@SuppressWarnings("unused")
 	private void UpdatePostImage(HttpServletRequest request, HttpServletResponse response, PostDAO postDao)
 			throws SQLException, IOException, ServletException {
 
 		String title = null;
 		String postedText = null;
 		String add = null;
-		String headUrl = ""; // 存放路徑
-		String headImgFileName = "images/PostsPhoto"; // Web項目中存放圖片的文件夾名。可自定義
+		String headUrl = ""; // 摮頝臬��
+		String headImgFileName = "images/PostsPhoto"; // Web��銝剖������辣憭曉���摰儔
 		int id = (Integer.parseInt(request.getParameter("update")));
 		Post post = new Post();
 
@@ -112,22 +119,22 @@ public class PostCUServlet extends HttpServlet {
 
 		ServletFileUpload upload = new ServletFileUpload(factory);
 
-		List items = null;
+		List<?> items = null;
 		try {
 			items = upload.parseRequest(request);
 		} catch (FileUploadException e) {
 			e.printStackTrace();
 		}
 
-		Iterator iter = items.iterator();
+		Iterator<?> iter = items.iterator();
 		while (iter.hasNext()) {
 			FileItem item = (FileItem) iter.next();
 			
-            //非檔案格式
+            //����撘�
 			if (item.isFormField()) {
 				String fieldName = item.getFieldName();
 				if (fieldName.equals("title")) {
-					// 得到表單的值
+					// 敺銵典����
 					title = item.getString("UTF-8");
 				}
 				if (fieldName.equals("postedText")) {
@@ -141,46 +148,46 @@ public class PostCUServlet extends HttpServlet {
 //                 String value = item.getString();
 //			request.setAttribute(title, title);
 			}
-			// 讀入資料為檔案
+			// 霈��鞈�瑼��
 			else {
 				String fileName = item.getName();
-				System.out.println("原檔名" + fileName);
-				String suffix = fileName.substring(fileName.lastIndexOf('.'));//取得副檔名
-				System.out.println("副檔名：" + suffix);// .jpg
-				//新文件名稱
+				System.out.println("�����" + fileName);
+				String suffix = fileName.substring(fileName.lastIndexOf('.'));//���瑼��
+				System.out.println("�瑼���" + suffix);// .jpg
+				//���辣��迂
 				String newFileName = new Date().getTime() + suffix;
-				System.out.println("新檔名：" + newFileName);// 1478509873038.jpg
+				System.out.println("�瑼���" + newFileName);// 1478509873038.jpg
 
 				
 				ServletContext context = this.getServletContext();
-				// 絕對路徑
+				// 蝯�楝敺�
 				String serverPath = context.getRealPath("") + headImgFileName;//
 				String savePath ="C:/Users/PC/Documents/GitHub/vegetarian/src/main/webapp/"+headImgFileName;
 				System.out.println(serverPath);
 				System.out.println(savePath);
 
-				// 將圖片存入指定位置
+				// 撠�������蔭
 				File headImage = new File(savePath, newFileName);
-				// 上傳圖片寫入
+				// 銝���神�
 				try {
 					item.write(headImage);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 
-				//把圖片路徑（headUrl）儲存到table
-				headUrl = headImgFileName + "/" + newFileName; // 拼接相對路徑 headImage/1478509873038.jpg
+				//����楝敺�eadUrl嚗摮table
+				headUrl = headImgFileName + "/" + newFileName; // ���撠楝敺� headImage/1478509873038.jpg
 				System.out.println(headUrl);
 				
 			}
 			
 		}
 		if (postDao.updatePost(post,title, postedText,id)) {
-			System.out.println("上傳成功");
-			request.setAttribute("message", "發表成功");
+			System.out.println("銝����");
+			request.setAttribute("message", "�銵冽���");
 			request.getRequestDispatcher("/showResultForm").forward(request, response);
 		} else {
-			System.out.println("失敗");
+			System.out.println("憭望��");
 		}
 	}
 

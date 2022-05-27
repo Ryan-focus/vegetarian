@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 public class ForumBean implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String vgeid;
 	private String vgename;
 	private String vgetheme;
