@@ -31,10 +31,11 @@ public class RestaurantServletDS extends HttpServlet {
 
 		try {
 		
-			ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/veganDB");
-			System.out.println("3");
-			con = ds.getConnection();
+			//轉成Hi
+//			ctx = new InitialContext();
+//			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/veganDB");
+//			System.out.println("3");
+//			con = ds.getConnection();
 			
 			RestaurantDAO restaurantDAO = new RestaurantDAO();
 			if (req.getParameter("所有餐廳") != null) {
@@ -58,8 +59,6 @@ public class RestaurantServletDS extends HttpServlet {
 			if (req.getParameter("修改餐廳") != null) {
 				restaurantUpdate(req, res, restaurantDAO);
 			}
-		} catch (NamingException ne) {
-			System.out.println("Naming Service Lookup Exception");
 		} catch (SQLException e) {
 			System.out.println("Database Connection Error");
 		} finally {
@@ -86,8 +85,9 @@ public class RestaurantServletDS extends HttpServlet {
 				restaurantType="";}
 			
 			// 透過DAO元件Access Dept Table
-			List<Restaurant> restaurantList = restaurantDAO.findRestaurant(restaurantName,restaurantAddress,restaurantCategory,restaurantType);
-			
+//			List<Restaurant> restaurantList = restaurantDAO.findRestaurant(restaurantName,restaurantAddress,restaurantCategory,restaurantType);
+			//改寫為Hibernate方法，其餘不變。
+			List<Restaurant> restaurantList = restaurantDAO.findAll();
 			// session
 			req.getSession().setAttribute("restaurantList",restaurantList);
 			

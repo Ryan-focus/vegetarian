@@ -89,6 +89,7 @@ public class ShoppingCartServlet extends HttpServlet {
 			Date date = new Date();
 
 			// retrive all cart products
+			@SuppressWarnings("unchecked")
 			ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cart-list");
 			// user authentication
 			User user = (User) request.getSession().getAttribute("user");
@@ -174,6 +175,7 @@ public class ShoppingCartServlet extends HttpServlet {
 			cart.setQuantity(1);
 
 			HttpSession session = request.getSession();
+			@SuppressWarnings("unchecked")
 			ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
 
 			if (cart_list == null) {
@@ -188,7 +190,7 @@ public class ShoppingCartServlet extends HttpServlet {
 					if (c.getId() == id) {
 						exist = true;
 						out.println(
-								"<h3 style='color:crimson; text-align:center'>商品已加入購物車<a href='/vegetarian/cart'>前往購物車</a></h3>");
+								"<h3 style='color:crimson; text-align:center'>���歇��鞈潛頠�<a href='/vegetarian/cart'>���鞈潛頠�</a></h3>");
 					}
 				}
 				if (!exist) {
@@ -200,7 +202,7 @@ public class ShoppingCartServlet extends HttpServlet {
 		}
 
 	}
-
+	@SuppressWarnings("unchecked")
 	private void removeFromCart(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		try (PrintWriter out = response.getWriter()) {

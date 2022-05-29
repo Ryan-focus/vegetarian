@@ -1,6 +1,6 @@
-<%@ page pageEncoding="UTF-8"%>
-<%@ page import="java.util.List" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.util.List" %>
+<%@ page pageEncoding="UTF-8"%>
 <jsp:useBean id="restaurant" class="bean.Restaurant" scope="request"/>
 <jsp:setProperty name="restaurant" property="*"/>
 <!DOCTYPE html>

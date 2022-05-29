@@ -9,7 +9,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -90,14 +90,14 @@ public class ForumServlet extends HttpServlet {
 		try {
 			ctxt = new InitialContext();
 
-			// 使用JNDI API找到DataSource
+			// 雿輻JNDI API��DataSource
 			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/veganDB");
 
-			// 向DataSource要Connection
+			// ��ataSource閬onnection
 			conn = ds.getConnection();
-			// 建立Database Access Object,負責Table的Access
-			forumDAO = new ForumDAO(conn); // STUDENTDAO見一個建構子傳回
-			//String id = request.getParameter("vgeid");//取得id
+			// 撱箇�atabase Access Object,鞎痊Table��ccess
+			forumDAO = new ForumDAO(conn); // STUDENTDAO閬��遣瑽����
+			//String id = request.getParameter("vgeid");//���d
 			String name = request.getParameter("vgename");
 			ForumBean forumBean = forumDAO.queryForum(name);
 			if(forumBean ==null) {
@@ -136,23 +136,23 @@ public class ForumServlet extends HttpServlet {
 		Connection conn = null;
 		try {
 			String vgeid = request.getParameter("vgeid");
-			// 建立Context Object,連到JNDI Server
+			// 撱箇�ontext Object,���JNDI Server
 			ctxt = new InitialContext();
 
-			// 使用JNDI API找到DataSource
+			// 雿輻JNDI API��DataSource
 			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/veganDB");
 
-			// 向DataSource要Connection
+			// ��ataSource閬onnection
 			conn = ds.getConnection();
 
-			// 建立Database Access Object,負責Table的Access
+			// 撱箇�atabase Access Object,鞎痊Table��ccess
 			ForumBean forumBean = forumDAO.queryForum(vgeid);
 			if(forumBean != null) {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/forum/ErrorCreate.jsp");
 				dispatcher .forward(request, response);
 			}else {
 				
-				 forumDAO = new ForumDAO(conn); // STUDENTDAO見一個建構子傳回
+				 forumDAO = new ForumDAO(conn); // STUDENTDAO閬��遣瑽����
 				 String vgename = request.getParameter("vgename");
 				 String vgetheme = request.getParameter("vgetheme");
 				 String vgecontent = request.getParameter("vgecontent");
@@ -233,8 +233,8 @@ public class ForumServlet extends HttpServlet {
 			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/veganDB");
 
 			conn = ds.getConnection();
-			forumDAO = new ForumDAO(conn); // STUDENTDAO見一個建構子傳回
-			 //取得id
+			forumDAO = new ForumDAO(conn); // STUDENTDAO閬��遣瑽����
+			 //���d
 			 String id =request.getParameter("vgeid") ;		 
 			 forumDAO.deleteForum(id);
 			 request.getSession(true);
@@ -264,13 +264,14 @@ public class ForumServlet extends HttpServlet {
 		InitialContext ctxt = null;
 		Connection conn = null;
 		try (PrintWriter out = response.getWriter()){
-			// 建立Context Object,連到JNDI Server
+			// 撱箇�ontext Object,���JNDI Server
 			ctxt = new InitialContext();
 
 			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/veganDB");
 			conn = ds.getConnection();
 
-			ForumDAO forumDAO = new ForumDAO(conn); // STUDENTDAO見一個建構子傳回
+			@SuppressWarnings("unused")
+			ForumDAO forumDAO = new ForumDAO(conn); // STUDENTDAO閬��遣瑽����
 			ForumBean forumData = (ForumBean) request.getSession(true).getAttribute("vge");
 			
 			

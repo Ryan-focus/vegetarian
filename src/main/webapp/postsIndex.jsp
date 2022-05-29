@@ -63,6 +63,7 @@
 	<hr>
 	
 		<%
+		@SuppressWarnings("unchecked")
 		List<Post> list = (List<Post>)request.getAttribute("postlist");
 		%>
 		

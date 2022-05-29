@@ -1,9 +1,6 @@
 package filters;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -11,7 +8,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,10 +16,10 @@ import javax.servlet.http.HttpSession;
  * Servlet Filter implementation class AutType
  */
 /**"
-  * 使用Annotation使用過濾器
-  * @WebFilter宣告 javax.servlet.FilterAPI 定義為過濾器
-  * filterName宣告過濾器的名稱
-  * urlPatterns指定要過濾的URL模式,也可使用屬性value來宣告.(urlPattern屬性一定要有)
+  * 雿輻Annotation雿輻��蕪�
+  * @WebFilter摰���� javax.servlet.FilterAPI 摰儔���蕪�
+  * filterName摰����蕪����迂
+  * urlPatterns�����蕪��RL璅∪��,銋雿輻撅祆�听alue靘恐���.(urlPattern撅祆�找�摰���)
   */
 
 //@WebFilter(filterName="/AutType",urlPatterns="/*",
@@ -41,9 +37,9 @@ public class AutType implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		res.setContentType("text/html; charset=UTF-8");
-		// 【取得 session】
+		// ���� session��
 		HttpSession session = req.getSession();
-		// 【從 session 判斷此User是否登入過】
+		// ��� session ��甇下ser��������
 		Object type = session.getAttribute("user");	
 		
 		if (type == null) {

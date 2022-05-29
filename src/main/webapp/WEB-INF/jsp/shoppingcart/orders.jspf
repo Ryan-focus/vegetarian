@@ -34,6 +34,7 @@ if (user3.getUid() != 0) {
 } else {
 	response.sendRedirect("/vegetarian/Login");
 }
+@SuppressWarnings("unchecked")
 ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
 if (cart_list != null) {
 	request.setAttribute("cart_list", cart_list);

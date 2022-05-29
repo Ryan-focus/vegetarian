@@ -18,19 +18,24 @@ import bean.Post;
 
 public class PostDAO implements Serializable{
 	
-	 private Connection conn;
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-	  //建構子
+	private Connection conn;
+
+	  //撱箸���
 	  public PostDAO (Connection conn) {
 			this.conn = conn;
 	  }
 
 	PreparedStatement pst = null;
 	
-	LocalDateTime dt = LocalDateTime.now(); // 目前時間&日期
+	LocalDateTime dt = LocalDateTime.now(); // ������&����
 	
 	
-	//新增文章圖片測試
+	//�憓����葫閰�
     public boolean addPostImage(String title,String posted_text, String Imgurl) throws IOException {
 
         String sql = "insert into posts(title,posted_date,posted_text,posted_Imgurl) values(?,?,?,?)";
@@ -60,7 +65,7 @@ public class PostDAO implements Serializable{
         return false;
     } 
 
-	//新增文章
+	//�憓���
     public boolean addPost(String title,String posted_text) {
         String sql = "insert into posts(title,posted_date,posted_text) values(?,?,?)";
  
@@ -81,7 +86,7 @@ public class PostDAO implements Serializable{
         return false;
     }
     
-    //刪除文章
+    //������
     public boolean deletePost(int id) {
         String sql = "delete from posts where post_id = ?";
  
@@ -95,11 +100,11 @@ public class PostDAO implements Serializable{
            
             if (count > 0) return true;
         } catch (SQLException e) {
-            System.out.println(e.getErrorCode() + "刪除失敗");
+            System.out.println(e.getErrorCode() + "��憭望��");
         }
         return false;
     }
-    //更新文章
+    //������
     public boolean updatePost(Post post,String title ,String  posted_text, int id) {
         String sql = "update posts set title = ?, posted_text = ?  where post_id = ?" ;
               
@@ -119,7 +124,7 @@ public class PostDAO implements Serializable{
         return false;
     }
     
-  //搜尋一篇文章
+  //����蝭���
     public Post findPost(int id) {
         String sql = "select * from posts where post_id = ?" ;
               
@@ -153,7 +158,7 @@ public class PostDAO implements Serializable{
     }
     
  
-//搜尋全部
+//����
     
     public List<Post> findallPost() {
         String sql = "select * from posts order by post_id desc;" ;

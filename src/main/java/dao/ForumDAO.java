@@ -1,13 +1,13 @@
 package dao;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import bean.ForumBean;
 
 public class ForumDAO {
-	private static Connection conn;
+	public static Connection conn;
 
+	@SuppressWarnings("static-access")
 	public ForumDAO(Connection conn) {
 		this.conn = conn;
 	}
@@ -25,18 +25,18 @@ public class ForumDAO {
 			else
 				return false;
 		} catch (Exception e) {
-			System.err.println("新增資料時發生錯誤:" + e);
+			System.err.println("�憓�����隤�:" + e);
 			return false;
 		}
 	}
 
-	public static boolean updateForum(ForumBean foruData) {
+	public boolean updateForum(ForumBean foruData) {
 		try {
 			String sqlString = "UPDATE forum " + "SET vgename = '" + foruData.getVgename() + "' "
 					+ ",vgetheme = '" + foruData.getVgetheme() + "',vgecontent = '" + foruData.getVgecontent()
 					+ "' " + "WHERE vgeid = '" + foruData.getVgeid()+"'";
 			Statement stmt = conn.createStatement();
-			System.out.println(sqlString);//檢查
+			System.out.println(sqlString);//瑼Ｘ
 			int updatecount = stmt.executeUpdate(sqlString);
 			stmt.close();
 			if (updatecount >= 1)
@@ -44,7 +44,7 @@ public class ForumDAO {
 			else
 				return false;
 		} catch (Exception e) {
-			System.err.println("更新時發生錯誤:" + e);
+			System.err.println("������隤�:" + e);
 			return false;
 		}
 	}
@@ -62,7 +62,7 @@ public class ForumDAO {
 			else
 				return false;
 		} catch (Exception e) {
-			System.err.println("刪除時發生錯誤: " + e);
+			System.err.println("������隤�: " + e);
 			return false;
 		}
 	}
@@ -91,7 +91,7 @@ public class ForumDAO {
 			ps.close();
 			return foru;
 		} catch (Exception e) {
-			System.err.println("尋找資料時發生錯誤:" + e);
+			System.err.println("撠鞈����隤�:" + e);
 			return null;
 		}
 	}

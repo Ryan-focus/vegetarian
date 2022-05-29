@@ -41,6 +41,7 @@ public class CheckOutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataSource ds = null;
+		@SuppressWarnings("unused")
 		Connection conn = null;
 
 		{
@@ -58,6 +59,7 @@ public class CheckOutServlet extends HttpServlet {
 			Date date = new Date();
 
 			// retrive all cart products
+			@SuppressWarnings("unchecked")
 			ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cart-list");
 			// user authentication
 			User user = (User) request.getSession().getAttribute("user");

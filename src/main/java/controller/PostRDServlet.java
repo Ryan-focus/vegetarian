@@ -12,6 +12,11 @@ import bean.Post;
 import dao.PostDAO;
 
 public class PostRDServlet extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		DataSource ds = null;
@@ -20,19 +25,19 @@ public class PostRDServlet extends HttpServlet {
 
 		try {
 
-			// 建立Context Object,連到JNDI Server
+			// 撱箇�ontext Object,���JNDI Server
 			ctxt = new InitialContext();
 
-			// 使用JNDI API找到DataSource
+			// 雿輻JNDI API��DataSource
 			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/veganDB");
 
-			// 向DataSource要Connection
+			// ��ataSource閬onnection
 			conn = ds.getConnection();
 
-			// 建立Database Access Object,負責Table的Access
+			// 撱箇�atabase Access Object,鞎痊Table��ccess
 			PostDAO postDAO = new PostDAO(conn);
 
-			// 如果要編碼值為UTF-8
+			// 憒��楊蝣澆�潛UTF-8
 			request.setCharacterEncoding("UTF-8");
 
 		
@@ -80,7 +85,7 @@ public class PostRDServlet extends HttpServlet {
 			request.getRequestDispatcher("/showPost").forward(request, response);
 
 		} else {
-			request.setAttribute("message", "失敗");
+			request.setAttribute("message", "憭望��");
 			request.getRequestDispatcher("/showResultForm").forward(request, response);
 		}
 	}
@@ -92,10 +97,10 @@ public class PostRDServlet extends HttpServlet {
 
 		
 		if (postDAO.deletePost(id)) {
-			request.setAttribute("message", "刪除成功");
+			request.setAttribute("message", "������");
 			request.getRequestDispatcher("/showResultForm").forward(request, response);
 		} else {
-			request.setAttribute("message", "刪除失敗");
+			request.setAttribute("message", "��憭望��");
 			request.getRequestDispatcher("/showResultForm").forward(request, response);
 		}
 	}
@@ -114,7 +119,7 @@ public class PostRDServlet extends HttpServlet {
 			request.setAttribute("posted_text", post.getPostedText());
 			request.getRequestDispatcher("/editPost").forward(request, response);
 		} else {
-			request.setAttribute("message", "失敗");
+			request.setAttribute("message", "憭望��");
 			request.getRequestDispatcher("showResultForm.jsp").forward(request, response);
 		}
 	}

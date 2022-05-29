@@ -11,50 +11,82 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
 import bean.Restaurant;
+import model.HibernateUtils;
 
 public class RestaurantDAO {
 	private DataSource ds = null;
 	private Connection conn = null;
 	
+	SessionFactory factory = HibernateUtils.getSessionFactory();
+	
 	public RestaurantDAO() {
 		super();
 	}
 	
+	// 查詢所有紀錄
+	public List<Restaurant> findAll()  {
+		List<Restaurant> restaurantList = new ArrayList<Restaurant>();
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+
+//		String hql = "FROM restaurant "; 
+		try {
+		tx = session.beginTransaction();
+		String hql = "from Restaurant";
+		restaurantList = session.createQuery(hql, Restaurant.class)
+				            .getResultList();
+		tx.commit();
+		} catch (Exception e) {
+			if(tx != null)
+				tx.rollback();
+			throw new RuntimeException(e);
+		}
+		return restaurantList;
+	}
+	public void close() {
+		factory.close();
+	}	
+	
 	// 查詢餐廳 by restaurantName&Address&Category&Type-前台搜尋
-		public List<Restaurant> findRestaurant(String restaurantName, String restaurantAddress, String restaurantCategory,
-				String restaurantType) {
-			List<Restaurant> list = new ArrayList<Restaurant>();
-			String sqlString = "SELECT * FROM restaurant WHERE restaurantName like ? and restaurantAddress like ? "
-					+ "and restaurantCategory like ?  and restaurantType like ?";
-				System.out.printf("%s,%s,%s,%s%n",restaurantName,restaurantAddress,restaurantCategory,restaurantType);
+//		public List<Restaurant> findRestaurant(String restaurantName, String restaurantAddress, String restaurantCategory,
+//				String restaurantType) {
+//			List<Restaurant> list = new ArrayList<Restaurant>();
+//			String sqlString = "SELECT * FROM restaurant WHERE restaurantName like ? and restaurantAddress like ? "
+//					+ "and restaurantCategory like ?  and restaurantType like ?";
+//				System.out.printf("%s,%s,%s,%s%n",restaurantName,restaurantAddress,restaurantCategory,restaurantType);
 
-			try {
-	    		setDataSource();
-				PreparedStatement pstmt = conn.prepareStatement(sqlString);
-				pstmt.setString(1, "%" + restaurantName + "%");
-				pstmt.setString(2, "%" + restaurantAddress + "%");
-				pstmt.setString(3, "%" + restaurantCategory + "%");
-				pstmt.setString(4, "%" + restaurantType + "%");
-				
-				ResultSet rs = pstmt.executeQuery();
-				while (rs.next()) {
-					Restaurant restaurant = new Restaurant(rs.getInt("restaurantNumber"), rs.getString("restaurantName"),
-							rs.getString("restaurantTel"), rs.getString("restaurantAddress"),
-							rs.getString("restaurantCategory"), rs.getString("restaurantType"),
-							rs.getString("restaurantBusinessHours"), rs.getString("restaurantScore"),rs.getString("restaurantMap"));
-					list.add(restaurant);
-				}
-				rs.close();
-				pstmt.close();
-				return list;
+//			try {
+//	    		setDataSource();
+//				PreparedStatement pstmt = conn.prepareStatement(sqlString);
+//				pstmt.setString(1, "%" + restaurantName + "%");
+//				pstmt.setString(2, "%" + restaurantAddress + "%");
+//				pstmt.setString(3, "%" + restaurantCategory + "%");
+//				pstmt.setString(4, "%" + restaurantType + "%");
+//				
+//				ResultSet rs = pstmt.executeQuery();
+//				while (rs.next()) {
+//					Restaurant restaurant = new Restaurant(rs.getInt("restaurantNumber"), rs.getString("restaurantName"),
+//							rs.getString("restaurantTel"), rs.getString("restaurantAddress"),
+//							rs.getString("restaurantCategory"), rs.getString("restaurantType"),
+//							rs.getString("restaurantBusinessHours"), rs.getString("restaurantScore"),rs.getString("restaurantMap"));
+//					list.add(restaurant);
+//				}
+//				rs.close();
+//				pstmt.close();
+//				return list;
+//
+//			} catch (Exception e) {
+//				System.err.println("查詢餐廳資料時發生錯誤:" + e);
+//				e.printStackTrace();
+//				return null;
+//			}
+//		} 
 
-			} catch (Exception e) {
-				System.err.println("查詢餐廳資料時發生錯誤:" + e);
-				e.printStackTrace();
-				return null;
-			}
-		} 
 
 	 /* 查詢餐廳 by restaurantName&Address&Category&Type
 	public List<Restaurant> findRestaurant(String restaurantName, String restaurantAddress, String[] restaurantCategory,

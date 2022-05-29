@@ -1,11 +1,15 @@
 package bean;
 import java.io.Serializable;
 import java.sql.Date;
-import java.time.LocalDateTime;
+
 
 
 public class Post implements Serializable{
 	  
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 		private int postId;
 	    private String title;
 	    private Date postedDate;

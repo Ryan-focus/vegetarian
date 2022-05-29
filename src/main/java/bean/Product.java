@@ -3,6 +3,7 @@ package bean;
 
 import org.apache.coyote.http11.filters.SavedRequestInputFilter;
 
+@SuppressWarnings("unused")
 public class Product {
 	
 	private int id;
