@@ -7,7 +7,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
+
+import javax.transaction.SystemException;
+import javax.transaction.Transaction;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.SharedSessionContract;
 import bean.*;
+import model.HibernateUtils;
 
 public class ProductDao {
 
@@ -15,39 +23,61 @@ public class ProductDao {
 	private String query;
 	private PreparedStatement pst;
 	private ResultSet rs;
+	
+	SessionFactory factory = HibernateUtils.getSessionFactory();
+	
 
 	public ProductDao(Connection conn) {
 		super();
 		this.conn = conn;
 	}
 
-	public List<Product> getAllProducts() {
+	public List<Product> getAllProducts() throws IllegalStateException, SystemException {
 
 		List<Product> products = new ArrayList<Product>();
+		Session session = factory.getCurrentSession();
+		Transaction tx =null;
 
+//		try {
+//			query = "select * from products";
+//			pst = this.conn.prepareStatement(query);
+//			rs = pst.executeQuery();
+//			while (rs.next()) {
+//				Product row = new Product();
+//				row.setId(rs.getInt("id"));
+//				row.setName(rs.getString("name"));
+//				row.setCategory(rs.getString("category"));
+//				row.setPrice(rs.getDouble("price"));
+//				row.setImage(rs.getString("image"));
+//
+//				products.add(row);
+//
+//			}
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//
+//		return products;
+		
 		try {
-			query = "select * from products";
-			pst = this.conn.prepareStatement(query);
-			rs = pst.executeQuery();
-			while (rs.next()) {
-				Product row = new Product();
-				row.setId(rs.getInt("id"));
-				row.setName(rs.getString("name"));
-				row.setCategory(rs.getString("category"));
-				row.setPrice(rs.getDouble("price"));
-				row.setImage(rs.getString("image"));
-
-				products.add(row);
-
+			tx = (Transaction) ((SharedSessionContract) session).beginTransaction();
+			String hql = "from products";
+			products = session.createQuery(hql, Product.class).getResultList();
+			tx.commit();
+			} catch (Exception e) {
+				if(tx != null)
+					tx.rollback();
+				throw new RuntimeException(e);
 			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
+			return products;
 		}
 
-		return products;
+		public void close() {
+			factory.close();
+		}	
 
-	}
+	
 
 	public List<Cart> getCartProducts(ArrayList<Cart> cartList) {
 		List<Cart> products = new ArrayList<Cart>();

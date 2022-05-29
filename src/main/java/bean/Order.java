@@ -1,14 +1,29 @@
 package bean;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="products")
 
 public class Order extends Product{
 	
-	private int orderId;
-	private int uid;
-	private int quantity;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="o_id")
+	private Integer orderId;
+	@Column(name="p_id" ,columnDefinition="INT NOT NULL")
+	private Integer uid;
+	@Column(name="o_quantity" ,columnDefinition="INT NOT NULL")
+	private Integer quantity;
+	@Column(name="o_date" ,columnDefinition="VARCHAR(450) NOT NULL")
 	private String date;
 	
-	public Order() {}
+	public Order() {};
 
 	public Order(int id, String name, String category, double price, String image, int orderId, int uid, int quantity,
 			String date) {

@@ -1,9 +1,11 @@
 package bean;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.apache.coyote.http11.filters.SavedRequestInputFilter;
@@ -11,11 +13,16 @@ import org.apache.coyote.http11.filters.SavedRequestInputFilter;
 @Entity
 @Table(name="products")
 public class Product {
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
+	@Column(columnDefinition="VARCHAR(450)")
 	private String name;
+	@Column(columnDefinition="VARCHAR(450)")
 	private String category;
+	@Column(columnDefinition="DOUBLE")
 	private double price;
+	@Column(columnDefinition="VARCHAR(450)")
 	private String image;
 	public Product(int id, String name, String category, double price, String image) {
 		this.id = id;
