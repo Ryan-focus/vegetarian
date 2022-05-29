@@ -2,18 +2,37 @@ package bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name ="restaurant")
 public class Restaurant implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-
+	@Id
+	// 當使用IDENTITY時，主要鍵的資料型態必須是整數或符點數，不可以為char或String
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer restaurantNumber;
+	@Column(columnDefinition="NVARCHAR(20) NOT NULL")  
 	private String restaurantName;
+	@Column(columnDefinition="NVARCHAR(15)")  
 	private String restaurantTel;
+	@Column(columnDefinition="NVARCHAR(50) NOT NULL")  
 	private String restaurantAddress;
+	@Column(columnDefinition="NVARCHAR(20)")  
 	private String restaurantCategory;
+	@Column(columnDefinition="NVARCHAR(20)")  
 	private String restaurantType;
+	@Column(columnDefinition="NVARCHAR(200)")  
 	private String restaurantBusinessHours;
+	@Column(columnDefinition="NVARCHAR(10)")  
 	private String restaurantScore;
+	@Column(columnDefinition="NVARCHAR(MAX)")  
 	private String restaurantMap;
 	
 	public Restaurant() {};

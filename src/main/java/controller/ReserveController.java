@@ -105,7 +105,7 @@ public class ReserveController extends HttpServlet {
         reserve.setRestaurantNumber(restaurantNumber);
         reserve.setUid(uid);
 
-		boolean isSuccess = rDao.insert(reserve);
+		boolean isSuccess = (boolean) rDao.insert(reserve);
 		//英傑借我跳轉一下 測試用
 		request.setAttribute("isSuccess", isSuccess);
 		request.setAttribute("results", isSuccess ? "成功" : "失敗");
