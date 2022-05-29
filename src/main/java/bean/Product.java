@@ -1,11 +1,17 @@
 package bean;
 
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
+
 import org.apache.coyote.http11.filters.SavedRequestInputFilter;
 
-@SuppressWarnings("unused")
+@Entity
+@Table(name="products")
 public class Product {
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	private String category;
