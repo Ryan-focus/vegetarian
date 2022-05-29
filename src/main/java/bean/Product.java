@@ -16,13 +16,13 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column(columnDefinition="VARCHAR(450)")
+	@Column(name="name",columnDefinition="VARCHAR(450)")
 	private String name;
-	@Column(columnDefinition="VARCHAR(450)")
+	@Column(name="category",columnDefinition="VARCHAR(450)")
 	private String category;
-	@Column(columnDefinition="DOUBLE")
+	@Column(name="price",columnDefinition="DOUBLE")
 	private double price;
-	@Column(columnDefinition="VARCHAR(450)")
+	@Column(name="image",columnDefinition="VARCHAR(450)")
 	private String image;
 	public Product(int id, String name, String category, double price, String image) {
 		this.id = id;
