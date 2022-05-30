@@ -89,6 +89,7 @@ public class ForumServlet extends HttpServlet {
 		try {
 			ctxt = new InitialContext();
 
+<<<<<<< Updated upstream
 			// 使用JNDI API找到DataSource
 			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/veganDB");
 
@@ -98,6 +99,14 @@ public class ForumServlet extends HttpServlet {
 			forumDAO = new ForumDAO(conn); // STUDENTDAO見一個建構子傳回
 			String id = request.getParameter("vgeid");//取得id
 			String name =request.getParameter("vgename");
+=======
+			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/veganDB");
+
+			conn = ds.getConnection();
+			forumDAO = new ForumDAO(conn); 
+			//String id = request.getParameter("vgeid");
+			String name = request.getParameter("vgename");
+>>>>>>> Stashed changes
 			ForumBean forumBean = forumDAO.queryForum(name);
 			if(forumBean ==null) {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/forum/ErrorQuery.jsp");
@@ -134,6 +143,7 @@ public class ForumServlet extends HttpServlet {
 		InitialContext ctxt = null;
 		Connection conn = null;
 		try {
+<<<<<<< Updated upstream
 			String vgeid = request.getParameter("vgeid");
 			// 建立Context Object,連到JNDI Server
 			ctxt = new InitialContext();
@@ -151,6 +161,24 @@ public class ForumServlet extends HttpServlet {
 				dispatcher .forward(request, response);
 			}else {
 				 forumDAO = new ForumDAO(conn); // STUDENTDAO見一個建構子傳回
+=======
+			int vgeid = Integer.valueOf(request.getParameter("vgeid"));
+			//String vgeid = request.getParameter("vgeid");
+			ctxt = new InitialContext();
+
+			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/veganDB");
+
+			conn = ds.getConnection();
+
+//			ForumBean forumBean = forumDAO.queryForum();
+//			if(forumBean != null) {
+//				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/forum/ErrorCreate.jsp");
+//				dispatcher .forward(request, response);
+//			}else
+			{
+				
+				 forumDAO = new ForumDAO(conn); 
+>>>>>>> Stashed changes
 				 String vgename = request.getParameter("vgename");
 				 String vgetheme = request.getParameter("vgetheme");
 				 String vgecontent = request.getParameter("vgecontent");
@@ -184,7 +212,12 @@ public class ForumServlet extends HttpServlet {
 			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/veganDB");
 			conn = ds.getConnection();
 			forumDAO = new ForumDAO(conn);
+<<<<<<< Updated upstream
 			String vgeid =request.getParameter("vgeid");
+=======
+			int vgeid = Integer.valueOf(request.getParameter("vgeid"));
+			//String vgeid =request.getParameter("vgeid");
+>>>>>>> Stashed changes
 			String vgename = request.getParameter("vgename");
 			String vgetheme = request.getParameter("vgetheme");
 			String vgecontent = request.getParameter("vgecontent");
@@ -221,8 +254,12 @@ public class ForumServlet extends HttpServlet {
 			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/veganDB");
 
 			conn = ds.getConnection();
+<<<<<<< Updated upstream
 			forumDAO = new ForumDAO(conn); // STUDENTDAO見一個建構子傳回
 			 //取得id
+=======
+			forumDAO = new ForumDAO(conn); 
+>>>>>>> Stashed changes
 			 String id =request.getParameter("vgeid") ;		 
 			 forumDAO.deleteForum(id);
 			 request.getSession(true);
@@ -251,8 +288,12 @@ public class ForumServlet extends HttpServlet {
 		DataSource ds = null;
 		InitialContext ctxt = null;
 		Connection conn = null;
+<<<<<<< Updated upstream
 		try {
 			// 建立Context Object,連到JNDI Server
+=======
+		try (PrintWriter out = response.getWriter()){
+>>>>>>> Stashed changes
 			ctxt = new InitialContext();
 
 			// 使用JNDI API找到DataSource
@@ -261,11 +302,23 @@ public class ForumServlet extends HttpServlet {
 			// 向DataSource要Connection
 			conn = ds.getConnection();
 
+<<<<<<< Updated upstream
 			// 建立Database Access Object,負責Table的Access
 			ForumDAO forumDAO = new ForumDAO(conn); // STUDENTDAO見一個建構子傳回
 			ForumBean forumData = (ForumBean) request.getSession(true).getAttribute("vge");
 			if (ForumDAO.insertForum(forumData)) {
 				request.getSession(true).invalidate(); // 關閉SESSION
+=======
+			@SuppressWarnings("unused")
+			ForumDAO forumDAO = new ForumDAO(conn); 
+			ForumBean forumData = (ForumBean) request.getSession(true).getAttribute("vge");
+			
+			
+			//if (ForumDAO.insertForum(forumData)) 
+			{
+				request.setAttribute("user", userForum);
+				request.getSession().getAttribute("user");
+>>>>>>> Stashed changes
 				request.getRequestDispatcher("/WEB-INF/jsp/forum/Thank.jsp").forward(request, response);
 			}
 		} catch (NamingException ne) {
