@@ -38,43 +38,43 @@ public class ProductDao {
 		Session session = factory.getCurrentSession();
 		Transaction tx =null;
 
-//		try {
-//			query = "select * from products";
-//			pst = this.conn.prepareStatement(query);
-//			rs = pst.executeQuery();
-//			while (rs.next()) {
-//				Product row = new Product();
-//				row.setId(rs.getInt("id"));
-//				row.setName(rs.getString("name"));
-//				row.setCategory(rs.getString("category"));
-//				row.setPrice(rs.getDouble("price"));
-//				row.setImage(rs.getString("image"));
-//
-//				products.add(row);
-//
-//			}
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//
-//		return products;
-		
 		try {
-			tx = (Transaction) ((SharedSessionContract) session).beginTransaction();
-			String hql = "from products";
-			products = session.createQuery(hql, Product.class).getResultList();
-			tx.commit();
-			} catch (Exception e) {
-				if(tx != null)
-					tx.rollback();
-				throw new RuntimeException(e);
+			query = "select * from products";
+			pst = this.conn.prepareStatement(query);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				Product row = new Product();
+				row.setId(rs.getInt("id"));
+				row.setName(rs.getString("name"));
+				row.setCategory(rs.getString("category"));
+				row.setPrice(rs.getDouble("price"));
+				row.setImage(rs.getString("image"));
+
+				products.add(row);
+
 			}
-			return products;
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
-		public void close() {
-			factory.close();
+		return products;
+		
+//		try {
+//			tx = (Transaction) ((SharedSessionContract) session).beginTransaction();
+//			String hql = "from products";
+//			products = session.createQuery(hql, Product.class).getResultList();
+//			tx.commit();
+//			} catch (Exception e) {
+//				if(tx != null)
+//					tx.rollback();
+//				throw new RuntimeException(e);
+//			}
+//			return products;
+//		}
+//
+//		public void close() {
+//			factory.close();
 		}	
 
 	
