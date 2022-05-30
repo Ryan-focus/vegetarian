@@ -27,12 +27,12 @@ public class ProductDao {
 	SessionFactory factory = HibernateUtils.getSessionFactory();
 	
 
+	Session session = factory.getCurrentSession();
+	Transaction tx =null;
 
 	public List<Product> getAllProducts(){
 
 		List<Product> products = new ArrayList<Product>();
-		Session session = factory.getCurrentSession();
-		Transaction tx =null;
 		try {
 			tx = session.beginTransaction();
 			String hql = "from Product";
@@ -131,8 +131,28 @@ public class ProductDao {
 //		return sum;
 //		
 //	}
-//	 public Product getSingleProduct(int id) {
+	 public Product getSingleProduct(int id) {
+		 
+		 Product row = null;
+		 Session session = factory.getCurrentSession();
+		 Transaction tx = null;
+	        try {
+	        	tx = session.beginTransaction();
+				
+				row = (Product) session.get(Product.class, id);
+				
+			    tx.commit();
+	            
+	        } catch (Exception e) {
+	        	if (tx != null) {
+					tx.rollback();
+				}
+				e.printStackTrace();
+	        }
+
+	        return row;
 //		 Product row = null;
+//		 Session session = factory.getCurrentSession();
 //	        try {
 //	            query = "select * from products where id=? ";
 //
@@ -154,32 +174,8 @@ public class ProductDao {
 //	        }
 //
 //	        return row;
-//	    }
-//	 	//新增商品,成功返回boolean
-//	   public boolean addProducts(Product newProduct) {
-//
-//	        boolean check = false;
-//	        // 定義處理ＳＱＬ
-//	        String sqlStr = "insert into products(name,category,price," +
-//	                "images) values(?,?,?,?,?)";
-//	        try {
-//	        	
-//	            PreparedStatement prepstmt;
-//	            Product row =newProduct;
-//	            prepstmt = this.conn.prepareStatement(sqlStr);
-//	            prepstmt.setString(1, row.getName());
-//	            prepstmt.setString(2, row.getCategory());
-//	            prepstmt.setDouble(3, row.getPrice());
-//	            prepstmt.setString(4, row.getImage());
-//	           
-//	           
-//	         
-//	            check = prepstmt.executeUpdate() > 0;
-//	        } catch (SQLException e) {
-//	            e.printStackTrace();
-//	        }
-//	        return check;
-//	    }
+	    }
+
 //	   
 //	   // 删除商品
 //	    public void delProducts(int id) {
@@ -194,29 +190,4 @@ public class ProductDao {
 //	        }
 //	       
 //	    }
-//	    
-//	    // 更新商品
-//	    public boolean updateGoods(Product product) {
-//	        boolean check = false;
-//
-//	        String sqlStr = "update goods set name='" + product.getName() + "'" +
-//	                ",category='" + product.getCategory() + "'" +
-//	                ",price='" + product.getPrice() + "'" +
-//	                ",image='" + product.getImage() + "'" +
-//	                 "where id = '" + product.getId() + "'" ;
-//	        try {
-//	          
-//	        
-//	            Statement stmt = this.conn.createStatement();
-//
-//	         
-//	            check =   stmt.executeUpdate(sqlStr) > 0;
-//	        } catch (SQLException e) {
-//	            e.printStackTrace();
-//	        }
-//	        return check;
-//	    }
-//	    
-//	    
-	   
 }
