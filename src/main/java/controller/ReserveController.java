@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -97,15 +99,20 @@ public class ReserveController extends HttpServlet {
 		int count = Integer.valueOf(request.getParameter("memberCount").toString());
 		int restaurantNumber = Integer.valueOf(request.getParameter("restaurantNumber").toString());
 		int uid = Integer.valueOf(request.getParameter("userID").toString());
-		
+		boolean isSuccess = false ;
 		Date orderDate=new SimpleDateFormat("yyyy-MM-dd").parse(oDate);
 		
         reserve.setDate(orderDate);
         reserve.setCount(count);
+        //--odate 紀錄伺服器現在時間 轉型存進資料庫
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formatDateTime = now.format(formatter);
+        reserve.setOrderDate(formatDateTime);
         reserve.setRestaurantNumber(restaurantNumber);
         reserve.setUid(uid);
-
-		boolean isSuccess = (boolean) rDao.insert(reserve);
+        
+        if (rDao.insert(reserve) != null) isSuccess  = true;
 		//英傑借我跳轉一下 測試用
 		request.setAttribute("isSuccess", isSuccess);
 		request.setAttribute("results", isSuccess ? "成功" : "失敗");

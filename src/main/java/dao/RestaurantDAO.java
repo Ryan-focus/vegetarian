@@ -28,6 +28,8 @@ public class RestaurantDAO {
 		super();
 	}
 	
+	
+	
 	// 查詢所有紀錄
 	public List<Restaurant> findAll()  {
 		List<Restaurant> restaurantList = new ArrayList<Restaurant>();
@@ -151,31 +153,48 @@ public class RestaurantDAO {
 		}
 		
 	// 查詢餐廳 by number
+	//改寫為Hibernate
 	public Restaurant findRestaurantByNumber(int restaurantNumber) {
 		Restaurant restaurant = null;
-		String sqlString = "SELECT * FROM restaurant WHERE restaurantNumber = " + restaurantNumber;
-
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		
 		try {
-			setDataSource();
-			PreparedStatement pstmt = conn.prepareStatement(sqlString);
-			ResultSet rs = pstmt.executeQuery();
-			while (rs.next()) {
-				restaurant = new Restaurant(rs.getInt("restaurantNumber"), rs.getString("restaurantName"),
-						rs.getString("restaurantTel"), rs.getString("restaurantAddress"),
-						rs.getString("restaurantCategory"), rs.getString("restaurantType"),
-						rs.getString("restaurantBusinessHours"), rs.getString("restaurantScore"),rs.getString("restaurantMap"));
-			}
-			rs.close();
-			pstmt.close();
-			return restaurant;
-
+			tx = session.beginTransaction();
+			
+			restaurant = (Restaurant) session.get(Restaurant.class, restaurantNumber);
+			
+		    tx.commit();
 		} catch (Exception e) {
-			System.err.println("查詢餐廳資料時發生錯誤:" + e);
+			if (tx != null) {
+				tx.rollback();
+			}
 			e.printStackTrace();
-			return null;
 		}
+		return restaurant;
+//		String sqlString = "SELECT * FROM restaurant WHERE restaurantNumber = " + restaurantNumber;
+//
+//		try {
+//			setDataSource();
+//			PreparedStatement pstmt = conn.prepareStatement(sqlString);
+//			ResultSet rs = pstmt.executeQuery();
+//			while (rs.next()) {
+//				restaurant = new Restaurant(rs.getInt("restaurantNumber"), rs.getString("restaurantName"),
+//						rs.getString("restaurantTel"), rs.getString("restaurantAddress"),
+//						rs.getString("restaurantCategory"), rs.getString("restaurantType"),
+//						rs.getString("restaurantBusinessHours"), rs.getString("restaurantScore"),rs.getString("restaurantMap"));
+//			}
+//			rs.close();
+//			pstmt.close();
+//			return restaurant;
+//
+//		} catch (Exception e) {
+//			System.err.println("查詢餐廳資料時發生錯誤:" + e);
+//			e.printStackTrace();
+//			return null;
+//		}
 	}
-
+	
 	// 新增餐廳-後台
 	public boolean createRestaurant(Restaurant restaurant) {
 		String sqlString = "Insert into restaurant values(?,?,?,?,?,?,?)";

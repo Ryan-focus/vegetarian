@@ -18,6 +18,7 @@ import model.HibernateUtils;
 //import這三種方法，就可以使用Hibernate代替JDBC了
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 
 public class ReserveDAO implements IReserveDAO{
@@ -45,9 +46,20 @@ SessionFactory factory = HibernateUtils.getSessionFactory();
 	@Override
 	public Object insert(Reserve reserve) {
 		// 取得Session
-        Session session = factory.getCurrentSession();
-        session.save(reserve);
-		return reserve;
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		Object key = null;
+		try {
+			tx = session.beginTransaction();
+			key = session.save(reserve);
+	        tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+		e.printStackTrace();
+		}
+		return key;
 	}
 
 	@Override
