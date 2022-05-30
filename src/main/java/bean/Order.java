@@ -7,12 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="orders")
+
 
 public class Order extends Product{
 	
-	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="o_id")
 	private Integer orderId;

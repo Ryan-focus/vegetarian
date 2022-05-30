@@ -10,7 +10,7 @@
 <%
 User user = (User) request.getSession().getAttribute("user");
 
-
+/* 
 DataSource ds = null;
 Connection conn = null;
 
@@ -22,8 +22,8 @@ Connection conn = null;
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-
-ProductDao pd = new ProductDao(ds.getConnection());
+ */
+ProductDao pd = new ProductDao();
 List<Product> products = pd.getAllProducts();
 @SuppressWarnings("unchecked")
 ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
