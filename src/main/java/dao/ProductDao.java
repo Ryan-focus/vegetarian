@@ -18,24 +18,24 @@ import model.HibernateUtils;
 
 public class ProductDao {
 
-	private Connection conn;
-	private String query;
-	private PreparedStatement pst;
-	private ResultSet rs;
+//	private Connection conn;
+//	private String query;
+//	private PreparedStatement pst;
+//	private ResultSet rs;
 	
 	
 	SessionFactory factory = HibernateUtils.getSessionFactory();
 	
 
 
-	public List<Product> getAllProducts() throws IllegalStateException, SystemException {
+	public List<Product> getAllProducts(){
 
 		List<Product> products = new ArrayList<Product>();
 		Session session = factory.getCurrentSession();
 		Transaction tx =null;
 		try {
 			tx = session.beginTransaction();
-			String hql = "from products";
+			String hql = "from Product";
 			products = session.createQuery(hql, Product.class).getResultList();
 			tx.commit();
 			} catch (Exception e) {

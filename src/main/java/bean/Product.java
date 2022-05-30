@@ -8,8 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.apache.coyote.http11.filters.SavedRequestInputFilter;
-
 @Entity
 @Table(name="products")
 public class Product {
