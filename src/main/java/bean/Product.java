@@ -19,23 +19,13 @@ public class Product {
 	@Column(name="category",columnDefinition="VARCHAR(450)")
 	private String category;
 	@Column(name="price",columnDefinition="DOUBLE")
-	private double price;
+	private Double price;
 	@Column(name="image",columnDefinition="VARCHAR(450)")
 	private String image;
-	public Product(int id, String name, String category, double price, String image) {
-		this.id = id;
-		this.name = name;
-		this.category = category;
-		this.price = price;
-		this.image = image;
-	}
-	public Product() {
-		super();
-	}
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -50,10 +40,10 @@ public class Product {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public double getPrice() {
+	public Double getPrice() {
 		return price;
 	}
-	public void setPrice(double price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 	public String getImage() {
@@ -62,11 +52,14 @@ public class Product {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	@Override
-	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", category=" + category + ", price=" + price + ", image="
-				+ image + "]";
+	public Product(Integer id, String name, String category, Double price, String image) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.category = category;
+		this.price = price;
+		this.image = image;
 	}
-	
 
+	
 }
