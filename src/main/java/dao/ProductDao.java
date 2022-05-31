@@ -75,12 +75,13 @@ public class ProductDao {
 
 	
 
-//	public List<Cart> getCartProducts(ArrayList<Cart> cartList) {
-//		List<Cart> products = new ArrayList<Cart>();
-//
-//		try {
-//			if(cartList.size()>0) {
-//				for(Cart item:cartList) {
+	public List<Cart> getCartProducts(ArrayList<Cart> cartList) {
+		List<Cart> products = new ArrayList<Cart>();
+
+		try {
+			if(cartList.size()>0) {
+				for(Cart item:cartList) {
+					getSingleProduct(item.getId());
 //					query = "select * from products where id =?";
 //					pst = this.conn.prepareStatement(query);
 //					pst.setInt(1, item.getId());
@@ -95,17 +96,17 @@ public class ProductDao {
 //						products.add(row);
 //						
 //					}
-//				}
-//			}
-//
-//		} catch (Exception e) {
-//			System.out.println(e.getMessage());
-////			e.printStackTrace();
-//		}
-//
-//		return products;
-//
-//	}
+				}
+			}
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+//			e.printStackTrace();
+		}
+
+		return products;
+
+	}
 //	
 //	public double getTotalCartPrice(ArrayList<Cart> cartList) {
 //		double sum = 0;

@@ -10,6 +10,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+/*
 DataSource ds = null;
 Connection conn = null;
 
@@ -22,6 +23,7 @@ Connection conn = null;
 		e.printStackTrace();
 	}
 }
+*/
 DecimalFormat dcf = new DecimalFormat("#.##");
 request.setAttribute("dcf", dcf);
 
@@ -29,10 +31,10 @@ request.setAttribute("dcf", dcf);
 ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
 List<Cart> cartProduct = null;
 if (cart_list != null) {
-	ProductDao pDao = new ProductDao(ds.getConnection());
+	ProductDao pDao = new ProductDao();
 	cartProduct = pDao.getCartProducts(cart_list);
-	double total = pDao.getTotalCartPrice(cart_list);
-	request.setAttribute("total", total);
+/*	double total = pDao.getTotalCartPrice(cart_list);
+	request.setAttribute("total", total);*/
 	request.setAttribute("cart_list", cart_list);
 }
 %>
