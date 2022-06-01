@@ -278,6 +278,15 @@
    <url-pattern>/ForumPages</url-pattern>
   </servlet-mapping>
   
+       <servlet>
+   <servlet-name>TestFile</servlet-name>
+   <jsp-file>/WEB-INF/jsp/forum/TestFile.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>TestFile</servlet-name>
+   <url-pattern>/TestFile</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
    <servlet-name>MemberManagementServlet</servlet-name>
    <servlet-class>controller.MemberManagementServlet</servlet-class>
