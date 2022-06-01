@@ -3,14 +3,27 @@ import java.io.Serializable;
 import java.sql.Date;
 
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "post")
 public class Post implements Serializable{
+<<<<<<< Updated upstream
 	  
 		/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 		private int postId;
+=======
+	  @Id
+	  @GeneratedValue(strategy = GenerationType.IDENTITY)
+		private Integer postId;
+>>>>>>> Stashed changes
 	    private String title;
 	    private Date postedDate;
 	    private String postedText;
@@ -18,7 +31,7 @@ public class Post implements Serializable{
 	    
 	    
 	    
-	    public Post(int postId,String title,Date postedDate,String postedText,String imgurl) {
+	    public Post(Integer postId,String title,Date postedDate,String postedText,String imgurl) {
 	    	
 	    	this.postId =postId;
 	    	this.title = title;
@@ -31,11 +44,15 @@ public class Post implements Serializable{
 		public Post() {
 			
 		}
+		
+		public Post(Integer postId) {
+			this.postId =postId;
+		}
 
-		public int getPostId() {
+		public Integer getPostId() {
 			return postId;
 		}
-		public void setPostId(int postId) {
+		public void setPostId(Integer postId) {
 			this.postId = postId;
 		}
 		public String getTitle() {
