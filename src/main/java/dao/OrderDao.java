@@ -8,8 +8,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
 import bean.Order;
 import bean.Product;
+import model.HibernateUtils;
 
 public class OrderDao {
 	private Connection conn;
@@ -17,10 +22,35 @@ public class OrderDao {
 	private PreparedStatement pst;
 	private ResultSet rs;
 	
-	public OrderDao(Connection conn) {
-		super();
-		this.conn = conn;
-	}
+//	public OrderDao(Connection conn) {
+//		super();
+//		this.conn = conn;
+//	}
+	SessionFactory factory = HibernateUtils.getSessionFactory();
+	
+
+	Session session = factory.getCurrentSession();
+	Transaction tx =null;
+	
+	
+	
+	public List<Order> getAllOrders() {
+		
+		List<Order> orders = new ArrayList<>();
+		try {
+			tx = session.beginTransaction();
+			String hql = "from Product";
+			orders = session.createQuery(hql, Order.class).getResultList();
+			tx.commit();
+			} catch (Exception e) {
+				if(tx != null)
+					tx.rollback();
+				throw new RuntimeException(e);
+			}
+			return orders;
+		}
+	
+
 	
 	
 	public boolean insertOrder(Order model) {
@@ -46,6 +76,12 @@ public class OrderDao {
 		return result;
 		
 	}
+	
+	
+	
+	
+	
+	
 	
 //	
 //	public List<Order> userOrders(int id){
