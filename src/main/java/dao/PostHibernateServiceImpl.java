@@ -10,7 +10,7 @@ import Interface.PostDAO;
 import bean.Post;
 import utils.HibernateUtils;
 
-public class PostHibernateServiceImpl {
+public class PostHibernateServiceImpl implements PostService {
 
 	SessionFactory factory;
 	PostDAO postDAO;
