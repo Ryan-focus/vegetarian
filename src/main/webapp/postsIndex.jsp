@@ -6,6 +6,7 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@ page import="bean.Post" %>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,43 +63,35 @@
 	<%}%>
 	<hr>
 	
-		<%
-		@SuppressWarnings("unchecked")
-		List<Post> list = (List<Post>)request.getAttribute("postlist");
-		%>
-		
-		<%
-		for(Post post:list){ 
-		%>
-		
+		<c:forEach var='post' varStatus='vs' items='${postlist}'>
+	
 		<div>
 		<h3>
-			<%=post.getTitle()%>
+			${post.title}
 		</h3>
 		<p>
-			<%=post.getPostedDate()%>
+			${post.postedDate}
 		</p>
 		<div class="box">
 			<div class="pic">
-				<img class="img1" src="<%=post.getImgurl()%>">
+				<img class="img1" src="${post.imgurl}">
 			</div>
 			<div class="ellipsis">
-			<%=post.getPostedText()%>
+			${post.postedText}
 			</div>
 		</div>
 		<div class="con">
-		<a href="./post?action=showPost&id=<%=post.getPostId()%>"> 繼續閱讀</a>
+		<a href="./post?action=showPost&id=${post.postId}"> 繼續閱讀</a>
 		</div>
 		<hr>
-		<% if (user.getUid() > 0){%>
-		<a href='./post?action=deletePost&id=<%=post.getPostId()%>'>刪除文章</a>
-		<a href='./post?action=editPost&id=<%=post.getPostId()%>'>編輯文章</a>
+		
+		<a href='./post?action=deletePost&id=${post.postId}'>刪除文章</a>
+		<a href='./post?action=editPost&id=${post.postId}'>編輯文章</a>
 		<hr>
-		<%}%>
+		
 		<br />
 	</div>
-		
-		<% }%>
+		</c:forEach>
 		</div>
 		</div>
 		

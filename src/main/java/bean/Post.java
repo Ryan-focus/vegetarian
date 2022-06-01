@@ -1,8 +1,8 @@
 package bean;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,24 +12,26 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "post")
 public class Post implements Serializable{
-<<<<<<< Updated upstream
-	  
-		/**
-	 * 
-	 */
+
+
 	private static final long serialVersionUID = 1L;
-		private int postId;
-=======
+	
 	  @Id
 	  @GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Integer postId;
->>>>>>> Stashed changes
+	  	@Column(columnDefinition = "nvarchar(255)")
 	    private String title;
+	    @Column(columnDefinition = "datetime")
 	    private Date postedDate;
+	    @Column(columnDefinition = "nvarchar(MAX)")
 	    private String postedText;
+	    @Column(columnDefinition = "nvarchar(255)")
 	    private String imgurl;
 	    
 	    
+	    public Post() {
+	    	
+	    }
 	    
 	    public Post(Integer postId,String title,Date postedDate,String postedText,String imgurl) {
 	    	
@@ -41,13 +43,27 @@ public class Post implements Serializable{
 	    	
 	    }
 	    
-		public Post() {
-			
+		public Post(Integer postId, String title, String postedText) {
+			this.postId =postId;
+	    	this.title = title;
+	    	this.postedText = postedText;
 		}
 		
 		public Post(Integer postId) {
 			this.postId =postId;
 		}
+
+		public Post(String title,Date postedDate,String postedText,String imgurl) {
+	    	
+	    	
+	    	this.title = title;
+	    	this.postedDate = postedDate;
+	    	this.postedText = postedText;
+	    	this.imgurl = imgurl;
+	    	
+	    }
+
+		
 
 		public Integer getPostId() {
 			return postId;

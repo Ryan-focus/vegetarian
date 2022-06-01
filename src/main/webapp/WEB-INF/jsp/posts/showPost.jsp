@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>${title}</title>
+<title>${post.title}</title>
 
 <style>
 * {
@@ -62,13 +62,13 @@ textarea {
 <body>
 	<div class="textbody">
 		<div class="posts">
-			<h2 class="title">${title}</h2>
-			<p class="title">${posted_date}</p>
+			<h2 class="title">${post.title}</h2>
+			<p class="title">${post.postedDate}</p>
 			<br>
 			<div class="pic">
-				<img class="img1" src="${posted_Imgurl}">
+				<img class="img1" src="${post.imgurl}">
 			</div>
-			<pre> ${posted_text}</pre>
+			<pre> ${post.postedText}</pre>
 			<br>
 			<div class="button">
 				<input class="button" type="button"

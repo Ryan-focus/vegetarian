@@ -71,18 +71,18 @@ body, html {
 		<form action="PostUpadte" method="post">
 			<h5 class="text">文章標題:</h5>
 			<textarea class="text_title" name="title" rows="1" maxlength="100"
-				required>${title}</textarea>
+				required>${post.title}</textarea>
 			<p id="wordsNum1">
 				<span class="wordsNum1">0</span>/<span>100</span>
 			</p>
 			<h5 class="text">文章內容:</h5>
 			<textarea class="text_area" name="postedText" rows="20"
-				maxlength="5000" required>${posted_text}</textarea>
+				maxlength="5000" required>${post.postedText}</textarea>
 			<p id="wordsNum2">
 				<span class="wordsNum2">0</span>/<span>5000</span>
 			</p>
 			<input type="submit" value="更新文章" /> <input type='hidden'
-				name='update' value="${post_id}">
+				name='update' value="${post.postId}">
 		</form>
 	</div>
 

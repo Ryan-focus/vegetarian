@@ -20,18 +20,13 @@ import bean.Post;
 
 
 public class PostDAO implements Serializable{
-<<<<<<< Updated upstream
-	
-	 /**
-	 * 
-	 */
+
+
 	private static final long serialVersionUID = 1L;
-=======
+
 	SessionFactory factory;
 	 private Connection conn;
->>>>>>> Stashed changes
 
-	private Connection conn;
 
 	  //撱箸���
 	  public PostDAO (Connection conn) {
@@ -96,7 +91,7 @@ public class PostDAO implements Serializable{
     
     //������
     public boolean deletePost(int id) {
-<<<<<<< Updated upstream
+
         String sql = "delete from posts where post_id = ?";
  
         try {
@@ -112,7 +107,7 @@ public class PostDAO implements Serializable{
             System.out.println(e.getErrorCode() + "��憭望��");
         }
         return false;
-=======
+
 //        String sql = "delete from poststest where post_id = ?";
 // 
 //        try {
@@ -129,10 +124,8 @@ public class PostDAO implements Serializable{
 //        }
 //        return false;
     	
-    	Session session = factory.getCurrentSession();
-    	Post post = new Post(id);
-    	session.delete(post);
->>>>>>> Stashed changes
+    
+ 
     }
     //������
     public boolean updatePost(Post post,String title ,String  posted_text, int id) {

@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import Interface.PostDAO;
+import Interface.PostService;
 import bean.Post;
 import utils.HibernateUtils;
 

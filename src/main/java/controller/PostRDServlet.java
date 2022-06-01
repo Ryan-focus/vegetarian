@@ -5,121 +5,79 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 
-import javax.naming.*;
-import javax.sql.*;
 
+import Interface.PostService;
 import bean.Post;
-import dao.PostDAO;
+import dao.PostHibernateServiceImpl;
 
 public class PostRDServlet extends HttpServlet {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		DataSource ds = null;
-		InitialContext ctxt = null;
-		Connection conn = null;
-
 		try {
-
-			// 撱箇�ontext Object,���JNDI Server
-			ctxt = new InitialContext();
-
-			// 雿輻JNDI API��DataSource
-			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/veganDB");
-
-			// ��ataSource閬onnection
-			conn = ds.getConnection();
-
-			// 撱箇�atabase Access Object,鞎痊Table��ccess
-			PostDAO postDAO = new PostDAO(conn);
-
-			// 憒��楊蝣澆�潛UTF-8
 			request.setCharacterEncoding("UTF-8");
-
-		
 
 			String action = request.getParameter("action");
 			switch (action) {
 			case "showPost":
-				showPost(request, response, postDAO);
+				showPost(request, response);
 				break;
 			case "deletePost":
-				deletePost(request, response, postDAO);
+				deletePost(request, response);
 				break;
 			case "editPost":
-				editPost(request, response, postDAO);
+				editPost(request, response);
 				break;
 			}
-
-		} catch (NamingException ne) {
-			System.out.println("Naming Service Lookup Exception");
-		} catch (SQLException e) {
-			System.out.println("Database Connection Error");
-		} finally {
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-				System.out.println("Connection Pool Error!");
-			}
+		} catch (SQLException | IOException | ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+
 	}
 
-
-	private void showPost(HttpServletRequest request, HttpServletResponse response, PostDAO postDAO)
+	private void showPost(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
-
+		PostService pService = new PostHibernateServiceImpl();
 		int id = Integer.parseInt(request.getParameter("id"));
 
-		Post post = postDAO.findPost(id);
-
-		if (postDAO.findPost(id) != null) {
-			request.setAttribute("title", post.getTitle());
-			request.setAttribute("posted_date", post.getPostedDate());
-			request.setAttribute("posted_text", post.getPostedText());
-			request.setAttribute("posted_Imgurl", post.getImgurl());
+		Post post = pService.findPost(id);
+		if (pService.findPost(id) != null) {
+			request.setAttribute("post", post);
 			request.getRequestDispatcher("/showPost").forward(request, response);
 
 		} else {
-			request.setAttribute("message", "憭望��");
+			request.setAttribute("message", "失敗");
 			request.getRequestDispatcher("/showResultForm").forward(request, response);
 		}
 	}
 
-	private void deletePost(HttpServletRequest request, HttpServletResponse response, PostDAO postDAO)
+	private void deletePost(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
-
+		PostService pService = new PostHibernateServiceImpl();
 		int id = Integer.parseInt(request.getParameter("id"));
 
-		
-		if (postDAO.deletePost(id)) {
-			request.setAttribute("message", "������");
+		if (pService.deletePost(id)) {
+			request.setAttribute("message", "刪除成功");
 			request.getRequestDispatcher("/showResultForm").forward(request, response);
 		} else {
-			request.setAttribute("message", "��憭望��");
+			request.setAttribute("message", "刪除失敗");
 			request.getRequestDispatcher("/showResultForm").forward(request, response);
 		}
 	}
 
-	private void editPost(HttpServletRequest request, HttpServletResponse response, PostDAO postDAO)
+	private void editPost(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
-
+		PostService pService = new PostHibernateServiceImpl();
 		int id = Integer.parseInt(request.getParameter("id"));
+		Post post = pService.findPost(id);
 
-		Post post = postDAO.findPost(id);
-
-		if (postDAO.findPost(id) != null) {
-			request.setAttribute("title", post.getTitle());
-			request.setAttribute("post_id", post.getPostId());
-			request.setAttribute("posted_date", post.getPostedDate());
-			request.setAttribute("posted_text", post.getPostedText());
+		if (pService.findPost(id) != null) {
+			request.setAttribute("post", post);
 			request.getRequestDispatcher("/editPost").forward(request, response);
 		} else {
-			request.setAttribute("message", "憭望��");
+			request.setAttribute("message", "錯誤");
 			request.getRequestDispatcher("showResultForm.jsp").forward(request, response);
 		}
 	}
