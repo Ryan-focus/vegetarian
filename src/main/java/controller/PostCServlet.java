@@ -26,6 +26,8 @@ public class PostCServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		PostService ps = new PostHibernateServiceImpl();
 
 		DataSource ds = null;
 		InitialContext ctxt = null;
@@ -105,6 +107,8 @@ public class PostCServlet extends HttpServlet {
 	
 	private void CreatePostImage(HttpServletRequest request, HttpServletResponse response, PostDAO postDao)
 			throws SQLException, IOException, ServletException {
+		
+		
 
 		String title = null;
 		String postedText = null;

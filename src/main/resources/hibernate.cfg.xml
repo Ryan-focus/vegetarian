@@ -6,7 +6,11 @@
 	<session-factory>
 		<!-- 1. SQL方言與提供連結資料庫所需資訊(透過JDBC API來連結)之設定方式 -->
 		<property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+
 		<property name="connection.url">jdbc:sqlserver://127.0.0.1:1433;DatabaseName=veganDB</property>
+
+		<property name="connection.url">jdbc:sqlserver://127.0.0.1:1433;DatabaseName=jspdb</property>
+
 		<property name="connection.username">sa</property>
 		<property name="connection.password">sa123456</property>
 		<!-- SQL方言 -->
@@ -27,8 +31,11 @@
 		<property name="connection_pool_size">5</property>
 
 		<!-- 3. 宣告程式使用的永續類別 -->
+
 		<mapping class="bean.Reserve" />
 		<mapping class="bean.Restaurant" />
+		<mapping class="bean.Post" />
+
 	
 	</session-factory>
 </hibernate-configuration>

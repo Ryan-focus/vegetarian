@@ -30,6 +30,7 @@ public class PostHibernateDAOImpl implements PostDAO{
 	  }
 
 	PreparedStatement pst = null;
+
 	
 	LocalDateTime dt = LocalDateTime.now(); // 目前時間&日期
 	
