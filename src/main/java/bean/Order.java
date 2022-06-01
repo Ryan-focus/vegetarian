@@ -1,10 +1,9 @@
 package bean;
 
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
+
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,7 +18,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="orders")
-public class Order extends Product{
+public class Order{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -79,7 +78,7 @@ public class Order extends Product{
 
 	public Order(Integer id, String name, String category, Double price, String image, Integer orderId,
 			Integer quantity, String date, Integer uid, List<Order> orders) {
-		super(id, name, category, price, image);
+		super();
 		this.orderId = orderId;
 		this.quantity = quantity;
 		this.date = date;

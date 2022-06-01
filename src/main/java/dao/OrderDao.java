@@ -39,7 +39,7 @@ public class OrderDao {
 		List<Order> orders = new ArrayList<>();
 		try {
 			tx = session.beginTransaction();
-			String hql = "from Product";
+			String hql = "from Order";
 			orders = session.createQuery(hql, Order.class).getResultList();
 			tx.commit();
 			} catch (Exception e) {
@@ -52,31 +52,31 @@ public class OrderDao {
 	
 
 	
-	
-	public boolean insertOrder(Order model) {
-		
-		boolean result=false;
-		
-		try {
-			
-			query="insert into orders(p_id,u_id,o_quantity,o_date) values(?,?,?,?)";
-			
-			pst = this.conn.prepareStatement(query);
-			pst.setInt(1, model.getId());
-			pst.setInt(2, model.getUid());
-			pst.setInt(3, model.getQuantity());
-			pst.setString(4, model.getDate());
-			pst.executeUpdate();
-			result = true;
-			
-		}catch (Exception e) {
-			 System.out.println(e.getMessage());
-		}
-		
-		return result;
-		
-	}
-	
+//	
+//	public boolean insertOrder(Order model) {
+//		
+//		boolean result=false;
+//		
+//		try {
+//			
+//			query="insert into orders(p_id,u_id,o_quantity,o_date) values(?,?,?,?)";
+//			
+//			pst = this.conn.prepareStatement(query);
+//			pst.setInt(1, model.getId());
+//			pst.setInt(2, model.getUid());
+//			pst.setInt(3, model.getQuantity());
+//			pst.setString(4, model.getDate());
+//			pst.executeUpdate();
+//			result = true;
+//			
+//		}catch (Exception e) {
+//			 System.out.println(e.getMessage());
+//		}
+//		
+//		return result;
+//		
+//	}
+//	
 	
 	
 	
