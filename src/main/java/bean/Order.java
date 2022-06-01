@@ -1,25 +1,18 @@
 package bean;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 
-import java.util.List;
-
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name="orders")
-public class Order{
+public class Order implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,11 +24,28 @@ public class Order{
 	private String date;
 	@Column(name="u_id" ,columnDefinition="INT NOT NULL")
 	private Integer uid;
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "p_id", referencedColumnName = "id")
-	private List<Product> products = new ArrayList<>();
-	private List<Order> orders;
+	@Column(name="p_id" ,columnDefinition="INT NOT NULL")
+	private Integer pid;
 	
+
+	
+	public Order(Integer orderId, Integer quantity, String date, Integer uid, Integer pid) {
+		super();
+		this.orderId = orderId;
+		this.quantity = quantity;
+		this.date = date;
+		this.uid = uid;
+		this.pid = pid;
+	}
+
+	public Integer getPid() {
+		return pid;
+	}
+
+	public void setPid(Integer pid) {
+		this.pid = pid;
+	}
+
 	public Order() {}
 
 	public Integer getOrderId() {
@@ -68,24 +78,6 @@ public class Order{
 
 	public void setUid(Integer uid) {
 		this.uid = uid;
-	}
-
-	public List<Order> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
-	}
-
-	public Order(Integer id, String name, String category, Double price, String image, Integer orderId,
-			Integer quantity, String date, Integer uid, List<Order> orders) {
-		super();
-		this.orderId = orderId;
-		this.quantity = quantity;
-		this.date = date;
-		this.uid = uid;
-		this.orders = orders;
 	}
 
 
