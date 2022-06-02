@@ -40,10 +40,20 @@ public class PostHibernateDAOImpl implements PostDAO {
 
 	// 更新文章
 	public boolean updatePost(Post post) {
-
+		
 		Session session = factory.getCurrentSession();
-		session.saveOrUpdate(post);
-		return true;
+    	String hql ="UPDATE Post  set title= :title, postedText = :postedText where postId = :postId ";
+    	int result =0;
+    	result = session.createQuery(hql)
+    			.setParameter("title",post.getTitle())
+    			.setParameter("postedText",post.getPostedText())
+    			.setParameter("postId", post.getPostId())
+				.executeUpdate();
+    	if(result>0) {
+			return true;
+		}else {
+			return false;
+		}
 
 	}
 

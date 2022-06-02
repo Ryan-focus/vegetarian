@@ -49,10 +49,10 @@ public class PostCUServlet extends HttpServlet {
 
 		if (pService.updatePost(post)) {
 			request.setAttribute("message", "更新成功");
-			request.getRequestDispatcher("/posts/showResultForm.jsp").forward(request, response);
+			request.getRequestDispatcher("/showResultForm").forward(request, response);
 		} else {
 			request.setAttribute("message", "更新失敗");
-			request.getRequestDispatcher("/posts/showResultForm.jsp").forward(request, response);
+			request.getRequestDispatcher("/showResultForm").forward(request, response);
 		}
 	}
 

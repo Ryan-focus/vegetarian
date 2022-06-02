@@ -128,7 +128,7 @@ public class PostCServlet extends HttpServlet {
 		Post post = new Post(title, date, postedText, headUrl);
 		if (pService.addPostImage(post)) {
 			System.out.println("儲存成功");
-			request.setAttribute("message", "更新成功");
+			request.setAttribute("message", "發表成功");
 			request.getRequestDispatcher("/showResultForm").forward(request, response);
 		} else {
 			System.out.println("失敗");
