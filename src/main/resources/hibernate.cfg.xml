@@ -35,6 +35,7 @@
 		<mapping class="bean.Reserve" />
 		<mapping class="bean.Restaurant" />
 		<mapping class="bean.Post" />
+		<mapping class="ForumBean" />
 
 	
 	</session-factory>

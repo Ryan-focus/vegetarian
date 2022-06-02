@@ -50,10 +50,10 @@ p{
 		<p>標題:<%=request.getAttribute("vgetheme") %> </p>
 		<p>提問:<%=request.getAttribute("vgecontent") %></p>
 	 -->	
-	 	<p class="p">文章號碼: <input type="text" readonly="readonly" name="vgeid" value="<%=request.getAttribute("vgeid")%>" size="30" maxlength="30"></p>  
-		<p class="p">名稱:<input type="text" name="vgename"  value="<%=request.getAttribute("vgename")%>" size="30" maxlength="30"></p>
-		<p class="p">標題:<input type="text" name="vgetheme" value="<%=request.getAttribute("vgetheme") %>" size="30" maxlength="30"></p>
-		<p class="p">文章:<textarea name="vgecontent" rows="10"  cols="30"><%=request.getAttribute("vgecontent") %></textarea></p>
+	 	<p class="p">文章號碼: <input type="text" readonly="readonly" name="vgeid" value="{param.vgeid}" size="30" maxlength="30"></p>  
+		<p class="p">名稱:<input type="text" name="vgename"  value="{param.vgename}" size="30" maxlength="30"></p>
+		<p class="p">標題:<input type="text" name="vgetheme" value="{param.vgetheme}" size="30" maxlength="30"></p>
+		<p class="p">文章:<textarea name="vgecontent" rows="10"  cols="30">value="{param.vgetheme}"</textarea></p>
 
 		<hr class="style-five">
 		<center>

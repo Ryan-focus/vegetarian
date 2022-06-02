@@ -45,7 +45,7 @@
 <form action="./ForumServlet" method=Post>
 
 	<sql:setDataSource var="myDS" driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-		url="jdbc:sqlserver://localhost:1433;databaseName=veganDB" user="sa" password="passw0rd" />
+		url="jdbc:sqlserver://localhost:1433;databaseName=veganDB" user="sa" password="sa123456" />
 
 	<sql:query var="forum" dataSource="${myDS}">
         SELECT * FROM forum;
