@@ -14,6 +14,7 @@ import org.hibernate.Transaction;
 
 import bean.Order;
 import bean.Product;
+import bean.Reserve;
 import model.HibernateUtils;
 
 public class OrderDao {
@@ -27,9 +28,6 @@ public class OrderDao {
 //		this.conn = conn;
 //	}
 	SessionFactory factory = HibernateUtils.getSessionFactory();
-	
-
-	Session session = factory.getCurrentSession();
 	Transaction tx =null;
 	
 	
@@ -38,6 +36,7 @@ public class OrderDao {
 		
 		List<Order> orders = new ArrayList<>();
 		try {
+			Session session = factory.getCurrentSession();
 			tx = session.beginTransaction();
 			String hql = "from Order";
 			orders = session.createQuery(hql, Order.class).getResultList();
@@ -77,6 +76,23 @@ public class OrderDao {
 //		
 //	}
 //	
+	public Object insert(Order order) {
+		// 取得Session
+		Session session = factory.getCurrentSession();
+		
+		Object key = null;
+		try {
+			tx = session.beginTransaction();
+			key = session.save(order);
+	        tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+		e.printStackTrace();
+		}
+		return key;
+	}
 	
 	
 	
@@ -119,18 +135,26 @@ public class OrderDao {
 //		return list;
 //		
 //	}
-	   public void cancelOrder(int id) {
+	   public void cancelOrder(int pk) {
+		   
+		   Session session = factory.getCurrentSession();
+		   Order order = new Order(pk);
+		   tx.commit();
+		   session.close();
+		   session = factory.openSession();
+		   tx=session.beginTransaction();
+		   session.delete(order);
 	        //boolean result = false;
-	        try {
-	            query = "delete from orders where o_id=?";
-	            pst = this.conn.prepareStatement(query);
-	            pst.setInt(1, id);
-	            pst.execute();
-	            //result = true;
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	            System.out.print(e.getMessage());
-	        }
+//	        try {
+//	            query = "delete from orders where o_id=?";
+//	            pst = this.conn.prepareStatement(query);
+//	            pst.setInt(1, id);
+//	            pst.execute();
+//	            //result = true;
+//	        } catch (SQLException e) {
+//	            e.printStackTrace();
+//	            System.out.print(e.getMessage());
+//	        }
 	        //return result;
 	    }
 	

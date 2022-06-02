@@ -13,14 +13,11 @@
 </head>
 <body>
 
-<%-- <%@include file="/WEB-INF/jsp/shoppingcart/ShoppingCartBar.jspf"%>  --%>
+<%@include file="/WEB-INF/jsp/shoppingcart/ShoppingCartBar.jspf"%> 
 	<div class="container">
 		<div class="card-header my-3">全部商品</div>
 		<div class="row">
-		<%-- 	<%
-			if (!products.isEmpty()) {
-				for (Product p : products) {
-			%> --%>
+	
 			
 		<c:forEach var="products" items="${products}"> 
 			<div class="col-md-3 my-3">
@@ -41,10 +38,7 @@
 			</div>
 			
 			</c:forEach>
-		<%-- 	<%
-			}
-			}
-			%> --%>
+		
 		</div>
 	</div>
 	<%@include file="/WEB-INF/jsp/shoppingcart/Script.jsp"%>

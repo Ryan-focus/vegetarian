@@ -48,11 +48,10 @@ if (cart_list != null) {
 		<table class="table table-light">
 			<thead>
 				<tr>
+					<th scope="col">訂單編號</th>
 					<th scope="col">日期</th>
-					<th scope="col">品項</th>
-					<th scope="col">種類</th>
+					<th scope="col">商品編號</th>
 					<th scope="col">數量</th>
-					<th scope="col">金額</th>
 					<th scope="col">取消訂單</th>
 				</tr>
 			</thead>
@@ -62,15 +61,16 @@ if (cart_list != null) {
 					for (Order o : orders) {
 				%> --%>
 				<c:forEach var="orders" items="${orders}"> 
-				<tr>
-					<td>${orders.date}</td>
-					<td>${orders.name}</td>
-					<td>${orders.category}</td>
-					<td>${orders.quantity}</td>
-					<td>${orders.price}</td>
-					<td><a class="btn btn-sm btn-danger"
-						href="ShoppingCartServlet?action=cancel-order&id=${orders.orderId}">取消訂單</a></td>
-				</tr>
+					<c:forEach var="product" items="${productlist }">
+						<tr>
+							<td>${orders.orderId}</td>
+							<td>${orders.date}</td>
+							<td>${product.name}</td>
+							<td>${orders.quantity}</td>
+							<td><a class="btn btn-sm btn-danger"
+								href="ShoppingCartServlet?action=cancel-order&id=${orders.orderId}">取消訂單</a></td>
+						</tr>
+					</c:forEach>
 				</c:forEach>
 				
 			<%-- 	<%

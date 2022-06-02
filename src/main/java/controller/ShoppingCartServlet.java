@@ -65,10 +65,10 @@ public class ShoppingCartServlet extends HttpServlet {
 //		}
 //			break;
 //	
-//		case "cancel-order": {
-//			cancelOrder(request, response);
-//		}
-//			break;
+		case "cancel-order": {
+			cancelOrder(request, response);
+		}
+			break;
 		case "add-to-cart": {
 			addToCart(request, response);
 		}
@@ -99,6 +99,15 @@ public class ShoppingCartServlet extends HttpServlet {
 	private void showAllOrder(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 			List<Order> orders = od.getAllOrders();
+			List<Product> products = null ;
+			int i = 0 ; 
+			for (Order order : orders) {
+				products = new ArrayList<Product>();
+				products.add(pd.getSingleProduct(order.getPid()));
+				i++;
+			}
+
+			request.getSession().setAttribute("productlist", products);
 			request.getSession().setAttribute("orders", orders);
 		    response.sendRedirect("/vegetarian/order");
 		
@@ -161,23 +170,20 @@ public class ShoppingCartServlet extends HttpServlet {
 //
 //	}
 //
-//	private void cancelOrder(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//
-//		try (PrintWriter out = response.getWriter()) {
-//			String id = request.getParameter("id");
-//			if (id != null) {
-//
-//				OrderDao orderDao = new OrderDao(ds.getConnection());
-//				orderDao.cancelOrder(Integer.parseInt(id));
-//
-//			}
-//			response.sendRedirect("/vegetarian/order");
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//	}
+	private void cancelOrder(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+		try (PrintWriter out = response.getWriter()) {
+			String id = request.getParameter("id");
+			if (id != null) {
+
+				OrderDao orderDao = new OrderDao();
+				orderDao.cancelOrder(Integer.parseInt(id));
+
+			}
+			response.sendRedirect("/vegetarian/order");
+		}
+
+	}
 //	private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws IOException {
 //		
 //		try (PrintWriter out = response.getWriter()) {

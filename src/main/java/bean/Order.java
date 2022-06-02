@@ -38,6 +38,17 @@ public class Order implements Serializable{
 		this.pid = pid;
 	}
 
+	
+	public Order() {
+		super();
+	}
+
+
+	public Order(int orderId2) {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public Integer getPid() {
 		return pid;
 	}
@@ -46,7 +57,7 @@ public class Order implements Serializable{
 		this.pid = pid;
 	}
 
-	public Order() {}
+	
 
 	public Integer getOrderId() {
 		return orderId;
