@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -18,8 +19,10 @@ import javax.sql.DataSource;
 
 import bean.Cart;
 import bean.Order;
+import bean.Product;
 import bean.User;
 import dao.OrderDao;
+import dao.ProductDao;
 
 /**
  * Servlet implementation class OrderNowServlet
@@ -27,19 +30,19 @@ import dao.OrderDao;
 @WebServlet("/order-now")
 public class OrderNowServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	DataSource ds = null;
-	Connection conn = null;
-
-	{
-		try {
-			InitialContext ctxt = new InitialContext();
-			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/veganDB");
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-       
+//	DataSource ds = null;
+//	Connection conn = null;
+//
+//	{
+//		try {
+//			InitialContext ctxt = new InitialContext();
+//			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/veganDB");
+//		} catch (NamingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
+//       
 
 
 	/**
@@ -52,9 +55,10 @@ public class OrderNowServlet extends HttpServlet {
 			Date date = new Date();
 
 			User user = (User) request.getSession().getAttribute("user");
+			
 
 			if (user.getUid() != 0) {
-				String productId = Integer.toString(user.getUid()) ;
+				String productId = request.getParameter("id") ;
 				int productQuantity = Integer.parseInt(request.getParameter("quantity"));
 				if (productQuantity <= 0) {
 					productQuantity = 1;
