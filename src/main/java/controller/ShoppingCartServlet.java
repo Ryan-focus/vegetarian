@@ -99,14 +99,13 @@ public class ShoppingCartServlet extends HttpServlet {
 	private void showAllOrder(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 			List<Order> orders = od.getAllOrders();
-			List<Product> products = null ;
-			int i = 0 ; 
+			List<Product> products = new ArrayList<Product>();
+			
 			for (Order order : orders) {
-				products = new ArrayList<Product>();
-				products.add(pd.getSingleProduct(order.getPid()));
-				i++;
+				Product product = new Product();
+				product = pd.getSingleProduct(order.getPid());
+				products.add(product);
 			}
-
 			request.getSession().setAttribute("productlist", products);
 			request.getSession().setAttribute("orders", orders);
 		    response.sendRedirect("/vegetarian/order");

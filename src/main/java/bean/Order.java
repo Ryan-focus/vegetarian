@@ -1,6 +1,7 @@
 package bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -90,6 +91,4 @@ public class Order implements Serializable{
 	public void setUid(Integer uid) {
 		this.uid = uid;
 	}
-
-
 }

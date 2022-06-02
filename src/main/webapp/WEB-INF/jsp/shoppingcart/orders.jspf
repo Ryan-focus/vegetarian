@@ -60,19 +60,22 @@ if (cart_list != null) {
 				if (orders != null) {
 					for (Order o : orders) {
 				%> --%>
-				<c:forEach var="orders" items="${orders}"> 
-					<c:forEach var="product" items="${productlist }">
+				<c:forEach var="orders" items="${orders}" varStatus="oStatus" > 
+					<c:forEach var="product" items="${productlist}" varStatus="pStatus"> 
 						<tr>
-							<td>${orders.orderId}</td>
-							<td>${orders.date}</td>
-							<td>${product.name}</td>
-							<td>${orders.quantity}</td>
-							<td><a class="btn btn-sm btn-danger"
-								href="ShoppingCartServlet?action=cancel-order&id=${orders.orderId}">取消訂單</a></td>
+							<c:if test="${pStatus.count == oStatus.count}" >
+								<td>${orders.orderId}</td>
+								<td>${orders.date}</td>
+								<td>
+									${product.name}
+								</td>
+								<td>${orders.quantity}</td>
+								<td><a class="btn btn-sm btn-danger"
+									href="ShoppingCartServlet?action=cancel-order&id=${orders.orderId}">取消訂單</a></td>
+							</c:if>
 						</tr>
 					</c:forEach>
 				</c:forEach>
-				
 			<%-- 	<%
 				}
 				}
