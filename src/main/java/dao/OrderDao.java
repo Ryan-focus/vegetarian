@@ -58,14 +58,29 @@ public class OrderDao {
 		
 		try {
 			
-			query="insert into orders(p_id,u_id,o_quantity,o_date) values(?,?,?,?)";
+//			query="insert into orders(p_id,u_id,o_quantity,o_date) values(?,?,?,?)";
 			
-			pst = this.conn.prepareStatement(query);
-			pst.setInt(1, model.getPid());
-			pst.setInt(2, model.getUid());
-			pst.setInt(3, model.getQuantity());
-			pst.setString(4, model.getDate());
-			pst.executeUpdate();
+//			pst = this.conn.prepareStatement(query);
+//			pst.setInt(1, model.getPid());
+//			pst.setInt(2, model.getUid());
+//			pst.setInt(3, model.getQuantity());
+//			pst.setString(4, model.getDate());
+//			pst.executeUpdate();
+			
+			Session session = factory.getCurrentSession();
+			Transaction tx = null;
+			Object key = null;
+			try {
+				tx = session.beginTransaction();
+				key = session.save(model);
+		        tx.commit();
+			} catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+			e.printStackTrace();
+			}
+			
 			result = true;
 			
 		}catch (Exception e) {
