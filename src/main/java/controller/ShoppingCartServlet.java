@@ -174,12 +174,9 @@ public class ShoppingCartServlet extends HttpServlet {
 		try (PrintWriter out = response.getWriter()) {
 			String id = request.getParameter("id");
 			if (id != null) {
-
-				OrderDao orderDao = new OrderDao();
-				orderDao.cancelOrder(Integer.parseInt(id));
-
+				od.cancelOrder(Integer.parseInt(id));
 			}
-			response.sendRedirect("/vegetarian/order");
+			response.sendRedirect("ShoppingCartServlet?action=show-all-orders");
 		}
 
 	}

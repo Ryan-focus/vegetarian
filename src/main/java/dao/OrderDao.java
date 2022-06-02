@@ -51,48 +51,48 @@ public class OrderDao {
 	
 
 	
-//	
-//	public boolean insertOrder(Order model) {
-//		
-//		boolean result=false;
-//		
-//		try {
-//			
-//			query="insert into orders(p_id,u_id,o_quantity,o_date) values(?,?,?,?)";
-//			
-//			pst = this.conn.prepareStatement(query);
-//			pst.setInt(1, model.getId());
-//			pst.setInt(2, model.getUid());
-//			pst.setInt(3, model.getQuantity());
-//			pst.setString(4, model.getDate());
-//			pst.executeUpdate();
-//			result = true;
-//			
-//		}catch (Exception e) {
-//			 System.out.println(e.getMessage());
-//		}
-//		
-//		return result;
-//		
-//	}
-//	
-	public Object insert(Order order) {
-		// 取得Session
-		Session session = factory.getCurrentSession();
+	
+	public boolean insertOrder(Order model) {
 		
-		Object key = null;
+		boolean result=false;
+		
 		try {
-			tx = session.beginTransaction();
-			key = session.save(order);
-	        tx.commit();
-		} catch (Exception e) {
-			if (tx != null) {
-				tx.rollback();
-			}
-		e.printStackTrace();
+			
+			query="insert into orders(p_id,u_id,o_quantity,o_date) values(?,?,?,?)";
+			
+			pst = this.conn.prepareStatement(query);
+			pst.setInt(1, model.getPid());
+			pst.setInt(2, model.getUid());
+			pst.setInt(3, model.getQuantity());
+			pst.setString(4, model.getDate());
+			pst.executeUpdate();
+			result = true;
+			
+		}catch (Exception e) {
+			 System.out.println(e.getMessage());
 		}
-		return key;
+		
+		return result;
+		
 	}
+//	
+//	public Object insert(Order order) {
+//		// 取得Session
+//		Session session = factory.getCurrentSession();
+//		
+//		Object key = null;
+//		try {
+//			tx = session.beginTransaction();
+//			key = session.save(order);
+//	        tx.commit();
+//		} catch (Exception e) {
+//			if (tx != null) {
+//				tx.rollback();
+//			}
+//		e.printStackTrace();
+//		}
+//		return key;
+//	}
 	
 	
 	
@@ -138,12 +138,19 @@ public class OrderDao {
 	   public void cancelOrder(int pk) {
 		   
 		   Session session = factory.getCurrentSession();
-		   Order order = new Order(pk);
-		   tx.commit();
-		   session.close();
-		   session = factory.openSession();
-		   tx=session.beginTransaction();
-		   session.delete(order);
+		   try {
+			tx = session.beginTransaction();
+			Order order = new Order();
+			order.setOrderId(pk);
+			session.delete(order);
+			tx.commit();
+			
+		} catch (Exception e) {
+			if(tx!=null) {
+				tx.rollback();
+			}
+			throw new RuntimeException(e);
+		}
 	        //boolean result = false;
 //	        try {
 //	            query = "delete from orders where o_id=?";
