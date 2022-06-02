@@ -185,6 +185,7 @@ public class ForumServlet extends HttpServlet {
 			ForumBean forumBean = new ForumBean(vgeid,vgename,vgetheme,vgecontent);
 			session.setAttribute("forumBean", forumBean);
 			forumService.save(forumBean);
+			request.getRequestDispatcher("/WEB-INF/jsp/forum/Thank.jsp").forward(request, response);
 		}catch (Exception e) {
 			System.out.println("Database Connection Error");
 		}
@@ -251,17 +252,26 @@ public class ForumServlet extends HttpServlet {
 		System.out.println("modify="+modify);
 		ForumService forumService = new ForumHibernateService();
 		int count = 0;
-		count = forumService.deleteForum(id);
-		if(count == 1) {
-			hession.setAttribute("modify", "成功");
-		}else {
-			hession.setAttribute("modify", "失敗");
-		}
 		ForumBean forumBean = new ForumBean(id,vgename,vgetheme,vgecontent);
 		count = forumService.updateForum(forumBean);
 		request.getRequestDispatcher("/WEB-INF/jsp/forum/UpdateResult.jsp").forward(request, response);
+		//count = forumService.deleteForum(id);
+//		if(count != 1) {
+//			hession.setAttribute("modify", "成功");
+//		}else {
+//			hession.setAttribute("modify", "失敗");
+//		}
 		
 		
+//		String vgename =request.getParameter("vgename");
+//		List<ForumBean> forumBeans = forumService.queryone(vgename);
+//		for (ForumBean f : forumBeans) {
+//			System.out.println(f.getVgename());
+//			System.out.println(f.getVgeid());
+//		}
+//		request.setAttribute("forumBean", forumBeans);
+//		request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryResult.jsp").forward(request, response);
+		//111
 //		DataSource ds = null;
 //		InitialContext ctxt = null;
 //		Connection conn = null;
