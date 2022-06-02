@@ -6,6 +6,8 @@ import bean.ForumBean;
 public interface ForumDAO {
 
 
+	List<ForumBean> queryName(String vgename);
+	
 	int save(ForumBean forumBean);
 
 	List<ForumBean> getAllForums();
@@ -14,4 +16,5 @@ public interface ForumDAO {
 
 	int updateForum(ForumBean forumBean);
 
+	List<ForumBean> queryone(String vgename);
 }

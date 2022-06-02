@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 
 import Interface.ForumDAO;
 import bean.ForumBean;
+
 import utils.HibernateUtils;
 
 public class ForumHibernateDao implements ForumDAO {
@@ -52,5 +53,26 @@ public class ForumHibernateDao implements ForumDAO {
 		Session session = factory.getCurrentSession();
 		session.saveOrUpdate(forumBean);
 		return 1;
+	}
+
+	@Override
+	public List<ForumBean> queryName(String vgename) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM ForumBean fb WHERE fb.vgename = :vgename";
+		List<ForumBean> forumBeans = session.createQuery(hql,ForumBean.class)
+									.setParameter("vgename", vgename)
+									.getResultList();
+		return forumBeans;
+	}
+
+	@Override
+	public List<ForumBean> queryone(String vgename) {
+		Session session = factory.getCurrentSession();
+		String hql = "from ForumBean where vgename =:vgename";
+		List<ForumBean> forumBeans = session.createQuery(hql,ForumBean.class)
+				.setParameter("vgename", vgename)
+				.getResultList();
+		
+		return forumBeans;
 	}
 }

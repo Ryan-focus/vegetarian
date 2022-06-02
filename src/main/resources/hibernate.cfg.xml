@@ -9,8 +9,6 @@
 
 		<property name="connection.url">jdbc:sqlserver://127.0.0.1:1433;DatabaseName=veganDB</property>
 
-		<property name="connection.url">jdbc:sqlserver://127.0.0.1:1433;DatabaseName=jspdb</property>
-
 		<property name="connection.username">sa</property>
 		<property name="connection.password">sa123456</property>
 		<!-- SQL方言 -->
@@ -35,7 +33,7 @@
 		<mapping class="bean.Reserve" />
 		<mapping class="bean.Restaurant" />
 		<mapping class="bean.Post" />
-		<mapping class="ForumBean" />
+		<mapping class="bean.ForumBean" />
 
 	
 	</session-factory>

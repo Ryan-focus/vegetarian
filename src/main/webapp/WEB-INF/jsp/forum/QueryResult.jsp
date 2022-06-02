@@ -5,6 +5,8 @@
 <%@page import="bean.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 	<%User userForum = (User)request.getSession().getAttribute("user");%>
 
 
@@ -45,15 +47,13 @@ p{
 		<header>
 		<h2>網誌</h2>
 		</header>
-	<!-- 	 <p>ID:<%=request.getAttribute("vgeid")%></p]>
-		<p>名稱:<%=request.getAttribute("vgename")%> </p>
-		<p>標題:<%=request.getAttribute("vgetheme") %> </p>
-		<p>提問:<%=request.getAttribute("vgecontent") %></p>
-	 -->	
-	 	<p class="p">文章號碼: <input type="text" readonly="readonly" name="vgeid" value="{param.vgeid}" size="30" maxlength="30"></p>  
-		<p class="p">名稱:<input type="text" name="vgename"  value="{param.vgename}" size="30" maxlength="30"></p>
-		<p class="p">標題:<input type="text" name="vgetheme" value="{param.vgetheme}" size="30" maxlength="30"></p>
-		<p class="p">文章:<textarea name="vgecontent" rows="10"  cols="30">value="{param.vgetheme}"</textarea></p>
+	 
+	 	<c:forEach var='forum'  items='${forumBean}'>
+			<p class="p">文章號碼: <input type="text" readonly="readonly" name="vgeid" value="${forum.vgeid}" size="30" maxlength="30"></p>  
+			<p class="p">名稱:<input type="text" name="vgename"  value="${forum.vgename}" size="30" maxlength="30"></p> 
+			<p class="p">標題:<input type="text" name="vgetheme" value="${forum.vgetheme}" size="30" maxlength="30"></p> 
+			<p class="p">文章:<textarea name="vgecontent" rows="10"  cols="30">${forum.vgecontent}</textarea></p> 
+	 	</c:forEach>
 
 		<hr class="style-five">
 		<center>

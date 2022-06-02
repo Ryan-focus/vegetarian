@@ -6,6 +6,7 @@ import bean.ForumBean;
 
 public interface ForumService {
 
+	List<ForumBean> queryName(String vgename);
 	
 	int save(ForumBean forumBean);
 
@@ -15,4 +16,5 @@ public interface ForumService {
 
 	int updateForum(ForumBean forumBean);
 	
+	List<ForumBean> queryone(String vgename);
 }

@@ -22,6 +22,8 @@ import javax.sql.DataSource;
 
 import bean.ForumBean;
 import bean.User;
+
+
 import dao.ForumHibernateDao;
 import dao.ForumHibernateService;
 import dao.PostHibernateServiceImpl;
@@ -34,6 +36,9 @@ public class ForumServlet extends HttpServlet {
 	private static final String CONTENT_TYPE = "text/html; charset=UTF-8";
 	private static final String CHARSET_CODE = "UTF-8";
 
+	ForumService forumService = new ForumHibernateService();
+	ForumHibernateDao forumHibernateDao = new ForumHibernateDao();
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -43,21 +48,19 @@ public class ForumServlet extends HttpServlet {
 		response.setHeader("Cache-Control", "no-cache"); // HTTP 1.1
 		response.setHeader("Pragma", "no-cache"); // HTTP 1.0
 		response.setDateHeader("Expires", -1); // Prevents caching at the proxy server
-		DataSource ds = null;
-		InitialContext ctxt = null;
-		Connection conn = null;
+//		DataSource ds = null;
+//		InitialContext ctxt = null;
+//		Connection conn = null;
 		try {
-			ForumService forumService = new ForumHibernateService();
-			ctxt = new InitialContext();
-
-			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/veganDB");
-
-			conn = ds.getConnection();
-			ForumHibernateDao forumHibernateDao = new ForumHibernateDao();
+//			ctxt = new InitialContext();
+//
+//			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/veganDB");
+//
+//			conn = ds.getConnection();
 		//	ForumDAO forumDAO = new ForumDAO(conn);
 		
 			if (request.getParameter("Query") != null)
-				processQuery(request, response, forumHibernateDao);
+				processqueryone(request, response, forumHibernateDao);
 
 			if (request.getParameter("Create") != null)
 				processCreate(request, response,forumHibernateDao);
@@ -71,31 +74,55 @@ public class ForumServlet extends HttpServlet {
 			if (request.getParameter("Update") != null)
 				processUpdate(request, response,forumHibernateDao);
 			
-//			if(request.getParameter("ForumHome")!=null)
-//				prcoessHome(request,response);
-		}
-
-		catch (SQLException e) {
+			if(request.getParameter("ForumHome")!=null)
+				prcoessHome(request,response);
+		}catch (Exception e) {
 			e.printStackTrace();
-		} catch (NamingException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-				System.out.println("Connection Pool Error!");
-			}
-		}
+		} 
+//		catch (NamingException e) {
+//			e.printStackTrace();
+//		} 
+//		finally {
+//			try {
+//				if (conn != null)
+//					conn.close();
+//			} catch (Exception e) {
+//				System.out.println("Connection Pool Error!");
+//			}
+//		}
 	}
 
-	protected void processQuery(HttpServletRequest request, HttpServletResponse response, ForumDAO forumDAO)
+	protected void processqueryone(HttpServletRequest request, HttpServletResponse response, ForumDAO forumDAO)
 			throws ServletException, IOException {
-		ForumService forumService = new ForumHibernateService();
-		List<ForumBean>list = forumService.getAllForums();
-		request.getSession(true);
-		request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryResult.jsp").forward(request, response);			
-		return;
+		
+		String vgename =request.getParameter("vgename");
+		List<ForumBean> forumBeans = forumService.queryone(vgename);
+		for (ForumBean f : forumBeans) {
+			System.out.println(f.getVgename());
+			System.out.println(f.getVgeid());
+		}
+		request.setAttribute("forumBean", forumBeans);
+		request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryResult.jsp").forward(request, response);
+	}
+	
+
+	
+	
+	protected void processquery(HttpServletRequest request, HttpServletResponse response, ForumDAO forumDAO)
+			throws ServletException, IOException {
+		String vgename =request.getParameter("vgename");
+		List<ForumBean> forumBean = forumService.queryName(vgename);
+		request.setAttribute("forumBean", forumBean);
+		request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryResult.jsp").forward(request, response);		
+//		if(forumBean!=) {
+//		}
+		
+		//request.getSession(true,forumBean);
+		
+//		List<ForumBean>list = forumService.QueryName();
+//		request.getSession(true);
+//		request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryResult.jsp").forward(request, response);			
+//		return;
 //		-------------------------------------------------------
 //		DataSource ds = null;
 //		InitialContext ctxt = null;
@@ -350,21 +377,21 @@ public class ForumServlet extends HttpServlet {
 //		}
 //
 //	}
-//	public void prcoessHome(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException, IOException {
-//
+	public void prcoessHome(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 //				User userForum = (User) request.getSession().getAttribute("user");
 //		try (PrintWriter out = response.getWriter()){
 //			if(userForum==null) {
-//				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryForum.jsp");
-//					dispatcher.forward(request, response);
-//
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryForum.jsp");
+					dispatcher.forward(request, response);
+
 //			}else {
 //					if(userForum.getUid()==0) 
 //						response.sendRedirect("/vegetarian/Login");
 //						request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryForum.jsp").forward(request,response);
-//				
-//		}		
+				
+		}		
 //	}catch (Exception e) {
 //	}
 //	}
