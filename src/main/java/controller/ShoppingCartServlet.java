@@ -207,14 +207,15 @@ public class ShoppingCartServlet extends HttpServlet {
 			cart.setName(product.getName());
 			cart.setCategory(product.getCategory());
 			cart.setImage(product.getImage());
+			System.out.println(product.getName());
 
 			HttpSession session = request.getSession();
 			@SuppressWarnings("unchecked")
 			ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
+			System.out.println(cart.getCategory());
 
 			if (cart_list == null) {
 				cartList.add(cart);
-				
 				session.setAttribute("cart-list", cartList);
 				response.sendRedirect("/vegetarian/shoppingcartIndex");
 			} else {
