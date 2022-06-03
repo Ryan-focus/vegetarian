@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.transaction.SystemException;
 import org.hibernate.Transaction;
 
@@ -27,12 +28,13 @@ public class ProductDao {
 	SessionFactory factory = HibernateUtils.getSessionFactory();
 	
 
-	Session session = factory.getCurrentSession();
+	
 	Transaction tx =null;
 
 	public List<Product> getAllProducts(){
 
 		List<Product> products = new ArrayList<Product>();
+		Session session = factory.getCurrentSession();
 		try {
 			tx = session.beginTransaction();
 			String hql = "from Product";
@@ -76,6 +78,7 @@ public class ProductDao {
 	
 
 	public List<Cart> getCartProducts(ArrayList<Cart> cartList) {
+		Session session = factory.getCurrentSession();
 		List<Cart> products = new ArrayList<Cart>();
 
 		try {
@@ -136,7 +139,7 @@ public class ProductDao {
 		 
 		 Product row = null;
 		 Session session = factory.getCurrentSession();
-		 Transaction tx = null;
+		
 	        try {
 	        	tx = session.beginTransaction();
 				
@@ -177,18 +180,25 @@ public class ProductDao {
 //	        return row;
 	    }
 
-//	   
-//	   // 删除商品
-//	    public void delProducts(int id) {
-//	    	try {
-//	            query = "delete from products where id=?";
-//	            pst = this.conn.prepareStatement(query);
-//	            pst.setInt(1, id);
-//	            pst.execute();
-//	            //result = true;
-//	        } catch (SQLException e) {
-//	            e.printStackTrace();
-//	        }
-//	       
-//	    }
+	   
+	   // 删除商品
+	    public void delProducts(int id) {
+	    	
+	    	 Session session = factory.getCurrentSession();
+	 		Transaction tx = null;
+	 		try {
+	 			tx = session.beginTransaction();
+	 			Product product = new Product();
+	 			product.setId(id);
+	 			session.delete(product);	 			
+	 			tx.commit();
+	 			
+	 		}catch (Exception ex) {
+	 			if(tx!=null) {
+	 				tx.rollback();
+	 			}
+	 			throw new RuntimeException(ex);
+	 		}	
+	       
+	    }
 }
