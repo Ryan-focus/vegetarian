@@ -199,11 +199,14 @@ public class ShoppingCartServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		try (PrintWriter out = response.getWriter()) {
 			ArrayList<Cart> cartList = new ArrayList<>();
-
 			int id = Integer.parseInt(request.getParameter("id"));
+			Product product = pd.getSingleProduct(id);
 			Cart cart = new Cart();
 			cart.setId(id);
 			cart.setQuantity(1);
+			cart.setName(product.getName());
+			cart.setCategory(product.getCategory());
+			cart.setImage(product.getImage());
 
 			HttpSession session = request.getSession();
 			@SuppressWarnings("unchecked")
@@ -211,6 +214,7 @@ public class ShoppingCartServlet extends HttpServlet {
 
 			if (cart_list == null) {
 				cartList.add(cart);
+				
 				session.setAttribute("cart-list", cartList);
 				response.sendRedirect("/vegetarian/shoppingcartIndex");
 			} else {
@@ -221,7 +225,7 @@ public class ShoppingCartServlet extends HttpServlet {
 					if (c.getId() == id) {
 						exist = true;
 						out.println(
-								"<h3 style='color:crimson; text-align:center'>���歇��鞈潛頠�<a href='/vegetarian/cart'>���鞈潛頠�</a></h3>");
+								"<h3 style='color:crimson; text-align:center'>此商品已加入購物車<a href='/vegetarian/cart'>點此跳轉</a></h3>");
 					}
 				}
 				if (!exist) {
