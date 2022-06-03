@@ -28,14 +28,14 @@ response.setDateHeader ("Expires", -1); // Prevents caching at the proxy server 
 <h2 style="text-align:center;">
 查詢網誌
 </h2>
-<form action="./ForumServlet" method="post">
+<form action="ForumServlet" method="post">
 
 <p  class="p">使用編號查詢文章或填寫以下表格新增文章</p>
-<!--  <p  text-align:center;>編號:<input type="text" name="vgeid" size="30" maxlength="30"></p>  -->
-<p>名稱:<input type="text" name="vgename" size="30" maxlength="30"></p>
-<p>標題:<input type="text" name="vgetheme" size="30" maxlength="30"></p>
+
+<p>名稱:<input type="text" name="vgename" value="" size="30" maxlength="30"></p>
+<p>標題:<input type="text" name="vgetheme" value=""  size="30" maxlength="30"></p>
 <p>文章:<textarea name="vgecontent" rows="6" cols="30"></textarea></p>
- 
+
 <center>
 
 <input type="submit" name="Query" value="查詢網誌" >
