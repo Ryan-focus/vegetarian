@@ -47,21 +47,20 @@ p{
 		<header>
 		<h2>網誌</h2>
 		</header>
-	 
+
 	 	<c:forEach var='forum'  items='${forumBean}'>
 			<p class="p">文章號碼: <input type="text" readonly="readonly" name="vgeid" value="${forum.vgeid}" size="30" maxlength="30"></p>  
 			<p class="p">名稱:<input type="text" name="vgename"  value="${forum.vgename}" size="30" maxlength="30"></p> 
 			<p class="p">標題:<input type="text" name="vgetheme" value="${forum.vgetheme}" size="30" maxlength="30"></p> 
 			<p class="p">文章:<textarea name="vgecontent" rows="10"  cols="30">${forum.vgecontent}</textarea></p> 
 	 	</c:forEach>
-
-		<hr class="style-five">
-		<center>
-<input type="submit" name="Update" value="更新網誌" >
-<input type="submit" name="Delete" value="刪除網誌" ><br>
-<p><input type="submit" name="ForumHome" value="回首頁" ></p>
-
-		</center>
+	
+			<hr class="style-five">
+	<center>
+			<input type="submit" name="Update" value="更新網誌" >
+			<input type="submit" name="Delete" value="刪除網誌" ><br>
+			<p><input type="submit" name="ForumHome" value="回首頁" ></p>
+	</center>
 	</form>
 </body>
 </html>

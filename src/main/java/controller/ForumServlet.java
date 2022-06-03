@@ -105,17 +105,24 @@ public class ForumServlet extends HttpServlet {
 		
 		String vgename =request.getParameter("vgename");
 		List<ForumBean> forumBeans = forumService.queryone(vgename);
-		for (ForumBean f : forumBeans) {
-			System.out.println(f.getVgename());
-			System.out.println(f.getVgeid());
-		}
-		request.setAttribute("forumBean", forumBeans);
-		request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryResult.jsp").forward(request, response);
+			for (ForumBean f : forumBeans) {
+				System.out.println(f.getVgename());
+				System.out.println(f.getVgeid());
+			}
+			request.setAttribute("forumBean", forumBeans);
+			request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryResult.jsp").forward(request, response);					
+			
+//			request.setAttribute("forumBean", forumBeans);
+//			request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryResult.jsp").forward(request, response);
+//	
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/forum/ErrorQuery.jsp");
+//			dispatcher .forward(request, response);
+		
 	}
 	
 
 	
-	
+	//index query
 	protected void processquery(HttpServletRequest request, HttpServletResponse response, ForumDAO forumDAO)
 			throws ServletException, IOException {
 		List<ForumBean> forumBean = forumService.queryName();
