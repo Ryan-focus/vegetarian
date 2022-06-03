@@ -59,6 +59,11 @@ public class ForumServlet extends HttpServlet {
 //			conn = ds.getConnection();
 		//	ForumDAO forumDAO = new ForumDAO(conn);
 		
+			
+			if (request.getParameter("ShowAll") != null)
+				processquery(request, response, forumHibernateDao);
+
+			
 			if (request.getParameter("Query") != null)
 				processqueryone(request, response, forumHibernateDao);
 
@@ -91,6 +96,9 @@ public class ForumServlet extends HttpServlet {
 //			}
 //		}
 	}
+	
+	
+	
 
 	protected void processqueryone(HttpServletRequest request, HttpServletResponse response, ForumDAO forumDAO)
 			throws ServletException, IOException {
@@ -110,10 +118,9 @@ public class ForumServlet extends HttpServlet {
 	
 	protected void processquery(HttpServletRequest request, HttpServletResponse response, ForumDAO forumDAO)
 			throws ServletException, IOException {
-		String vgename =request.getParameter("vgename");
-		List<ForumBean> forumBean = forumService.queryName(vgename);
+		List<ForumBean> forumBean = forumService.queryName();
 		request.setAttribute("forumBean", forumBean);
-		request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryResult.jsp").forward(request, response);		
+		request.getRequestDispatcher("/forumIndex.jsp").forward(request, response);		
 //		if(forumBean!=) {
 //		}
 		

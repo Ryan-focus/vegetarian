@@ -56,11 +56,10 @@ public class ForumHibernateDao implements ForumDAO {
 	}
 
 	@Override
-	public List<ForumBean> queryName(String vgename) {
+	public List<ForumBean> queryName() {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM ForumBean fb WHERE fb.vgename = :vgename";
+		String hql = "FROM ForumBean";
 		List<ForumBean> forumBeans = session.createQuery(hql,ForumBean.class)
-									.setParameter("vgename", vgename)
 									.getResultList();
 		return forumBeans;
 	}

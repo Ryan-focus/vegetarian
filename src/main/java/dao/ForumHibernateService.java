@@ -96,14 +96,14 @@ public class ForumHibernateService implements ForumService {
 	}
 
 	@Override
-	public List<ForumBean> queryName(String vgename) {
+	public List<ForumBean> queryName() {
 		
 		List<ForumBean> forumBeans = null;
 		Session session = factory.getCurrentSession();
 		Transaction tx=null;
 		try {
 			tx = session.beginTransaction();
-			forumBeans = forumDAO.queryName(vgename);			
+			forumBeans = forumDAO.queryName();			
 				tx.commit();			
 		}catch (Exception e) {
 			if(tx!=null) {

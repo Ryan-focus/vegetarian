@@ -6,7 +6,7 @@ import bean.ForumBean;
 
 public interface ForumService {
 
-	List<ForumBean> queryName(String vgename);
+	List<ForumBean> queryName();
 	
 	int save(ForumBean forumBean);
 
