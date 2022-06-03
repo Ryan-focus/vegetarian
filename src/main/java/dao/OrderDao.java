@@ -90,29 +90,7 @@ public class OrderDao {
 		return result;
 		
 	}
-//	
-//	public Object insert(Order order) {
-//		// 取得Session
-//		Session session = factory.getCurrentSession();
-//		
-//		Object key = null;
-//		try {
-//			tx = session.beginTransaction();
-//			key = session.save(order);
-//	        tx.commit();
-//		} catch (Exception e) {
-//			if (tx != null) {
-//				tx.rollback();
-//			}
-//		e.printStackTrace();
-//		}
-//		return key;
-//	}
-	
-	
-	
-	
-	
+
 	
 //	
 //	public List<Order> userOrders(int id){
