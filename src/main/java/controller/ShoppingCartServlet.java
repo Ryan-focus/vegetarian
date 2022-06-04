@@ -95,7 +95,9 @@ public class ShoppingCartServlet extends HttpServlet {
 	}
 	
 	private void showAllOrder(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
+		User user = (User) request.getSession().getAttribute("user");
+		if (user!=null&&user.getUid()!=null) {
+			
 			List<Order> orders = od.getAllOrders();
 			List<Product> products = new ArrayList<Product>();
 			
@@ -106,7 +108,11 @@ public class ShoppingCartServlet extends HttpServlet {
 			}
 			request.getSession().setAttribute("productlist", products);
 			request.getSession().setAttribute("orders", orders);
-		    response.sendRedirect("/vegetarian/order");
+			response.sendRedirect("/vegetarian/order");
+		}else {
+			response.sendRedirect("/vegetarian/Login");
+		}
+		
 		
 	}
 

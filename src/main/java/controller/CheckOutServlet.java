@@ -49,7 +49,7 @@ public class CheckOutServlet extends HttpServlet {
 			User user = (User) request.getSession().getAttribute("user");
 
 			
-			if (cart_list != null && user.getUid()!=0) {
+			if (cart_list != null &&  user!=null) {
 
 				for (Cart c : cart_list) {
 					// prepare the order object
@@ -71,7 +71,6 @@ public class CheckOutServlet extends HttpServlet {
 				response.sendRedirect("ShoppingCartServlet?action=show-all-orders");
 
 			} else {
-				if (user.getUid() == 0)
 					response.sendRedirect("/vegetarian/Login");
 				response.sendRedirect("/vegetarian/cart");
 			}
