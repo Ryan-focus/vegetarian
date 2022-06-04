@@ -128,7 +128,7 @@ public class ShoppingCartServlet extends HttpServlet {
 
 			// retrive all cart products
 			@SuppressWarnings("unchecked")
-			ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cart-list");
+			ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cartList");
 			// user authentication
 			User user = (User) request.getSession().getAttribute("user");
 
@@ -258,4 +258,5 @@ public class ShoppingCartServlet extends HttpServlet {
 		}
 
 	}
+
 }
