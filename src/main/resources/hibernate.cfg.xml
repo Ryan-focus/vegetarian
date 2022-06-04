@@ -33,11 +33,8 @@
 		<mapping class="bean.Reserve" />
 		<mapping class="bean.Restaurant" />
 		<mapping class="bean.Post" />
-<<<<<<< Updated upstream
 		<mapping class="bean.ForumBean" />
-=======
 		<mapping class="bean.User" />
->>>>>>> Stashed changes
 
 	
 	</session-factory>
