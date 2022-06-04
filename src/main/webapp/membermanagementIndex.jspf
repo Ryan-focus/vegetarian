@@ -18,6 +18,7 @@
     	
         $('#UserTable').jtable({
         	
+        	saveUserPreferences: false,
             title: 'Table of user',
             paging: true,
             pageSize: 10,
@@ -64,7 +65,9 @@
                 	
                     title: 'Status',
                     width: '20%',
-                    edit: true
+                    edit: true,
+                    options: ['user','business','administrator']
+
                 }                
             }
         });
