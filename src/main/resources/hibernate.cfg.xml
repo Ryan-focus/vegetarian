@@ -35,6 +35,8 @@
 		<mapping class="bean.Post" />
 		<mapping class="bean.ForumBean" />
 		<mapping class="bean.User" />
+		<mapping class="bean.Product" />
+		<mapping class="bean.Order" />
 
 	
 	</session-factory>
