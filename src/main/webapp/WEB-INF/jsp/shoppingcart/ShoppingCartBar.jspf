@@ -29,7 +29,7 @@
 		  </label>
         <ul class="navigation">
           <a href="ShoppingCartServlet?action=show-all-products"><li>商品頁</li></a>
-       	  <a href="/vegetarian/cart"><li>購物車<span class="badge badge-danger px-1">${ cart_list.size() }</span></li></a>
+       	  <a href="/vegetarian/cart"><li>購物車<span class="badge badge-danger px-1">${cartList.size()}</span></li></a>
        		
           <a href="ShoppingCartServlet?action=show-all-orders"><li>歷史訂單</li></a>
           <a href="/vegetarian/Logout"><li>登出</li></a>

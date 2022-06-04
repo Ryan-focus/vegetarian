@@ -1,20 +1,15 @@
 package dao;
 
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.*;
-
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-import javax.transaction.SystemException;
-import org.hibernate.Transaction;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import bean.*;
+import org.hibernate.Transaction;
+
+import bean.Cart;
+import bean.Product;
 import model.HibernateUtils;
 
 public class ProductDao {

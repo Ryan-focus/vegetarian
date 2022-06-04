@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,7 +11,6 @@ import java.util.Optional;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,12 +19,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-import dao.OrderDao;
-import dao.ProductDao;
 import bean.Cart;
 import bean.Order;
 import bean.Product;
 import bean.User;
+import dao.OrderDao;
+import dao.ProductDao;
 
 /**
  * Servlet implementation class ShoppingCartServlet
@@ -211,7 +209,7 @@ public class ShoppingCartServlet extends HttpServlet {
 
 			HttpSession session = request.getSession();
 			@SuppressWarnings("unchecked")
-			ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
+			ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cartList");
 			System.out.println(cart.getCategory());
 
 			if (cart_list == null) {

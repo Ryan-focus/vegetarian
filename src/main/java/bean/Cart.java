@@ -8,7 +8,16 @@ public class Cart {
 	private String name;
 	private String category;
 	private String image;
+	private String price;
 	
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
 	public Cart() {
 		
 	}
@@ -53,4 +62,16 @@ public class Cart {
 		this.image = image;
 	}
 
+	public Cart(int quantity, int id, String name, String category, String image, String price) {
+		super();
+		this.quantity = quantity;
+		this.id = id;
+		this.name = name;
+		this.category = category;
+		this.image = image;
+		this.price = price;
+	}
+
+	
+	
 }

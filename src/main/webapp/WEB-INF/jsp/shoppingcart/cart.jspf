@@ -3,8 +3,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-/*
+<%-- <%
+
 DataSource ds = null;
 Connection conn = null;
 
@@ -17,11 +17,11 @@ Connection conn = null;
 		e.printStackTrace();
 	}
 }
-*/
+
 /* DecimalFormat dcf = new DecimalFormat("#.##");
 request.setAttribute("dcf", dcf); */
 
-/* @SuppressWarnings("unchecked")
+ @SuppressWarnings("unchecked")
 ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
 List<Cart> cartProduct = null;
 if (cart_list != null) {
@@ -30,8 +30,8 @@ if (cart_list != null) {
 double total = pDao.getTotalCartPrice(cart_list);
 	request.setAttribute("total", total);
 	request.setAttribute("cart_list", cart_list);
-} */
-%>
+} 
+%> --%>
 <!DOCTYPE html>
 <html>
 <head>
