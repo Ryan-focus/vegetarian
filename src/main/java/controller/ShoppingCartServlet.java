@@ -216,7 +216,7 @@ public class ShoppingCartServlet extends HttpServlet {
 
 			if (cart_list == null) {
 				cartList.add(cart);
-				session.setAttribute("cart-list", cartList);
+				session.setAttribute("cartList", cartList);
 				response.sendRedirect("/vegetarian/shoppingcartIndex");
 			} else {
 				cartList = cart_list;
