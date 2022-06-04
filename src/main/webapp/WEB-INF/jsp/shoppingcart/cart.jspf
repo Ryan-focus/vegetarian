@@ -89,7 +89,7 @@ double total = pDao.getTotalCartPrice(cart_list);
 							<button type="submit" class="btn btn-primary btn-sm" >立即購買</button>
 						</form>
 					</td>
-					<td><a class="btn btn-sm btn-danger" href="ShoppingCartServlet?action1=remove-from-cart&id=${products.id}">移除</a></td>
+					<td><a class="btn btn-sm btn-danger" href="ShoppingCartServlet?action=remove-from-cart&id=${products.id}">移除</a></td>
 
 				</tr>
 				</c:forEach>
