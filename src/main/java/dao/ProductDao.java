@@ -196,4 +196,25 @@ public class ProductDao {
 	 		}	
 	       
 	    }
+	    
+	    //新增商品
+	    public Object insertProduct(Product product) {
+	    	Session session = factory.getCurrentSession();
+	    	Object insertproduct = null;
+	    	
+	    	try {
+	    		tx = session.beginTransaction();
+				insertproduct = session.save(product);
+		        tx.commit();
+	    		
+	    	}catch (Exception e) {
+				if (tx != null) {
+					tx.rollback();
+				}
+			e.printStackTrace();
+			}
+	    	
+	    	
+	    	return insertproduct;
+	    }
 }
