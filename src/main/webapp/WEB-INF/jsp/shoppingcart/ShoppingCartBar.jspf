@@ -15,7 +15,6 @@
     
   </head>
   <body>
-  <%User user2 = (User) request.getSession().getAttribute("user"); %>
     <input type="checkbox" name="" id="menu_control">
     <header>
       <div class="header">
@@ -29,16 +28,14 @@
 		  		<span>選單</span>
 		  </label>
         <ul class="navigation">
-          <a href="/vegetarian/shoppingcartIndex"><li>商品頁</li></a>
-       	  <a href="/vegetarian/cart"><li>購物車<span class="badge badge-danger px-1">${ cart_list.size() }</span></li></a>
-       		 <%
-        if(user2.getUid() !=0){%>
-          <a href="/vegetarian/order"><li>歷史訂單</li></a>
+          <a href="ShoppingCartServlet?action=show-all-products"><li>商品頁</li></a>
+       	  <a href="/vegetarian/cart"><li>購物車<span class="badge badge-danger px-1">${cartList.size()}</span></li></a>
+       		
+          <a href="ShoppingCartServlet?action=show-all-orders"><li>歷史訂單</li></a>
           <a href="/vegetarian/Logout"><li>登出</li></a>
-               <%}else{%>
+           
           <a href="/vegetarian/Login"><li>登入</li></a>
-        <%}
-        %>
+       
         </ul>
       </div>
     </header>

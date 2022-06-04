@@ -4,11 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.sql.Connection;
 
-import java.sql.PreparedStatement;
-
-import javax.naming.InitialContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import javax.sql.DataSource;
+
+import bean.Product;
+import dao.ProductDao;
 
 /**
  * Servlet implementation class ProductImageServlet
@@ -25,9 +23,9 @@ import javax.sql.DataSource;
 @WebServlet("/ProductImage")
 public class ProductImageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	DataSource ds =null;
-	InitialContext ctx = null;
-	Connection con = null;
+//	DataSource ds =null;
+//	InitialContext ctx = null;
+//	Connection con = null;
 
 
 	/**
@@ -79,23 +77,30 @@ public class ProductImageServlet extends HttpServlet {
 		
 		try 
 		{
-			ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/veganDB");
-			
-			con=ds.getConnection();
-			PreparedStatement stmt;
+//			ctx = new InitialContext();
+//			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/veganDB");
+//			
+//			con=ds.getConnection();
+//			PreparedStatement stmt;
 			String name = request.getParameter("name");
 			String category = request.getParameter("category");
 			double price = Double.parseDouble(request.getParameter("price"));
-			String query="insert into products(name,category,price,image) values(?,?,?,?)";
-			stmt=con.prepareStatement(query);
-			stmt.setString(1,name);
-			stmt.setString(2,category);
-			stmt.setDouble(3,price);
-			stmt.setString(4,imageFileName);
-			int row=stmt.executeUpdate(); // it returns no of rows affected.
+//			String query="insert into products(name,category,price,image) values(?,?,?,?)";
+//			stmt=con.prepareStatement(query);
+//			stmt.setString(1,name);
+//			stmt.setString(2,category);
+//			stmt.setDouble(3,price);
+//			stmt.setString(4,imageFileName);
+//			int row=stmt.executeUpdate(); // it returns no of rows affected.
 			
-			if(row>0)
+			Product product = new Product();
+			product.setName(name);
+			product.setCategory(category);
+			product.setPrice(price);
+			product.setImage(imageFileName);
+			ProductDao pd = new ProductDao();
+			
+			if(pd.insertProduct(product)!=null)
 			{
 				 printWriter.flush();
 		           printWriter.println("<script>");

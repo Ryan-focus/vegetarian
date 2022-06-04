@@ -3,10 +3,11 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -18,11 +19,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-import dao.OrderDao;
-import dao.ProductDao;
 import bean.Cart;
 import bean.Order;
+import bean.Product;
 import bean.User;
+import dao.OrderDao;
+import dao.ProductDao;
 
 /**
  * Servlet implementation class ShoppingCartServlet
@@ -42,6 +44,8 @@ public class ShoppingCartServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
+	ProductDao pd =new ProductDao();
+	OrderDao od = new OrderDao();
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -50,7 +54,7 @@ public class ShoppingCartServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String action = request.getParameter("action1");
+		String action = request.getParameter("action");
 
 		switch (action) {
 
@@ -71,6 +75,14 @@ public class ShoppingCartServlet extends HttpServlet {
 			removeFromCart(request, response);
 		}
 			break;
+		case "show-all-products": {
+			showAllProduct(request, response);
+		}
+		break;
+		case "show-all-orders": {
+			showAllOrder(request, response);
+		}
+		break;
 		case "delete-product": {
 			deleteProduct(request, response);
 		}
@@ -81,6 +93,32 @@ public class ShoppingCartServlet extends HttpServlet {
 		}
 		}
 	}
+	
+	private void showAllOrder(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+			List<Order> orders = od.getAllOrders();
+			List<Product> products = new ArrayList<Product>();
+			
+			for (Order order : orders) {
+				Product product = new Product();
+				product = pd.getSingleProduct(order.getPid());
+				products.add(product);
+			}
+			request.getSession().setAttribute("productlist", products);
+			request.getSession().setAttribute("orders", orders);
+		    response.sendRedirect("/vegetarian/order");
+		
+	}
+
+	private void showAllProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		Optional<Object> allproducts = Optional.ofNullable(session.getAttribute("products"));
+		if(!allproducts.isPresent()) {
+			List<Product> products = pd.getAllProducts();
+			request.getSession().setAttribute("products", products);
+		}
+		response.sendRedirect("/vegetarian/shoppingcartIndex");
+	}
 
 	private void checkOut(HttpServletRequest request, HttpServletResponse response) {
 		try (PrintWriter out = response.getWriter()) {
@@ -90,7 +128,7 @@ public class ShoppingCartServlet extends HttpServlet {
 
 			// retrive all cart products
 			@SuppressWarnings("unchecked")
-			ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cart-list");
+			ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cartList");
 			// user authentication
 			User user = (User) request.getSession().getAttribute("user");
 
@@ -100,13 +138,13 @@ public class ShoppingCartServlet extends HttpServlet {
 				for (Cart c : cart_list) {
 					// prepare the order object
 					Order order = new Order();
-					order.setId(c.getId());
+					order.setPid(Integer.parseInt((String) request.getSession().getAttribute("id")));
 					order.setUid(user.getUid());
 					order.setQuantity(c.getQuantity());
 					order.setDate(formatter.format(date));
 
 					// instantiate the dao class
-					OrderDao oDao = new OrderDao(ds.getConnection());
+					OrderDao oDao = new OrderDao();
 					// calling the insert method
 					boolean result = oDao.insertOrder(order);
 					if (!result)
@@ -128,21 +166,15 @@ public class ShoppingCartServlet extends HttpServlet {
 		}
 
 	}
-
+//
 	private void cancelOrder(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		try (PrintWriter out = response.getWriter()) {
 			String id = request.getParameter("id");
 			if (id != null) {
-
-				OrderDao orderDao = new OrderDao(ds.getConnection());
-				orderDao.cancelOrder(Integer.parseInt(id));
-
+				od.cancelOrder(Integer.parseInt(id));
 			}
-			response.sendRedirect("/vegetarian/order");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			response.sendRedirect("ShoppingCartServlet?action=show-all-orders");
 		}
 
 	}
@@ -152,14 +184,11 @@ public class ShoppingCartServlet extends HttpServlet {
 			String id = request.getParameter("id");
 			if (id != null) {
 				
-				ProductDao productDao = new ProductDao(ds.getConnection());
+				ProductDao productDao = new ProductDao();
 				productDao.delProducts(Integer.parseInt(id));
 				
 			}
 			response.sendRedirect("/vegetarian/backend.jspf");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		
 	}
@@ -168,19 +197,24 @@ public class ShoppingCartServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		try (PrintWriter out = response.getWriter()) {
 			ArrayList<Cart> cartList = new ArrayList<>();
-
 			int id = Integer.parseInt(request.getParameter("id"));
+			Product product = pd.getSingleProduct(id);
 			Cart cart = new Cart();
 			cart.setId(id);
 			cart.setQuantity(1);
+			cart.setName(product.getName());
+			cart.setCategory(product.getCategory());
+			cart.setImage(product.getImage());
+			System.out.println(product.getName());
 
 			HttpSession session = request.getSession();
 			@SuppressWarnings("unchecked")
-			ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
+			ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cartList");
+			System.out.println(cart.getCategory());
 
 			if (cart_list == null) {
 				cartList.add(cart);
-				session.setAttribute("cart-list", cartList);
+				session.setAttribute("cartList", cartList);
 				response.sendRedirect("/vegetarian/shoppingcartIndex");
 			} else {
 				cartList = cart_list;
@@ -190,7 +224,7 @@ public class ShoppingCartServlet extends HttpServlet {
 					if (c.getId() == id) {
 						exist = true;
 						out.println(
-								"<h3 style='color:crimson; text-align:center'>���歇��鞈潛頠�<a href='/vegetarian/cart'>���鞈潛頠�</a></h3>");
+								"<h3 style='color:crimson; text-align:center'>此商品已加入購物車<a href='/vegetarian/cart'>點此跳轉</a></h3>");
 					}
 				}
 				if (!exist) {
@@ -224,4 +258,5 @@ public class ShoppingCartServlet extends HttpServlet {
 		}
 
 	}
+
 }

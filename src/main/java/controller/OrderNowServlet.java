@@ -3,10 +3,10 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -19,8 +19,10 @@ import javax.sql.DataSource;
 
 import bean.Cart;
 import bean.Order;
+import bean.Product;
 import bean.User;
 import dao.OrderDao;
+import dao.ProductDao;
 
 /**
  * Servlet implementation class OrderNowServlet
@@ -28,19 +30,19 @@ import dao.OrderDao;
 @WebServlet("/order-now")
 public class OrderNowServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	DataSource ds = null;
-	Connection conn = null;
-
-	{
-		try {
-			InitialContext ctxt = new InitialContext();
-			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/veganDB");
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-       
+//	DataSource ds = null;
+//	Connection conn = null;
+//
+//	{
+//		try {
+//			InitialContext ctxt = new InitialContext();
+//			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/veganDB");
+//		} catch (NamingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
+//       
 
 
 	/**
@@ -53,21 +55,22 @@ public class OrderNowServlet extends HttpServlet {
 			Date date = new Date();
 
 			User user = (User) request.getSession().getAttribute("user");
+			
 
 			if (user.getUid() != 0) {
-				String productId = request.getParameter("id");
+				String productId = request.getParameter("id") ;
 				int productQuantity = Integer.parseInt(request.getParameter("quantity"));
 				if (productQuantity <= 0) {
 					productQuantity = 1;
 				}
 
 				Order orderModel = new Order();
-				orderModel.setId(Integer.parseInt(productId));
+				orderModel.setPid(Integer.parseInt(productId));
 				orderModel.setUid(user.getUid());
 				orderModel.setQuantity(productQuantity);
 				orderModel.setDate(formatter.format(date));
 
-				OrderDao orderDao = new OrderDao(ds.getConnection());
+				OrderDao orderDao = new OrderDao();
 				boolean result = orderDao.insertOrder(orderModel);
 
 				if (result) {
@@ -82,17 +85,15 @@ public class OrderNowServlet extends HttpServlet {
 						}
 					}
 
-					response.sendRedirect("/vegetarian/order");
+					response.sendRedirect("ShoppingCartServlet?action=show-all-orders");
 				} else {
-					out.print("閮頃憭望��");
+					out.print("已加入訂單");
 				}
 
 			} else {
 				response.sendRedirect("/vegetarian/Login");
 			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
+		
 		}
 	}
 

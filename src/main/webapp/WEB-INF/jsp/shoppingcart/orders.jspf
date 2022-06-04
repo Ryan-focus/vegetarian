@@ -1,17 +1,8 @@
-<%@page import="dao.OrderDao"%>
-<%@page import="java.text.DecimalFormat"%>
 <%@page import="bean.*"%>
-<%@page import="java.util.*"%>
-<%@page import="dao.OrderDao"%>
-<%@page import="javax.naming.InitialContext"%>
-<%@page import="javax.naming.NamingException"%>
-<%@page import="javax.sql.DataSource"%>
-<%@page import="java.sql.*"%>
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%-- <%
 DataSource ds = null;
 Connection conn = null;
 
@@ -28,18 +19,20 @@ DecimalFormat dcf = new DecimalFormat("#.##");
 request.setAttribute("dcf", dcf);
 User user3 = (User) request.getSession().getAttribute("user");
 List<Order> orders = null;
-if (user3.getUid() != 0) {
+/* if (user3.getUid() != 0) {
 	orders = new OrderDao(ds.getConnection()).userOrders(user3.getUid());
 
 } else {
 	response.sendRedirect("/vegetarian/Login");
-}
+} */
 @SuppressWarnings("unchecked")
 ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
 if (cart_list != null) {
 	request.setAttribute("cart_list", cart_list);
 }
-%>
+%> --%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,39 +40,46 @@ if (cart_list != null) {
 <%@include file="/WEB-INF/jsp/shoppingcart/bootstrap.jsp"%>
 </head>
 <body>
-	<%@include file="/WEB-INF/jsp/shoppingcart/ShoppingCartBar.jspf"%>
+<%@include file="/WEB-INF/jsp/shoppingcart/ShoppingCartBar.jspf"%> 
+
 
 	<div class="container">
 		<div class="card-header my-3">全部訂單</div>
 		<table class="table table-light">
 			<thead>
 				<tr>
+					<th scope="col">訂單編號</th>
 					<th scope="col">日期</th>
-					<th scope="col">品項</th>
-					<th scope="col">種類</th>
+					<th scope="col">商品編號</th>
 					<th scope="col">數量</th>
-					<th scope="col">金額</th>
 					<th scope="col">取消訂單</th>
 				</tr>
 			</thead>
 			<tbody>
-				<%
+			<%-- 	<%
 				if (orders != null) {
 					for (Order o : orders) {
-				%>
-				<tr>
-					<td><%=o.getDate()%></td>
-					<td><%=o.getName()%></td>
-					<td><%=o.getCategory()%></td>
-					<td><%=o.getQuantity()%></td>
-					<td><%=dcf.format(o.getPrice())%></td>
-					<td><a class="btn btn-sm btn-danger"
-						href="ShoppingCartServlet?action1=cancel-order&id=<%=o.getOrderId()%>">取消訂單</a></td>
-				</tr>
-				<%
+				%> --%>
+				<c:forEach var="orders" items="${orders}" varStatus="oStatus" > 
+					<c:forEach var="product" items="${productlist}" varStatus="pStatus"> 
+						<tr>
+							<c:if test="${pStatus.count == oStatus.count}" >
+								<td>${orders.orderId}</td>
+								<td>${orders.date}</td>
+								<td>
+									${product.name}
+								</td>
+								<td>${orders.quantity}</td>
+								<td><a class="btn btn-sm btn-danger"
+									href="ShoppingCartServlet?action=cancel-order&id=${orders.orderId}">取消訂單</a></td>
+							</c:if>
+						</tr>
+					</c:forEach>
+				</c:forEach>
+			<%-- 	<%
 				}
 				}
-				%>
+				%> --%>
 			</tbody>
 		</table>
 

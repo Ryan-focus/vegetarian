@@ -40,7 +40,7 @@
 	        <label>
 	            <input type="radio" name="restaurantType" value="五辛" >五辛素
 	        </label>
-	    </div>
+	    </div>x
 		</fieldset>
 		
 	    <br>

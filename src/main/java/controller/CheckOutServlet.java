@@ -60,23 +60,23 @@ public class CheckOutServlet extends HttpServlet {
 
 			// retrive all cart products
 			@SuppressWarnings("unchecked")
-			ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cart-list");
+			ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cartList");
 			// user authentication
 			User user = (User) request.getSession().getAttribute("user");
 
 			
-			if (cart_list != null && user!=null) {
+			if (cart_list != null && user.getUid()!=0) {
 
 				for (Cart c : cart_list) {
 					// prepare the order object
 					Order order = new Order();
-					order.setId(c.getId());
+					order.setPid(c.getId());
 					order.setUid(user.getUid());
 					order.setQuantity(c.getQuantity());
 					order.setDate(formatter.format(date));
 
 					// instantiate the dao class
-					OrderDao oDao = new OrderDao(ds.getConnection());
+					OrderDao oDao = new OrderDao();
 					// calling the insert method
 					boolean result = oDao.insertOrder(order);
 					if (!result)
@@ -84,7 +84,7 @@ public class CheckOutServlet extends HttpServlet {
 				}
 
 				cart_list.clear();
-				response.sendRedirect("/vegetarian/order");
+				response.sendRedirect("ShoppingCartServlet?action=show-all-orders");
 
 			} else {
 				if (user.getUid() == 0)
