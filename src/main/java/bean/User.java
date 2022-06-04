@@ -1,20 +1,55 @@
 package bean;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "users")
 public class User {
 	
-	private int uid;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer uid;
     private String email;
     private String password;
     private String username;
     private String status;
     
     public User() {}
+    
+    public User(String email, String password) {
+    	this.email = email;
+    	this.password = password;
+    }
+    
+    public User(String email) {
+    	this.email = email;
+    }
+    
+    public User(String email, String password, String username, String status) {
+    	this.email = email;
+    	this.password = password;
+    	this.username = username;
+    	this.status = status;
+    }
+    
+    public User(Integer uid, String email, String password, String username, String status) {
+    	this.uid = uid;
+    	this.email = email;
+    	this.password = password;
+    	this.username = username;
+    	this.status = status;
+    }
+    
 
-	public int getUid() {
+	public Integer getUid() {
 		return uid;
 	}
 
-	public void setUid(int uid) {
+	public void setUid(Integer uid) {
 		this.uid = uid;
 	}
 

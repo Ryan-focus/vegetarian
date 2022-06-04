@@ -1,26 +1,22 @@
 package controller;
 
-
 import java.io.IOException;
-import java.sql.SQLException;
 
-import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.User;
 import dao.UserDAO;
 
-/**
- * Servlet implementation class RegisterServlet
- */
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
+	@SuppressWarnings("null")
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
@@ -33,24 +29,16 @@ public class RegisterServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		boolean isEmailExist = false;
 		
-		try {
 			isEmailExist = userDAO.checkEmail(email);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
-		try {
-			if (!isEmailExist) userDAO.register(email, password, username);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+			if (!isEmailExist) {
+				User user = new User();
+				user.setEmail(email);
+				user.setPassword(password);
+				user.setUsername(username);
+				userDAO.register(user);
+			}
+	
 		request.setAttribute("isEmailExist", isEmailExist);
 		request.setAttribute("result", isEmailExist ? "失敗" : "成功~");
 				
