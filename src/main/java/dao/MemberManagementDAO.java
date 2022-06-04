@@ -1,119 +1,109 @@
 package dao;
 
-import java.sql.*;
-import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import bean.User;
 
+import utils.HibernateUtils;
+
 public class MemberManagementDAO {
 	
-	DataSource ds = null;
-	Connection conn = null;
+	SessionFactory factory;
 	
-	{
-		try {
-			InitialContext ctxt = new InitialContext();
-			ds = (DataSource) ctxt.lookup("java:comp/env/jdbc/veganDB");
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public MemberManagementDAO() {
+		factory = HibernateUtils.getSessionFactory();
 	}
 	
 	public void addUser(User user) {
 		
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		
 		try {
 			
-			Connection conn = ds.getConnection();
-			PreparedStatement preparedStatement = conn.prepareStatement(
-					"set identity_insert users on " +
-					"insert into users (uid, email, password, username, status) values (?,?,?,?,?) " +
-					"set identity_insert users off");
+			tx = session.beginTransaction();
+			session.save(user);
+			tx.commit();
 			
-			preparedStatement.setInt(1, user.getUid());
-			preparedStatement.setString(2, user.getEmail());
-			preparedStatement.setString(3, user.getPassword());
-			preparedStatement.setString(4, user.getUsername());
-			preparedStatement.setString(5, user.getStatus());
-			preparedStatement.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception ex) {
+			if (tx != null) {
+				tx.rollback();				
+			}
+			throw new RuntimeException(ex);
 		}
 		
 	}
 	
 	public void deleteUser(int uid) {
 		
-		try {
-			
-			Connection conn = ds.getConnection();
-			PreparedStatement preparedStatement = conn.prepareStatement(
-					"delete users where uid = ?");
-			
-			preparedStatement.setInt(1, uid);
-			preparedStatement.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-	public void updateUser(User user) throws ParseException{
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		User user = new User();
+		user.setUid(uid);
 		
 		try {
 			
-			Connection conn = ds.getConnection();
-			PreparedStatement preparedStatement = conn.prepareStatement(
-					"update users set username = ?, status = ? " +
-			"where uid = ?");
+			tx = session.beginTransaction();
+			session.delete(user);
+			tx.commit();
 			
-			preparedStatement.setString(1, user.getUsername());
-			preparedStatement.setString(2, user.getStatus());
-			preparedStatement.setInt(3, user.getUid());
-			preparedStatement.executeUpdate();
+		} catch (Exception ex) {
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-	public List<User> getAllUsers(int jtStartIndex, int jtPageSize){
-		
-		List<User> users = new ArrayList<User>();
-		String startIndex = Integer.toString(jtStartIndex);
-		String pageSize = Integer.toString(jtPageSize);
-		String query = "select * from users order by uid offset " + startIndex + " rows fetch next " + pageSize + " rows only";
-		
-		try {
-			
-			Connection conn = ds.getConnection();
-			Statement statement = conn.createStatement();
-			ResultSet rs = statement.executeQuery(query);
-			
-			while (rs.next()) {
-				
-				User user = new User();
-				user.setUid(rs.getInt("uid"));
-				user.setEmail(rs.getString("email"));
-				user.setPassword(rs.getString("password"));
-				user.setUsername(rs.getString("username"));
-				user.setStatus(rs.getString("status"));
-				users.add(user);
-				
+			if (tx != null) {
+				tx.rollback();				
 			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new RuntimeException(ex);
 		}
+		
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public void updateUser(User user){
+		
+		Session session = factory.getCurrentSession();
+		String hql = "UPDATE User u SET u.username = :username, u.status = :status WHERE u.uid = :uid";
+		Transaction tx = null;
+		
+		try {
+			
+			tx = session.beginTransaction();
+			Query query = session.createQuery(hql);
+			query.setParameter("username", user.getUsername());
+			query.setParameter("status", user.getStatus());
+			query.setParameter("uid", user.getUid());
+			query.executeUpdate();
+			tx.commit();
+			
+		} catch (Exception ex) {
+			
+			if (tx != null) {
+				tx.rollback();				
+			}
+			throw new RuntimeException(ex);
+		}
+		
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public List<User> getAllUsers(int jtStartIndex, int jtPageSize){
+			
+		List<User> users = null;
+		String hql = "FROM User u ORDER BY u.uid";
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		
+		Query query = session.createQuery(hql);
+		query.setFirstResult(jtStartIndex);
+		query.setMaxResults(jtPageSize);
+		users = query.getResultList();
+		
+		session.getTransaction().commit();
+		
 		return users;
 	}
 	
@@ -121,50 +111,28 @@ public class MemberManagementDAO {
 		
 		User user = new User();
 		
-		try {
-			
-			Connection conn = ds.getConnection();
-			PreparedStatement preparedStatement = conn.prepareStatement(
-					"select * from users where uid = ?");
-			
-			preparedStatement.setInt(1, uid);
-			ResultSet rs = preparedStatement.executeQuery();
-			
-			if (rs.next()) {
-				
-				user.setUid(rs.getInt("uid"));
-				user.setEmail(rs.getString("email"));
-				user.setPassword(rs.getString("password"));
-				user.setUsername(rs.getString("username"));
-				user.setStatus(rs.getString("status"));
-				
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		user = session.get(User.class, uid);
+		session.getTransaction().commit();
+		session.close();
+		
 		return user;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public int getUserCount() {
 		
 		int count = 0;
+		String hql = "select count(*) from User";
 		
-		try {
-			
-			Connection conn = ds.getConnection();
-			Statement statement = conn.createStatement();
-			ResultSet rs = statement.executeQuery("select count(*) as count from users");
-			
-			while (rs.next()) {
-						
-				count = rs.getInt("count");
-						
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		
+		Query query = session.createQuery( hql );	
+		count = ((Long) query.uniqueResult()).intValue();
+		session.getTransaction().commit();
+				
 		return count;		
 	}
 	

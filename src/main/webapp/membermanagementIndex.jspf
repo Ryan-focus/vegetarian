@@ -37,7 +37,7 @@
                 	title:'UID',
                     key: true,
                     list: true,
-                    create:true
+                    create:false
                 },
                 
                 email: {
