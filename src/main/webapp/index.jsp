@@ -40,13 +40,19 @@
 	        <label>
 	            <input type="radio" name="restaurantType" value="五辛" >五辛素
 	        </label>
-	    </div>x
+	    </div>
 		</fieldset>
 		
 	    <br>
 	    
+<!-- 	    <p class="p1"> -->
+<!-- 	      <input name ="查詢餐廳GO" type="submit" value="查詢餐廳GO"> -->
+<!-- 	    </p> -->
 	    <p class="p1">
-	      <input name ="查詢餐廳GO" type="submit" value="查詢餐廳GO">
+	      <input name ="所有餐廳" type="submit" value="所有餐廳">
+	    </p>
+	    <p class="p1">
+	      <input name ="查詢餐廳byName" type="submit" value="查詢餐廳byName">
 	    </p>
 	    </FORM>
 	</div>

@@ -1,11 +1,11 @@
 package controller;
 
 import java.io.IOException;
-import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,12 +13,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Interface.IReserveDAO;
+import Interface.RestaurantService;
 import bean.Reserve;
 import bean.Restaurant;
-import Interface.IReserveDAO;
-
 import dao.ReserveDAO;
-import dao.RestaurantDAO;
+import dao.RestaurantHibernateService;
+
 
 /**
  * Servlet implementation class ReserveController
@@ -28,7 +29,8 @@ public class ReserveController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	IReserveDAO rDao = new ReserveDAO();
-	RestaurantDAO restaurantDAO = new RestaurantDAO();
+	//RestaurantDAO restaurantDAO = new RestaurantDAO();
+	RestaurantService restauranteService = new RestaurantHibernateService();
 	Reserve reserve = new Reserve();
 	
        
@@ -72,7 +74,8 @@ public class ReserveController extends HttpServlet {
 	private void goToForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int restaurantNumber = Integer.parseInt(request.getParameter("id")) ;
 		Restaurant restaurant = new Restaurant();
-		restaurant = restaurantDAO.findRestaurantByNumber(restaurantNumber);
+		//restaurant = restaurantDAO.findRestaurantByNumber(restaurantNumber);
+		restaurant = restauranteService.getRestaurant(restaurantNumber);
 		String restaurantName = restaurant.getRestaurantName();
 		String restaurantTel = restaurant.getRestaurantTel();
 		String restaurantAddress = restaurant.getRestaurantAddress();
