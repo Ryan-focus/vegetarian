@@ -2,12 +2,12 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
+
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 <title>新增文章</title>
 <style>
 * {
@@ -66,7 +66,7 @@ body, html {
 			<h3>新增文章</h3>
 		</div>
 		<hr>
-		<form action="PostNew" enctype="multipart/form-data" method="post">
+		<form action="PostNew" enctype="multipart/form-data" method="post" id="sub">
 			上傳圖片：<input type="file" name="image">
 			<hr>
 			<h5 class="text">文章標題:</h5>
@@ -75,13 +75,14 @@ body, html {
 			<h5 class="text">文章內容:</h5>
 			<textarea class="text_area" name="postedText" rows="20" maxlength="5000" required></textarea>
 			<p class="wordsNum2">0/5000</p>
-			
-			<input type="submit" name="add" value="發表文章" />
+			<input type='hidden' name='update' value="${post.postId}">
+			<input type="submit" id="yesno" name="add" value="發表文章" />
 		</form>
 
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 	<script>
 		$(function() {
 			var checkStrLengths = function(str, maxLength) {
@@ -126,6 +127,26 @@ body, html {
 				//顯示字數
 				$(".wordsNum2").html(len + '/5000');
 			});
+			
+
+			$('#yesno').click(function(event) {
+		        if(($.confirm({
+		          title: '',
+		          animation: 'zoom',
+		          closeAnimation: 'scale',
+		          content: '請問是否確定送出？',
+		          buttons: {
+		            是: function() {
+		                $('#sub').submit();
+		            },
+		            否: function() {
+		               
+		            }
+		          }
+		        }))){
+		        event.preventDefault();
+		      }
+		      });
 
 		})
 	</script>
