@@ -39,6 +39,16 @@ public class ForumServlet extends HttpServlet {
 	ForumService forumService = new ForumHibernateService();
 	ForumHibernateDao forumHibernateDao = new ForumHibernateDao();
 	
+	
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
+	}
+
+
+
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -105,12 +115,28 @@ public class ForumServlet extends HttpServlet {
 		
 		String vgename =request.getParameter("vgename");
 		List<ForumBean> forumBeans = forumService.queryone(vgename);
-			for (ForumBean f : forumBeans) {
-				System.out.println(f.getVgename());
-				System.out.println(f.getVgeid());
-			}
-			request.setAttribute("forumBean", forumBeans);
-			request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryResult.jsp").forward(request, response);					
+//			for (ForumBean f : forumBeans) {
+//				System.out.println(f.getVgename());
+//				System.out.println(f.getVgeid());
+//			}
+//		System.out.println("error0");
+		
+		
+				//if(forumBeans. ) 
+//					{
+//					request.getRequestDispatcher("/WEB-INF/jsp/forum/ErrorQuery.jsp");
+			//	else {
+					request.setAttribute("forumBean", forumBeans);
+					request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryResult.jsp").forward(request, response);					
+			//	}
+		}
+				
+				
+			
+			
+			
+//			request.setAttribute("forumBean", forumBeans);
+//			request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryResult.jsp").forward(request, response);					
 			
 //			request.setAttribute("forumBean", forumBeans);
 //			request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryResult.jsp").forward(request, response);
@@ -118,7 +144,7 @@ public class ForumServlet extends HttpServlet {
 //			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/forum/ErrorQuery.jsp");
 //			dispatcher .forward(request, response);
 		
-	}
+	
 	
 
 	
@@ -127,7 +153,10 @@ public class ForumServlet extends HttpServlet {
 			throws ServletException, IOException {
 		List<ForumBean> forumBean = forumService.queryName();
 		request.setAttribute("forumBean", forumBean);
+		
+//		response.sendRedirect("/vegetarian/forumIndex.jsp");
 		request.getRequestDispatcher("/forumIndex.jsp").forward(request, response);		
+	}
 //		if(forumBean!=) {
 //		}
 		
@@ -177,7 +206,7 @@ public class ForumServlet extends HttpServlet {
 //			}
 //		}
 
-	}
+	
 
 	protected void processCreate(HttpServletRequest request, HttpServletResponse response, ForumDAO forumDAO)
 			throws ServletException, IOException {
@@ -189,10 +218,11 @@ public class ForumServlet extends HttpServlet {
 		String vgetheme = request.getParameter("vgetheme");
 		String vgecontent = request.getParameter("vgecontent");
 		
-		if(vgename.equals("") || vgetheme.equals("") ||vgecontent.equals("")) {
+		if(vgename.equals("") || vgename.trim().length()==0 || vgetheme.equals("") || vgetheme.trim().length()==0 ||vgecontent.equals("") || vgecontent.trim().length()==0 ) {
+			System.out.println("error");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/forum/ErrorCreate.jsp");
 			dispatcher .forward(request, response);
-		}
+		}else {
 		ForumService forumService = new ForumHibernateService();
 		HttpSession session = request.getSession();
 		try {
@@ -202,7 +232,7 @@ public class ForumServlet extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/jsp/forum/Thank.jsp").forward(request, response);
 		}catch (Exception e) {
 			System.out.println("Database Connection Error");
-		}
+		}}
 		
 //		-------------------------------------------------
 //		DataSource ds = null;
