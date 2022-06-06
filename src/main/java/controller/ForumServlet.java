@@ -434,12 +434,15 @@ public class ForumServlet extends HttpServlet {
 	public void prcoessHome(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-//				User userForum = (User) request.getSession().getAttribute("user");
+		User userForum = (User) request.getSession().getAttribute("user");
 //		try (PrintWriter out = response.getWriter()){
 //			if(userForum==null) {
+		if(userForum.getUid()!=null) {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/forum/QueryForum.jsp");
-					dispatcher.forward(request, response);
-
+				dispatcher.forward(request, response);
+			}else {
+				response.sendRedirect("/vegetarian/Login");
+			}
 //			}else {
 //					if(userForum.getUid()==0) 
 //						response.sendRedirect("/vegetarian/Login");
