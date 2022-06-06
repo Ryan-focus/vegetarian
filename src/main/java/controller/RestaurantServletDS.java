@@ -45,9 +45,9 @@ public class RestaurantServletDS extends HttpServlet {
 			if (req.getParameter("修改餐廳") != null) {
 				restaurantUpdate(req, res, restaurantService);
 			}
-//			if (req.getParameter("查詢餐廳GO") != null) {
-//				restaurantQuery(req, res, restaurantService);
-//			}
+			if (req.getParameter("查詢餐廳GO") != null) {
+				restaurantQuery(req, res, restaurantService);
+			}
 		} catch (SQLException e) {
 			System.out.println("Database Connection Error");
 		}
@@ -213,10 +213,9 @@ public class RestaurantServletDS extends HttpServlet {
 		}
 	}
 
-}
 
-/* 查詢餐廳 by Address&Category&Type-前台搜尋
-		private void restaurantQuery(HttpServletRequest req, HttpServletResponse res, RestaurantDAO restaurantDAO)
+// 查詢餐廳 by Name&Address&Category&Type-前台搜尋
+		private void restaurantQuery(HttpServletRequest req, HttpServletResponse res, RestaurantService restaurantService)
 				throws SQLException, IOException {
 			// 讀取餐廳資料
 			String restaurantName = req.getParameter("restaurantName");
@@ -231,7 +230,7 @@ public class RestaurantServletDS extends HttpServlet {
 			// 透過DAO元件Access Dept Table
 //			List<Restaurant> restaurantList = restaurantDAO.findRestaurant(restaurantName,restaurantAddress,restaurantCategory,restaurantType);
 			//改寫為Hibernate方法，其餘不變。
-			List<Restaurant> restaurantList = restaurantDAO.findAll();
+			List<Restaurant> restaurantList = restaurantService.findRestaurant(restaurantName,restaurantAddress,restaurantCategory,restaurantType);
 			// session
 			req.getSession().setAttribute("restaurantList",restaurantList);
 			
@@ -245,14 +244,13 @@ public class RestaurantServletDS extends HttpServlet {
 			else
 				req.setAttribute("restaurantList", restaurantList);
 			try {
-//				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/restaurantBackground/restaurantFormBackground.jsp");
 				RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/restaurantForm.jsp");
 				dispatcher.forward(req, res);
 			} catch (ServletException | IOException e) {
 				e.printStackTrace();
 			}
 			
-		} */
+		} 
 
 /* 查詢餐廳 by Address&Category&Type
 	private void restaurantQuery(HttpServletRequest req, HttpServletResponse res, RestaurantDAO restaurantDAO)
@@ -290,3 +288,4 @@ public class RestaurantServletDS extends HttpServlet {
 		}
 		
 	} */
+}

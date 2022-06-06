@@ -11,6 +11,9 @@ public interface RestaurantDAO {
 	int save(Restaurant restaurant);
 
 	List<Restaurant> getAllRestaurants();
+	
+	List<Restaurant> findRestaurant(String restaurantName, String restaurantAddress, String restaurantCategory,
+			String restaurantType);
 
 	Restaurant getRestaurant(int restaurantNumber);
 

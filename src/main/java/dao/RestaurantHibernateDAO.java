@@ -1,6 +1,5 @@
 package dao;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -44,6 +43,20 @@ public class RestaurantHibernateDAO implements RestaurantDAO{
 		Session session = factory.getCurrentSession();
 		String hql = "FROM Restaurant";
 		restaurants = session.createQuery(hql,Restaurant.class).getResultList();
+		return restaurants;
+	}
+	
+	@Override
+	public List<Restaurant> findRestaurant(String restaurantName,String restaurantAddress,String restaurantCategory,String restaurantType) {
+		List<Restaurant> restaurants = null;
+		Session session = factory.getCurrentSession();
+		String hql = "FROM Restaurant restaurant WHERE restaurant.restaurantName like :restaurantName and restaurant.restaurantAddress like :restaurantAddress and restaurant.restaurantCategory like :restaurantCategory and restaurant.restaurantType like :restaurantType";
+		restaurants = session.createQuery(hql, Restaurant.class)
+										.setParameter("restaurantName", "%"+restaurantName+"%")
+										.setParameter("restaurantAddress", "%"+restaurantAddress+"%")
+										.setParameter("restaurantCategory", "%"+restaurantCategory+"%")
+										.setParameter("restaurantType", "%"+restaurantType+"%")
+										.getResultList();
 		return restaurants;
 	}
 

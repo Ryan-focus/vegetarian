@@ -75,6 +75,24 @@ public class RestaurantHibernateService implements RestaurantService{
 		}
 		return restaurants;
 	}
+	
+	@Override
+	public List<Restaurant> findRestaurant(String restaurantName,String restaurantAddress,String restaurantCategory,String restaurantType) {
+		List<Restaurant> restaurants = null;
+		Session session = factory.getCurrentSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			restaurants = restaurantDAO.findRestaurant(restaurantName, restaurantAddress, restaurantCategory, restaurantType);
+			tx.commit();
+		}catch (Exception ex) {
+			if(tx != null) {
+				tx.rollback();	
+			}
+			throw new RuntimeException();
+		}
+		return restaurants;
+	}
 
 	@Override
 	public Restaurant getRestaurant(int restaurantNumber) {
