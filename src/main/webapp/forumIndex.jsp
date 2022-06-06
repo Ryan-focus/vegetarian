@@ -47,7 +47,7 @@
 
 <h1>網誌</h1>
 <!--    <p  class="button" align="center"> <input type="submit" name="ShowAll" value="查詢文章" > &emsp; <input type="submit" name="ForumHome" value="新增文章" ></p> -->
- 	<p><input type="submit" name="ShowAll" value="查詢文章" > &emsp; <input type="submit" name="ForumHome" value="新增文章" ></p>
+ 	 <input type="submit" name="ForumHome" value="新增文章" ></p>
 <br>
 
 			<c:forEach var="forum" items="${forumBean}">

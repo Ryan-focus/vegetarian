@@ -37,6 +37,10 @@ hr.style-five {
 p{
   text-align:center;
 }
+.warning{
+	text-align: center;
+	color: #9F6000;
+}
 
 </style>
 </head>
@@ -47,7 +51,12 @@ p{
 		<header>
 		<h2>網誌</h2>
 		</header>
-
+<%-- <c:if test="${forum.vgename}==null"><P>輸入錯誤</P></c:if> --%>
+	<c:if test='${empty forumBean}'>
+	<p class="warning">	查無資料</p><br>
+	<p><input type="submit" name="ForumHome" value="回首頁" ></p>
+	</c:if>
+	<c:if test='${not empty forumBean}'>
 	 	<c:forEach var='forum'  items='${forumBean}'>
 			<p class="p">文章號碼: <input type="text" readonly="readonly" name="vgeid" value="${forum.vgeid}" size="30" maxlength="30"></p>  
 			<p class="p">名稱:<input type="text" name="vgename"  value="${forum.vgename}" size="30" maxlength="30"></p> 
@@ -61,6 +70,8 @@ p{
 			<input type="submit" name="Delete" value="刪除網誌" ><br>
 			<p><input type="submit" name="ForumHome" value="回首頁" ></p>
 	</center>
+	</c:if>
+	
 	</form>
 </body>
 </html>

@@ -35,7 +35,7 @@
 	          <%}%>								
 	       	  <!-- <a href="/vegetarian/order.asp"><li>訂位</li></a> -->
 	          <a href="/vegetarian/postIndex"><li>食記</li></a>
-	          <a href="/vegetarian/forumIndex"><li>網誌</li></a>
+	          <a href="/vegetarian/ForumServlet?ShowAll"><li>網誌</li></a>
 	          <a href="/vegetarian/shoppingcartIndex"><li>購物專區</li></a>
 	          <!--  <a href="#"><li>店家專區</li></a>-->
 	          <li><div style="margin-top:9px;font-weight: bolder;">${user.status}&nbsp;&nbsp;${user.username}&nbsp;</div></li> 
