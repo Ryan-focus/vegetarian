@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 <title>編輯文章</title>
 <style>
 * {
@@ -68,7 +69,7 @@ body, html {
 			<hr>
 		</div>
 
-		<form action="PostUpadte" method="post" enctype="multipart/form-data">
+		<form action="PostUpadte" method="post" enctype="multipart/form-data" id="sub">
 		上傳圖片：<input type="file" name="image">
 			<hr>
 			<h5 class="text">文章標題:</h5>
@@ -83,12 +84,13 @@ body, html {
 			<p id="wordsNum2">
 				<span class="wordsNum2">0</span>/<span>5000</span>
 			</p>
-			<input type="submit" value="更新文章" /> <input type='hidden'
+			<input type="submit" value="更新文章" id="yesno"/> <input type='hidden'
 				name='update' value="${post.postId}">
 		</form>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 	<script>
 		$(function() {
 			/*input字數*/
@@ -111,6 +113,25 @@ body, html {
 				var counter = text.length;
 				$(".wordsNum2").text(counter);
 			});
+			
+			$('#yesno').click(function(event) {
+		        if(($.confirm({
+		          title: '',
+		          animation: 'zoom',
+		          closeAnimation: 'scale',
+		          content: '請問是否確定送出？',
+		          buttons: {
+		            是: function() {
+		                $('#sub').submit();
+		            },
+		            否: function() {
+		               
+		            }
+		          }
+		        }))){
+		        event.preventDefault();
+		      }
+		      });
 		})
 	</script>
 </body>

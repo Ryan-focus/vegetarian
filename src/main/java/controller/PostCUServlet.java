@@ -84,7 +84,7 @@ public class PostCUServlet extends HttpServlet {
 		String title = null;
 		String postedText = null;
 		String update = null;
-		String headUrl = ""; 
+		String headUrl = null; 
 		String headImgFileName = "images/PostsPhoto"; 
 		String defaultImgurl = "images/PostsPhoto/defaultPostImage.jpg";
 		
