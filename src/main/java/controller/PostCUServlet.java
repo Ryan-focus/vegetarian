@@ -80,13 +80,15 @@ public class PostCUServlet extends HttpServlet {
 			throws SQLException, IOException, ServletException {
 		
 		PostService pService = new PostHibernateServiceImpl();
-
+		Post post2 = new Post();
 		String title = null;
 		String postedText = null;
 		String update = null;
-		String headUrl = null; 
+		String headUrl = post2.getImgurl();
 		String headImgFileName = "images/PostsPhoto"; 
 		String defaultImgurl = "images/PostsPhoto/defaultPostImage.jpg";
+		
+		
 		
 		FileItemFactory factory = new DiskFileItemFactory();
 
@@ -164,6 +166,7 @@ public class PostCUServlet extends HttpServlet {
 			headUrl = defaultImgurl;
 		}
 		int id = (Integer.parseInt(update));
+		
 		Post post = new Post(id, title, postedText,headUrl);
 		if (pService.updatePost(post)) {
 			request.setAttribute("message", "更新成功");
