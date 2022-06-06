@@ -68,7 +68,9 @@ body, html {
 			<hr>
 		</div>
 
-		<form action="PostUpadte" method="post">
+		<form action="PostUpadte" method="post" enctype="multipart/form-data">
+		上傳圖片：<input type="file" name="image">
+			<hr>
 			<h5 class="text">文章標題:</h5>
 			<textarea class="text_title" name="title" rows="1" maxlength="100"
 				required>${post.title}</textarea>

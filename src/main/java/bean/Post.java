@@ -49,6 +49,13 @@ public class Post implements Serializable{
 	    	this.postedText = postedText;
 		}
 		
+		public Post(Integer postId, String title, String postedText, String imgurl) {
+			this.postId =postId;
+	    	this.title = title;
+	    	this.postedText = postedText;
+	    	this.imgurl = imgurl;
+		}
+		
 		public Post(Integer postId) {
 			this.postId =postId;
 		}

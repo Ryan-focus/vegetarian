@@ -42,11 +42,12 @@ public class PostHibernateDAOImpl implements PostDAO {
 	public boolean updatePost(Post post) {
 		
 		Session session = factory.getCurrentSession();
-    	String hql ="UPDATE Post  set title= :title, postedText = :postedText where postId = :postId ";
+    	String hql ="UPDATE Post  set title= :title, postedText = :postedText, imgurl = :imgurl where postId = :postId ";
     	int result =0;
     	result = session.createQuery(hql)
     			.setParameter("title",post.getTitle())
     			.setParameter("postedText",post.getPostedText())
+    			.setParameter("imgurl", post.getImgurl())
     			.setParameter("postId", post.getPostId())
 				.executeUpdate();
     	if(result>0) {

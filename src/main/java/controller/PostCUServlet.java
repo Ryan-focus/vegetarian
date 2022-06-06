@@ -30,7 +30,7 @@ public class PostCUServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		try {
-			Update(request, response);
+			UpdatePostImage(request, response);
 		} catch (SQLException | IOException | ServletException e) {
 			e.printStackTrace();
 		}
@@ -75,93 +75,104 @@ public class PostCUServlet extends HttpServlet {
 //
 //	}
 //	
-//	@SuppressWarnings("unused")
-//	private void UpdatePostImage(HttpServletRequest request, HttpServletResponse response, PostDAO postDao)
-//			throws SQLException, IOException, ServletException {
-//
-//		String title = null;
-//		String postedText = null;
-//		String add = null;
-//		String headUrl = ""; // 摮頝臬��
-//		String headImgFileName = "images/PostsPhoto"; // Web��銝剖������辣憭曉���摰儔
-//		int id = (Integer.parseInt(request.getParameter("update")));
-//		Post post = new Post();
-//
-//		FileItemFactory factory = new DiskFileItemFactory();
-//
-//		ServletFileUpload upload = new ServletFileUpload(factory);
-//
-//		List<?> items = null;
-//		try {
-//			items = upload.parseRequest(request);
-//		} catch (FileUploadException e) {
-//			e.printStackTrace();
-//		}
-//
-//		Iterator<?> iter = items.iterator();
-//		while (iter.hasNext()) {
-//			FileItem item = (FileItem) iter.next();
-//			
-//            //����撘�
-//			if (item.isFormField()) {
-//				String fieldName = item.getFieldName();
-//				if (fieldName.equals("title")) {
-//					// 敺銵典����
-//					title = item.getString("UTF-8");
-//				}
-//				if (fieldName.equals("postedText")) {
-//					postedText = item.getString("UTF-8");
-//				}
-//				if (fieldName.equals("add")) {
-//					add = item.getString("UTF-8");
-//				}
-//
-//				System.out.println(fieldName + "=" + title + postedText);
-////                 String value = item.getString();
-////			request.setAttribute(title, title);
-//			}
-//			// 霈��鞈�瑼��
-//			else {
-//				String fileName = item.getName();
-//				System.out.println("�����" + fileName);
-//				String suffix = fileName.substring(fileName.lastIndexOf('.'));//���瑼��
-//				System.out.println("�瑼���" + suffix);// .jpg
-//				//���辣��迂
-//				String newFileName = new Date().getTime() + suffix;
-//				System.out.println("�瑼���" + newFileName);// 1478509873038.jpg
-//
-//				
-//				ServletContext context = this.getServletContext();
-//				// 蝯�楝敺�
-//				String serverPath = context.getRealPath("") + headImgFileName;//
-//				String savePath ="C:/Users/PC/Documents/GitHub/vegetarian/src/main/webapp/"+headImgFileName;
-//				System.out.println(serverPath);
-//				System.out.println(savePath);
-//
-//				// 撠�������蔭
-//				File headImage = new File(savePath, newFileName);
-//				// 銝���神�
-//				try {
-//					item.write(headImage);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//
-//				//����楝敺�eadUrl嚗摮table
-//				headUrl = headImgFileName + "/" + newFileName; // ���撠楝敺� headImage/1478509873038.jpg
-//				System.out.println(headUrl);
-//				
-//			}
-//			
-//		}
-//		if (postDao.updatePost(post,title, postedText,id)) {
-//			System.out.println("銝����");
-//			request.setAttribute("message", "�銵冽���");
-//			request.getRequestDispatcher("/showResultForm").forward(request, response);
-//		} else {
-//			System.out.println("憭望��");
-//		}
-//	}
+	@SuppressWarnings("unused")
+	private void UpdatePostImage(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+		
+		PostService pService = new PostHibernateServiceImpl();
+
+		String title = null;
+		String postedText = null;
+		String update = null;
+		String headUrl = ""; 
+		String headImgFileName = "images/PostsPhoto"; 
+		String defaultImgurl = "images/PostsPhoto/defaultPostImage.jpg";
+		
+		FileItemFactory factory = new DiskFileItemFactory();
+
+		ServletFileUpload upload = new ServletFileUpload(factory);
+
+		List<FileItem> items = null;
+		try {
+			items = upload.parseRequest(request);
+		} catch (FileUploadException e) {
+			e.printStackTrace();
+		}
+
+		Iterator<FileItem> iter = items.iterator();
+		while (iter.hasNext()) {
+			FileItem item = (FileItem) iter.next();
+
+			// 一般文字
+			if (item.isFormField()) {
+				String fieldName = item.getFieldName();
+				if (fieldName.equals("title")) {
+					// 獲得表單值
+					title = item.getString("UTF-8");
+				}
+				if (fieldName.equals("postedText")) {
+					postedText = item.getString("UTF-8");
+				}
+				if (fieldName.equals("update")) {
+					update = item.getString("UTF-8");
+				}
+				//int id = (Integer.parseInt(request.getParameter("update")));
+				System.out.println(fieldName + "=" + title + postedText);
+				System.out.println(fieldName + "=" + postedText);
+				System.out.println(fieldName + "=" + update);
+//                 String value = item.getString();
+//			request.setAttribute(title, title);
+			}
+			// 檔案
+			else if (item.getSize() != 0) {
+				String fileName = item.getName();
+				System.out.println("檔案名" + fileName);
+				String suffix = fileName.substring(fileName.lastIndexOf('.'));// 副檔名
+				System.out.println("副檔名" + suffix);// .jpg
+				// 新的檔名
+				String newFileName = new Date().getTime() + suffix;
+				System.out.println("新檔名" + newFileName);// 1478509873038.jpg
+
+				ServletContext context = this.getServletContext();
+				// 絕對路徑
+				String serverPath = context.getRealPath("") + headImgFileName;//
+				String savePath = "C:\\Users\\iSpan\\Documents\\GitHub\\vegetarian\\src\\main\\webapp\\"
+						+ headImgFileName;
+				System.out.println(serverPath);
+				System.out.println(savePath);
+
+				// 儲存
+				File headImage = new File(savePath, newFileName);
+				// 寫成圖片
+				try {
+					item.write(headImage);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				// 儲存路徑
+				headUrl = headImgFileName + "/" + newFileName;
+				System.out.println(headUrl);
+
+			}
+
+		}
+		
+		if (headUrl != null) {
+
+		} else {
+			headUrl = defaultImgurl;
+		}
+		int id = (Integer.parseInt(update));
+		Post post = new Post(id, title, postedText,headUrl);
+		if (pService.updatePost(post)) {
+			request.setAttribute("message", "更新成功");
+			request.getRequestDispatcher("/showResultForm").forward(request, response);
+		} else {
+			request.setAttribute("message", "更新失敗");
+			request.getRequestDispatcher("/showResultForm").forward(request, response);
+		}
+	}
 
 
 }

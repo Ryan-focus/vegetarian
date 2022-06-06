@@ -30,6 +30,8 @@ public class PostCServlet extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 
+		
+		
 		try {
 			CreatePostImage(request, response);
 		} catch (SQLException | IOException | ServletException e) {
@@ -41,10 +43,13 @@ public class PostCServlet extends HttpServlet {
 
 	private void CreatePostImage(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
+		
+		
 		PostService pService = new PostHibernateServiceImpl();
 
 		String title = null;
 		String postedText = null;
+		String update= null;
 		String headUrl = null;
 		String headImgFileName = "images/PostsPhoto";
 		String defaultImgurl = "images/PostsPhoto/defaultPostImage.jpg";
@@ -74,10 +79,13 @@ public class PostCServlet extends HttpServlet {
 				if (fieldName.equals("postedText")) {
 					postedText = item.getString("UTF-8");
 				}
-				if (fieldName.equals("add")) {
+				if (fieldName.equals("update")) {
+					update = item.getString("UTF-8");
 				}
-
+				//int id = (Integer.parseInt(request.getParameter("update")));
 				System.out.println(fieldName + "=" + title + postedText);
+				System.out.println(fieldName + "=" + postedText);
+				System.out.println(fieldName + "=" + update);
 //                 String value = item.getString();
 //			request.setAttribute(title, title);
 			}
